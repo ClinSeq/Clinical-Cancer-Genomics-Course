@@ -59,12 +59,11 @@ Recommended reading before the course:
 !!! Note
     1. Lectures in the morning with computer exercises in the afternoon.
     2. 100% attendance is recommended, due to that each session is exclusive and cannot be compensated for later on. The student will be asked to review the issue presented in case of absence in a session.
+    3. Each computer exercise addresses one or multiple learning outcomes. Each student will hand in a written report form each computer exercise. All intended learning outcomes need to be achieved in order to pass the exam.
 
 ## Additional Information 
 
-* :fontawesome-regular-calendar-alt: 2022-01-24 to 2022-01-28
-* :fontawesome-regular-clock: Monday - Friday ( 09:00 - 17:00 )
-* <b>Course responsible : </b>
-        Name : Johan Lindberg
-        Department : Institutionen för medicinsk epidemiologi och biostatistik
-        :fontawesome-regular-envelope: –  johan.lindberg@ki.se
+:fontawesome-regular-calendar-alt: <span class="add-info">2022-01-24 to 2022-01-28</span></br>
+:fontawesome-regular-clock: <span class="add-info">Monday - Friday ( 09:00 - 17:00 ) </span></br>
+:fontawesome-regular-envelope: <span class="add-info"> johan.lindberg@ki.se</span>
+

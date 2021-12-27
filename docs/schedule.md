@@ -1,71 +1,381 @@
 
-#### Day 1 - 2021-01-24
+#### Day 1 : 2021-01-24 - Monday
 
-| Time      | Topic                             | Responsible | Location |
-| :------- | :------------------------------- |:-----------:|:--------:|
-| 9:00-9:45 | Sequencing Evolution Introduction | Johan       |Wargentin | 
-| 9:45-10:00 | Break |        | |
-| 10:00-10:45 | Sequencing Evolution Introduction | Johan       |Wargentin | 
-| 10:45-11:00 | Break |     ||
-|11:00-11:45| Lab intro <ul><li>The clinical impact of analysing the cancer genome</li></ul> | Felix + Johan|Wargentin|
-|11:45-12:00| Q&A| Wargentin | 
-|12:00-13:00|Lunch||
-|13:00 - 17:00| Lab session | Johan & Rebecka & Sarath | Wargentin|
+<div class="row">
+    <div class="col-12 typeset__table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Topic</th>
+                    <th>Responsible</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>9:00-9:45</td>
+                    <td>
+                        <b>Introduction </b>
+                        <ul>
+                            <li>Sequencing Evolution</li>
+                            <li>Cancer genome and mutational processes in cancer I</li>
+                        </ul>
+                    </td>
+                    <td>Johan</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>9:45-10:00</td>
+                    <td colspan="3">Break</td>
+                </tr>
+                <tr>
+                    <td>10:00-10:45</td>
+                    <td>
+                        An introduction to the cancer genome and mutational processes in cancer II
+                    </td>
+                    <td>Johan</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>10:45-11:00</td>
+                    <td colspan="3">Break</td>
+                </tr>
+                <tr>
+                    <td>11:00-11:45</td>
+                    <td>The clinical impact of analysing the cancer genome</td>
+                    <td>Felix + Johan</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>12:00-13:00</td>
+                    <td colspan="3">Lunch</td>
+                </tr>
+                <tr>
+                    <td>13:00-17:00</td>
+                    <td>
+                        <b>Excerises</b>
+                        <ul>
+                            <li>Github organisation/using github</li>
+                            <li>Use the command line and running bioinformatic tools</li>
+                            <li>How to order targted sequencing assay</li>
+                            <li>Visualise data in R</li>
+                        </ul>
+                    </td>
+                    <td>Johan & Rebecka & Sarath</td>
+                    <td>Wargentin</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
+#### Day 2 : 2021-01-25 - Tuesday
 
-#### Day 2 - 2021-01-25
+<div class="row">
+    <div class="col-12 typeset__table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Topic</th>
+                    <th>Responsible</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>9:00-9:45</td>
+                    <td>
+                        <b>Introduction </b>
+                        <ul>
+                            <li>Cancer genomics - Tissues and liquid biopsies I</li>
+                            <li>A targeted sequencing assay</li>
+                            <li>Screening of localised disease</li>
+                        </ul>
+                    </td>
+                    <td>Johan</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>9:45-10:00</td>
+                    <td colspan="3">Break</td>
+                </tr>
+                <tr>
+                    <td>10:00-10:45</td>
+                    <td>
+                        An introduction to the cancer genome and mutational processes in cancer II.
+                    </td>
+                    <td>Johan</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>10:45-11:00</td>
+                    <td colspan="3">Break</td>
+                </tr>
+                <tr>
+                    <td>11:00-11:45</td>
+                    <td>
+                        <b>Lab Introduction</b>
+                        <ul>
+                            <li>basic pipeline</li>
+                            <li>basic tools</li>
+                            <li>IGV</li>
+                        </ul>
+                    </td>
+                    <td>Johan</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>12:00-13:00</td>
+                    <td colspan="3">Lunch</td>
+                </tr>
+                <tr>
+                    <td>13:00-17:00</td>
+                    <td>
+                        <b>Excerises</b>
+                        <ul>
+                            <li>Illumina sequencing file formats. ( fastq, bam etc )</li>
+                            <li>Refence genome</li>
+                            <li>Tools to manipulate the sequencing formats (Samtools, bedtools etc.)</li>
+                            <li>Visualise in IGV</li>
+                        </ul>
+                    </td>
+                    <td>Johan & Rebecka & Sarath</td>
+                    <td>Wargentin</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-| Time      | Topic                             | Responsible | Location |
-| :------- | :------------------------------- |:-----------:|:--------:|
-| 9:00-9:45 | Sequencing Evolution Introduction | Johan       |Wargentin | 
-| 9:45-10:00 | Break |        | |
-| 10:00-10:45 | Sequencing Evolution Introduction | Johan       |Wargentin | 
-| 10:45-11:00 | Break |     ||
-|11:00-11:45| Lab intro  <ul> <li>basic pipeline</li><li>basic tools</li><li>IGV</li></ul>| Felix + Johan|Wargentin|
-|11:45-12:00| Q&A| Wargentin | 
-|12:00-13:00|Lunch||
-|13:00 - 17:00| Lab session | Johan & Rebecka & Sarath | Wargentin|
+#### Day 3 : 2021-01-26 - Wednesday
 
+<div class="row">
+    <div class="col-12 typeset__table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Topic</th>
+                    <th>Responsible</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>9:00-9:45</td>
+                    <td>
+                        Introduction
+                        <ul>
+                            <li>Bioinformatics pipelines</li>
+                            <li>HTC computing environments</li>
+                        </ul>
+                    </td>
+                    <td>Sarath</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>9:45-10:00</td>
+                    <td colspan="3">Break</td>
+                </tr>
+                <tr>
+                    <td>10:00-10:45</td>
+                    <td>
+                        <ul>
+                            <li>Processing of DNA and RNA sequencing data</li>
+                            <li>QC of both DNA and RNA sequencing data</li>
+                        </ul>
+                    </td>
+                    <td>Rebecka</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>10:45-11:00</td>
+                    <td colspan="3">Break</td>
+                </tr>
+                <tr>
+                    <td>11:00-11:45</td>
+                    <td>
+                        Somatic and germline variant callers
+                        <ul>
+                            <li>Point mutations and indels</li>
+                            <li>ICGC/TCGA - Identification of drivers </li>
+                            <li>Landmark paper from TCGA/ICGC on significantly mutated genes</li>
+                        </ul>
+                        Lab Introduction <b>To Be Continued...</b>
+                    </td>
+                    <td>Rebecka</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>12:00-13:00</td>
+                    <td colspan="3">Lunch</td>
+                </tr>
+                <tr>
+                    <td>13:00-17:00</td>
+                    <td> 
+                        <b>Excerises</b>
+                        <ul>
+                            <li>Run the commands in a bash script (awk etc.)</li>
+                            <li>Targeted sequencing QC</li>
+                            <li>Add variant callers to the bioinformatic pipeline</li>
+                            <li>Visualise in IGV <b>To be Continued...</b></li>
+                        </ul>                 
+                    </td>
+                    <td>Johan & Rebecka & Sarath</td>
+                    <td>Wargentin</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-#### Day 3 - 2021-01-26
+#### Day 4 : 2021-01-27 - Thursday
 
-| Time      | Topic                             | Responsible | Location |
-| :------- | :------------------------------- |:-----------:|:--------:|
-| 9:00-9:45 | Sequencing Evolution Introduction | Johan       |Wargentin | 
-| 9:45-10:00 | Break |        | |
-| 10:00-10:45 | Sequencing Evolution Introduction | Johan       |Wargentin | 
-| 10:45-11:00 | Break |     ||
-|11:00-11:45| Lab intro (The clinical impact of analysing the cancer genome) | Felix + Johan|Wargentin|
-|11:45-12:00| Q&A| Wargentin | 
-|12:00-13:00|Lunch||
-|13:00 - 17:00| Lab session | Johan & Rebecka & Sarath | Wargentin|
+<div class="row">
+    <div class="col-12 typeset__table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Topic</th>
+                    <th>Responsible</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>9:00-9:45</td>
+                    <td>
+                        Calling somatic and germline variation
+                        <ul>
+                            <li>Copy-number alterations</li>
+                            <li>Ploidy</li>
+                            <li>Landmark CNA papers from ICGC/TCGA</li>
+                        </ul>
+                    </td>
+                    <td>Markus</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>9:45-10:00</td>
+                    <td colspan="3" class="text-center">Break</td>
+                </tr>
+                <tr>
+                    <td>10:00-10:45</td>
+                    <td>
+                        Calling somatic and germline variation <b>To be Continued...</b>
+                        <ul>
+                            <li>Structural variation</li>
+                            <li>Landmark GSR papers from ICGC/TCGA</li>
+                        </ul>
+                    </td>
+                    <td>Johan</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>10:45-11:00</td>
+                    <td colspan="3">Break</td>
+                </tr>
+                <tr>
+                    <td>11:00-11:45</td>
+                    <td>
+                        <ul>
+                            <li>Calling RNA fusions and getting expression values</li>
+                            <li>Lab Introduction <b>To Be Continued...</b></li>
+                        </ul>
+                    </td>
+                    <td>Sarath</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>12:00-13:00</td>
+                    <td colspan="3">Lunch</td>
+                </tr>
+                <tr>
+                    <td>13:00-17:00</td>
+                    <td>                
+                        <b>Excerises</b>   
+                        <ul>
+                            <li>Use a skeleton of a bioinformatics pipeline and add some extra steps</li>
+                            <li>Run the bioinformatic pipeline</li>
+                            <li>Plot the output in ggplot</li>
+                            <li>Inspecting variants</li>
+                        </ul>
+                    </td>
+                    <td>Johan & Rebecka & Markus & Sarath</td>
+                    <td>Wargentin</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
+#### Day 5 : 2021-01-28 - Friday
 
-
-#### Day 4 - 2021-01-27
-
-| Time      | Topic                             | Responsible | Location |
-| :------- | :------------------------------- |:-----------:|:--------:|
-| 9:00-9:45 | Sequencing Evolution Introduction | Johan       |Wargentin | 
-| 9:45-10:00 | Break |        | |
-| 10:00-10:45 | Sequencing Evolution Introduction | Johan       |Wargentin | 
-| 10:45-11:00 | Break |     ||
-|11:00-11:45| Lab intro (The clinical impact of analysing the cancer genome) | Felix + Johan|Wargentin|
-|11:45-12:00| Q&A| Wargentin | 
-|12:00-13:00|Lunch|
-|13:00 - 17:00| Lab session | Johan & Rebecka & Sarath | Wargentin|
-
-
-
-#### Day 5 - 2021-01-28
-
-| Time      | Topic                             | Responsible | Location |
-| :------- | :------------------------------- |:-----------:|:--------:|
-| 9:00-9:45 | Sequencing Evolution Introduction | Johan       |Wargentin | 
-| 9:45-10:00 | Break |        | |
-| 10:00-10:45 | Sequencing Evolution Introduction | Johan       |Wargentin | 
-| 10:45-11:00 | Break |     ||
-|11:00-11:45| Lab intro (The clinical impact of analysing the cancer genome) | Felix + Johan|Wargentin|
-|11:45-12:00| Q&A| Wargentin | 
-|12:00-13:00|Lunch||
-|13:00 - 17:00| Lab session | Johan & Rebecka & Sarath | Wargentin|
+<div class="row">
+    <div class="col-12 typeset__table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Topic</th>
+                    <th>Responsible</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>9:00-9:45</td>
+                    <td>
+                        How to curate somatic and germline variation for clinical use
+                    </td>
+                    <td>Johan</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>9:45-10:00</td>
+                    <td colspan="3">Break</td>
+                </tr>
+                <tr>
+                    <td>10:00-10:45</td>
+                    <td>
+                         Annotating somatic and germline variation 
+                    </td>
+                    <td>David Tamborero</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>10:45-11:00</td>
+                    <td colspan="3">Break</td>
+                </tr>
+                <tr>
+                    <td>11:00-11:45</td>
+                    <td>
+                        Annotating somatic and germline variation <b>To Be Continued...</b>
+                    </td>
+                    <td>David Tamborero</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td>12:00-13:00</td>
+                    <td colspan="3">Lunch</td>
+                </tr>
+                <tr>
+                    <td>13:00-17:00</td>
+                    <td>
+                          <b>Excerises</b> 
+                          <ul>
+                            <li>Annotating variants using VEP and setting the arguments correctly</li>
+                            <li>Curating variants manually using Curator</li>
+                            <li>Phenotypes</li>
+                          </ul>                  
+                    </td>
+                    <td>David Tamborero & Johan & Rebecka & Sarath</td>
+                    <td>Wargentin</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

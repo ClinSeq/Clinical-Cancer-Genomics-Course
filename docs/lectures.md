@@ -1,7 +1,7 @@
 ??? example " Lecture 1 : Sequencing evolution Introduction"
 
-    1. Exome sequencing vs WGS sequencing vs targeted sequencing [PDF](course_details/conda.pdf)
-    2. RNA sequencing vs targeted RNA sequening vs single cell sequencing [PDF](course_details/conda.pdf)
+    1. Exome sequencing vs WGS sequencing vs targeted sequencing [PDF](pdf/conda.pdf)
+    2. RNA sequencing vs targeted RNA sequening vs single cell sequencing [PDF](pdf/conda.pdf)
 
 ??? example "Lecture 2 : Cancer genome and mutational processes"
 

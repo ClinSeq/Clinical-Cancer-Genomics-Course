@@ -49,6 +49,7 @@ copyright: Copyright &copy; 2021, Johan Lindberg et. al., MEB, Karolinska Instit
 extra:
   generator: false
 
+
 extra_css:
   - assets/css/extra.css
 
@@ -94,11 +95,13 @@ markdown_extensions:
   - pymdownx.tilde
 
 nav:
-  - Course catalogue: index.md
-  - Getting Started:
-    - Pre-course setup: pre-course-setup.md
-    - Introduction: introduction.md
-    - Schedule: schedule.md
+  - Course Details: index.md
+  - Schedule: schedule.md
+  - Pre-course setup:
+    - Installation : installation.md
+    - Download Files:
+      - Reference: references.md
+      - Annotation: annotations.md
   - Modules:
     - Lectures: lectures.md
     - Lab Session: lab-session.md

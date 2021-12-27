@@ -16,6 +16,24 @@ html body {
  */
 }
 
+.md-typeset h1{
+  font-size: x-large;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.md-typeset h2{
+  font-size: x-large;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: medium;
+}
+
+ul li, ol li{
+  font-size: 14px;
+}
 
 .md-header__button.md-logo :is(img, svg) {
   width: 35px;
@@ -24,6 +42,7 @@ html body {
 
 .head-p1, .head-p2 {
   text-align: justify;
+  font-size: medium;
 }
 
 #detailed-syllabus, #learning-outcomes,  #literature-and-other-teaching-material, #contents-of-the-course, #additional-information {
@@ -31,4 +50,33 @@ html body {
   font-weight: bold;
   text-transform: uppercase;
   font-size: large;
+}
+
+.add-info {
+  font-size: small;
+  padding: 0px 10px;
+}
+
+.md-typeset table:not([class]) :is(th):not([align]) {
+  text-align: center;
+}
+
+.md-typeset table:not([class]) :is(td):not([align]) {
+  text-align:left;
+  font-size: 14px;
+}
+
+.md-typeset table:not([class]) :is(ul,ol):not([hidden]) {
+  padding-left: 5px;
+  font-size: small;
+}
+
+#transcriptome-reference-files {
+  text-transform: uppercase;
+  font-size: large;
+}
+
+.md-nav__list li{
+  font-size: small;
+  text-align: left;
 }
