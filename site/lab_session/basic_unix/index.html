@@ -669,7 +669,7 @@
 <li>Shell Scripts and File Permissions (chmod, nano, ./)</li>
 </ol>
 <h2 id="a-simple-unix-cheat-sheet">A Simple Unix cheat sheet<a class="headerlink" href="#a-simple-unix-cheat-sheet" title="Permanent link">&para;</a></h2>
-<p><a href="https://s3://path-to-file-url/unixsheet.pdf">Download Unix Cheat Sheet</a></p>
+<p><a href="../pdf/unixsheet.pdf">Download Unix Cheat Sheet</a></p>
 <h2 id="what-is-unix">What is UNIX?<a class="headerlink" href="#what-is-unix" title="Permanent link">&para;</a></h2>
 <p>UNIX is an operating system which was first developed in the 1960s, and has been under constant development ever since. By operating system, we mean the suite of programs which make the computer work. It is a stable, multi-user, multi-tasking system for servers, desktops and laptops.</p>
 <p>UNIX systems also have a graphical user interface (GUI) similar to Microsoft Windows which provides an easy to use environment. However, knowledge of UNIX is required for operations which aren't covered by a graphical program, or for when there is no windows interface available, for example, in a telnet session.</p>
@@ -707,14 +707,14 @@ the folder (or file) “workspace” in the folder “ubuntu” or "<a class="ma
 <p>Relative path: always relative to our current location.</p>
 <p>a single dot (.) refers to the current directory
 two dots (..) refers to the directory one level up</p>
-<h1 id="_1"><img alt="" src="https://i.imgur.com/Q1jJ5Sl.png" /><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h1 id="_1"><img alt="" src="../image/Q1jJ5Sl.png" /><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>Usually, /home is where the user accounts reside, ie. users’ ‘home’ directories. For example, for a user that has a username of “<a class="magiclink magiclink-github magiclink-issue" href="https://github.com/squidfunk/student/issues/1" title="GitHub Issue: squidfunk/student #1">student#1</a>”: their home directory is /home/student1. It is the directory that a user starts in after starting a new shell or logging into a remote server.</p>
 <p>The tilde (~) is a short form of a user’s home directory.</p>
 <h2 id="starting-an-unix-terminal">Starting an UNIX terminal<a class="headerlink" href="#starting-an-unix-terminal" title="Permanent link">&para;</a></h2>
-<h1 id="_2"><img alt="" src="https://i.imgur.com/BGu9zj8.png" /><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<h1 id="_2"><img alt="" src="../image/ubutnu_00.png" /><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
 <p>After opening or logging into a terminal, system messages are often displayed, followed by the “prompt”. A prompt is a short text message at the start of the command line and ends with a $ in bash shell, commands are typed after the prompt. The prompt typically follows the form username@server:current_directory $ . </p>
-<p>If your screen looks like the one below, i.e. your see your a bunch of messages and then your ubuntu student instance number followed by “<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/ec2-3-88-248-40" title="GitHub User: ec2-3-88-248-40">@ec2-3-88-248-40</a>.compute-1.amazonaws.com:~$” at the beginning of the line, then you are successfully logged in.</p>
-<h1 id="insert-ubuntu-terminal-screenshot-after-logging-in-and-highlight-the-username-ubuntu-in-the-login-message-and-also-annotate-the-image-to-show-different-components-of-the-prompt-text">INSERT  UBUNTU TERMINAL SCREENSHOT AFTER LOGGING IN and highlight the username "ubuntu" in the login message and also annotate the image to show different components of the prompt text<a class="headerlink" href="#insert-ubuntu-terminal-screenshot-after-logging-in-and-highlight-the-username-ubuntu-in-the-login-message-and-also-annotate-the-image-to-show-different-components-of-the-prompt-text" title="Permanent link">&para;</a></h1>
+<p>If your screen looks like the one below, i.e. your see your a bunch of messages and then your ubuntu student instance number followed by “<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/172" title="GitHub User: 172">@172</a>.31.84.105:~$” at the beginning of the line, then you are successfully logged in.</p>
+<p><img alt="" src="../image/ubutnu_01.png" /></p>
 <h2 id="unix-basics">Unix Basics<a class="headerlink" href="#unix-basics" title="Permanent link">&para;</a></h2>
 <p>First some basics - how to look at your surroundings</p>
 <h5 id="present-working-directory-where-am-i">present working directory … where am I?<a class="headerlink" href="#present-working-directory-where-am-i" title="Permanent link">&para;</a></h5>
@@ -751,9 +751,10 @@ list files somewhere else, like /tmp/</p>
 <p><div class="highlight"><pre><span></span><code>man ls
 </code></pre></div>
 Navigate this page using the up and down arrow keys, PageUp and PageDown, and then use q to quit out of the manual. In this manual page, find the following options, quit the page, and then try those commands. You could even open another terminal, log in again, and run manual commands in that terminal.</p>
-<div class="highlight"><pre><span></span><code>ls -l /usr/bin/ 
+<p><div class="highlight"><pre><span></span><code>ls -l /usr/bin/ 
 <span class="c1">#long format, gives permission values, owner, group, size, modification time, and name</span>
 </code></pre></div>
+<img alt="" src="../image/ubutnu_02.png" /></p>
 <h3 id="exercise">Exercise:<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h3>
 <p>Feel free to see manual pages for these basic commands</p>
 <p>Commands and their  Meanings
@@ -767,13 +768,14 @@ mkdir
 <span class="nb">cd</span> ..   change to parent directory
 </code></pre></div></p>
 <p>Also these commands</p>
-<div class="highlight"><pre><span></span><code>ls -l
+<p><div class="highlight"><pre><span></span><code>ls -l
 ls -a
 ls -l -a 
 ls -la
 ls -ltrha
 ls -ltrha --color
 </code></pre></div>
+<img alt="" src="../image/ubutnu_07.png" /></p>
 <p>Quick aside: what if I want to use same options repeatedly? and be lazy? You can create a shortcut to another command using ‘alias’.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -lah&#39;</span>
 ll

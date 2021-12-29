@@ -25,7 +25,7 @@
 
 ## A Simple Unix cheat sheet
 
-[Download Unix Cheat Sheet](https://s3://path-to-file-url/unixsheet.pdf)
+[Download Unix Cheat Sheet](pdf/unixsheet.pdf)
 
 ## What is UNIX?
 
@@ -89,7 +89,8 @@ Relative path: always relative to our current location.
 a single dot (.) refers to the current directory
 two dots (..) refers to the directory one level up
 
-# ![](https://i.imgur.com/Q1jJ5Sl.png)
+# ![](image/Q1jJ5Sl.png)
+
 
 Usually, /home is where the user accounts reside, ie. users’ ‘home’ directories. For example, for a user that has a username of “student#1”: their home directory is /home/student1. It is the directory that a user starts in after starting a new shell or logging into a remote server.
 
@@ -98,14 +99,14 @@ The tilde (~) is a short form of a user’s home directory.
 
 ## Starting an UNIX terminal
 
-# ![](https://i.imgur.com/BGu9zj8.png)
+# ![](image/ubutnu_00.png)
 
 
 After opening or logging into a terminal, system messages are often displayed, followed by the “prompt”. A prompt is a short text message at the start of the command line and ends with a $ in bash shell, commands are typed after the prompt. The prompt typically follows the form username@server:current_directory $ . 
 
-If your screen looks like the one below, i.e. your see your a bunch of messages and then your ubuntu student instance number followed by “@ec2-3-88-248-40.compute-1.amazonaws.com:~$” at the beginning of the line, then you are successfully logged in.
+If your screen looks like the one below, i.e. your see your a bunch of messages and then your ubuntu student instance number followed by “@172.31.84.105:~$” at the beginning of the line, then you are successfully logged in.
 
-# INSERT  UBUNTU TERMINAL SCREENSHOT AFTER LOGGING IN and highlight the username "ubuntu" in the login message and also annotate the image to show different components of the prompt text
+![](image/ubutnu_01.png)
 
 
 ## Unix Basics
@@ -167,6 +168,8 @@ Navigate this page using the up and down arrow keys, PageUp and PageDown, and th
 ls -l /usr/bin/ 
 #long format, gives permission values, owner, group, size, modification time, and name
 ```
+![](image/ubutnu_02.png)
+
 
 ### Exercise:
 
@@ -196,6 +199,8 @@ ls -la
 ls -ltrha
 ls -ltrha --color
 ```
+![](image/ubutnu_07.png)
+
 
 Quick aside: what if I want to use same options repeatedly? and be lazy? You can create a shortcut to another command using ‘alias’.
 
