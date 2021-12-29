@@ -102,6 +102,8 @@ nav:
     - Download Files:
       - Reference: references.md
       - Annotation: annotations.md
-  - Modules:
-    - Lectures: lectures.md
-    - Lab Session: lab-session.md
+  - Lectures: 
+      - Day 1 : lectures/lectures.md 
+  - Lab Session:
+      - Basic Unix: lab_session/basic_unix.md
+      - AWK : lab_session/basics_awk.md
