@@ -1,0 +1,1112 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.5">
+    
+    
+      
+        <title>AWK - Clinical Cancer Genomics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.58abb37a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.9204c3b2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#awk-crash-course-for-bioinformatics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Clinical Cancer Genomics" class="md-header__button md-logo" aria-label="Clinical Cancer Genomics" data-md-component="logo">
+      
+  <img src="../../assets/img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Clinical Cancer Genomics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWK
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Clinical Cancer Genomics" class="md-nav__button md-logo" aria-label="Clinical Cancer Genomics" data-md-component="logo">
+      
+  <img src="../../assets/img/logo.svg" alt="logo">
+
+    </a>
+    Clinical Cancer Genomics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Course Details
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Pre-course setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Pre-course setup" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Pre-course setup
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Download Files
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Download Files" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Download Files
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/" class="md-nav__link">
+        Reference
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotations/" class="md-nav__link">
+        Annotation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Lectures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lectures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Lectures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/lectures/" class="md-nav__link">
+        Day 1
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Lab Session
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lab Session" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Lab Session
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_unix/" class="md-nav__link">
+        Basic Unix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          AWK
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        AWK
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#an-introduction-on-how-to-analyze-table-data-without-ms-excel" class="md-nav__link">
+    An introduction on how to analyze table data without MS Excel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-awk" class="md-nav__link">
+    What is AWK?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-awk" class="md-nav__link">
+    Why awk?
+  </a>
+  
+    <nav class="md-nav" aria-label="Why awk?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-awk-commands" class="md-nav__link">
+    Simple AWK commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print-all-the-lines-from-a-file" class="md-nav__link">
+    Print all the lines from a file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print-only-specific-field-like-2nd-3rd" class="md-nav__link">
+    Print only specific field like 2nd &amp; 3rd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awk-one-liners" class="md-nav__link">
+    AWK one-liners
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#awk-working-with-pipes" class="md-nav__link">
+    AWK working with pipes
+  </a>
+  
+    <nav class="md-nav" aria-label="AWK working with pipes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awk-for-bioinformatics-looking-at-transcriptome-data" class="md-nav__link">
+    AWK for Bioinformatics - looking at transcriptome data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chaining-awk-calls" class="md-nav__link">
+    Chaining AWK calls
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleaning-up-the-output" class="md-nav__link">
+    Cleaning up the output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#counting-genes" class="md-nav__link">
+    Counting genes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#an-introduction-on-how-to-analyze-table-data-without-ms-excel" class="md-nav__link">
+    An introduction on how to analyze table data without MS Excel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-awk" class="md-nav__link">
+    What is AWK?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-awk" class="md-nav__link">
+    Why awk?
+  </a>
+  
+    <nav class="md-nav" aria-label="Why awk?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-awk-commands" class="md-nav__link">
+    Simple AWK commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print-all-the-lines-from-a-file" class="md-nav__link">
+    Print all the lines from a file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print-only-specific-field-like-2nd-3rd" class="md-nav__link">
+    Print only specific field like 2nd &amp; 3rd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awk-one-liners" class="md-nav__link">
+    AWK one-liners
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#awk-working-with-pipes" class="md-nav__link">
+    AWK working with pipes
+  </a>
+  
+    <nav class="md-nav" aria-label="AWK working with pipes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awk-for-bioinformatics-looking-at-transcriptome-data" class="md-nav__link">
+    AWK for Bioinformatics - looking at transcriptome data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chaining-awk-calls" class="md-nav__link">
+    Chaining AWK calls
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleaning-up-the-output" class="md-nav__link">
+    Cleaning up the output
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#counting-genes" class="md-nav__link">
+    Counting genes
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="awk-crash-course-for-bioinformatics">AWK crash course for Bioinformatics<a class="headerlink" href="#awk-crash-course-for-bioinformatics" title="Permanent link">&para;</a></h1>
+<h2 id="an-introduction-on-how-to-analyze-table-data-without-ms-excel">An introduction on how to analyze table data without MS Excel<a class="headerlink" href="#an-introduction-on-how-to-analyze-table-data-without-ms-excel" title="Permanent link">&para;</a></h2>
+<h2 id="what-is-awk">What is AWK?<a class="headerlink" href="#what-is-awk" title="Permanent link">&para;</a></h2>
+<p>AWK is an interpreted programming language designed for text processing and typically used as a data extraction and reporting tool.</p>
+<p>The AWK language is a data-driven scripting language consisting of a set of actions to be taken against streams of textual data - either run directly on files or used as part of a pipeline - for purposes of extracting or transforming text, such as producing formatted reports. The language extensively uses the string datatype, associative arrays (that is, arrays indexed by key strings), and regular expressions.</p>
+<p>AWK has a limited intended application domain, and was especially designed to support one-liner programs.</p>
+<p>It is a standard feature of most Unix-like operating systems.</p>
+<p>source: <a href="https://en.wikipedia.org/wiki/AWK">Wikipedia</a></p>
+<h2 id="why-awk">Why awk?<a class="headerlink" href="#why-awk" title="Permanent link">&para;</a></h2>
+<p>You can replace a pipeline of 'stuff | grep | sed | cut...' with a single call to awk. For a simple script, most of the timelag is in loading these apps into memory, and it's much faster to do it all with one. This is ideal for something like an openbox pipe menu where you want to generate something on the fly. You can use awk to make a neat one-liner for some quick job in the terminal, or build an awk section into a shell script. </p>
+<h3 id="simple-awk-commands">Simple AWK commands<a class="headerlink" href="#simple-awk-commands" title="Permanent link">&para;</a></h3>
+<p>An AWK program consists of a sequence of pattern-action statements and optional function definitions. It processes text files. AWK is a line oriented language. It divides a file into lines called records. Each line is broken up into a sequence of fields. The fields are accessed by special variables: $1 reads the first field, $2 the second and so on. The $0 variable refers to the whole record.</p>
+<p>The structure of an AWK program has the following form:
+<div class="highlight"><pre><span></span><code>pattern <span class="o">{</span> action <span class="o">}</span>
+</code></pre></div>
+The pattern is a test that is performed on each of the records. If the condition is met then the action is performed. Either pattern or action can be omitted, but not both. The default pattern matches each line and the default action is to print the record.</p>
+<div class="highlight"><pre><span></span><code>awk -f program-file <span class="o">[</span>file-list<span class="o">]</span>
+awk program <span class="o">[</span>file-list<span class="o">]</span>
+</code></pre></div>
+<p>An AWK program can be run in two basic ways: a) the program is read from a separate file; the name of the program follows the -f option, b) the program is specified on the command line enclosed by quote characters.</p>
+<h3 id="print-all-the-lines-from-a-file">Print all the lines from a file<a class="headerlink" href="#print-all-the-lines-from-a-file" title="Permanent link">&para;</a></h3>
+<p>By default, awk prints all lines of a file , so to print every line of above created file use below command </p>
+<p><div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;{print}&#39;</span> file
+</code></pre></div>
+Note: In awk command ‘{print}’ is used print all fields along with their values.</p>
+<h3 id="print-only-specific-field-like-2nd-3rd">Print only specific field like 2<sup>nd</sup> &amp; 3<sup>rd</sup><a class="headerlink" href="#print-only-specific-field-like-2nd-3rd" title="Permanent link">&para;</a></h3>
+<p>In awk command, we use $ (dollar) symbol followed by field number to prints field values. </p>
+<p><div class="highlight"><pre><span></span><code>awk -F <span class="s2">&quot;,&quot;</span> <span class="s1">&#39;{print $2, $3}&#39;</span> file
+</code></pre></div>
+In the above command we have used the option  -F “,”  which specifies that comma (,) is the field separator in the file. This is usually good practice when dealing with tables where the separators between each column could be single or multiple white-space (" ") or tab ("\t") or a colon (":") or a semicolon (";").</p>
+<h3 id="awk-one-liners">AWK one-liners<a class="headerlink" href="#awk-one-liners" title="Permanent link">&para;</a></h3>
+<p>AWK one-liners are simple one-shot programs run from the command line. Let us have the following text file: words.txt</p>
+<p>We want to print all words included in the words.txt file that are longer than five characters.</p>
+<p><div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;length($1) &gt; 5 {print $0}&#39;</span> words.txt
+
+storeroom
+existence
+ministerial
+falcon
+bookworm
+bookcase
+</code></pre></div>
+The AWK program is placed between two single quote characters. The first is the pattern; we specify that the length of the record is greater that five. The length function returns the length of the string. The $1 variable refers to the first field of the record; in our case there is only one field per record. The action is placed between curly brackets.</p>
+<p><div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;length($1) &gt; 5&#39;</span> words.txt
+storeroom
+existence
+ministerial
+falcon
+bookworm
+bookcase
+</code></pre></div>
+As we have specified earlier, the action can be omitted. In such a case a default action is performed — printing of the whole record.</p>
+<p><div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;length($1) == 3&#39;</span> words.txt
+cup
+sky
+top
+war
+</code></pre></div>
+We print all words that have three characters.</p>
+<p><div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;!(length($1) == 3)&#39;</span> words.txt
+storeroom
+tree
+store
+book
+cloud
+existence
+ministerial
+falcon
+town
+bookworm
+bookcase
+</code></pre></div>
+With the ! operator, we can negate the condition; we print all lines that do not have three characters.</p>
+<p><div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;(length($1) == 3) || (length($1) == 4)&#39;</span> words.txt
+tree
+cup
+book
+town
+sky
+top
+war
+</code></pre></div>
+Next we apply conditions on numbers.</p>
+<p>We have a file with scores of students - scores.txt.
+<div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;$2 &gt;= 90 { print $0 }&#39;</span> scores.txt
+Lucia <span class="m">95</span>
+Joe <span class="m">92</span>
+Sophia <span class="m">90</span>
+</code></pre></div>
+We print all students with scores 90+.</p>
+<p><div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;$2 &gt;= 90 { print }&#39;</span> scores.txt
+Lucia <span class="m">95</span>
+Joe <span class="m">92</span>
+Sophia <span class="m">90</span>
+</code></pre></div>
+If we omit an argument for the print function, the $0 is assumed.</p>
+<p><div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;$2 &gt;= 90&#39;</span> scores.txt
+Lucia <span class="m">95</span>
+Joe <span class="m">92</span>
+Sophia <span class="m">90</span>
+</code></pre></div>
+A missing { action } means print the matching line.</p>
+<p><div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;{ if ($2 &gt;= 90) print }&#39;</span> scores.txt
+Lucia <span class="m">95</span>
+Joe <span class="m">92</span>
+Sophia <span class="m">90</span>
+</code></pre></div>
+Instead of a pattern, we can also use an if condition in the action.</p>
+<p><div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;{sum += $2} END { printf(&quot;The average score is %.2f\n&quot;, sum/NR) }&#39;</span> scores.txt
+</code></pre></div>
+The average score is 77.56</p>
+<p>This command calculates the average score. In the action block, we calculate the sum of scores. In the END block, we print the average score. We format the output with the built-in printf function. The %.2f is a format specifier; each specifier begins with the % character. The .2 is the precision -- the number of digits after the decimal point. The f expects a floating point value. The \n is not a part of the specifier; it is a newline character. It prints a newline after the string is shown on the terminal.</p>
+<h2 id="awk-working-with-pipes">AWK working with pipes<a class="headerlink" href="#awk-working-with-pipes" title="Permanent link">&para;</a></h2>
+<p>AWK can receive input and send output to other commands via the pipe.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> -e <span class="s2">&quot;1 2 3 5\n2 2 3 8&quot;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $(NF)}&#39;</span>
+<span class="m">5</span>
+<span class="m">8</span>
+</code></pre></div>
+<p>In this case, AWK receives output from the echo command. It prints the values of last column.</p>
+<div class="highlight"><pre><span></span><code>awk -F: <span class="s1">&#39;$7 ~ /bash/ {print $1}&#39;</span> /etc/passwd <span class="p">|</span> wc -l
+<span class="m">3</span>
+</code></pre></div>
+<p>Here, the AWK program sends data to the wc command via the pipe. In the AWK program, we find out those users who use bash. Their names are passed to the wc command which counts them. In our case, there are three users using bash.</p>
+<h3 id="awk-for-bioinformatics-looking-at-transcriptome-data">AWK for Bioinformatics - looking at transcriptome data<a class="headerlink" href="#awk-for-bioinformatics-looking-at-transcriptome-data" title="Permanent link">&para;</a></h3>
+<p>You can find a lot of online tutorials, but here we will try out a few steps which show how a bioinformatician analyses a <strong>GTF file</strong> using awk.</p>
+<p>GTF is a special file format that contains information about different regions of the genome and their associated annotations. More on that here - <a href="https://www.ensembl.org/info/website/upload/gff.html">Ensembl File Formats-GTF</a>.</p>
+<div class="highlight"><pre><span></span><code>wget transcriptome.gtf
+
+head transcriptome.gtf <span class="p">|</span> less -S
+
+<span class="c1">##description: evidence-based annotation of the human genome (GRCh37), version 18 (Ensembl 73)</span>
+<span class="c1">##provider: GENCODE</span>
+<span class="c1">##contact: gencode@sanger.ac.uk</span>
+<span class="c1">##format: gtf</span>
+<span class="c1">##date: 2013-09-02</span>
+chr1    HAVANA  exon    <span class="m">173753</span>  <span class="m">173862</span>  .   -   .   gene_id <span class="s2">&quot;ENSG00000241860.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000466557.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;processed_transcript&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;RP11-34P13.13&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;RP11-34P13.13-001&quot;</span><span class="p">;</span> exon_number <span class="m">1</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00001947154.2&quot;</span><span class="p">;</span>  level <span class="m">2</span><span class="p">;</span> tag <span class="s2">&quot;not_best_in_genome_evidence&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000002480.3&quot;</span><span class="p">;</span> havana_transcript <span class="s2">&quot;OTTHUMT00000007037.2&quot;</span><span class="p">;</span>
+chr1    HAVANA  transcript  <span class="m">1246986</span> <span class="m">1250550</span> .   -   .   gene_id <span class="s2">&quot;ENSG00000127054.14&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000478641.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;CPSF3L&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;retained_intron&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;CPSF3L-006&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000003330.11&quot;</span><span class="p">;</span> havana_transcript <span class="s2">&quot;OTTHUMT00000009365.1&quot;</span><span class="p">;</span>
+chr1    HAVANA  CDS <span class="m">1461841</span> <span class="m">1461911</span> .   +   <span class="m">0</span>   gene_id <span class="s2">&quot;ENSG00000197785.9&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000378755.5&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;ATAD3A&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;ATAD3A-003&quot;</span><span class="p">;</span> exon_number <span class="m">13</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00001664426.1&quot;</span><span class="p">;</span>  level <span class="m">2</span><span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span> tag <span class="s2">&quot;CCDS&quot;</span><span class="p">;</span> ccdsid <span class="s2">&quot;CCDS31.1&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000575.6&quot;</span><span class="p">;</span> havana_transcript <span class="s2">&quot;OTTHUMT00000001365.1&quot;</span><span class="p">;</span>
+chr1    HAVANA  exon    <span class="m">1693391</span> <span class="m">1693474</span> .   -   .   gene_id <span class="s2">&quot;ENSG00000008130.11&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000341991.3&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;NADK&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;NADK-002&quot;</span><span class="p">;</span> exon_number <span class="m">3</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00003487616.1&quot;</span><span class="p">;</span>  level <span class="m">2</span><span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span> tag <span class="s2">&quot;CCDS&quot;</span><span class="p">;</span> ccdsid <span class="s2">&quot;CCDS30565.1&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000942.5&quot;</span><span class="p">;</span> havana_transcript <span class="s2">&quot;OTTHUMT00000002768.1&quot;</span><span class="p">;</span>
+chr1    HAVANA  CDS <span class="m">1688280</span> <span class="m">1688321</span> .   -   <span class="m">0</span>   gene_id <span class="s2">&quot;ENSG00000008130.11&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000497186.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;NADK&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;nonsense_mediated_decay&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;NADK-008&quot;</span><span class="p">;</span> exon_number <span class="m">2</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00001856899.1&quot;</span><span class="p">;</span>  level <span class="m">2</span><span class="p">;</span> tag <span class="s2">&quot;mRNA_start_NF&quot;</span><span class="p">;</span> tag <span class="s2">&quot;cds_start_NF&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000942.5&quot;</span><span class="p">;</span> havana_transcript <span class="s2">&quot;OTTHUMT00000002774.3&quot;</span><span class="p">;</span>
+</code></pre></div>
+<blockquote>
+<p>The transcriptome has 9 columns. The first 8 are separated by tabs and look reasonable (chromosome, annotation source, feature type, start, end, score, strand, and phase), the last one is kind of hairy: it is made up of key-value pairs separated by semicolons, some fields are mandatory and others are optional, and the values are surrounded in double quotes. That’s no way to live a decent life. (<em>text copied from the source</em>)</p>
+</blockquote>
+<p>let's get only the lines that have <code>gene</code> in the 3<sup>th</sup> column.</p>
+<div class="highlight"><pre><span></span><code>$ awk -F <span class="s1">&#39;$3 == &quot;gene&quot;&#39;</span> transcriptome.gtf <span class="p">|</span> head <span class="p">|</span> less -S
+
+chr1    HAVANA  gene    <span class="m">11869</span>   <span class="m">14412</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000961.2&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">14363</span>   <span class="m">29806</span>   .   -   .   gene_id <span class="s2">&quot;ENSG00000227232.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000227232.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;WASH7P&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;WASH7P&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000958.1&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">29554</span>   <span class="m">31109</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000243485.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000243485.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;MIR1302-11&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;MIR1302-11&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000959.2&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">34554</span>   <span class="m">36081</span>   .   -   .   gene_id <span class="s2">&quot;ENSG00000237613.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000237613.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;FAM138A&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;FAM138A&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000960.1&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">52473</span>   <span class="m">54936</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000268020.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000268020.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4G4P&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4G4P&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000185779.1&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">62948</span>   <span class="m">63887</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000240361.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000240361.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4G11P&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4G11P&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001095.2&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">69091</span>   <span class="m">70008</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001094.1&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">89295</span>   <span class="m">133566</span>  .   -   .   gene_id <span class="s2">&quot;ENSG00000238009.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000238009.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;RP11-34P13.7&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;RP11-34P13.7&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001096.2&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">89551</span>   <span class="m">91105</span>   .   -   .   gene_id <span class="s2">&quot;ENSG00000239945.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000239945.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;RP11-34P13.8&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;RP11-34P13.8&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001097.2&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">131025</span>  <span class="m">134836</span>  .   +   .   gene_id <span class="s2">&quot;ENSG00000233750.3&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000233750.3&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;CICP27&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;CICP27&quot;</span><span class="p">;</span> level <span class="m">1</span><span class="p">;</span> tag <span class="s2">&quot;pseudo_consens&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001257.3&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>Perhaps filter a bit more and print the content of the 9<sup>th</sup> column in the file.</p>
+<div class="highlight"><pre><span></span><code>$ awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;$3 == &quot;gene&quot; { print $9 }&#39;</span> transcriptome.gtf <span class="p">|</span> head <span class="p">|</span> less -S
+
+gene_id <span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000961.2&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000227232.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000227232.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;WASH7P&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;WASH7P&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000958.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000243485.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000243485.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;MIR1302-11&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;MIR1302-11&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000959.2&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000237613.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000237613.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;FAM138A&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;FAM138A&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000960.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000268020.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000268020.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4G4P&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4G4P&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000185779.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000240361.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000240361.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4G11P&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4G11P&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001095.2&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001094.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000238009.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000238009.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;RP11-34P13.7&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;RP11-34P13.7&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001096.2&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000239945.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000239945.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;RP11-34P13.8&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;RP11-34P13.8&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001097.2&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000233750.3&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000233750.3&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;CICP27&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;CICP27&quot;</span><span class="p">;</span> level <span class="m">1</span><span class="p">;</span> tag <span class="s2">&quot;pseudo_consens&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001257.3&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>What about if we want just a specific piece from this information?
+We can <code>|</code> the output from the first awk script in to a second one. Note that we will use different field separator <code>"; "</code>.</p>
+<div class="highlight"><pre><span></span><code>$ awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;$3 == &quot;gene&quot; { print $9 }&#39;</span> transcriptome.gtf <span class="p">|</span> awk -F <span class="s2">&quot;; &quot;</span> <span class="s1">&#39;{ print $3 }&#39;</span> <span class="p">|</span> head
+
+gene_type <span class="s2">&quot;pseudogene&quot;</span>
+gene_type <span class="s2">&quot;pseudogene&quot;</span>
+gene_type <span class="s2">&quot;lincRNA&quot;</span>
+gene_type <span class="s2">&quot;lincRNA&quot;</span>
+gene_type <span class="s2">&quot;pseudogene&quot;</span>
+gene_type <span class="s2">&quot;pseudogene&quot;</span>
+gene_type <span class="s2">&quot;protein_coding&quot;</span>
+gene_type <span class="s2">&quot;lincRNA&quot;</span>
+gene_type <span class="s2">&quot;lincRNA&quot;</span>
+gene_type <span class="s2">&quot;pseudogene&quot;</span>
+</code></pre></div>
+<h2 id="chaining-awk-calls">Chaining AWK calls<a class="headerlink" href="#chaining-awk-calls" title="Permanent link">&para;</a></h2>
+<p>We will start with the AWK call that we were using before, and we will append a pipe | so it can be used as input for the next AWK call, this time using a space and a semicolon as the delimiter to define what a column is:</p>
+<p><div class="highlight"><pre><span></span><code>awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;$3 == &quot;gene&quot; { print $9 }&#39;</span> transcriptome.gtf <span class="p">|</span> awk -F <span class="s2">&quot;; &quot;</span> <span class="s1">&#39;{ print $3 }&#39;</span> <span class="p">|</span> head <span class="p">|</span> less -S
+
+gene_type <span class="s2">&quot;pseudogene&quot;</span>
+gene_type <span class="s2">&quot;pseudogene&quot;</span>
+gene_type <span class="s2">&quot;lincRNA&quot;</span>
+gene_type <span class="s2">&quot;lincRNA&quot;</span>
+gene_type <span class="s2">&quot;pseudogene&quot;</span>
+gene_type <span class="s2">&quot;pseudogene&quot;</span>
+gene_type <span class="s2">&quot;protein_coding&quot;</span>
+gene_type <span class="s2">&quot;lincRNA&quot;</span>
+gene_type <span class="s2">&quot;lincRNA&quot;</span>
+gene_type <span class="s2">&quot;pseudogene&quot;</span>
+</code></pre></div>
+Now that we see what the third column looks like, we can filter for protein-coding genes</p>
+<p><div class="highlight"><pre><span></span><code>awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;$3 == &quot;gene&quot; { print $9 }&#39;</span> transcriptome.gtf <span class="p">|</span> <span class="se">\</span>
+awk -F <span class="s2">&quot;; &quot;</span> <span class="s1">&#39;$3 == &quot;gene_type \&quot;protein_coding\&quot;&quot;&#39;</span> <span class="p">|</span> <span class="se">\</span>
+head <span class="p">|</span> less -S
+
+gene_id <span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001094.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000237683.5&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000237683.5&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;AL627309.1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;AL627309.1&quot;</span><span class="p">;</span> level <span class="m">3</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000235249.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000235249.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4F29&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4F29&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000002860.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000185097.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000185097.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4F16&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4F16&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000002581.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000269831.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000269831.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;AL669831.1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;AL669831.1&quot;</span><span class="p">;</span> level <span class="m">3</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000269308.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000269308.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;AL645608.2&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;AL645608.2&quot;</span><span class="p">;</span> level <span class="m">3</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000187634.6&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000187634.6&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;SAMD11&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;SAMD11&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000040719.8&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000268179.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000268179.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;AL645608.1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;AL645608.1&quot;</span><span class="p">;</span> level <span class="m">3</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000188976.6&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000188976.6&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;NOC2L&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;NOC2L&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000040720.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000187961.9&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000187961.9&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;KLHL17&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;KLHL17&quot;</span><span class="p">;</span> level <span class="m">2</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000040721.6&quot;</span><span class="p">;</span>
+</code></pre></div>
+I added a space and a backslash  (not to be confused with the regular slash /) after the first and second pipes to split the code into two lines; this makes it easier to read and it highlights that we are taking two separate steps.</p>
+<p>The double quotes around protein_coding are escaped (also with a backslash \") because they are already contained inside double quotes. To avoid the backslashing drama we can use the partial matching operator ~ instead of the total equality operator ==.</p>
+<p><div class="highlight"><pre><span></span><code>awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;$3 == &quot;gene&quot; { print $9 }&#39;</span> transcriptome.gtf <span class="p">|</span> <span class="se">\</span>
+awk -F <span class="s2">&quot;; &quot;</span> <span class="s1">&#39;$3 ~ &quot;protein_coding&quot;&#39;</span> <span class="p">|</span> <span class="se">\</span>
+head <span class="p">|</span> less -S
+</code></pre></div>
+The output is the same as before: those lines that contain a protein_coding somewhere in their third column make the partial matching rule true, and they get printed (which is the default behavior when there are no curly braces).</p>
+<p>Now we have all the protein-coding genes, but how do we get to the genes that only have one exon? Well, we have to revisit our initial AWK call: we selected lines that corresponded to genes, but we actually want lines that correspond to exons. That’s an easy fix, we just change the word “gene” for the word “exon”. Everything else stays the same.</p>
+<div class="highlight"><pre><span></span><code>awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;$3 == &quot;exon&quot; { print $9 }&#39;</span> transcriptome.gtf <span class="p">|</span> <span class="se">\</span>
+awk -F <span class="s2">&quot;; &quot;</span> <span class="s1">&#39;$3 ~ &quot;protein_coding&quot;&#39;</span> <span class="p">|</span> <span class="se">\</span>
+head <span class="p">|</span> less -S
+
+gene_id <span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000335137.3&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4F5-001&quot;</span><span class="p">;</span> exon_number <span class="m">1</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00002319515.1&quot;</span><span class="p">;</span>  level <span class="m">2</span><span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span> tag <span class="s2">&quot;CCDS&quot;</span><span class="p">;</span> ccdsid <span class="s2">&quot;CCDS30547.1&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001094.1&quot;</span><span class="p">;</span> havana_transcript <span class="s2">&quot;OTTHUMT00000003223.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000237683.5&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000423372.3&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;AL627309.1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;AL627309.1-201&quot;</span><span class="p">;</span> exon_number <span class="m">1</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00002221580.1&quot;</span><span class="p">;</span>  level <span class="m">3</span><span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000237683.5&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000423372.3&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;AL627309.1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;AL627309.1-201&quot;</span><span class="p">;</span> exon_number <span class="m">2</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00002314092.1&quot;</span><span class="p">;</span>  level <span class="m">3</span><span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000235249.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000426406.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4F29&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4F29-001&quot;</span><span class="p">;</span> exon_number <span class="m">1</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00002316283.1&quot;</span><span class="p">;</span>  level <span class="m">2</span><span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span> tag <span class="s2">&quot;CCDS&quot;</span><span class="p">;</span> ccdsid <span class="s2">&quot;CCDS41220.1&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000002860.1&quot;</span><span class="p">;</span> havana_transcript <span class="s2">&quot;OTTHUMT00000007999.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000185097.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000332831.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4F16&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4F16-001&quot;</span><span class="p">;</span> exon_number <span class="m">1</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00002324228.1&quot;</span><span class="p">;</span>  level <span class="m">2</span><span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span> tag <span class="s2">&quot;CCDS&quot;</span><span class="p">;</span> ccdsid <span class="s2">&quot;CCDS41221.1&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000002581.1&quot;</span><span class="p">;</span> havana_transcript <span class="s2">&quot;OTTHUMT00000007334.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000269831.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000599533.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;AL669831.1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;AL669831.1-201&quot;</span><span class="p">;</span> exon_number <span class="m">1</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00003063549.1&quot;</span><span class="p">;</span>  level <span class="m">3</span><span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000269831.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000599533.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;AL669831.1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;AL669831.1-201&quot;</span><span class="p">;</span> exon_number <span class="m">2</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00003084653.1&quot;</span><span class="p">;</span>  level <span class="m">3</span><span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000269831.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000599533.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;AL669831.1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;AL669831.1-201&quot;</span><span class="p">;</span> exon_number <span class="m">3</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00003138540.1&quot;</span><span class="p">;</span>  level <span class="m">3</span><span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000269308.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000594233.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;AL645608.2&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;AL645608.2-201&quot;</span><span class="p">;</span> exon_number <span class="m">1</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00003079649.1&quot;</span><span class="p">;</span>  level <span class="m">3</span><span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000269308.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000594233.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;AL645608.2&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;AL645608.2-201&quot;</span><span class="p">;</span> exon_number <span class="m">2</span><span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00003048391.1&quot;</span><span class="p">;</span>  level <span class="m">3</span><span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="cleaning-up-the-output">Cleaning up the output<a class="headerlink" href="#cleaning-up-the-output" title="Permanent link">&para;</a></h2>
+<p>Before we try to count how many exons belong to the same protein-coding gene, let’s simplify the output so we only get the gene names (which are in column 5).</p>
+<p><div class="highlight"><pre><span></span><code>awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;$3 == &quot;exon&quot; { print $9 }&#39;</span> transcriptome.gtf <span class="p">|</span> <span class="se">\</span>
+awk -F <span class="s2">&quot;; &quot;</span> <span class="s1">&#39;$3 ~ &quot;protein_coding&quot; {print $5}&#39;</span> <span class="p">|</span> <span class="se">\</span>
+head
+
+gene_name <span class="s2">&quot;OR4F5&quot;</span>
+gene_name <span class="s2">&quot;AL627309.1&quot;</span>
+gene_name <span class="s2">&quot;AL627309.1&quot;</span>
+gene_name <span class="s2">&quot;OR4F29&quot;</span>
+gene_name <span class="s2">&quot;OR4F16&quot;</span>
+gene_name <span class="s2">&quot;AL669831.1&quot;</span>
+gene_name <span class="s2">&quot;AL669831.1&quot;</span>
+gene_name <span class="s2">&quot;AL669831.1&quot;</span>
+gene_name <span class="s2">&quot;AL645608.2&quot;</span>
+gene_name <span class="s2">&quot;AL645608.2&quot;</span>
+</code></pre></div>
+This is sort of what we want. We could chain another AWK call using -F " ", and pick the second column (which would get rid of the gene_name). Feel free to try that approach if you are curious.</p>
+<p>We can also take a shortcut by using the tr -d command, which deletes whatever characters appear in double quotes. For example, to remove every vowel from a sentence:
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;This unix thing is cool&quot;</span> <span class="p">|</span> tr -d <span class="s2">&quot;aeiou&quot;</span> <span class="c1"># Ths nx thng s cl</span>
+</code></pre></div>
+Let’s try deleting all the semicolons and quotes before the second AWK call:</p>
+<p><div class="highlight"><pre><span></span><code>awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;$3 == &quot;exon&quot; { print $9 }&#39;</span> transcriptome.gtf <span class="p">|</span> <span class="se">\</span>
+tr -d <span class="s2">&quot;;\&quot;&quot;</span> <span class="p">|</span> <span class="se">\</span>
+awk -F <span class="s2">&quot; &quot;</span> <span class="s1">&#39;$6 == &quot;protein_coding&quot; {print $10}&#39;</span> <span class="p">|</span> <span class="se">\</span>
+head
+
+OR4F5
+AL627309.1
+AL627309.1
+OR4F29
+OR4F16
+AL669831.1
+AL669831.1
+AL669831.1
+AL645608.2
+AL645608.2
+</code></pre></div>
+Run <code>bash awk -F "\t" '$3 == "exon" { print $9 }' transcriptome.gtf | tr -d ";\"" | head</code> to understand what the input to the second AWK call looks like. It’s just words separated by spaces; the sixth word corresponds to the gene type, and the tenth word to the gene name.</p>
+<h2 id="counting-genes">Counting genes<a class="headerlink" href="#counting-genes" title="Permanent link">&para;</a></h2>
+<p>There is one more concept we need to introduce before we start counting. AWK uses a special rule called END, which is only true once the input is over. See an example:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nb">echo</span> -e <span class="s2">&quot;a\na\nb\nb\nb\nc&quot;</span> <span class="p">|</span> <span class="se">\</span>
+awk <span class="s1">&#39;</span>
+<span class="s1">    { print $1 }</span>
+
+<span class="s1">END { print &quot;Done with letters!&quot; }</span>
+<span class="s1">&#39;</span>
+
+a
+a
+b
+b
+b
+c
+</code></pre></div>
+Done with letters!
+The -e option tells echo to convert each \n into a new line, which is a convenient way of printing multiple lines from a single character string.</p>
+<p>In AWK, any amount of whitespace is allowed between the initial and the final quote '. I separated the first rule from the END rule to make them easier to read.</p>
+<p>Now we are ready for counting.</p>
+<p><div class="highlight"><pre><span></span><code><span class="nb">echo</span> -e <span class="s2">&quot;a\na\nb\nb\nb\nc&quot;</span> <span class="p">|</span> <span class="se">\</span>
+awk <span class="s1">&#39;</span>
+<span class="s1">    { counter[$1] += 1 }</span>
+
+<span class="s1">END {</span>
+<span class="s1">    for (letter in counter){</span>
+<span class="s1">        print letter, counter[letter]</span>
+<span class="s1">    }</span>
+<span class="s1">}</span>
+<span class="s1">&#39;</span>
+
+a <span class="m">2</span>
+b <span class="m">3</span>
+c <span class="m">1</span>
+</code></pre></div>
+Wow, what is all that madness?</p>
+<p>Instead of printing each letter, we manipulate a variable that we called counter. This variable is special because it is followed by brackets [ ], which makes it an associative array, a fancy way of calling a variable that stores key-value pairs.</p>
+<p>In this case we chose the values of the first column <span class="arithmatex">\(1 to be the keys of the counter variable, which means there are 3 keys (“a”, “b” and “c”). The values are initialized to 0. For every line in the input, we add a 1 to the value in the array whose key is equal to <span class="arithmatex">\(1. We use the addition operator +=, a shortcut for counter[\)</span>1] = counter[\)</span>1] + 1.</p>
+<p>When all the lines are read, the END rule becomes true, and the code between the curly braces { } is executed. The structure for (key in associate_array) { some_code } is called a for loop, and it executes some_code as many times as there are keys in the array. letter is the name that we chose for the variable that cycles through all the keys in counter, and counter[letter] gives the value stored in counter for each letter (which we we calculated in the previous curly brace chunk).</p>
+<p>Now we can apply this to the real example:</p>
+<p><div class="highlight"><pre><span></span><code>awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;$3 == &quot;exon&quot; { print $9 }&#39;</span> transcriptome.gtf <span class="p">|</span> <span class="se">\</span>
+tr -d <span class="s2">&quot;;\&quot;&quot;</span> <span class="p">|</span> <span class="se">\</span>
+awk -F <span class="s2">&quot; &quot;</span> <span class="s1">&#39;</span>
+<span class="s1">$6 == &quot;protein_coding&quot; {</span>
+<span class="s1">    gene_counter[$10] += 1</span>
+<span class="s1">}</span>
+
+<span class="s1">END {</span>
+<span class="s1">    for (gene_name in gene_counter){</span>
+<span class="s1">        print gene_name, gene_counter[gene_name]</span>
+<span class="s1">    }</span>
+<span class="s1">}&#39;</span> &gt; number_of_exons_by_gene.txt
+
+head number_of_exons_by_gene.txt
+CAPN6 <span class="m">24</span>
+ARL14EPL <span class="m">3</span>
+DACH1 <span class="m">38</span>
+IFNA13 <span class="m">1</span>
+HSP90AB1 <span class="m">36</span>
+CAPN7 <span class="m">52</span>
+DACH2 <span class="m">84</span>
+IFNA14 <span class="m">1</span>
+LARS <span class="m">188</span>
+CAPN8 <span class="m">78</span>
+</code></pre></div>
+If you are using the real transcriptome, it takes less than a minute to count up one million exons. Pretty impressive.</p>
+<p>We saved the output to a file, so now we can use AWK to see how many genes are made up of a single exon.</p>
+<div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;$2 == 1&#39;</span> number_of_exons_by_gene.txt <span class="p">|</span> wc -l <span class="c1"># 1362</span>
+</code></pre></div>
+<p>I will suggest to follow the original tutorial if you need to refer to these steps later on for your own data:<br />
+<a href="http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1/">AWK GTF! How to Analyze a Transcriptome Like a Pro</a></p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../basic_unix/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Basic Unix" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Basic Unix
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021, Johan Lindberg et. al., MEB, Karolinska Institutet, All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.cefbb252.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f8ea78.min.js"></script>
+      
+    
+  </body>
+</html>
