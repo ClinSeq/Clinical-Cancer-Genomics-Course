@@ -105,5 +105,12 @@ nav:
   - Lectures: 
       - Day 1 : lectures/lectures.md 
   - Lab Session:
-      - Basic Unix: lab_session/basic_unix.md
-      - AWK : lab_session/basics_awk.md
+      - Day 1:
+        - Basic Unix: lab_session/basic_unix.md
+        - AWK : lab_session/basics_awk.md
+        - Workspace - AWS : lab_session/aws_env.md
+      - Day 2:
+        - Human Genome: lab_session/human_genome.md
+        - Annotation: lab_session/annotation_files.md
+        - Processing of DNA sequencing data: lab_session/processing_of_dna.md
+        - Introduction to IGV: lab_session/intro_igv.md

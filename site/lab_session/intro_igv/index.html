@@ -1,0 +1,1114 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+    
+    
+      
+        <title>Introduction to IGV - Clinical Cancer Genomics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bb3983ee.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-igv" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Clinical Cancer Genomics" class="md-header__button md-logo" aria-label="Clinical Cancer Genomics" data-md-component="logo">
+      
+  <img src="../../assets/img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Clinical Cancer Genomics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to IGV
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Clinical Cancer Genomics" class="md-nav__button md-logo" aria-label="Clinical Cancer Genomics" data-md-component="logo">
+      
+  <img src="../../assets/img/logo.svg" alt="logo">
+
+    </a>
+    Clinical Cancer Genomics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Course Details
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schedule/" class="md-nav__link">
+        Schedule
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Pre-course setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Pre-course setup" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Pre-course setup
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Download Files
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Download Files" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Download Files
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../references/" class="md-nav__link">
+        Reference
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../annotations/" class="md-nav__link">
+        Annotation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Lectures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lectures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Lectures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/lectures/" class="md-nav__link">
+        Day 1
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Lab Session
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lab Session" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Lab Session
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          Day 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day 1" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Day 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_unix/" class="md-nav__link">
+        Basic Unix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics_awk/" class="md-nav__link">
+        AWK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws_env/" class="md-nav__link">
+        Workspace - AWS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Day 2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Day 2" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Day 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../human_genome/" class="md-nav__link">
+        Human Genome
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotation_files/" class="md-nav__link">
+        Annotation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processing_of_dna/" class="md-nav__link">
+        Processing of DNA sequencing data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Introduction to IGV
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Introduction to IGV
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hcc1143-cell-line" class="md-nav__link">
+    HCC1143 cell line
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-familiar-with-igv" class="md-nav__link">
+    Getting familiar with IGV
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting familiar with IGV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#familiarize-the-different-sections-of-igv" class="md-nav__link">
+    Familiarize the different sections of IGV
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigate-read-alignments" class="md-nav__link">
+    Investigate read alignments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigate-a-snp" class="md-nav__link">
+    Investigate a SNP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigate-a-homopolymer-region-with-variability" class="md-nav__link">
+    Investigate a homopolymer region with variability
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gc-precentage-and-coverge" class="md-nav__link">
+    GC precentage and coverge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snps-on-different-alleles" class="md-nav__link">
+    SNPs on different alleles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problematic-region" class="md-nav__link">
+    Problematic region
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleted-region" class="md-nav__link">
+    Deleted region
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mis-alignment" class="md-nav__link">
+    Mis-alignment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-the-tumor-and-normal-bam-files-processed-today" class="md-nav__link">
+    Download the tumor and normal bam files processed today
+  </a>
+  
+    <nav class="md-nav" aria-label="Download the tumor and normal bam files processed today">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-the-files-in-igv" class="md-nav__link">
+    Open the files in IGV
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hcc1143-cell-line" class="md-nav__link">
+    HCC1143 cell line
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-familiar-with-igv" class="md-nav__link">
+    Getting familiar with IGV
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting familiar with IGV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#familiarize-the-different-sections-of-igv" class="md-nav__link">
+    Familiarize the different sections of IGV
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigate-read-alignments" class="md-nav__link">
+    Investigate read alignments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigate-a-snp" class="md-nav__link">
+    Investigate a SNP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#investigate-a-homopolymer-region-with-variability" class="md-nav__link">
+    Investigate a homopolymer region with variability
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gc-precentage-and-coverge" class="md-nav__link">
+    GC precentage and coverge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snps-on-different-alleles" class="md-nav__link">
+    SNPs on different alleles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problematic-region" class="md-nav__link">
+    Problematic region
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleted-region" class="md-nav__link">
+    Deleted region
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mis-alignment" class="md-nav__link">
+    Mis-alignment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-the-tumor-and-normal-bam-files-processed-today" class="md-nav__link">
+    Download the tumor and normal bam files processed today
+  </a>
+  
+    <nav class="md-nav" aria-label="Download the tumor and normal bam files processed today">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-the-files-in-igv" class="md-nav__link">
+    Open the files in IGV
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="introduction-to-igv">INTRODUCTION TO IGV<a class="headerlink" href="#introduction-to-igv" title="Permanent link">&para;</a></h1>
+<p>For various resons there is often a need to manually inspect sequencing data. For this purpose, we will use <a href="https://software.broadinstitute.org/software/igv/home">IGV</a>, the Integrative Genomics Viewer. IGV is in a nutshell an easy-to-use and interactive tool for the visual exploration of genomic data (not just sequening data). In IGV it is possible to integrate multiple data types in a straight forward manner. </p>
+<p>Download the IGV version that includes java.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">#First download IGV to your local computer. </span>
+<span class="c1">#Using a mac, execute the igv.sh bash script (obs - change to the correct path)</span>
+/PATH_GOES_HERE/IGV_DIRECTORY/igv.sh
+
+<span class="c1">#Go to your favourite directory and download a bam file for the IGV intro:</span>
+scp -ri ~/course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/igv_intro_bams/* ./
+</code></pre></div>
+<h2 id="hcc1143-cell-line">HCC1143 cell line<a class="headerlink" href="#hcc1143-cell-line" title="Permanent link">&para;</a></h2>
+<p>The cell line sequencincg data that will be used to explore the features of IGV comes from a 52 year old caucasian woman with breast cancer. Additional information can be found at the <a href="https://www.atcc.org/products/crl-2321">ATCC</a> (American Type Culture Collection) website. The bam-file contains only reads on chromosome 21: 19,000,000-20,000,000 in order to reduce file sizes.</p>
+<h2 id="getting-familiar-with-igv">Getting familiar with IGV<a class="headerlink" href="#getting-familiar-with-igv" title="Permanent link">&para;</a></h2>
+<ul>
+<li>IGV comes pre-loaded with the genome build HG19. During this introduction we will use hg19, but for the rest of the course we will be using hg38.</li>
+<li>Remote data files (tracks) can be loaded from the IGV server. <ul>
+<li>Select "File" &amp; "Load from Server...":<ul>
+<li>Ensembl Genes </li>
+<li>GC Percentage</li>
+<li>dbSNP (latest version)</li>
+<li>Repeat masker</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Load the bam file<ul>
+<li>Select "File" &amp; "Load from File...":<ul>
+<li>Locate "HCC1143.normal.21.19M-20M.bam" on the hard drive and press "Open".</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="familiarize-the-different-sections-of-igv">Familiarize the different sections of IGV<a class="headerlink" href="#familiarize-the-different-sections-of-igv" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The top genome ruler.</li>
+<li>The top panel data tracks.</li>
+<li>The mid panel sequencing data tracks.</li>
+<li>The bottom panel data- and annotation tracks.</li>
+</ul>
+<h3 id="investigate-read-alignments">Investigate read alignments<a class="headerlink" href="#investigate-read-alignments" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Go to chr21:19,479,237-19,479,814.</li>
+<li>Right click on the aligned reads in the mid panel sequencing data tracks.</li>
+<li>Test to:<ul>
+<li>sort alignments by start location.</li>
+<li>group alignments by pair orientation.</li>
+</ul>
+</li>
+<li>Experiment with the settings.</li>
+<li>Click on an individual read and assess the information.</li>
+</ul>
+<h3 id="investigate-a-snp">Investigate a SNP<a class="headerlink" href="#investigate-a-snp" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Go to chr21:19479237-19479814.</li>
+<li>Note a heterozygous variant at chr21:19479321.</li>
+<li>Zoom in to observe the individual base changes.</li>
+<li>Sort aglinment according to base.</li>
+<li>Color alignments according to strand.</li>
+<li>Try to answer the following:<ul>
+<li>Reflect on mapping and base qualities, is this a high quality SNP?</li>
+<li>How does the shaded non-reference bases help?</li>
+<li>How does read strand information help?</li>
+</ul>
+</li>
+</ul>
+<h3 id="investigate-a-homopolymer-region-with-variability">Investigate a homopolymer region with variability<a class="headerlink" href="#investigate-a-homopolymer-region-with-variability" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Go to chr21:19518412-19518497.<ul>
+<li>Group alignments by read strand.</li>
+<li>Sort alignments by base.</li>
+</ul>
+</li>
+<li>Try to answer the following:<ul>
+<li>Is this a region with variability that can be trusted, motivate?</li>
+</ul>
+</li>
+<li>Go to chr21:19518470<ul>
+<li>Sort alignments by base.</li>
+</ul>
+</li>
+<li>Try to answer the following:<ul>
+<li>Is this a region with variability that can be trusted, motivate?</li>
+</ul>
+</li>
+</ul>
+<h3 id="gc-precentage-and-coverge">GC precentage and coverge<a class="headerlink" href="#gc-precentage-and-coverge" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Go to chr21:19611925-19631555.<ul>
+<li>In the menue bar, go to View &gt; Preferences &gt; Alignments tab &gt; set the visibility range threshold to 20 kb.</li>
+<li>Use Collapsed view for the read-pairs.</li>
+<li>Group alignments by "none".</li>
+<li>Sort alignments by start position.</li>
+<li>Color alignments by -&gt; insert size and pair orientation.</li>
+</ul>
+</li>
+<li>Is GC precentage and coverage correlated?</li>
+</ul>
+<h3 id="snps-on-different-alleles">SNPs on different alleles<a class="headerlink" href="#snps-on-different-alleles" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Go to chr21:19666833-19667007.</li>
+<li>Sort by base at position chr21:19666901</li>
+<li>Try to answer the following:<ul>
+<li>Are these valid SNPs?</li>
+<li>Explan what you are observing.</li>
+</ul>
+</li>
+</ul>
+<h3 id="problematic-region">Problematic region<a class="headerlink" href="#problematic-region" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Load a the repeat masker remote data track.<ul>
+<li>Select "File" &amp; "Load from Server...":<ul>
+<li>Repeat masker</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Go to chr21:19800320-19818162.</li>
+<li>Try to answer the following:<ul>
+<li>Why are some reads white?</li>
+<li>Explan what you are observing.</li>
+</ul>
+</li>
+</ul>
+<h3 id="deleted-region">Deleted region<a class="headerlink" href="#deleted-region" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Go to chr21:19324469-19331468.</li>
+<li>Select expanded view.</li>
+<li>View reads as pairs.</li>
+<li>Color alignments by insert size and pair orientation.</li>
+<li>Sort reads by insert size.</li>
+<li>Try to answer the following:<ul>
+<li>Click on a red read pair and a grey read pair, can you identify information supporting the deletion in the red pairs? </li>
+<li>Is the deletion hetero- or homozygous?</li>
+</ul>
+</li>
+</ul>
+<h3 id="mis-alignment">Mis-alignment<a class="headerlink" href="#mis-alignment" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Go to chr21:19102154-19103108.</li>
+<li>Group alignment by "Chromosome of mate".</li>
+<li>Zoom out in a stepwise manner and compare the region of interest with surrounding regions.</li>
+<li>Try to answer the following:<ul>
+<li>Click on one of the brown pairs, where does the mate map?</li>
+<li>What is the reason for an increase in poorly mapped reads?</li>
+</ul>
+</li>
+</ul>
+<h2 id="download-the-tumor-and-normal-bam-files-processed-today">Download the tumor and normal bam files processed today<a class="headerlink" href="#download-the-tumor-and-normal-bam-files-processed-today" title="Permanent link">&para;</a></h2>
+<p>Go to your favourite directory
+<div class="highlight"><pre><span></span><code><span class="c1"># Tumor bam and bai files</span>
+scp -ri ~/course_EC2_01.pem ubuntu@ec2-3-83-96-246.compute-1.amazonaws.com:~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.ba* ./
+
+<span class="c1"># Normal bam and bai files</span>
+scp -ri ~/course_EC2_01.pem ubuntu@ec2-3-83-96-246.compute-1.amazonaws.com:~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.ba* ./
+
+<span class="c1"># The in solution hybridization based capture definition files</span>
+scp -ri ~/course_EC2_01.pem ubuntu@ec2-3-83-96-246.compute-1.amazonaws.com:~/workspace/inputs/references/exome/probe_regions.bed ./
+scp -ri ~/course_EC2_01.pem ubuntu@ec2-3-83-96-246.compute-1.amazonaws.com:~/workspace/inputs/references/exome/exome_regions.bed ./
+</code></pre></div></p>
+<h3 id="open-the-files-in-igv">Open the files in IGV<a class="headerlink" href="#open-the-files-in-igv" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Start a new IGV session<ul>
+<li>Select File -&gt; New Session</li>
+<li>Select hg38</li>
+<li>Load the bam files<ul>
+<li>Exome_Norm_sorted_mrkdup_bqsr.bam</li>
+<li>Exome_Tumor_sorted_mrkdup_bqsr.bam</li>
+</ul>
+</li>
+<li>Load the cature definion files<ul>
+<li>exome_regions.bed</li>
+<li>probe_regions.bed</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Change viewing preferences<ul>
+<li>In the menue bar, go to View &gt; Preferences &gt; Alignments tab &gt; set the visibility range threshold to 25 kb.</li>
+<li>Use Expanded view for the read-pairs.</li>
+<li>Group alignments by “none”.</li>
+<li>Sort alignments by start position.</li>
+<li>Color alignments by -&gt; no color.</li>
+<li>Type TP53 in the search box and press enter.</li>
+</ul>
+</li>
+<li>Try to answer the following:<ul>
+<li>Do you observe any variants?<ul>
+<li>If yes, what kinds?</li>
+<li>Are they coding/non-coding?</li>
+<li>Any somatic variants?</li>
+<li>Try to assess the consequence of a selected variant.</li>
+</ul>
+</li>
+<li>Why do you think there is a difference between the probe- and exome regions?<ul>
+<li>Assess the coverge pattern relatively the probe regions. Try to explain the pattern.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../processing_of_dna/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Processing of DNA sequencing data" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Processing of DNA sequencing data
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021, Johan Lindberg et. al., MEB, Karolinska Institutet, All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      
+    
+  </body>
+</html>
