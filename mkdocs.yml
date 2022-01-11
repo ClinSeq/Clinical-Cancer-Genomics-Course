@@ -115,3 +115,5 @@ nav:
         - Annotation: lab_session/annotation_files.md
         - Processing of DNA sequencing data: lab_session/processing_of_dna.md
         - Introduction to IGV: lab_session/intro_igv.md
+      - Day 3:
+        - Variant Calling: lab_session/variant_calling.md
