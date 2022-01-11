@@ -16,14 +16,10 @@
                 <tr>
                     <td>9:00-9:45</td>
                     <td>
-                        <b>Introduction </b>
-                        <ul>
-                            <li>Sequencing Evolution</li>
-                            <li>Cancer genome and mutational processes in cancer I</li>
-                        </ul>
+                        An introduction to the cancer genome and mutational processes in cancer I.
                     </td>
                     <td>Johan</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>9:45-10:00</td>
@@ -32,10 +28,10 @@
                 <tr>
                     <td>10:00-10:45</td>
                     <td>
-                        An introduction to the cancer genome and mutational processes in cancer II
+                        An introduction to the cancer genome and mutational processes in cancer II.
                     </td>
                     <td>Johan</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>10:45-11:00</td>
@@ -43,9 +39,9 @@
                 </tr>
                 <tr>
                     <td>11:00-11:45</td>
-                    <td>The clinical impact of analysing the cancer genome</td>
-                    <td>Felix + Johan</td>
-                    <td>Wargentin</td>
+                    <td>How to enable cancer genomics through tissues and liquid biopsies I</td>
+                    <td>Johan</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>12:00-13:00</td>
@@ -54,16 +50,16 @@
                 <tr>
                     <td>13:00-17:00</td>
                     <td>
-                        <b>Excerises</b>
+                        <b>Lab sessions</b>
                         <ul>
-                            <li>Github organisation/using github</li>
-                            <li>Use the command line and running bioinformatic tools</li>
-                            <li>How to order targted sequencing assay</li>
-                            <li>Visualise data in R</li>
+                            <li>Basic unix</li>
+                            <li>AWK</li>
+                            <li>Investigate the workspace directories, raw data and install R (subject to change depending on what Markus decides for the CNA part)</li>
+                            <li>ggplot tutorial</li>
                         </ul>
                     </td>
                     <td>Johan & Rebecka & Sarath</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
             </tbody>
         </table>
@@ -87,15 +83,10 @@
                 <tr>
                     <td>9:00-9:45</td>
                     <td>
-                        <b>Introduction </b>
-                        <ul>
-                            <li>Cancer genomics - Tissues and liquid biopsies I</li>
-                            <li>A targeted sequencing assay</li>
-                            <li>Screening of localised disease</li>
-                        </ul>
+                        How to enable cancer genomics through tissues and liquid biopsies II 
                     </td>
                     <td>Johan</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>9:45-10:00</td>
@@ -104,10 +95,10 @@
                 <tr>
                     <td>10:00-10:45</td>
                     <td>
-                        An introduction to the cancer genome and mutational processes in cancer II.
+                        The clinical impact of analysing the cancer genome.
                     </td>
-                    <td>Johan</td>
-                    <td>Wargentin</td>
+                    <td>Felix</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>10:45-11:00</td>
@@ -124,7 +115,7 @@
                         </ul>
                     </td>
                     <td>Johan</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>12:00-13:00</td>
@@ -142,7 +133,7 @@
                         </ul>
                     </td>
                     <td>Johan & Rebecka & Sarath</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
             </tbody>
         </table>
@@ -173,7 +164,7 @@
                         </ul>
                     </td>
                     <td>Sarath</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>9:45-10:00</td>
@@ -188,7 +179,7 @@
                         </ul>
                     </td>
                     <td>Rebecka</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>10:45-11:00</td>
@@ -206,7 +197,7 @@
                         Lab Introduction <b>To Be Continued...</b>
                     </td>
                     <td>Rebecka</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>12:00-13:00</td>
@@ -224,7 +215,7 @@
                         </ul>                 
                     </td>
                     <td>Johan & Rebecka & Sarath</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
             </tbody>
         </table>
@@ -256,7 +247,7 @@
                         </ul>
                     </td>
                     <td>Markus</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>9:45-10:00</td>
@@ -272,7 +263,7 @@
                         </ul>
                     </td>
                     <td>Johan</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>10:45-11:00</td>
@@ -287,7 +278,7 @@
                         </ul>
                     </td>
                     <td>Sarath</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>12:00-13:00</td>
@@ -305,7 +296,7 @@
                         </ul>
                     </td>
                     <td>Johan & Rebecka & Markus & Sarath</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
             </tbody>
         </table>
@@ -332,7 +323,7 @@
                         How to curate somatic and germline variation for clinical use
                     </td>
                     <td>Johan</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>9:45-10:00</td>
@@ -344,7 +335,7 @@
                          Annotating somatic and germline variation 
                     </td>
                     <td>David Tamborero</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>10:45-11:00</td>
@@ -356,7 +347,7 @@
                         Annotating somatic and germline variation <b>To Be Continued...</b>
                     </td>
                     <td>David Tamborero</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
                 <tr>
                     <td>12:00-13:00</td>
@@ -373,7 +364,7 @@
                           </ul>                  
                     </td>
                     <td>David Tamborero & Johan & Rebecka & Sarath</td>
-                    <td>Wargentin</td>
+                    <td>Zoom</td>
                 </tr>
             </tbody>
         </table>
