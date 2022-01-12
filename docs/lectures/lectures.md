@@ -1,33 +1,29 @@
-??? example " Lecture 1 : Sequencing evolution Introduction"
+??? example " Day 1 : Cancer genome and mutational processes"
 
-    1. Exome sequencing vs WGS sequencing vs targeted sequencing [PDF](pdf/conda.pdf)
-    2. RNA sequencing vs targeted RNA sequening vs single cell sequencing [PDF](pdf/conda.pdf)
+    1. An introduction to the cancer genome and mutational processes in cancer I. [PDF](pdf/conda.pdf)
+    2. An introduction to the cancer genome and mutational processes in cancer II. [PDF](pdf/conda.pdf)
+    3. How to enable cancer genomics through tissues and liquid biopsies I
 
-??? example "Lecture 2 : Cancer genome and mutational processes"
+??? example "Day 2 : Liquid Biopsies"
 
-    1. Mutational signatures
-    2. Concept of cancer drivers
+    1. How to enable cancer genomics through tissues and liquid biopsies II
+    2. The clinical impact of analysing the cancer genome.
+    3. Lab Introduction.
+     
+??? example "Day 3 : Bioinformatics pipelines && SNV calling"
 
-??? example "Lecture 3 : Liquid biopsies"
+    1. Bioinformatics pipelines & HTC computing environments.
+    2. Processing and QC of DNA- and RNA sequencing data. 
+    3. Somatic and germline variant callers & Lab Introduction
 
-    1. A targeted sequencing assay
-    2. Screening of localised disease
+??? example "Day 4 : GSR calling && RNA-Seq"
 
+    1. Calling somatic- and germline copy-number alterations.
+    2. Calling structural variation. 
+    3. "RNA sequencing etc.Lab intro."
 
-??? example "Lecture 4 : Bioinformatics pipelines"
+??? example "Day 5 : Manual Curation - Clinical Trials"
 
-    1. Snakemake
-
-??? example "Lecture 5 : HTC computing environments"
-
-    1. Slurm
-
-??? example "Lecture 6 : Calling somatic- and germline variation"
+    1. Clinical trials. How to curate somatic- and germline variation for clinical use.
+    2. Annotating, interpreting and reporting somatic- and germline variation for clinical use.
     
-    1. Copy-number alterations
-    2. Ploidy
-    3. Landmark CNA papers from ICGC/TCGA
-
-??? example "Lecture 7 : Variation for clinical use."
-
-    1. How to curate somatic- and germline

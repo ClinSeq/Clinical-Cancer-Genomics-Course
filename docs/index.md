@@ -1,4 +1,4 @@
-# Welcome to Clinical Cancer Genomics
+# Welcome to Clinical Cancer Genomics Course
 
 <p class="head-p1">This course aims to provide an introduction to cancer genomics and to support to obtain practical knowledge regarding how to apply state of the art methodology to interrogate the cancer genome in a routine clinical setting or a clinical trial setting. The course will include lectures covering the technology advancements that have enabled high-throughput analysis of cancer genomes and the knowledge that can be obtained by applying these technologies. This encompasses both laboratory sample processing and downstream bioinformatics. Lectures will be held in the mornings with computer-based exercises in the afternoon. The exercises will include processing and analysis of DNA- and RNA-sequencing data covering file formats, quality control aspects, identification of somatic variation, curation of identified somatic- and germline variants for clinical use, clonality estimation and annotation of variants.</p>
 

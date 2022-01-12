@@ -267,56 +267,18 @@ write.csv2()
 Basic statistics in R
 ====================================================
 
-<table class="table table-striped table-hover table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:center;"> Description </th>
-   <th style="text-align:center;"> R_function </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:center;"> Mean </td>
-   <td style="text-align:center;"> mean() </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> Standard deviation </td>
-   <td style="text-align:center;"> sd() </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> Variance </td>
-   <td style="text-align:center;"> var() </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> Minimum </td>
-   <td style="text-align:center;"> min() </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> Maximum </td>
-   <td style="text-align:center;"> max() </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> Median </td>
-   <td style="text-align:center;"> median() </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> Range of values: minimum and maximum </td>
-   <td style="text-align:center;"> range() </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> Sample quantiles </td>
-   <td style="text-align:center;"> quantile() </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> Generic function </td>
-   <td style="text-align:center;"> summary() </td>
-  </tr>
-  <tr>
-   <td style="text-align:center;"> Interquartile range </td>
-   <td style="text-align:center;"> IQR() </td>
-  </tr>
-</tbody>
-</table>
+| Description                            |  R_function  |
+|----------------------------------------|--------------|
+|  Mean                                  |  mean()      |
+|  Standard deviation                    |  sd()        |
+|  Variance                              |  var()       |
+|  Minimum                               |  min()       |
+|  Maximum                               |  max()       |
+|  Median                                |  median()    |
+|  Range of values: minimum and maximum  |  range()     |
+|  Sample quantiles                      |  quantile()  |
+|  Generic function                      |  summary()   |
+|  Interquartile range                   |  IQR()       |
 
 Calculate the mean expression for each sample.
 
@@ -510,6 +472,7 @@ In order to create a plot, you:
 1. Call the ggplot() function which creates a blank canvas
 1. Specify aesthetic mappings, which specifies how you want to map variables to visual aspects. In this case we are simply mapping the displ and hwy variables to the x- and y-axes.
 1. You then add new layers that are geometric objects which will show up on the plot. In this case we add geom_point to add a layer with points (dot) elements as the geometric shapes to represent the data.
+
 ```r
 # create canvas
 ggplot(data)
@@ -526,6 +489,6 @@ ggplot(data, aes(x = displ, y = hwy)) +
 
 To try ggplot hands-on, we will follow the original ggplot basics chapter from [The Epidemiologist R Handbook](https://www.epirhandbook.com/en/index.html) (Batra, Neale, et al. The Epidemiologist R Handbook. 2021).
 
-# Now let's go to [ggplot hands-on exercise.](https://www.epirhandbook.com/en/ggplot-basics.html)
+## Now let's go to [<b>ggplot hands-on exercise.</b>](https://www.epirhandbook.com/en/ggplot-basics.html)
 (clicking on the link above will take you to the handbook's website, please feel free to bookmark the page for later reference.)
  

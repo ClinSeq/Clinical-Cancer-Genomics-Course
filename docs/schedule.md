@@ -54,7 +54,7 @@
                         <ul>
                             <li>Basic unix</li>
                             <li>AWK</li>
-                            <li>Investigate the workspace directories, raw data and install R (subject to change depending on what Markus decides for the CNA part)</li>
+                            <li>Investigate the workspace directories, raw data and install R, R-packages</li>
                             <li>ggplot tutorial</li>
                         </ul>
                     </td>
@@ -107,12 +107,7 @@
                 <tr>
                     <td>11:00-11:45</td>
                     <td>
-                        <b>Lab Introduction</b>
-                        <ul>
-                            <li>basic pipeline</li>
-                            <li>basic tools</li>
-                            <li>IGV</li>
-                        </ul>
+                        Lab Introduction
                     </td>
                     <td>Johan</td>
                     <td>Zoom</td>
@@ -124,12 +119,12 @@
                 <tr>
                     <td>13:00-17:00</td>
                     <td>
-                        <b>Excerises</b>
+                        <b>Lab sessions</b>
                         <ul>
-                            <li>Illumina sequencing file formats. ( fastq, bam etc )</li>
-                            <li>Refence genome</li>
-                            <li>Tools to manipulate the sequencing formats (Samtools, bedtools etc.)</li>
-                            <li>Visualise in IGV</li>
+                            <li>Looking into the human genome reference.</li>
+                            <li>Annotatation files needed for bioinformatic processing.</li>
+                            <li>Executing commands for processing and checking the quality of DNA sequencing data.</li>
+                            <li>Introduction to the Integrative Genomics Viewer (IGV).</li>
                         </ul>
                     </td>
                     <td>Johan & Rebecka & Sarath</td>
@@ -157,11 +152,7 @@
                 <tr>
                     <td>9:00-9:45</td>
                     <td>
-                        Introduction
-                        <ul>
-                            <li>Bioinformatics pipelines</li>
-                            <li>HTC computing environments</li>
-                        </ul>
+                        Bioinformatics pipelines & HTC computing environments.
                     </td>
                     <td>Sarath</td>
                     <td>Zoom</td>
@@ -173,10 +164,7 @@
                 <tr>
                     <td>10:00-10:45</td>
                     <td>
-                        <ul>
-                            <li>Processing of DNA and RNA sequencing data</li>
-                            <li>QC of both DNA and RNA sequencing data</li>
-                        </ul>
+                        Processing and QC of DNA- and RNA sequencing data && Somatic and germline variant callers.
                     </td>
                     <td>Rebecka</td>
                     <td>Zoom</td>
@@ -188,13 +176,7 @@
                 <tr>
                     <td>11:00-11:45</td>
                     <td>
-                        Somatic and germline variant callers
-                        <ul>
-                            <li>Point mutations and indels</li>
-                            <li>ICGC/TCGA - Identification of drivers </li>
-                            <li>Landmark paper from TCGA/ICGC on significantly mutated genes</li>
-                        </ul>
-                        Lab Introduction <b>To Be Continued...</b>
+                       Somatic and germline variant callers (continued) && Lab introduction.
                     </td>
                     <td>Rebecka</td>
                     <td>Zoom</td>
@@ -205,13 +187,13 @@
                 </tr>
                 <tr>
                     <td>13:00-17:00</td>
-                    <td> 
-                        <b>Excerises</b>
+                    <td>
+                        <b>Lab sessions</b>
                         <ul>
-                            <li>Run the commands in a bash script (awk etc.)</li>
-                            <li>Targeted sequencing QC</li>
-                            <li>Add variant callers to the bioinformatic pipeline</li>
-                            <li>Visualise in IGV <b>To be Continued...</b></li>
+                            <li>Calling somatic and germline mutations.</li>
+                            <li>Filtering variants. </li>
+                            <li>Familiarizing with the variant formats.</li>
+                            <li>Visualising variants in IGV.</li>
                         </ul>                 
                     </td>
                     <td>Johan & Rebecka & Sarath</td>
@@ -239,12 +221,7 @@
                 <tr>
                     <td>9:00-9:45</td>
                     <td>
-                        Calling somatic and germline variation
-                        <ul>
-                            <li>Copy-number alterations</li>
-                            <li>Ploidy</li>
-                            <li>Landmark CNA papers from ICGC/TCGA</li>
-                        </ul>
+                        Calling somatic- and germline copy-number alterations.
                     </td>
                     <td>Markus</td>
                     <td>Zoom</td>
@@ -256,11 +233,7 @@
                 <tr>
                     <td>10:00-10:45</td>
                     <td>
-                        Calling somatic and germline variation <b>To be Continued...</b>
-                        <ul>
-                            <li>Structural variation</li>
-                            <li>Landmark GSR papers from ICGC/TCGA</li>
-                        </ul>
+                        Calling structural variation.
                     </td>
                     <td>Johan</td>
                     <td>Zoom</td>
@@ -272,12 +245,9 @@
                 <tr>
                     <td>11:00-11:45</td>
                     <td>
-                        <ul>
-                            <li>Calling RNA fusions and getting expression values</li>
-                            <li>Lab Introduction <b>To Be Continued...</b></li>
-                        </ul>
+                        RNA sequencing && Lab intro
                     </td>
-                    <td>Sarath</td>
+                    <td>Markus && Johan</td>
                     <td>Zoom</td>
                 </tr>
                 <tr>
@@ -286,12 +256,12 @@
                 </tr>
                 <tr>
                     <td>13:00-17:00</td>
-                    <td>                
-                        <b>Excerises</b>   
+                    <td>          
+                        <b>Lab sessions</b>   
                         <ul>
-                            <li>Use a skeleton of a bioinformatics pipeline and add some extra steps</li>
-                            <li>Run the bioinformatic pipeline</li>
-                            <li>Plot the output in ggplot</li>
+                            <li>RNA analysis, expression and fusion calling.</li>
+                            <li>Analysis of copy number alterations. </li>
+                            <li>Identification of structural variants.</li>
                             <li>Inspecting variants</li>
                         </ul>
                     </td>
@@ -320,7 +290,7 @@
                 <tr>
                     <td>9:00-9:45</td>
                     <td>
-                        How to curate somatic and germline variation for clinical use
+                        Clinical trials. How to curate somatic- and germline variation for clinical use.
                     </td>
                     <td>Johan</td>
                     <td>Zoom</td>
@@ -332,9 +302,9 @@
                 <tr>
                     <td>10:00-10:45</td>
                     <td>
-                         Annotating somatic and germline variation 
+                        How to curate somatic- and germline variation for clinical use (continued).
                     </td>
-                    <td>David Tamborero</td>
+                    <td>Johan</td>
                     <td>Zoom</td>
                 </tr>
                 <tr>
@@ -344,7 +314,7 @@
                 <tr>
                     <td>11:00-11:45</td>
                     <td>
-                        Annotating somatic and germline variation <b>To Be Continued...</b>
+                        Annotating, interpreting and reporting somatic- and germline variation for clinical use.
                     </td>
                     <td>David Tamborero</td>
                     <td>Zoom</td>
@@ -356,12 +326,7 @@
                 <tr>
                     <td>13:00-17:00</td>
                     <td>
-                          <b>Excerises</b> 
-                          <ul>
-                            <li>Annotating variants using VEP and setting the arguments correctly</li>
-                            <li>Curating variants manually using Curator</li>
-                            <li>Phenotypes</li>
-                          </ul>                  
+                          <b>Lab sessions: TBA</b>                   
                     </td>
                     <td>David Tamborero & Johan & Rebecka & Sarath</td>
                     <td>Zoom</td>

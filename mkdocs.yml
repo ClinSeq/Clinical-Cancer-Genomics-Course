@@ -1,4 +1,4 @@
-site_name: Clinical Cancer Genomics
+site_name: Clinical Cancer Genomics Course
 theme:
   name: material
   language: en
@@ -97,13 +97,12 @@ markdown_extensions:
 nav:
   - Course Details: index.md
   - Schedule: schedule.md
+  - Lectures: lectures/lectures.md 
   - Pre-course setup:
     - Installation : installation.md
     - Download Files:
       - Reference: references.md
       - Annotation: annotations.md
-  - Lectures: 
-      - Day 1 : lectures/lectures.md 
   - Lab Session:
       - Day 1:
         - Basic Unix: lab_session/basic_unix.md
