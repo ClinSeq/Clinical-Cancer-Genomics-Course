@@ -1,4 +1,4 @@
-??? example " Day 1 : Cancer genome and mutational processes"
+??? example " Day 1 : Introduction to cancer genome and mutational processes"
 
     1. An introduction to the cancer genome and mutational processes in cancer I. [PDF](pdf/conda.pdf)
     2. An introduction to the cancer genome and mutational processes in cancer II. [PDF](pdf/conda.pdf)

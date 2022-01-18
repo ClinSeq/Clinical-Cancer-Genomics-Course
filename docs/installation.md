@@ -489,3 +489,9 @@ make install
 ln -s /usr/local/bin/seqtk ~/workspace/bin/seqtk
 ~/workspace/bin/seqtk
 ```
+
+##  Activate the tools environment
+
+```bash
+source .bashrc
+```

@@ -116,3 +116,5 @@ nav:
         - Introduction to IGV: lab_session/intro_igv.md
       - Day 3:
         - Variant Calling: lab_session/variant_calling.md
+      - Day 4:
+        - RNAseq: lab_session/processing_of_rnaseq.md
