@@ -492,3 +492,65 @@ To try ggplot hands-on, we will follow the original ggplot basics chapter from [
 ## Now let's go to [<b>ggplot hands-on exercise.</b>](https://www.epirhandbook.com/en/ggplot-basics.html)
 (clicking on the link above will take you to the handbook's website, please feel free to bookmark the page for later reference.)
  
+## R - packages for RNAseq Analysis
+
+The following packages need to be installed in your local machine using Rstudio to process RNAseq data in upcoming lab sessions.
+
+`/home/ubuntu/miniconda3/envs/r-rnaseq/bin/R` - 4.1.2
+
+```bash
+# ubuntu dev libraries
+sudo apt-get update
+sudo apt-get install build-essential
+
+conda create --name r-rnaseq
+conda activate r-rnaseq
+conda install -c conda-forge r-base=4.1.2
+conda install -c conda-forge r-mgcv
+conda install -c conda-forge r-curl
+conda install -c bioconda bioconductor-chimeraviz 
+
+```
+
+R-packages list:
+ 
+ - `dplyr`
+ - `cowplot`
+ - `reshape2`
+ - `ggplot2`
+ - `jsonlite`
+
+```r
+# create a list of packages need to be installed
+packages <- c("dplyr", "cowplot", "reshape2", "ggplot2", "jsonlite")
+install.packages(packages, dependencies = TRUE)
+
+```
+
+R - Bioconductor Packages:
+ 
+ - `BiocManager`
+ - `biomaRt`
+ - `Biostrings`
+ - `ensembldb`
+ - `EnsDb.Hsapiens.v86`
+ - `chimeraviz` 
+
+```r
+# install BiocManager 
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("biomaRt")
+
+BiocManager::install("Biostrings")
+
+BiocManager::install("ensembldb")
+
+BiocManager::install("EnsDb.Hsapiens.v86")
+
+# conda install -c bioconda bioconductor-chimeraviz
+BiocManager::install("chimeraviz")
+BiocManager::install("org.Mm.eg.db")
+BiocManager::install("org.Hs.eg.db")
+```

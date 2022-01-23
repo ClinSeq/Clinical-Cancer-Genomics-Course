@@ -445,6 +445,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real_life_example_cli/" class="md-nav__link">
+        Command Line Usage in Real Life
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -522,13 +536,6 @@
         <li class="md-nav__item">
   <a href="#split-the-long-fasta-by-chromosome" class="md-nav__link">
     Split the long fasta by chromosome
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#explore-the-contents-of-the-reference-genome-file" class="md-nav__link">
-    Explore the contents of the reference genome file
   </a>
   
 </li>
@@ -677,6 +684,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../analysis_of_cnv/" class="md-nav__link">
+        Copy Number Variations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../processing_of_rnaseq/" class="md-nav__link">
         RNAseq
       </a>
@@ -732,13 +753,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#explore-the-contents-of-the-reference-genome-file" class="md-nav__link">
-    Explore the contents of the reference genome file
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#index-the-fasta-files" class="md-nav__link">
     Index the fasta files
   </a>
@@ -758,54 +772,41 @@
               
                 
 
-<h1 id="human-genome-reference-files">HUMAN GENOME REFERENCE FILES<a class="headerlink" href="#human-genome-reference-files" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code><span class="c1"># Make sure CHRS environment variable is set. </span>
+<h1 id="human-genome-reference-files">Human genome reference files<a class="headerlink" href="#human-genome-reference-files" title="Permanent link">&para;</a></h1>
+<p>The human genome is work in progress. Different versions exist (assemblies) and is often a source of confusion in genomics. Quick use of published data is a bit more challenging if a differnt genome build was applied than what is used in your lab. </p>
+<p>Also, there may even be differences in the <em>latest</em> versions, e.g. the GRCh37 and the hg19 assemblies from NCBI and USCS, respectively, had different mitochondrial genome. </p>
+<p>In genomics, the reference genome offers a scaffold upon which new data can be mapped, which is a much more efficient way rather than building a genome from scratch.</p>
+<p>Avery nice overview of the human genome versions can be found <a href="http://genome.ucsc.edu/FAQ/FAQreleases.html">here</a>.</p>
+<p>During this course version GRCh38, from the Genome Reference Consortium, with modifications fromt he 1000 genomes consortium will be used. It includes extra decoy and HLA sequences. The files are already available on AWS but can be downloaded from <a href="ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/">here</a>.</p>
+<p>As several of the analysis steps wold take many hours we will use a smaller version of the reference genome which contains chr6 and chr17. These were choosen because the datat that will be analysed contain interesting varaiants on these chromosomes. 
+- Connect to your AWS instance</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Remember, source the settings, paths and variables file</span>
+<span class="nb">source</span> .bashrc
+
+<span class="c1"># Check the CHRS variable.</span>
 <span class="nb">echo</span> <span class="nv">$CHRS</span>
 
-<span class="c1"># Create a directory for reference genome files and enter this dir.</span>
-<span class="c1">#Command below already run</span>
-<span class="c1">#mkdir -p ~/workspace/inputs/references/genome</span>
+<span class="c1"># This variable should return &quot;chr6_and_chr17&quot;, if not, reach of for assistance.</span>
+
+<span class="c1"># Go to the directory for the reference genome files</span>
 <span class="nb">cd</span> ~/workspace/inputs/references/genome
 
-<span class="c1"># Dowload human reference genome files.</span>
-<span class="c1">#Command below already run</span>
-<span class="c1">#wget http://genomedata.org/pmbio-workshop/references/genome/$CHRS/ref_genome.tar</span>
+<span class="c1"># List the files</span>
+ls -halt
 
-<span class="c1"># Unpack the archive using `tar -xvf` (`x` for extract, `v` for verbose,</span>
-<span class="c1">#  `f` for file).</span>
-tar -xvf ref_genome.tar
+<span class="c1"># Check what the reference genome looks like. When you have the reference genome open just type &quot;1000&quot; and press enter. You will then jump 1000 lines.</span>
+less -SN ref_genome.fa
 
-<span class="c1"># View contents.</span>
-tree
-
-<span class="c1"># Remove the archive.</span>
-rm -f ref_genome.tar
-
-<span class="c1"># Uncompress the reference genome FASTA file.</span>
-gunzip ref_genome.fa.gz
-
-<span class="c1"># View contents.</span>
-tree
+<span class="c1">#less -SN will be used during the course. Check the man page. Give it some time to understand how it it structured, it is very helpful to be able to read the help-pages fast when working on the command line.</span>
+man less
 
 <span class="c1"># Check the chromosome headers in the fasta file.</span>
 cat ref_genome.fa <span class="p">|</span> grep -P <span class="s2">&quot;^&gt;&quot;</span>
-</code></pre></div>
-<h2 id="split-the-long-fasta-by-chromosome">Split the long fasta by chromosome<a class="headerlink" href="#split-the-long-fasta-by-chromosome" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># Make new directory and change directories.</span>
-mkdir -p ~/workspace/inputs/references/genome/ref_genome_split/
-<span class="nb">cd</span> ~/workspace/inputs/references/genome
 
-<span class="c1"># Split.</span>
-faSplit byname ref_genome.fa ./ref_genome_split/
-</code></pre></div>
-<h2 id="explore-the-contents-of-the-reference-genome-file">Explore the contents of the reference genome file<a class="headerlink" href="#explore-the-contents-of-the-reference-genome-file" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># View the first 10 lines of this file. Note the header line starting with `&gt;`. </span>
+<span class="c1"># View the first 10 lines of this file. Note the header line starting with `&gt;`. </span>
 <span class="c1"># Why does the sequence look like this?</span>
 <span class="nb">cd</span> ~/workspace/inputs/references/genome
 head -n <span class="m">10</span> ref_genome.fa
-
-<span class="c1"># Pull out only the header lines.</span>
-grep <span class="s2">&quot;&gt;&quot;</span> ref_genome.fa
 
 <span class="c1"># How many lines and characters are in this file?</span>
 wc ref_genome.fa
@@ -816,17 +817,29 @@ grep -v <span class="s2">&quot;&gt;&quot;</span> ref_genome.fa <span class="p">|
 <span class="c1"># How long does that command take to run?</span>
 <span class="nb">time</span> grep -v <span class="s2">&quot;&gt;&quot;</span> ref_genome.fa <span class="p">|</span> wc
 
-<span class="c1"># View 10 lines from approximately the middle of this file</span>
-head -n <span class="m">2500000</span> ref_genome.fa <span class="p">|</span> tail
+<span class="c1"># View 10 lines from the end of the filefile</span>
+tail -n <span class="m">10</span> ref_genome.fa
 
 <span class="c1"># What is the count of each base in the entire reference genome file (skipping the header lines for each sequence)?</span>
 <span class="c1"># Runtime: ~30s</span>
 cat ref_genome.fa <span class="p">|</span> grep -v <span class="s2">&quot;&gt;&quot;</span> <span class="p">|</span> perl -ne <span class="s1">&#39;chomp $_; $bases{$_}++ for split //; if (eof){print &quot;$_ $bases{$_}\n&quot; for sort keys %bases}&#39;</span>
 <span class="c1"># What does each of these bases refer to? What are the &quot;unexpected bases&quot;?</span>
+<span class="c1"># Google &quot;IUPAC nucleic acid codes&quot;</span>
+</code></pre></div>
+<h2 id="split-the-long-fasta-by-chromosome">Split the long fasta by chromosome<a class="headerlink" href="#split-the-long-fasta-by-chromosome" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/inputs/references/genome
+
+<span class="c1"># Split.</span>
+faSplit byname ref_genome.fa ./ref_genome_split/
+
+<span class="c1"># View contents.</span>
+tree
 </code></pre></div>
 <h2 id="index-the-fasta-files">Index the fasta files<a class="headerlink" href="#index-the-fasta-files" title="Permanent link">&para;</a></h2>
+<p>Indexing is widely used in bioinformatics workflows to improve performance. Typically it is applied to large data files with many records to improve the ability of tools to rapidly access specific locations of the file. For example, if we have alignments against the entire genome and we want to visualize those alignments for a single gene on chr17 in a genome viewer such as IGV, we don’t want the viewer to have to scan through the entire file. Indexing allows us to jump right to the correct place in the file and pull out just the information we need without reading much of the file.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># first remove the .fai and .dict files that were downloaded. Do not remove the .fa file though!</span>
 <span class="nb">cd</span> ~/workspace/inputs/references/genome
+ls -halt
 rm -f ref_genome.fa.fai ref_genome.dict
 
 <span class="c1"># Use samtools to create a fasta index file.</span>
@@ -834,12 +847,15 @@ samtools faidx ref_genome.fa
 
 <span class="c1"># View the contents of the index file.</span>
 head ref_genome.fa.fai
+<span class="c1"># What information does the index fail store?</span>
+<span class="c1"># google &quot;fasta index fai format&quot; or something similar</span>
 
 <span class="c1"># Use picard to create a dictionary file.</span>
 java -jar <span class="nv">$PICARD</span> CreateSequenceDictionary -R ref_genome.fa -O ref_genome.dict
 
 <span class="c1"># View the content of the dictionary file.</span>
-cat ref_genome.dict
+head ref_genome.dict
+<span class="c1"># less can also be applied</span>
 
 <span class="c1">#Also index the split chromosomes.</span>
 samtools faidx ./ref_genome_split/chr6.fa
@@ -848,22 +864,17 @@ samtools faidx ./ref_genome_split/chr17.fa
 <span class="c1"># Create reference index for the genome to use BWA</span>
 bwa index ref_genome.fa
 </code></pre></div>
-<h1 id="transcriptome-reference-files">TRANSCRIPTOME REFERENCE FILES<a class="headerlink" href="#transcriptome-reference-files" title="Permanent link">&para;</a></h1>
+<h1 id="human-genome-transcriptome-reference-files">Human genome transcriptome reference files<a class="headerlink" href="#human-genome-transcriptome-reference-files" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code><span class="c1"># Make sure CHRS environment variable is set.</span>
 <span class="nb">echo</span> <span class="nv">$CHRS</span>
-
-<span class="c1"># Create a directory for transcriptome input files.</span>
-<span class="c1">#Command below already run</span>
-<span class="c1">#mkdir -p ~/workspace/inputs/references/transcriptome</span>
 <span class="nb">cd</span> ~/workspace/inputs/references/transcriptome
 
-<span class="c1"># Download the files.</span>
-<span class="c1">#Command below already run</span>
-<span class="c1">#wget http://genomedata.org/pmbio-workshop/references/transcriptome/$CHRS/ref_transcriptome.gtf</span>
-<span class="c1">#wget http://genomedata.org/pmbio-workshop/references/transcriptome/$CHRS/ref_transcriptome.fa</span>
+<span class="c1"># List files in the directory</span>
+ls -halt
 
-<span class="c1"># Take a look at the contents of the gtf file. Press &#39;q&#39; to exit the &#39;less&#39; display.</span>
-less -p start_codon -S ref_transcriptome.gtf
+<span class="c1"># Take a look at the contents of the gtf file. Press &#39;q&#39; to exit the &#39;less&#39; display. </span>
+<span class="c1"># When the file is displayed usin &quot;less&quot; type &quot;/&quot; and then a something you want to highlight e.g. &quot;chr6&quot;. This is very useful when searching for specific infomration</span>
+less -SN ref_transcriptome.gtf
 </code></pre></div>
 <h2 id="explore-the-contents-of-the-transcriptome-reference-files">Explore the contents of the transcriptome reference files<a class="headerlink" href="#explore-the-contents-of-the-transcriptome-reference-files" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1">#How many chromsomes are represented?</span>
@@ -877,6 +888,7 @@ perl -ne <span class="s1">&#39;if ($_ =~ /(gene_id\s\&quot;ENSG\w+\&quot;)/){pri
 <span class="c1"># how does the following command (3 commands piped together) answer that question?</span>
 cut -f <span class="m">3</span> ref_transcriptome.gtf <span class="p">|</span> sort <span class="p">|</span> uniq -c
 </code></pre></div>
+<p>Below we will prepare files for the bioinformatic tools (HISAT/Kallisto) used to analyse RNA-sequencing data.</p>
 <h2 id="create-a-reference-index-for-transcriptome-with-hisat-for-splice-rna-alignments-to-the-genome">Create a reference index for transcriptome with HISAT for splice RNA alignments to the genome<a class="headerlink" href="#create-a-reference-index-for-transcriptome-with-hisat-for-splice-rna-alignments-to-the-genome" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/inputs/references/transcriptome
 
@@ -922,7 +934,7 @@ kallisto index --index<span class="o">=</span>ref_transcriptome_kallisto_index r
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../R_for_bioinformatics/" class="md-footer__link md-footer__link--prev" aria-label="Previous: R for Bioinformatics" rel="prev">
+        <a href="../real_life_example_cli/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Command Line Usage in Real Life" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -931,7 +943,7 @@ kallisto index --index<span class="o">=</span>ref_transcriptome_kallisto_index r
               <span class="md-footer__direction">
                 Previous
               </span>
-              R for Bioinformatics
+              Command Line Usage in Real Life
             </div>
           </div>
         </a>

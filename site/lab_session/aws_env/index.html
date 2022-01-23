@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-workspace-directories-on-aws" class="md-skip">
+        <a href="#the-workspace-on-aws-and-installations" class="md-skip">
           Skip to content
         </a>
       
@@ -466,6 +466,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-to-use-the-terminal-download-files-to-your-local-machine" class="md-nav__link">
+    How to use the terminal download files to your local machine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#explore-the-workspace-on-aws" class="md-nav__link">
     Explore the workspace on AWS
   </a>
@@ -509,6 +516,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#delly" class="md-nav__link">
+    Delly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fastqc" class="md-nav__link">
     FastQC
   </a>
@@ -539,13 +553,6 @@
           <li class="md-nav__item">
   <a href="#kallisto" class="md-nav__link">
     Kallisto
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#manta" class="md-nav__link">
-    Manta
   </a>
   
 </li>
@@ -663,6 +670,20 @@
     <li class="md-nav__item">
       <a href="../R_for_bioinformatics/" class="md-nav__link">
         R for Bioinformatics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real_life_example_cli/" class="md-nav__link">
+        Command Line Usage in Real Life
       </a>
     </li>
   
@@ -844,6 +865,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../analysis_of_cnv/" class="md-nav__link">
+        Copy Number Variations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../processing_of_rnaseq/" class="md-nav__link">
         RNAseq
       </a>
@@ -899,6 +934,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-to-use-the-terminal-download-files-to-your-local-machine" class="md-nav__link">
+    How to use the terminal download files to your local machine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#explore-the-workspace-on-aws" class="md-nav__link">
     Explore the workspace on AWS
   </a>
@@ -942,6 +984,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#delly" class="md-nav__link">
+    Delly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fastqc" class="md-nav__link">
     FastQC
   </a>
@@ -972,13 +1021,6 @@
           <li class="md-nav__item">
   <a href="#kallisto" class="md-nav__link">
     Kallisto
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#manta" class="md-nav__link">
-    Manta
   </a>
   
 </li>
@@ -1092,29 +1134,106 @@
               
                 
 
-<h1 id="the-workspace-directories-on-aws">THE WORKSPACE DIRECTORIES ON AWS<a class="headerlink" href="#the-workspace-directories-on-aws" title="Permanent link">&para;</a></h1>
-<p>This workshop requires a large number of different bioinformatics tools. The instructions for installing these tools will vary per operating system. It is beyond the scope of this course to provide installation instructions for all types of operating systems used in this course. Therefore, we have pre-installed the tools on Amazon Web Services (AWS) and will provide access to virtual machines for the lab sessions. </p>
-<p>The only software that needs to be installed on your local machine is "R" to be able to visualize data during the labwork.</p>
+<h1 id="the-workspace-on-aws-and-installations">The workspace on AWS and installations<a class="headerlink" href="#the-workspace-on-aws-and-installations" title="Permanent link">&para;</a></h1>
+<p>Due to the current covid-situation in Sweden we converted the course from on-site to on-line using zoom for lectures and the Amazon Web Services (AWS) for the practical sessions. Each student will get an "instance" of a linux computer in AWS to perform the labwork. During the labwork we will also use zoom for discussions and support.</p>
+<p>To be able to connect to AWS on windows you need to be able to download the SSH client PuTTY  (<a href="https://www.putty.org">https://www.putty.org</a>). If you have a mac or a linux/unix computer nothing is needed to preinstall to work on the comman line. </p>
+<p>To perform the exercises of the course you also need to install the following software on your local machine: <a href="https://software.broadinstitute.org/software/igv/download">IGV</a>.
+Choose IGV that comes bundled with Java for your operating system.</p>
+<p>This workshop requires a large number of different bioinformatics tools. Thes have been pre-installed on AWS. For installation instructions of the differnet tools, see the list at the end of this document which links to the website of each software tool. </p>
 <h2 id="r">R<a class="headerlink" href="#r" title="Permanent link">&para;</a></h2>
-<p><a href="https://www.r-project.org">R</a> is a feature rich interpretive programming language originally released in 1995. It is heavily used in the bioinformatics community largely due to numerous R libraries available on <a href="https://www.bioconductor.org">bioconductor</a>.</p>
-<ul>
-<li>Download R to your local machine:<ul>
-<li><a href="https://www.r-project.org">https://www.r-project.org</a></li>
-</ul>
-</li>
-<li>Double-click on the icon and start the installation process. </li>
-<li>Open R. <ul>
-<li>In R run othe following lines of code:<ul>
-<li>packages &lt;- c("devtools", "BiocManager", "dplyr", "tidyr", "ggplot2", "IRanges")</li>
-<li>install.packages(packages, dependencies = TRUE)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p><a href="https://www.r-project.org">R</a> is a feature rich interpretive programming language originally released in 1995. It is heavily used in the bioinformatics community largely due to numerous R libraries available on <a href="https://www.bioconductor.org">bioconductor</a>. </p>
+<p>If you have not installed R yet:
+- Download R to your local machine:
+    - <a href="https://www.r-project.org">https://www.r-project.org</a>
+- Double-click on the icon and start the installation process. </p>
+<p>Install the following R libraries on your local machine:
+<div class="highlight"><pre><span></span><code><span class="c1">#Open R and run the following code:</span>
+<span class="n">packages</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">,</span> <span class="s">&quot;BiocManager&quot;</span><span class="p">,</span> <span class="s">&quot;dplyr&quot;</span><span class="p">,</span> <span class="s">&quot;tidyr&quot;</span><span class="p">,</span> <span class="s">&quot;ggplot2&quot;</span><span class="p">,</span> <span class="s">&quot;data.table&quot;</span><span class="p">,</span> <span class="s">&quot;patchwork&quot;</span><span class="p">,</span> <span class="s">&quot;stringr&quot;</span><span class="p">,</span> <span class="s">&quot;jsonlite&quot;</span><span class="p">,</span> <span class="s">&quot;reshape2&quot;</span><span class="p">,</span><span class="s">&quot;cowplot&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;biomaRt&quot;</span><span class="p">,</span> <span class="s">&quot;Biostrings&quot;</span><span class="p">,</span> <span class="s">&quot;ensembldb&quot;</span><span class="p">,</span> <span class="s">&quot;IRanges&quot;</span><span class="p">,</span> <span class="s">&quot;EnsDb.Hsapiens.v86&quot;</span><span class="p">,</span> <span class="s">&quot;bamsignals&quot;</span><span class="p">,</span> <span class="s">&quot;BSgenome&quot;</span><span class="p">,</span> <span class="s">&quot;BSgenome.Hsapiens.NCBI.hg19&quot;</span><span class="p">,</span> <span class="s">&quot;csaw&quot;</span><span class="p">,</span> <span class="s">&quot;DNAcopy&quot;</span><span class="p">,</span> <span class="s">&quot;GenomicRanges&quot;</span><span class="p">,</span> <span class="s">&quot;org.Hs.eg.db&quot;</span><span class="p">,</span> <span class="s">&quot;Rsamtools&quot;</span><span class="p">,</span> <span class="s">&quot;Repitools&quot;</span><span class="p">,</span> <span class="s">&quot;TxDb.Hsapiens.UCSC.hg19.knownGene&quot;</span><span class="p">,</span> <span class="s">&quot;VariantAnnotation&quot;</span><span class="p">,</span> <span class="s">&quot;chimeraviz&quot;</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># PSCBS requires DNAcopy </span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;PSCBS&quot;</span><span class="p">)</span>
+</code></pre></div>
+Note during the course you will be visualising data using R. If some of the libraries do not work on your local machine, you can run R and plot on AWS instead. However, then the plots will have to be dowloaded as pdf-files instead of being viewed interactively in R-studio.</p>
+<p>The above mentioned libraries are installed in R, available in the following path, <code>/home/ubuntu/miniconda3/envs/r-rnaseq/bin/R</code>, to access this R env follow the below instructions.
+- Using the command line do:
+<div class="highlight"><pre><span></span><code><span class="c1"># Start R terminal without GUI</span>
+/home/ubuntu/miniconda3/envs/r-rnaseq/bin/R
+</code></pre></div>
+- Using R do:
+<div class="highlight"><pre><span></span><code><span class="c1"># Load libraries. Note, not all are needed every time,</span>
+<span class="c1"># just check here that they load without error. </span>
+<span class="c1"># Load each library and wait for it to finish before continuing </span>
+<span class="nf">library</span><span class="p">(</span><span class="n">BiocManager</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">IRanges</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">patchwork</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">PSCBS</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">jsonlite</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">cowplot</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">biomaRt</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">Biostrings</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ensembldb</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">EnsDb.Hsapiens.v86</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">bamsignals</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">BSgenome</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">BSgenome.Hsapiens.NCBI.hg19</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">csaw</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">DNAcopy</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">GenomicRanges</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">org.Hs.eg.db</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">Rsamtools</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">Repitools</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">TxDb.Hsapiens.UCSC.hg19.knownGene</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">VariantAnnotation</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">chimeraviz</span><span class="p">)</span>
+
+<span class="c1"># Check your current directory</span>
+<span class="nf">getwd</span><span class="p">()</span>
+
+<span class="c1"># Set to your home directory or some other directory</span>
+<span class="nf">setwd</span><span class="p">(</span><span class="o">~</span><span class="p">)</span>
+<span class="c1"># here we can run the R scripts </span>
+
+<span class="c1"># Let us test to plot and save as pdf using pre-loaded data in R</span>
+
+<span class="c1"># Check the data</span>
+<span class="n">mtcars</span>
+
+<span class="c1"># Assign a plot to p</span>
+<span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">mpg</span><span class="p">,</span> <span class="n">wt</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_point</span><span class="p">()</span>
+
+<span class="c1"># Save the p plot to the mtcars.pdf</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;mtcars.pdf&quot;</span><span class="p">,</span> <span class="n">plot</span> <span class="o">=</span> <span class="n">p</span><span class="p">)</span>
+
+<span class="c1"># How to download the pdf-file to your local machine,</span>
+<span class="c1"># see the section below, however first quit R. &quot;no&quot;</span>
+<span class="c1"># means that the R-workspace will not be saved.</span>
+<span class="nf">q</span><span class="p">(</span><span class="s">&quot;no&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<h2 id="how-to-use-the-terminal-download-files-to-your-local-machine">How to use the terminal download files to your local machine<a class="headerlink" href="#how-to-use-the-terminal-download-files-to-your-local-machine" title="Permanent link">&para;</a></h2>
+<p>This will can be used for both downloading files plotted in R on AWS and other files and file types, such as bam-files that will be visualised in IGV.</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> TO_PREFERRED_DIRECTORY
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/PATH_TO_PDF/FILENAME .
+
+<span class="c1"># Before proceeding - test that you can get the &quot;mtcars.pdf&quot; file</span>
+<span class="c1">#  downloaded to your local computer. If not, ask for assistance.</span>
+</code></pre></div>
 <h2 id="explore-the-workspace-on-aws">Explore the workspace on AWS<a class="headerlink" href="#explore-the-workspace-on-aws" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># Log onto AWS cloud</span>
-ssh -i course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE
+<div class="highlight"><pre><span></span><code><span class="c1">#Make sure the credentials are set for the &quot;pem&quot; (key) file.</span>
+<span class="c1"># If needed run:</span>
+<span class="c1"># chmod 400 course_ec2_new.pem</span>
+
+<span class="c1"># Log onto AWS cloud (make sure in are in the same directory as the pem key).</span>
+ssh -i ./PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE
 
 <span class="c1"># Check where you are</span>
 <span class="nb">pwd</span>
@@ -1126,24 +1245,28 @@ ssh -i course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE
 <span class="c1"># the workspace folder contains the course files and pre-installed bioinformatic tools</span>
 <span class="nb">cd</span> workspace/
 
-<span class="c1"># the workspace folder contains the course files and pre-installed bioinformatic tools. Navigate to the folders, list the files and reflecton what is there</span>
+<span class="c1"># The workspace folder contains the course files and pre-installed bioinformatic tools. Navigate to the folders, list the files and reflecton what is there</span>
 <span class="nb">cd</span>  ~/workspace/inputs
 ls -alF
-<span class="c1">#Look around in the folders</span>
+<span class="c1"># Look around in the folders</span>
 
 <span class="nb">cd</span> ~/workspace/bin
 ls -alF
-<span class="c1">#Look around in the folders</span>
+<span class="c1"># Look around in the folders</span>
 
-<span class="c1">#Have a look at the raw exone sequencing data for the germline DNA</span>
+<span class="c1"># Have a look at the raw exone sequencing data for the germline DNA</span>
 <span class="nb">cd</span> ~/workspace/inputs/data/fastq/Exome_Norm
 
-<span class="c1">#What are the files in this folder?</span>
+<span class="c1"># What are the files in this folder?</span>
 
-<span class="c1">#Explore the file format (gunzip unpacks zipped files)</span>
+<span class="c1"># Explore the file format (gunzip unpacks zipped files)</span>
 gunzip -c Exome_Norm_R1.fastq.gz <span class="p">|</span> less -SN
-<span class="c1">#The format is nicely described here:</span>
-<span class="c1">#https://en.wikipedia.org/wiki/FASTQ_format</span>
+
+<span class="c1"># The format is nicely described here:</span>
+<span class="c1"># https://en.wikipedia.org/wiki/FASTQ_format</span>
+<span class="c1"># Read through the fastq format to get an understanding of</span>
+<span class="c1"># base qualities from illumina DNA sequencing data.</span>
+<span class="c1"># The format will be discussed tomorrow during the lab intro.</span>
 </code></pre></div>
 <h2 id="list-of-preinstalled-bioinformatic-tools">List of preinstalled bioinformatic tools<a class="headerlink" href="#list-of-preinstalled-bioinformatic-tools" title="Permanent link">&para;</a></h2>
 <h3 id="bam-readcount">bam-readcount<a class="headerlink" href="#bam-readcount" title="Permanent link">&para;</a></h3>
@@ -1153,7 +1276,9 @@ gunzip -c Exome_Norm_R1.fastq.gz <span class="p">|</span> less -SN
 <h3 id="bwa">BWA<a class="headerlink" href="#bwa" title="Permanent link">&para;</a></h3>
 <p><a href="http://bio-bwa.sourceforge.net">BWA</a> is a popular DNA alignment tool used for mapping sequences to a reference genome. It is available under an open source GPLv3 license.</p>
 <h3 id="cnvkit">CNVkit<a class="headerlink" href="#cnvkit" title="Permanent link">&para;</a></h3>
-<p><a href="https://cnvkit.readthedocs.io/en/stable/">CNVkit</a> is a python based copy number caller designed for use with hybrid capture. </p>
+<p><a href="https://cnvkit.readthedocs.io/en/stable/">CNVkit</a> is a python based copy number caller designed for use with hybrid capture. It will not be applied during the course but is a frequently used tool for CNV-analysis of copy-number data.</p>
+<h3 id="delly">Delly<a class="headerlink" href="#delly" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/dellytools/delly">Delly</a> is a structural variant caller developed at EMBL. It uses paired-ends, split-reads and read-depth to sensitively and accurately delineate genomic rearrangements throughout the genome. </p>
 <h3 id="fastqc">FastQC<a class="headerlink" href="#fastqc" title="Permanent link">&para;</a></h3>
 <p><a href="https://github.com/s-andrews/FastQC">FastQC</a> is a quality control program for raw sequencing data. </p>
 <h3 id="gatk-4">GATK 4<a class="headerlink" href="#gatk-4" title="Permanent link">&para;</a></h3>
@@ -1164,8 +1289,6 @@ gunzip -c Exome_Norm_R1.fastq.gz <span class="p">|</span> less -SN
 <p><a href="http://daehwankimlab.github.io/hisat2/">HISAT2</a> is a graph based alignment algorithm devoloped at Johns Hopkins University. It is heavily used in the bioinformatics community for RNAseq based alignments. </p>
 <h3 id="kallisto">Kallisto<a class="headerlink" href="#kallisto" title="Permanent link">&para;</a></h3>
 <p><a href="https://pachterlab.github.io/kallisto/">Kallisto</a> is a kmer-based alignment algorithm used for quantifying transcripts in RNAseq data.</p>
-<h3 id="manta">Manta<a class="headerlink" href="#manta" title="Permanent link">&para;</a></h3>
-<p><a href="https://github.com/Illumina/manta">Manta</a> is a structural variant caller developed by Illumina and available on gitub under the GPL_v3 license. </p>
 <h3 id="mosdepth">mosdepth<a class="headerlink" href="#mosdepth" title="Permanent link">&para;</a></h3>
 <p><a href="https://github.com/brentp/mosdepth">mosdepth</a> is a program for determining depth in sequencing data. </p>
 <h3 id="multiqc">MultiQC<a class="headerlink" href="#multiqc" title="Permanent link">&para;</a></h3>
@@ -1202,47 +1325,6 @@ on github. </p>
 <p><a href="https://www.ensembl.org/info/docs/tools/vep/index.html">VEP</a> is a variant annotation tool developed by ensembl and written in perl. By default VEP will perform annotations by making web-based API queries however it is much faster to have a local copy of cache and fasta files. The AWS AMI image we’re using already has these files for hg38 in the directory ~/workspace/vep_cache as they can take a bit of time to download. </p>
 <h3 id="vt">vt<a class="headerlink" href="#vt" title="Permanent link">&para;</a></h3>
 <p><a href="https://github.com/atks/vt">vt</a> is a variant tool set that discovers short variants from Next Generation Sequencing data. We will use this for the purpose of splitting multi-allelic variants.</p>
-<h1 id="fix-below-later-in-case-it-is-needed-depends-on-what-markus-m-decides">FIX BELOW LATER IN CASE IT IS NEEDED - DEPENDS ON WHAT MARKUS M DECIDES<a class="headerlink" href="#fix-below-later-in-case-it-is-needed-depends-on-what-markus-m-decides" title="Permanent link">&para;</a></h1>
-<h2 id="install-copycat">Install copyCat<a class="headerlink" href="#install-copycat" title="Permanent link">&para;</a></h2>
-<p>copyCat is an R library for detecting copy number aberrations in sequencing data. The library is only available on github so we will have to use the BiocManager library to install a few of the underlying package dependencies. </p>
-<ul>
-<li>Open R. <ul>
-<li>In R run othe following lines of code:<ul>
-<li>devtools::install_github("chrisamiller/copycat")</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="install-cnvnator">Install CNVnator<a class="headerlink" href="#install-cnvnator" title="Permanent link">&para;</a></h2>
-<p>CNVnator is a depth based copy number caller. It is open source and available on github under a creative common public license (CCPL). To install we first download and extract the source code. CNVnator relies on a specific version of samtools which is distributed with CNVnator, so our first step is to run make on that samtools. To finish the installation process we can then run make in CNVnator’s main source directory.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># download and decompress</span>
-<span class="nb">cd</span> ~/workspace/bin
-
-<span class="c1">#download and install dependency package &quot;root&quot; from Cern (https://root.cern/install/). </span>
-
-curl -OL https://root.cern/download/root_v6.20.08.Linux-ubuntu20-x86_64-gcc9.3.tar.gz
-tar -xvzf root_v6.20.08.Linux-ubuntu20-x86_64-gcc9.3.tar.gz
-<span class="nb">source</span> root/bin/thisroot.sh
-
-wget https://github.com/abyzovlab/CNVnator/releases/download/v0.3.3/CNVnator_v0.3.3.zip
-unzip CNVnator_v0.3.3.zip
-
-<span class="c1"># make the samtools dependency distributed with CNVnator</span>
-<span class="nb">cd</span> CNVnator_v0.3.3/src/samtools
-make
-
-<span class="c1"># make CNVnator</span>
-<span class="nb">cd</span> ../
-make
-
-<span class="c1"># make a symlink</span>
-ln -s ~/workspace/bin/CNVnator_v0.3.3/src/cnvnator ~/workspace/bin/cnvnator
-
-<span class="c1"># test installation</span>
-~/workspace/bin/cnvnator
-</code></pre></div>
-<p>MultiQC is a tool to create a single report with interactive plots for multiple bioinformatics analyses across many samples.</p>
 
               
             </article>

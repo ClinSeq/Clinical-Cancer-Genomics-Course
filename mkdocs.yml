@@ -109,6 +109,7 @@ nav:
         - AWK : lab_session/basics_awk.md
         - Workspace - AWS : lab_session/aws_env.md
         - R for Bioinformatics: lab_session/R_for_bioinformatics.md
+        - Command Line Usage in Real Life: lab_session/real_life_example_cli.md
       - Day 2:
         - Human Genome: lab_session/human_genome.md
         - Annotation: lab_session/annotation_files.md
@@ -117,4 +118,5 @@ nav:
       - Day 3:
         - Variant Calling: lab_session/variant_calling.md
       - Day 4:
+        - Copy Number Variations: lab_session/analysis_of_cnv.md
         - RNAseq: lab_session/processing_of_rnaseq.md

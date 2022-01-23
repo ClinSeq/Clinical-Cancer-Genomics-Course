@@ -1,16 +1,12 @@
-# ANNOTATION FILES
+# Annotation files
 
 ## Files for annotation of variation in the human genome
 ```bash
-cd ~/workspace/inputs/references/
-#Command already run
-#mkdir -p gatk
-cd gatk
 
-#In case gsutil needs to be installed
-#Already installed
-#conda install gsutil
+#These are available from the Broad institute in Boston, who also provides the GATK software suite.
+cd ~/workspace/inputs/references/gatk
 
+#Download the following files:
 # SNP calibration call sets - dbsnp, hapmap, omni, and 1000G
 # Runtime: < 2min
 gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.dbsnp138.vcf .
@@ -19,6 +15,10 @@ bgzip --threads 8 Homo_sapiens_assembly38.dbsnp138.vcf
 gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/hapmap_3.3.hg38.vcf.gz .
 gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/1000G_omni2.5.hg38.vcf.gz .
 gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/1000G_phase1.snps.high_confidence.hg38.vcf.gz .
+
+# Have a loot what the files contain. 
+# Dont worry, we will look at VCF files later.
+gunzip -c 1000G_phase1.snps.high_confidence.hg38.vcf.gz | less -SN
 
 # Indel calibration call sets - dbsnp, Mills
 gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.known_indels.vcf.gz .
@@ -53,10 +53,12 @@ gatk --java-options '-Xmx12g' IndexFeatureFile -I ~/workspace/inputs/references/
 ```
 
 ## Interval files and coordinates for the exome sequencing assay
+These files contain the location of the exons in the human genome that were "targeted", that is for which targeting oligos were created (primary_targets). 
+
+The files also contain the location of the actual oligos (capture_targets).
+
 ```bash
 # change directories
-#Command below already run
-#mkdir -p ~/workspace/inputs/references/exome
 cd ~/workspace/inputs/references/exome
 
 # download the files
@@ -67,16 +69,10 @@ unzip SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
 rm -f SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
 
 # Lift-over of the Roche coordinates from hg19 to the hg38 assembly.
-# download the software
-# Code below has already been run
-#cd ~/workspace/bin
+# the software is availble from USCS, downloadble here:
 #wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver
 #chmod +x liftOver
-
-# change to the appropriate directory
-cd ~/workspace/inputs/references/exome
-
-# download the chain file
+# the chain file
 wget -c http://hgdownload.cse.ucsc.edu/goldenPath/hg19/liftOver/hg19ToHg38.over.chain.gz
 
 # run liftover

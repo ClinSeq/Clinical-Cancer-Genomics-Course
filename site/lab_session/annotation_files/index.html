@@ -445,6 +445,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real_life_example_cli/" class="md-nav__link">
+        Command Line Usage in Real Life
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -691,6 +705,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../analysis_of_cnv/" class="md-nav__link">
+        Copy Number Variations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../processing_of_rnaseq/" class="md-nav__link">
         RNAseq
       </a>
@@ -786,17 +814,12 @@
               
                 
 
-<h1 id="annotation-files">ANNOTATION FILES<a class="headerlink" href="#annotation-files" title="Permanent link">&para;</a></h1>
+<h1 id="annotation-files">Annotation files<a class="headerlink" href="#annotation-files" title="Permanent link">&para;</a></h1>
 <h2 id="files-for-annotation-of-variation-in-the-human-genome">Files for annotation of variation in the human genome<a class="headerlink" href="#files-for-annotation-of-variation-in-the-human-genome" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/inputs/references/
-<span class="c1">#Command already run</span>
-<span class="c1">#mkdir -p gatk</span>
-<span class="nb">cd</span> gatk
+<div class="highlight"><pre><span></span><code><span class="c1">#These are available from the Broad institute in Boston, who also provides the GATK software suite.</span>
+<span class="nb">cd</span> ~/workspace/inputs/references/gatk
 
-<span class="c1">#In case gsutil needs to be installed</span>
-<span class="c1">#Already installed</span>
-<span class="c1">#conda install gsutil</span>
-
+<span class="c1">#Download the following files:</span>
 <span class="c1"># SNP calibration call sets - dbsnp, hapmap, omni, and 1000G</span>
 <span class="c1"># Runtime: &lt; 2min</span>
 gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.dbsnp138.vcf .
@@ -805,6 +828,10 @@ bgzip --threads <span class="m">8</span> Homo_sapiens_assembly38.dbsnp138.vcf
 gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/hapmap_3.3.hg38.vcf.gz .
 gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/1000G_omni2.5.hg38.vcf.gz .
 gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/1000G_phase1.snps.high_confidence.hg38.vcf.gz .
+
+<span class="c1"># Have a loot what the files contain. </span>
+<span class="c1"># Dont worry, we will look at VCF files later.</span>
+gunzip -c 1000G_phase1.snps.high_confidence.hg38.vcf.gz <span class="p">|</span> less -SN
 
 <span class="c1"># Indel calibration call sets - dbsnp, Mills</span>
 gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.known_indels.vcf.gz .
@@ -833,9 +860,9 @@ gatk --java-options <span class="s1">&#39;-Xmx12g&#39;</span> IndexFeatureFile -
 gatk --java-options <span class="s1">&#39;-Xmx12g&#39;</span> IndexFeatureFile -I ~/workspace/inputs/references/gatk/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
 </code></pre></div>
 <h2 id="interval-files-and-coordinates-for-the-exome-sequencing-assay">Interval files and coordinates for the exome sequencing assay<a class="headerlink" href="#interval-files-and-coordinates-for-the-exome-sequencing-assay" title="Permanent link">&para;</a></h2>
+<p>These files contain the location of the exons in the human genome that were "targeted", that is for which targeting oligos were created (primary_targets). </p>
+<p>The files also contain the location of the actual oligos (capture_targets).</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># change directories</span>
-<span class="c1">#Command below already run</span>
-<span class="c1">#mkdir -p ~/workspace/inputs/references/exome</span>
 <span class="nb">cd</span> ~/workspace/inputs/references/exome
 
 <span class="c1"># download the files</span>
@@ -846,16 +873,10 @@ unzip SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
 rm -f SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
 
 <span class="c1"># Lift-over of the Roche coordinates from hg19 to the hg38 assembly.</span>
-<span class="c1"># download the software</span>
-<span class="c1"># Code below has already been run</span>
-<span class="c1">#cd ~/workspace/bin</span>
+<span class="c1"># the software is availble from USCS, downloadble here:</span>
 <span class="c1">#wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver</span>
 <span class="c1">#chmod +x liftOver</span>
-
-<span class="c1"># change to the appropriate directory</span>
-<span class="nb">cd</span> ~/workspace/inputs/references/exome
-
-<span class="c1"># download the chain file</span>
+<span class="c1"># the chain file</span>
 wget -c http://hgdownload.cse.ucsc.edu/goldenPath/hg19/liftOver/hg19ToHg38.over.chain.gz
 
 <span class="c1"># run liftover</span>
