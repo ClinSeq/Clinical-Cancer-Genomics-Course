@@ -14,13 +14,10 @@ In this exercise we will perform the above steps using R, and a BAM file of alig
 
 ### Download data and prepare R
 
-The data used in this exercise is available for download here: **##########**
+The data used in this exercise is available for download here: [copy_number_files.tar.bz2](https://course-cg-5534.s3.amazonaws.com/cnvs/copy_number_files.tar.bz2)
+
 Extract the content into a local folder on your computer.
 
-```bash
-unzip copy_number_files.zip
-```
-*or*
 ```bash
 tar xjvf copy_number_files.tar.bz2
 ```

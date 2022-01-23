@@ -3,7 +3,7 @@
 ## Germline variants
 We will start by calling germline variants. For this purpose we will use the [GATK HaplotypeCaller](https://gatk.broadinstitute.org/hc/en-us/articles/4414586765723-HaplotypeCaller) from the Broad Institute. We will use this tool on the germline DNA bam files that were processed yesterday. 
 
-Acive forum and tutorials for the GATK software suit is available [here](https://gatk.broadinstitute.org/hc/en-us/community/topics).
+Active forum and tutorials for the GATK software suit is available [here](https://gatk.broadinstitute.org/hc/en-us/community/topics).
 
 The HaplotypeCaller can be run in single- or joint sample mode. The joint sample mode gives improved accuracy, especially in samples with low coverage. For simplicity, we will only use the single sample mode in this course. 
 
@@ -22,7 +22,11 @@ cd ~/workspace/germline
 gatk --java-options '-Xmx12g' HaplotypeCaller --help
 
 #Call variants for exome data
-gatk --java-options '-Xmx12g' HaplotypeCaller -R ~/workspace/inputs/references/genome/ref_genome.fa -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam -O ~/workspace/germline/Exome_Norm_HC_calls.vcf --bam-output ~/workspace/germline/Exome_Norm_HC_out.bam $GATK_REGIONS
+gatk --java-options '-Xmx12g' HaplotypeCaller \
+    -R ~/workspace/inputs/references/genome/ref_genome.fa \
+    -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam \
+    -O ~/workspace/germline/Exome_Norm_HC_calls.vcf \
+    --bam-output ~/workspace/germline/Exome_Norm_HC_out.bam $GATK_REGIONS
 ```
 
 ## Explore the ouput files
@@ -95,8 +99,14 @@ First, we will separate out the SNPs and Indels from the VCF into new separate V
 
 ```bash
 cd ~/workspace/germline/
-gatk --java-options '-Xmx12g' SelectVariants -R ~/workspace/inputs/references/genome/ref_genome.fa -V ~/workspace/germline/Exome_Norm_HC_calls.vcf -select-type SNP -O ~/workspace/germline/Exome_Norm_HC_calls.snps.vcf
-gatk --java-options '-Xmx12g' SelectVariants -R ~/workspace/inputs/references/genome/ref_genome.fa -V ~/workspace/germline/Exome_Norm_HC_calls.vcf -select-type INDEL -O ~/workspace/germline/Exome_Norm_HC_calls.indels.vcf
+gatk --java-options '-Xmx12g' SelectVariants \
+    -R ~/workspace/inputs/references/genome/ref_genome.fa \
+    -V ~/workspace/germline/Exome_Norm_HC_calls.vcf -select-type SNP \
+    -O ~/workspace/germline/Exome_Norm_HC_calls.snps.vcf
+gatk --java-options '-Xmx12g' SelectVariants \
+    -R ~/workspace/inputs/references/genome/ref_genome.fa \
+    -V ~/workspace/germline/Exome_Norm_HC_calls.vcf -select-type INDEL \
+    -O ~/workspace/germline/Exome_Norm_HC_calls.indels.vcf
 ```
 ### Apply filters to the SNP and Indel call sets
 
@@ -104,9 +114,25 @@ Next, we will perform so-called hard-filtering by applying a number of cutoffs. 
 
 ```bash
 cd ~/workspace/germline/
-gatk --java-options '-Xmx12g' VariantFiltration -R ~/workspace/inputs/references/genome/ref_genome.fa -V ~/workspace/germline/Exome_Norm_HC_calls.snps.vcf --filter-expression "QD < 2.0" --filter-name "QD_lt_2" --filter-expression "FS > 60.0" --filter-name "FS_gt_60" --filter-expression "MQ < 40.0" --filter-name "MQ_lt_40" --filter-expression "MQRankSum < -12.5" --filter-name "MQRS_lt_n12.5" --filter-expression "ReadPosRankSum < -8.0" --filter-name "RPRS_lt_n8" --filter-expression "SOR > 3.0" --filter-name "SOR_gt_3" -O ~/workspace/germline/Exome_Norm_HC_calls.snps.filtered.vcf
+gatk --java-options '-Xmx12g' VariantFiltration \
+    -R ~/workspace/inputs/references/genome/ref_genome.fa \
+    -V ~/workspace/germline/Exome_Norm_HC_calls.snps.vcf \
+    --filter-expression "QD < 2.0" --filter-name "QD_lt_2" \
+    --filter-expression "FS > 60.0" --filter-name "FS_gt_60" \
+    --filter-expression "MQ < 40.0" --filter-name "MQ_lt_40" \
+    --filter-expression "MQRankSum < -12.5" --filter-name "MQRS_lt_n12.5" \
+    --filter-expression "ReadPosRankSum < -8.0" --filter-name "RPRS_lt_n8" \
+    --filter-expression "SOR > 3.0" --filter-name "SOR_gt_3" \
+    -O ~/workspace/germline/Exome_Norm_HC_calls.snps.filtered.vcf
 
-gatk --java-options '-Xmx12g' VariantFiltration -R ~/workspace/inputs/references/genome/ref_genome.fa -V ~/workspace/germline/Exome_Norm_HC_calls.indels.vcf --filter-expression "QD < 2.0" --filter-name "QD_lt_2" --filter-expression "FS > 200.0" --filter-name "FS_gt_200" --filter-expression "ReadPosRankSum < -20.0" --filter-name "RPRS_lt_n20" --filter-expression "SOR > 10.0" --filter-name "SOR_gt_10" -O ~/workspace/germline/Exome_Norm_HC_calls.indels.filtered.vcf
+gatk --java-options '-Xmx12g' VariantFiltration \
+    -R ~/workspace/inputs/references/genome/ref_genome.fa \
+    -V ~/workspace/germline/Exome_Norm_HC_calls.indels.vcf \
+    --filter-expression "QD < 2.0" --filter-name "QD_lt_2" \
+    --filter-expression "FS > 200.0" --filter-name "FS_gt_200" \
+    --filter-expression "ReadPosRankSum < -20.0" --filter-name "RPRS_lt_n20" \
+    --filter-expression "SOR > 10.0" --filter-name "SOR_gt_10" \
+    -O ~/workspace/germline/Exome_Norm_HC_calls.indels.filtered.vcf
 ```
 
 Notice that warnings are given with regards to MQRankSum and ReadPosRankSum, these are only calculated if the site is called as heterozygous. E.g. for this site (inspect in IGV and in the VCF file):
@@ -128,7 +154,10 @@ Try to do the following:
 #### Merge filtered SNP and INDEL vcfs back together
 
 ```bash
-gatk --java-options '-Xmx12g' MergeVcfs -I ~/workspace/germline/Exome_Norm_HC_calls.snps.filtered.vcf -I ~/workspace/germline/Exome_Norm_HC_calls.indels.filtered.vcf -O ~/workspace/germline/Exome_Norm_HC_calls.filtered.vcf
+gatk --java-options '-Xmx12g' MergeVcfs \
+    -I ~/workspace/germline/Exome_Norm_HC_calls.snps.filtered.vcf \
+    -I ~/workspace/germline/Exome_Norm_HC_calls.indels.filtered.vcf \
+    -O ~/workspace/germline/Exome_Norm_HC_calls.filtered.vcf
 
 #Nbr of variants in the SNP file
 grep -v "##" Exome_Norm_HC_calls.snps.filtered.vcf | wc -l
@@ -145,7 +174,11 @@ grep -v "##" Exome_Norm_HC_calls.filtered.vcf | wc -l
 It would also be convenient to have a vcf with only passing variants. For this, we can go back the `GATK SelectVariants` tool. This will be run much as above except with the `--exlude-filtered` option instead of `-select-type`.
 
 ```bash
-gatk --java-options '-Xmx12g' SelectVariants -R ~/workspace/inputs/references/genome/ref_genome.fa -V ~/workspace/germline/Exome_Norm_HC_calls.filtered.vcf -O ~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vcf --exclude-filtered
+gatk --java-options '-Xmx12g' SelectVariants \
+    -R ~/workspace/inputs/references/genome/ref_genome.fa \
+    -V ~/workspace/germline/Exome_Norm_HC_calls.filtered.vcf \
+    -O ~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vcf \
+    --exclude-filtered
 ```
 
 ### Perform annotation of filtered variants
@@ -174,7 +207,14 @@ Note, the first time you run VEP it will create a fasta index for the reference 
 ####### Start here
 cd ~/workspace/germline
 #Remember, we are using the REF ~/workspace/inputs/references/genome/ref_genome.fa which only contains chr6 and chr17.
-nohup vep --cache --dir_cache ~/workspace/vep_cache --dir_plugins ~/workspace/vep_cache/Plugins --fasta ~/workspace/inputs/references/genome/ref_genome.fa --fork 8 --assembly=GRCh38 --offline --vcf -i ~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vcf -o ~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vep.vcf --check_existing --total_length --allele_number --no_escape --everything --use_given_ref --force_overwrite --coding_only &
+nohup vep --cache --dir_cache ~/workspace/vep_cache \
+    --dir_plugins ~/workspace/vep_cache/Plugins \
+    --fasta ~/workspace/inputs/references/genome/ref_genome.fa \
+    --fork 8 --assembly=GRCh38 --offline --vcf \
+    -i ~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vcf \
+    -o ~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vep.vcf \
+    --check_existing --total_length --allele_number --no_escape --everything \
+    --use_given_ref --force_overwrite --coding_only &
 
 #Open the VEP vcf, row 39 and 40, contains information about the VEP annotation.
 less -SN Exome_Norm_HC_calls.filtered.PASS.vep.vcf
@@ -213,23 +253,37 @@ mkdir -p ~/workspace/somatic/varscan
 cd ~/workspace/somatic/varscan
 
 #Have a look at the input data to the varscan caller
-samtools mpileup -l ~/workspace/inputs/references/exome/exome_regions.bed --no-BAQ -f ~/workspace/inputs/references/genome/ref_genome.fa ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam | less -SN
+samtools mpileup -l ~/workspace/inputs/references/exome/exome_regions.bed \
+    --no-BAQ -f ~/workspace/inputs/references/genome/ref_genome.fa \
+    ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam \
+    ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam | less -SN
 
 # Run varscan
-java -Xmx12g -jar ~/workspace/bin/VarScan.v2.4.2.jar somatic <(samtools mpileup -l ~/workspace/inputs/references/exome/exome_regions.bed --no-BAQ -f ~/workspace/inputs/references/genome/ref_genome.fa ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam) ~/workspace/somatic/varscan/exome --mpileup 1 --output-vcf
+java -Xmx12g -jar ~/workspace/bin/VarScan.v2.4.2.jar somatic \
+    <(samtools mpileup -l ~/workspace/inputs/references/exome/exome_regions.bed \
+        --no-BAQ -f ~/workspace/inputs/references/genome/ref_genome.fa \
+        ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam \
+        ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam) \
+    ~/workspace/somatic/varscan/exome --min-var-freq 0.05 --mpileup 1 --output-vcf
 
 ls -halt
 
-java -Xmx12g -jar ~/workspace/bin/VarScan.v2.4.2.jar processSomatic exome.snp.vcf exome.snp
+java -Xmx12g -jar ~/workspace/bin/VarScan.v2.4.2.jar processSomatic \
+    exome.snp.vcf exome.snp --min-tumor-freq 0.05 --max-normal-freq 0.01
 
-java -Xmx12g -jar ~/workspace/bin/VarScan.v2.4.2.jar processSomatic exome.indel.vcf exome.indel
+java -Xmx12g -jar ~/workspace/bin/VarScan.v2.4.2.jar processSomatic \
+    exome.indel.vcf exome.indel --min-tumor-freq 0.05 --max-normal-freq 0.01
 
 find ~/workspace/somatic/varscan -name '*.vcf' -exec bgzip -f {} \;
 find ~/workspace/somatic/varscan -name '*.vcf.gz' -exec tabix -f {} \;
 
-gatk VariantFiltration -R ~/workspace/inputs/references/genome/ref_genome.fa -V exome.snp.Somatic.vcf.gz --mask exome.snp.Somatic.hc.vcf.gz --mask-name "processSomatic" --filter-not-in-mask -O exome.snp.Somatic.hc.filter.vcf.gz
+gatk VariantFiltration -R ~/workspace/inputs/references/genome/ref_genome.fa \
+    -V exome.snp.Somatic.vcf.gz --mask exome.snp.Somatic.hc.vcf.gz \
+    --mask-name "processSomatic" --filter-not-in-mask -O exome.snp.Somatic.hc.filter.vcf.gz
 
-gatk VariantFiltration -R ~/workspace/inputs/references/genome/ref_genome.fa -V exome.indel.Somatic.vcf.gz --mask exome.indel.Somatic.hc.vcf.gz --mask-name "processSomatic" --filter-not-in-mask -O exome.indel.Somatic.hc.filter.vcf.gz
+gatk VariantFiltration -R ~/workspace/inputs/references/genome/ref_genome.fa \
+    -V exome.indel.Somatic.vcf.gz --mask exome.indel.Somatic.hc.vcf.gz \
+    --mask-name "processSomatic" --filter-not-in-mask -O exome.indel.Somatic.hc.filter.vcf.gz
 
 bcftools concat -a -o exome.vcf.gz -O z exome.snp.Somatic.hc.filter.vcf.gz exome.indel.Somatic.hc.filter.vcf.gz
 tabix -f ~/workspace/somatic/varscan/exome.vcf.gz
@@ -243,8 +297,12 @@ Now we are going to run the second variant caller, [STRELKA](https://github.com/
 mkdir -p ~/workspace/somatic/strelka/exome
 cd ~
 
-#source activate strelka-env
-~/workspace/bin/strelka-2.9.10.centos6_x86_64/bin/configureStrelkaSomaticWorkflow.py --normalBam=workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam --tumorBam=workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam --referenceFasta=workspace/inputs/references/genome/ref_genome.fa --exome --runDir=workspace/somatic/strelka/exome
+source activate strelka-env
+~/workspace/bin/strelka-2.9.10.centos6_x86_64/bin/configureStrelkaSomaticWorkflow.py \
+    --normalBam=workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam \
+    --tumorBam=workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam \
+    --referenceFasta=workspace/inputs/references/genome/ref_genome.fa \
+    --exome --runDir=workspace/somatic/strelka/exome
 
 #Please specify according to the number of cpus available or how many you would like to allocate to this job. In this case, four were given.
 # Runtime: ~ 3min
@@ -253,8 +311,12 @@ python2 ~/workspace/somatic/strelka/exome/runWorkflow.py -m local -j 8
 conda deactivate
 
 cd ~/workspace/somatic/strelka/exome/results/variants
-zcat somatic.snvs.vcf.gz | awk '{if(/^##/) print; else if(/^#/) print "##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">\n"$0; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6"\t"$7"\t"$8"\tGT:"$9"\t./.:"$10"\t./.:"$11;}' - > somatic.snvs.gt.vcf
-zcat somatic.indels.vcf.gz | awk '{if(/^##/) print; else if(/^#/) print "##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">\n"$0; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6"\t"$7"\t"$8"\tGT:"$9"\t./.:"$10"\t./.:"$11;}' - > somatic.indels.gt.vcf
+zcat somatic.snvs.vcf.gz | \
+    awk '{if(/^##/) print; else if(/^#/) print "##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">\n"$0; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6"\t"$7"\t"$8"\tGT:"$9"\t./.:"$10"\t./.:"$11;}' - \
+    > somatic.snvs.gt.vcf
+zcat somatic.indels.vcf.gz | \
+    awk '{if(/^##/) print; else if(/^#/) print "##FORMAT=<ID=GT,Number=1,Type=String,Description=\"Genotype\">\n"$0; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6"\t"$7"\t"$8"\tGT:"$9"\t./.:"$10"\t./.:"$11;}' - \
+    > somatic.indels.gt.vcf
 find ~/workspace/somatic/strelka/exome/results/variants/ -name "*.vcf" -exec bgzip -f {} \;
 find ~/workspace/somatic/strelka/exome/results/variants/ -name "*.vcf.gz" -exec tabix -f {} \;
 
@@ -280,23 +342,36 @@ cd ~/workspace/somatic/mutect
 
 #Creating a panel of normals
 # Runtime: ~ 17min
-gatk --java-options "-Xmx12G" Mutect2 -R ~/workspace/inputs/references/genome/ref_genome.fa -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam -tumor-sample HCC1395BL_DNA -O Exome_Norm_PON.vcf.gz
+gatk --java-options "-Xmx12G" Mutect2 \
+    -R ~/workspace/inputs/references/genome/ref_genome.fa \
+    -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam \
+    -tumor-sample HCC1395BL_DNA -O Exome_Norm_PON.vcf.gz
 
 #Running Mutect2 Using latest version of GATK
 # Runtime: ~20m
-gatk --java-options "-Xmx12G" Mutect2 -R ~/workspace/inputs/references/genome/ref_genome.fa -I ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam -tumor HCC1395_DNA -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam -normal HCC1395BL_DNA --germline-resource ~/workspace/inputs/references/af-only-gnomad.hg38.vcf.gz --af-of-alleles-not-in-resource 0.00003125 --panel-of-normals ~/workspace/somatic/mutect/Exome_Norm_PON.vcf.gz -O ~/workspace/somatic/mutect/exome.vcf.gz -L chr6 -L chr17
+gatk --java-options "-Xmx12G" Mutect2 \
+    -R ~/workspace/inputs/references/genome/ref_genome.fa \
+    -I ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam \
+    -tumor HCC1395_DNA -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam \
+    -normal HCC1395BL_DNA --germline-resource ~/workspace/inputs/references/af-only-gnomad.hg38.vcf.gz \
+    --af-of-alleles-not-in-resource 0.00003125 --panel-of-normals \
+    ~/workspace/somatic/mutect/Exome_Norm_PON.vcf.gz -O ~/workspace/somatic/mutect/exome.vcf.gz \
+    -L chr6 -L chr17
 
 # Filtering mutect variants
-gatk --java-options "-Xmx12G" FilterMutectCalls -V ~/workspace/somatic/mutect/exome.vcf.gz -O ~/workspace/somatic/mutect/exome_filtered.vcf.gz -R ~/workspace/inputs/references/genome/ref_genome.fa
+gatk --java-options "-Xmx12G" FilterMutectCalls -V ~/workspace/somatic/mutect/exome.vcf.gz \
+    -O ~/workspace/somatic/mutect/exome_filtered.vcf.gz \
+    -R ~/workspace/inputs/references/genome/ref_genome.fa
 
 #Running mutect2 using gatk version 3.6
 #java -Xmx12g -jar /usr/local/bin/GenomeAnalysisTK.jar -T MuTect2 --disable_auto_index_creation_and_locking_when_reading_rods -R ~/workspace/data/raw_data/references/ref_genome.fa -I:tumor ~/workspace/data/DNA_alignments/chr6+chr17/final/Exome_Tumor_sorted_mrkdup_bqsr.bam -I:Normal ~/workspace/data/DNA_alignments/chr6+chr17/final/Exome_Norm_sorted_mrkdup_bqsr.bam --dbsnp ~/workspace/data/raw_data/references/Homo_sapiens_assembly38.dbsnp138.vcf.gz --cosmic ~/workspace/data/raw_data/references/Cosmic_v79.dictsorted.vcf.gz -o ~/workspace/data/results/somatic/mutect/exome.vcf.gz -L ~/workspace/data/results/inputs/SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.interval_list
 
 echo ~/workspace/somatic/mutect/exome_filtered.vcf.gz > ~/workspace/somatic/mutect/exome_vcf.fof
-bcftools concat --allow-overlaps --remove-duplicates --file-list ~/workspace/somatic/mutect/exome_vcf.fof --output-type z --output ~/workspace/somatic/mutect/mutect_exome_filtered.vcf.gz
+bcftools concat --allow-overlaps --remove-duplicates \
+    --file-list ~/workspace/somatic/mutect/exome_vcf.fof --output-type z \
+    --output ~/workspace/somatic/mutect/mutect_exome_filtered.vcf.gz
 
 tabix ~/workspace/somatic/mutect/mutect_exome_filtered.vcf.gz
-
 ```
 
 ### Now we are going to merge the variants detected from all three variant callers
@@ -321,7 +396,11 @@ sed -i 's/HCC1395_DNA/TUMOR/' ~/workspace/somatic/mutect/mutect_exome_filtered.v
 # (UNIQUIFY command) java -Xmx4g -jar /usr/local/bin/GenomeAnalysisTK.jar -T CombineVariants -R ~/workspace/data/raw_data/references/ref_genome.fa -genotypeMergeOptions UNIQUIFY --variant:varscan ~/workspace/data/results/somatic/varscan/exome.vcf --variant:strelka ~/workspace/data/results/somatic/strelka/exome/results/variants/exome.vcf --variant:mutect ~/workspace/data/results/somatic/mutect/new_gatk_files/exome.vcf -o ~/workspace/data/results/somatic/exome.unique.vcf.gz
 #java -Xmx24g -jar ~/workspace/bin/GenomeAnalysisTK.jar -T  CombineVariants -R ~/workspace/inputs/references/genome/ref_genome.fa -genotypeMergeOptions PRIORITIZE --rod_priority_list mutect,varscan,strelka --variant:varscan ~/workspace/somatic/varscan/exome.vcf --variant:strelka ~/workspace/somatic/strelka/exome/results/variants/exome.vcf --variant:mutect ~/workspace/somatic/mutect/exome.vcf -o ~/workspace/somatic/exome.merged.vcf.gz
 
-java -Xmx12g -jar ~/workspace/bin/picard.jar MergeVcfs -I ~/workspace/somatic/varscan/exome.vcf -I ~/workspace/somatic/strelka/exome/results/variants/exome.vcf -I ~/workspace/somatic/mutect/mutect_exome_filtered.vcf -O ~/workspace/somatic/exome.merged.vcf
+java -Xmx12g -jar ~/workspace/bin/picard.jar MergeVcfs \
+    -I ~/workspace/somatic/varscan/exome.vcf \
+    -I ~/workspace/somatic/strelka/exome/results/variants/exome.vcf \
+    -I ~/workspace/somatic/mutect/mutect_exome_filtered.vcf \
+    -O ~/workspace/somatic/exome.merged.vcf
 
 bgzip -c ~/workspace/somatic/exome.merged.vcf > ~/workspace/somatic/exome.merged.vcf.gz
 tabix -p vcf ~/workspace/somatic/exome.merged.vcf.gz
@@ -333,7 +412,10 @@ https://genome.sph.umich.edu/wiki/Variant_Normalization#Left_alignment).
 ```bash
 cd ~/workspace/somatic/
 
-gatk --java-options "-Xmx12G" LeftAlignAndTrimVariants -V ~/workspace/somatic/exome.merged.vcf.gz -O exome.merged.leftalignandtrim.vcf -R ~/workspace/inputs/references/genome/ref_genome.fa
+gatk --java-options "-Xmx12G" LeftAlignAndTrimVariants \
+    -V ~/workspace/somatic/exome.merged.vcf.gz \
+    -O exome.merged.leftalignandtrim.vcf \
+    -R ~/workspace/inputs/references/genome/ref_genome.fa
 ```
 Note that when running on chromosome 6 and 17 merged variants file, this gave 0 variants aligned.
 
@@ -342,7 +424,8 @@ Note that when running on chromosome 6 and 17 merged variants file, this gave 0 
 ```bash
 cd ~/workspace/somatic/
 
-vt decompose -s ~/workspace/somatic/exome.merged.leftalignandtrim.vcf -o ~/workspace/somatic/exome.merged.leftalignandtrim.decomposed.vcf
+vt decompose -s ~/workspace/somatic/exome.merged.leftalignandtrim.vcf \
+    -o ~/workspace/somatic/exome.merged.leftalignandtrim.decomposed.vcf
 ```
 
 ### Basic Filtering on Somatic Variants
@@ -350,7 +433,9 @@ vt decompose -s ~/workspace/somatic/exome.merged.leftalignandtrim.vcf -o ~/works
 First, let's do a basic filtering for `PASS` only variants on our merged and normalized vcf file:
 ```bash
 cd ~/workspace/somatic
-gatk --java-options "-Xmx12G" SelectVariants -R ~/workspace/inputs/references/genome/ref_genome.fa --exclude-filtered -V ~/workspace/somatic/exome.merged.leftalignandtrim.decomposed.vcf -O ~/workspace/somatic/exome.merged.norm.pass_only.vcf
+gatk --java-options "-Xmx12G" SelectVariants -R ~/workspace/inputs/references/genome/ref_genome.fa \
+    --exclude-filtered -V ~/workspace/somatic/exome.merged.leftalignandtrim.decomposed.vcf \
+    -O ~/workspace/somatic/exome.merged.norm.pass_only.vcf
 ```
 
 ### Annotation with VEP. 
@@ -363,7 +448,13 @@ cd ~/workspace/somatic
 #ssh -o ServerAliveInterval=300 -i course_EC2_01.pem ubuntu@ec2-52-23-206-90.compute-1.amazonaws.com
 #source .bashrc
 #cd workspace/somatic/
-nohup vep --cache --dir_cache ~/workspace/vep_cache --dir_plugins ~/workspace/vep_cache/Plugins --fasta ~/workspace/inputs/references/genome/ref_genome.fa --fork 8 --assembly=GRCh38 --offline --vcf -i ~/workspace/somatic/exome.merged.norm.pass_only.vcf -o ~/workspace/somatic/exome.merged.norm.annotated.vcf --check_existing --total_length --allele_number  --no_escape --everything --use_given_ref --force_overwrite &
+nohup vep --cache --dir_cache ~/workspace/vep_cache \
+    --dir_plugins ~/workspace/vep_cache/Plugins \
+    --fasta ~/workspace/inputs/references/genome/ref_genome.fa --fork 8 \
+    --assembly=GRCh38 --offline --vcf -i ~/workspace/somatic/exome.merged.norm.pass_only.vcf \
+    -o ~/workspace/somatic/exome.merged.norm.annotated.vcf \
+    --check_existing --total_length --allele_number  --no_escape --everything \
+    --use_given_ref --force_overwrite &
 
 
 #Copy the html VEP summary to your local computer

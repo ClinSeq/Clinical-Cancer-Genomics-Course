@@ -909,13 +909,10 @@
 1. Combine normalized coverage with SNP allele frequencies to support copy number estimates</p>
 <p>In this exercise we will perform the above steps using R, and a BAM file of aligned reads and a VCF file of SNPs as input.</p>
 <h3 id="download-data-and-prepare-r">Download data and prepare R<a class="headerlink" href="#download-data-and-prepare-r" title="Permanent link">&para;</a></h3>
-<p>The data used in this exercise is available for download here: <strong>##########</strong>
-Extract the content into a local folder on your computer.</p>
-<p><div class="highlight"><pre><span></span><code>unzip copy_number_files.zip
-</code></pre></div>
-<em>or</em>
+<p>The data used in this exercise is available for download here: <a href="https://course-cg-5534.s3.amazonaws.com/cnvs/copy_number_files.tar.bz2">copy_number_files.tar.bz2</a></p>
+<p>Extract the content into a local folder on your computer.</p>
 <div class="highlight"><pre><span></span><code>tar xjvf copy_number_files.tar.bz2
-</code></pre></div></p>
+</code></pre></div>
 <p>Several packages from the <a href="https://www.bioconductor.org/">Bioconductor</a> repository are used in this exercise, most importantly <strong>GenomicRanges</strong> which facilitates working with anything located on the reference genome. <a href="http://bioconductor.org/packages/devel/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesHOWTOs.pdf">Here</a> is a good overview.</p>
 <h3 id="parse-sequence-target-definition">Parse sequence target definition<a class="headerlink" href="#parse-sequence-target-definition" title="Permanent link">&para;</a></h3>
 <p>We use targeted sequencing of a prostate cancer sample in this exercise, as the resulting data files are of a more convenient size than whole genome or exome. This hybrid-capture panel covers a few hundred cancer genes and a few thousands of additional targets intended to improve copy number and structural variant detection.</p>

@@ -16,7 +16,7 @@
                 <tr>
                     <td>9:00-9:45</td>
                     <td>
-                        An introduction to the cancer genome and mutational processes in cancer I.
+                        An introduction to the cancer genome and mutational processes in cancer.
                     </td>
                     <td>Johan</td>
                     <td>Zoom</td>
@@ -28,7 +28,7 @@
                 <tr>
                     <td>10:00-10:45</td>
                     <td>
-                        An introduction to the cancer genome and mutational processes in cancer II.
+                        An introduction to the cancer genome and mutational processes in cancer (conti).
                     </td>
                     <td>Johan</td>
                     <td>Zoom</td>
@@ -39,7 +39,7 @@
                 </tr>
                 <tr>
                     <td>11:00-11:45</td>
-                    <td>How to enable cancer genomics through tissues and liquid biopsies I</td>
+                    <td>Practical considerations for performing cancer genomics</td>
                     <td>Johan</td>
                     <td>Zoom</td>
                 </tr>
@@ -83,7 +83,7 @@
                 <tr>
                     <td>9:00-9:45</td>
                     <td>
-                        How to enable cancer genomics through tissues and liquid biopsies II 
+                        Liquid biopsies 
                     </td>
                     <td>Johan</td>
                     <td>Zoom</td>
@@ -154,7 +154,7 @@
                     <td>
                         Bioinformatics pipelines & HTC computing environments.
                     </td>
-                    <td>Sarath</td>
+                    <td>Venkatesh</td>
                     <td>Zoom</td>
                 </tr>
                 <tr>
@@ -221,7 +221,7 @@
                 <tr>
                     <td>9:00-9:45</td>
                     <td>
-                        Calling somatic- and germline copy-number alterations.
+                        Somatic- and germline copy-number alterations.
                     </td>
                     <td>Markus</td>
                     <td>Zoom</td>
@@ -233,7 +233,7 @@
                 <tr>
                     <td>10:00-10:45</td>
                     <td>
-                        Calling structural variation.
+                        Structural variation.
                     </td>
                     <td>Johan</td>
                     <td>Zoom</td>
