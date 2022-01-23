@@ -60,6 +60,7 @@ AWK one-liners are simple one-shot programs run from the command line. Let us ha
 We want to print all words included in the words.txt file that are longer than five characters.
 
 ```bash
+wget https://course-cg-5534.s3.amazonaws.com/awk_exercise/words.txt -O words.txt
 awk 'length($1) > 5 {print $0}' words.txt
 
 storeroom
@@ -121,6 +122,7 @@ Next we apply conditions on numbers.
 
 We have a file with scores of students - scores.txt.
 ```bash
+wget https://course-cg-5534.s3.amazonaws.com/awk_exercise/scores.txt -O scores.txt
 awk '$2 >= 90 { print $0 }' scores.txt
 Lucia 95
 Joe 92
@@ -185,7 +187,7 @@ You can find a lot of online tutorials, but here we will try out a few steps whi
 GTF is a special file format that contains information about different regions of the genome and their associated annotations. More on that here - [Ensembl File Formats-GTF](https://www.ensembl.org/info/website/upload/gff.html).
 
 ```bash
-wget transcriptome.gtf
+wget https://course-cg-5534.s3.amazonaws.com/awk_exercise/transcriptome.gtf -O transcriptome.gtf
 
 head transcriptome.gtf | less -S
 

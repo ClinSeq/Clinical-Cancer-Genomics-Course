@@ -969,7 +969,8 @@ In the above command we have used the option  -F “,”  which specifies that c
 <h3 id="awk-one-liners">AWK one-liners<a class="headerlink" href="#awk-one-liners" title="Permanent link">&para;</a></h3>
 <p>AWK one-liners are simple one-shot programs run from the command line. Let us have the following text file: words.txt</p>
 <p>We want to print all words included in the words.txt file that are longer than five characters.</p>
-<p><div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;length($1) &gt; 5 {print $0}&#39;</span> words.txt
+<p><div class="highlight"><pre><span></span><code>wget https://course-cg-5534.s3.amazonaws.com/awk_exercise/words.txt -O words.txt
+awk <span class="s1">&#39;length($1) &gt; 5 {print $0}&#39;</span> words.txt
 
 storeroom
 existence
@@ -1020,7 +1021,8 @@ war
 </code></pre></div>
 Next we apply conditions on numbers.</p>
 <p>We have a file with scores of students - scores.txt.
-<div class="highlight"><pre><span></span><code>awk <span class="s1">&#39;$2 &gt;= 90 { print $0 }&#39;</span> scores.txt
+<div class="highlight"><pre><span></span><code>wget https://course-cg-5534.s3.amazonaws.com/awk_exercise/scores.txt -O scores.txt
+awk <span class="s1">&#39;$2 &gt;= 90 { print $0 }&#39;</span> scores.txt
 Lucia <span class="m">95</span>
 Joe <span class="m">92</span>
 Sophia <span class="m">90</span>
@@ -1062,7 +1064,7 @@ The average score is 77.56</p>
 <h3 id="awk-for-bioinformatics-looking-at-transcriptome-data">AWK for Bioinformatics - looking at transcriptome data<a class="headerlink" href="#awk-for-bioinformatics-looking-at-transcriptome-data" title="Permanent link">&para;</a></h3>
 <p>You can find a lot of online tutorials, but here we will try out a few steps which show how a bioinformatician analyses a <strong>GTF file</strong> using awk.</p>
 <p>GTF is a special file format that contains information about different regions of the genome and their associated annotations. More on that here - <a href="https://www.ensembl.org/info/website/upload/gff.html">Ensembl File Formats-GTF</a>.</p>
-<div class="highlight"><pre><span></span><code>wget transcriptome.gtf
+<div class="highlight"><pre><span></span><code>wget https://course-cg-5534.s3.amazonaws.com/awk_exercise/transcriptome.gtf -O transcriptome.gtf
 
 head transcriptome.gtf <span class="p">|</span> less -S
 

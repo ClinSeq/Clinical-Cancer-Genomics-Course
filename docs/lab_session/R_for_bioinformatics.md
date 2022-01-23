@@ -153,7 +153,7 @@ R base function read.table() is a general funciton that can be used to read a fi
 data <- read.table(file="./raw_counts.txt", sep="\t", header=T, stringsAsFactors=F)
 
 # There is a very convenient way to read files from the internet.
-data <- read.table(file="https://raw_counts.txt", sep="\t", header=T, stringsAsFactors=F)
+data <- read.table(file="https://course-cg-5534.s3.amazonaws.com/awk_exercise/raw_counts.txt", sep="\t", header=T, stringsAsFactors=F)
 ```
 
 Take a look at the beginning part of the data frame.

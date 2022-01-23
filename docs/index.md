@@ -61,7 +61,7 @@ An introduction to the cancer genome and mutational processes in cancer.
 Recommended reading before the course:
 
 1. <a href="https://doi.org/10.1038/s41576-021-00338-8" target="_blank"> Clinical cancer genomic profiling </a>
-2. Standard operating procedure for somatic variant refinement of sequencing data with paired tumor and normal <a href="https://doi.org/10.1038/s41436-018-0278-z" target="_blank">samples </a>
+2. <a href="https://doi.org/10.1038/s41436-018-0278-z" target="_blank"> Standard operating procedure for somatic variant refinement of sequencing data with paired tumor and normal samples </a>
 
 **Note:**
 

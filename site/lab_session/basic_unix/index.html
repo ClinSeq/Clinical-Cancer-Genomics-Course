@@ -1225,7 +1225,7 @@ Empty since no errors occured.</p>
 <p>Saving STDOUT is pretty routine (you want your results, yes?), but remember that explicitly saving STDERR is important on a remote server, since you may not directly see the ‘screen’ when you’re running jobs.</p>
 <h2 id="the-sed-command">The sed command<a class="headerlink" href="#the-sed-command" title="Permanent link">&para;</a></h2>
 <p>Let’s take a look at the ‘sed’ command. NOTE: On Macs use ‘gsed’. sed (short for stream editor) is a command that allows you to manipulate character data in various ways. One useful thing it can do is substitution. Let’s download a simple file to work on:</p>
-<div class="highlight"><pre><span></span><code>wget region.bed -O region.bed
+<div class="highlight"><pre><span></span><code>wget https://course-cg-5534.s3.amazonaws.com/unix_exercise/region.bed -O region.bed
 </code></pre></div>
 <p>Take a look at the file:</p>
 <p><div class="highlight"><pre><span></span><code>cat region.bed
@@ -1258,9 +1258,9 @@ This gets the 10<sup>th</sup> through 20<sup>th</sup> lines from the file.</p>
 <p>CHALLENGE: See if you can find a way to use sed to remove all the “CHR”s from the file.</p>
 <h2 id="more-pipes">More pipes<a class="headerlink" href="#more-pipes" title="Permanent link">&para;</a></h2>
 <p>Now, let’s delve into pipes a little more. Pipes are a very powerful way to look at and manipulate complex data using a series of simple programs. Let’s look at some fastq files. Get a few small fastq files:</p>
-<p><div class="highlight"><pre><span></span><code>wget C61.subset.fq.gz -O C61.subset.fq.gz
-wget I561.subset.fq.gz -O I561.subset.fq.gz
-wget I894.subset.fq.gz -O I894.subset.fq.gz
+<p><div class="highlight"><pre><span></span><code>wget https://course-cg-5534.s3.amazonaws.com/unix_exercise/C61.subset.fq.gz -O C61.subset.fq.gz
+wget https://course-cg-5534.s3.amazonaws.com/unix_exercise/I561.subset.fq.gz -O I561.subset.fq.gz
+wget https://course-cg-5534.s3.amazonaws.com/unix_exercise/I894.subset.fq.gz -O I894.subset.fq.gz
 </code></pre></div>
 Since the files are gzipped files we need to use “zcat” to look at them. zcat is just like cat except for gzipped files:</p>
 <p><div class="highlight"><pre><span></span><code>zcat C61.subset.fq.gz <span class="p">|</span> head
