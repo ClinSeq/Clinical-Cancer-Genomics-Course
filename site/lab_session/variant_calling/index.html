@@ -795,6 +795,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#inspecting-variants-in-igv" class="md-nav__link">
+    Inspecting variants in IGV
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1062,6 +1069,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#inspecting-variants-in-igv" class="md-nav__link">
+    Inspecting variants in IGV
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1075,7 +1089,7 @@
               
                 
 
-<h1 id="calling-germline-and-somatic-mutations">CALLING GERMLINE- AND SOMATIC MUTATIONS<a class="headerlink" href="#calling-germline-and-somatic-mutations" title="Permanent link">&para;</a></h1>
+<h1 id="calling-germline-and-somatic-mutations">Calling germline- and somatic mutations<a class="headerlink" href="#calling-germline-and-somatic-mutations" title="Permanent link">&para;</a></h1>
 <h2 id="germline-variants">Germline variants<a class="headerlink" href="#germline-variants" title="Permanent link">&para;</a></h2>
 <p>We will start by calling germline variants. For this purpose we will use the <a href="https://gatk.broadinstitute.org/hc/en-us/articles/4414586765723-HaplotypeCaller">GATK HaplotypeCaller</a> from the Broad Institute. We will use this tool on the germline DNA bam files that were processed yesterday. </p>
 <p>Active forum and tutorials for the GATK software suit is available <a href="https://gatk.broadinstitute.org/hc/en-us/community/topics">here</a>.</p>
@@ -1104,7 +1118,7 @@ gatk --java-options <span class="s1">&#39;-Xmx12g&#39;</span> HaplotypeCaller <s
 <p>Navigate to the folder where you want to place the BAMs
 e.g. ~/course_bams</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#Copy the haplotype caller realigned bam-file to your local computer </span>
-scp -ri ~/course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/germline/Exome_Norm_HC_out.ba* .
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/germline/Exome_Norm_HC_out.ba* .
 </code></pre></div>
 <p>Launch IGV (remember <strong>hg38</strong>)
 - Open the bam files
@@ -1120,6 +1134,7 @@ scp -ri ~/course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/germline/Exome_N
     - What characterises misaligned variant-supporting reads in non-realigned bam file?
     - Are there any false positive variants take in the non-realigned bam file?
 - <strong><em>OBS</em></strong>: Leave IGV open, we will use it in the below section.</p>
+<p><img alt="" src="https://i.imgur.com/yQS7rie.png" /></p>
 <h3 id="vcf-variant-call-format-file">VCF (variant call format) file<a class="headerlink" href="#vcf-variant-call-format-file" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="c1">#Make sure you hare in the same directory as the output files</span>
 <span class="nb">cd</span> ~/workspace/germline
@@ -1255,7 +1270,7 @@ less -SN Exome_Norm_HC_calls.filtered.PASS.vep.vcf
 <span class="c1">#Or just grep the VEP info.</span>
 grep <span class="s2">&quot;##&quot;</span> Exome_Norm_HC_calls.filtered.PASS.vep.vcf <span class="p">|</span> grep <span class="s2">&quot;VEP&quot;</span> <span class="p">|</span> less -SN
 <span class="c1">#Copy the html VEP summary to your local computer</span>
-scp -ri ~/course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vep.vcf_summary.html .
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vep.vcf_summary.html .
 </code></pre></div>
 <p>Open the HTML file.</p>
 <p>Answer the following:
@@ -1459,27 +1474,104 @@ nohup vep --cache --dir_cache ~/workspace/vep_cache <span class="se">\</span>
 
 
 <span class="c1">#Copy the html VEP summary to your local computer</span>
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-52-23-206-90.compute-1.amazonaws.com:~/workspace/somatic/exome.merged.norm.annotated.vcf_summary.html .
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/somatic/exome.merged.norm.annotated.vcf_summary.html .
 </code></pre></div>
 <p>Open the HTML file.</p>
 <p>Answer the following:
 - How many variants were processed by VEP?
 - Any diffrence in the distribution of variants vs. the germline variants? 
-- The variant categories e.g. intron_variant and regulatory_region_variant should be approached carefully, why?
-- Try to find a relevant variant in TP53</p>
-<p><div class="highlight"><pre><span></span><code><span class="c1">#Can be done in many ways, this is just an example.</span>
+- The variant categories e.g. intron_variant and regulatory_region_variant should be approached carefully, why?</p>
+<h2 id="inspecting-variants-in-igv">Inspecting variants in IGV<a class="headerlink" href="#inspecting-variants-in-igv" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Download the bam files to your local machine
+<div class="highlight"><pre><span></span><code>scp -ri course_EC2_01.pem ubuntu@ec2-54-163-59-166.compute-1.amazonaws.com:~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.* .
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.* .
+</code></pre></div></li>
+<li>
+<p>Open the Exome_Tumor_sorted_mrkdup_bqsr.bam and Exome_Norm_sorted_mrkdup_bqsr.bam in IGV.</p>
+</li>
+<li>
+<p>Keep the VCF file open in a terminal window on AWS</p>
+</li>
+<li>Try to find a relevant variant in TP53 in the VCF file on AWS
+<div class="highlight"><pre><span></span><code><span class="c1">#Can be done in many ways, this is just an example.</span>
 <span class="nb">cd</span> ~/workspace/somatic
 grep <span class="s2">&quot;TP53&quot;</span> exome.merged.norm.annotated.vcf <span class="p">|</span> less -SN
-<span class="c1">#Or </span>
+<span class="c1">#### Or </span>
 less -SN exome.merged.norm.annotated.vcf
 <span class="c1">#In the less window type /TP53</span>
-</code></pre></div>
-- Open the Exome_Tumor_sorted_mrkdup_bqsr.bam and Exome_Norm_sorted_mrkdup_bqsr.bam in IGV 
-    - Why is the TP53 variant in three rows in the VCF file? 
-    - Is it present in the normal DNA?
-    - Do the same thing for a stop_gained and a frameshift variant
-    - Try to grep all frameshift variants using a one-liner at the command line
-        - Select a few to examine in IGV, any artefacts?</p>
+</code></pre></div></li>
+<li>Why is the TP53 variant in three rows in the VCF file? <ul>
+<li>lead: how many somatic variant callers were run?</li>
+</ul>
+</li>
+<li>
+<p>Go to the position (chr17 7675088) on IGV in your local machine</p>
+<ul>
+<li>Is it present in the normal DNA?<ul>
+<li>Do you still think it is valid? How come the variant can be present in the germline DNA?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Do the same thing for a stop_gained and a frameshift variant
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/somatic
+grep <span class="s2">&quot;stop_gained&quot;</span> exome.merged.norm.annotated.vcf <span class="p">|</span> less -SN
+</code></pre></div></p>
+</li>
+<li>
+<p>The top variant is seen only once, this is just identified correctly by one caller because it changes two bases in a row</p>
+<ul>
+<li>open chr6 1930220 in IGV</li>
+</ul>
+</li>
+<li>
+<p>let us convert the vcf-file to a MAF file format</p>
+<ul>
+<li>note all information is not kept but it simplifies looking at the variants
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/somatic
+perl ~/workspace/bin/mskcc-vcf2maf/vcf2maf.pl --input-vcf ~/workspace/somatic/exome.merged.norm.annotated.vcf --output-maf ~/workspace/somatic/exome.merged.norm.annotated.maf  --tumor-id TUMOR --normal-id NORMAL --inhibit-vep --ref-fasta ~/workspace/inputs/references/genome/ref_genome.fa
+
+less -SN ~/workspace/somatic/exome.merged.norm.annotated.maf
+
+<span class="c1">#Count the number of variant types</span>
+cut -f9 ~/workspace/somatic/exome.merged.norm.annotated.maf <span class="p">|</span> sort <span class="p">|</span> uniq -c
+<span class="c1">#As you see the variant nomenclature is not the same in VCF and MAF</span>
+
+grep Nonsense_Mutation ~/workspace/somatic/exome.merged.norm.annotated.maf <span class="p">|</span> less -SN 
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>Have a look at the nosense variant in CCDC40 in IGV</p>
+<ul>
+<li>chr17 80050160</li>
+<li>What is the VAF?</li>
+<li>What is the VAF of the TP53 variant?</li>
+<li>Reflections?<ul>
+<li>Lead: clonality</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Can you find a variant in BRCA1? </p>
+<ul>
+<li>What is the impact? Is it relevant?</li>
+</ul>
+</li>
+<li>
+<p>There was a BRCA 1 variant in the germline that we did not dicsuss
+<div class="highlight"><pre><span></span><code><span class="c1">#Let us grep &quot;BRCA1&quot; and send the output to another grep command and take the &quot;HIGH&quot; impact variants</span>
+grep BRCA1 ~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vep.vcf <span class="p">|</span> grep <span class="s2">&quot;HIGH&quot;</span> <span class="p">|</span> less -SN 
+</code></pre></div></p>
+</li>
+<li>let us inspect this variant in IGV, why is one allel missing in the tumor?<ul>
+<li>This is the variant location: chr17   43057078 </li>
+</ul>
+</li>
+</ul>
 
               
             </article>

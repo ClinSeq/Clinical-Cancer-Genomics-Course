@@ -177,9 +177,9 @@ Feel free to see manual pages for these basic commands
 
 Commands and their	Meanings
 ```bash
-ls	
+man ls	
 ls -a	
-mkdir	
+man mkdir	
 ```
 
 Now see the difference between these three commands

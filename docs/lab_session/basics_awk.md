@@ -207,7 +207,7 @@ chr1    HAVANA  CDS 1688280 1688321 .   -   0   gene_id "ENSG00000008130.11"; tr
 let's get only the lines that have `gene` in the 3^th^ column.
 
 ``` bash
-$ awk -F '$3 == "gene"' transcriptome.gtf | head | less -S
+$ awk -F "\t" '$3 == "gene"' transcriptome.gtf | head | less -S
 
 chr1    HAVANA  gene    11869   14412   .   +   .   gene_id "ENSG00000223972.4"; transcript_id "ENSG00000223972.4"; gene_type "pseudogene"; gene_status "KNOWN"; gene_name "DDX11L1"; transcript_type "pseudogene"; transcript_status "KNOWN"; transcript_name "DDX11L1"; level 2; havana_gene "OTTHUMG00000000961.2";
 chr1    HAVANA  gene    14363   29806   .   -   .   gene_id "ENSG00000227232.4"; transcript_id "ENSG00000227232.4"; gene_type "pseudogene"; gene_status "KNOWN"; gene_name "WASH7P"; transcript_type "pseudogene"; transcript_status "KNOWN"; transcript_name "WASH7P"; level 2; havana_gene "OTTHUMG00000000958.1";
