@@ -97,7 +97,8 @@ markdown_extensions:
 nav:
   - Course Details: index.md
   - Schedule: schedule.md
-  - Lectures: lectures/lectures.md 
+  - Lectures: lectures/lectures.md
+  - AWS Instances Login: aws/aws_ec2_instances.md
   - Pre-course setup:
     - Installation : installation.md
     - Download Files:
