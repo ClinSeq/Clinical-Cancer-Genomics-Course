@@ -8,7 +8,7 @@
 ??? example "Day 2 : Liquid Biopsies"
 
     1. Liquid biopsies [PDF](pdf/liquid_biopsies.pdf)
-    2. The clinical impact of analysing the cancer genome. 
+    2. The clinical impact of analysing the cancer genome. [PDF](pdf/What_is_the_clinical_impact_of_analyzing.pdf) 
     3. Lab Introduction. [PDF](pdf/lab_intro_day_2.pdf) 
      
 ??? example "Day 3 : Bioinformatics pipelines & SNV calling"
