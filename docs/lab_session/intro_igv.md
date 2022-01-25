@@ -1,5 +1,5 @@
 
-# INTRODUCTION TO IGV
+# Introduction to IGV
 
 For various resons there is often a need to manually inspect sequencing data. For this purpose, we will use [IGV](https://software.broadinstitute.org/software/igv/home), the Integrative Genomics Viewer. IGV is in a nutshell an easy-to-use and interactive tool for the visual exploration of genomic data (not just sequening data). In IGV it is possible to integrate multiple data types in a straight forward manner. 
 
@@ -11,22 +11,25 @@ Download the IGV version that includes java.
 /PATH_GOES_HERE/IGV_DIRECTORY/igv.sh
 
 #Go to your favourite directory and download a bam file for the IGV intro:
-scp -ri ~/course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/igv_intro_bams/* ./
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/igv_intro_bams/* .
 ```
 
 ## HCC1143 cell line
 
-The cell line sequencincg data that will be used to explore the features of IGV comes from a 52 year old caucasian woman with breast cancer. Additional information can be found at the [ATCC](https://www.atcc.org/products/crl-2321) (American Type Culture Collection) website. The bam-file contains only reads on chromosome 21: 19,000,000-20,000,000 in order to reduce file sizes.
+The cell line sequencincg data that will be used to explore the features of IGV comes from a 52 year old caucasian woman with breast cancer. Additional information can be found at the [ATCC](https://www.atcc.org/products/crl-2321) (American Type Culture Collection) website. The bam-file contains only reads on chromosome 21:19,000,000-20,000,000 in order to reduce file sizes.
 
 ## Getting familiar with IGV
 
-- IGV comes pre-loaded with the genome build HG19. During this introduction we will use hg19, but for the rest of the course we will be using hg38.
+- IGV comes pre-loaded with the genome build HG19. During this introduction we will use **hg19**.
 - Remote data files (tracks) can be loaded from the IGV server. 
     - Select "File" & "Load from Server...":
         - Ensembl Genes 
         - GC Percentage
         - dbSNP (latest version)
         - Repeat masker
+
+![](https://i.imgur.com/hReiSrn.png)
+
 - Load the bam file
     - Select "File" & "Load from File...":
         - Locate "HCC1143.normal.21.19M-20M.bam" on the hard drive and press "Open".
@@ -38,19 +41,31 @@ The cell line sequencincg data that will be used to explore the features of IGV 
 - The mid panel sequencing data tracks.
 - The bottom panel data- and annotation tracks.
 
+- Note the gene model.
+    - line with arrows: the direction/strand of the gene
+    - the thin boxes: untranslated regions
+    - the thick boxes: coding exons
+ 
+![](https://i.imgur.com/9XX7ncG.png)
+
 ### Investigate read alignments
 
 - Go to chr21:19,479,237-19,479,814.
 - Right click on the aligned reads in the mid panel sequencing data tracks.
 - Test to:
-    - sort alignments by start location.
+    - Right click on a read and sort alignments by start location.
     - group alignments by pair orientation.
+![](https://i.imgur.com/umnqsyZ.png)
+
 - Experiment with the settings.
 - Click on an individual read and assess the information.
+![](https://i.imgur.com/VWfQbuk.png)
+- Enable the ruler, it simplifies investigating variants. Push the button to the upper right, see figure below:
+![](https://i.imgur.com/9BXgPzm.png)
 
 ### Investigate a SNP
 
-- Go to chr21:19479237-19479814.
+- Go to chr21:19479237-19479814
 - Note a heterozygous variant at chr21:19479321.
 - Zoom in to observe the individual base changes.
 - Sort aglinment according to base.
@@ -59,6 +74,7 @@ The cell line sequencincg data that will be used to explore the features of IGV 
     - Reflect on mapping and base qualities, is this a high quality SNP?
     - How does the shaded non-reference bases help?
     - How does read strand information help?
+![](https://i.imgur.com/4981oRj.png)
 
 ### Investigate a homopolymer region with variability
 
@@ -71,6 +87,7 @@ The cell line sequencincg data that will be used to explore the features of IGV 
     - Sort alignments by base.
 - Try to answer the following:
     - Is this a region with variability that can be trusted, motivate?
+![](https://i.imgur.com/IS7JXrO.png)
 
 ### GC precentage and coverge
 
@@ -89,7 +106,7 @@ The cell line sequencincg data that will be used to explore the features of IGV 
 - Try to answer the following:
     - Are these valid SNPs?
     - Explan what you are observing.
-
+![](https://i.imgur.com/UwAjaMe.png)
 ### Problematic region
 
 - Load a the repeat masker remote data track.
@@ -99,6 +116,7 @@ The cell line sequencincg data that will be used to explore the features of IGV 
 - Try to answer the following:
     - Why are some reads white?
     - Explan what you are observing.
+![](https://i.imgur.com/GQrfdLF.png)
 
 ### Deleted region
 
@@ -110,6 +128,9 @@ The cell line sequencincg data that will be used to explore the features of IGV 
 - Try to answer the following:
     - Click on a red read pair and a grey read pair, can you identify information supporting the deletion in the red pairs? 
     - Is the deletion hetero- or homozygous?
+![](https://i.imgur.com/IohithX.png)
+
+
 
 ### Mis-alignment
 
@@ -125,14 +146,17 @@ The cell line sequencincg data that will be used to explore the features of IGV 
 Go to your favourite directory
 ```bash
 # Tumor bam and bai files
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-3-83-96-246.compute-1.amazonaws.com:~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.ba* ./
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.ba* ./
 
 # Normal bam and bai files
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-3-83-96-246.compute-1.amazonaws.com:~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.ba* ./
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.ba* .
+
+
+
 
 # The in solution hybridization based capture definition files
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-3-83-96-246.compute-1.amazonaws.com:~/workspace/inputs/references/exome/probe_regions.bed ./
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-3-83-96-246.compute-1.amazonaws.com:~/workspace/inputs/references/exome/exome_regions.bed ./
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE::~/workspace/inputs/references/exome/probe_regions.bed ./
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/inputs/references/exome/exome_regions.bed ./
 ```
 
 ### Open the files in IGV
@@ -162,6 +186,7 @@ scp -ri ~/course_EC2_01.pem ubuntu@ec2-3-83-96-246.compute-1.amazonaws.com:~/wor
     - Why do you think there is a difference between the probe- and exome regions?
         - Assess the coverge pattern relatively the probe regions. Try to explain the pattern.
 
+![](https://i.imgur.com/DXha8Ct.png)
 
 
 

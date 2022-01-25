@@ -1,38 +1,13 @@
-# BIOINFORMATIC PROCESSING OF DNA DATA 
+# Bioinformatic processing of DNA data
 
 ```bash
-#mkdir -p ~/workspace/inputs/data/fastq 
 cd ~/workspace/inputs/data/fastq
 
-#The commands have alredy been performed due to time constraints
-#wget -c http://genomedata.org/pmbio-workshop/fastqs/$CHRS/Exome_Norm.tar
-#wget -c http://genomedata.org/pmbio-workshop/fastqs/$CHRS/Exome_Tumor.tar
-#wget -c http://genomedata.org/pmbio-workshop/fastqs/$CHRS/RNAseq_Norm.tar
-#wget -c http://genomedata.org/pmbio-workshop/fastqs/$CHRS/RNAseq_Tumor.tar
-#wget -c http://genomedata.org/pmbio-workshop/fastqs/$CHRS/WGS_Norm.tar
-#wget -c http://genomedata.org/pmbio-workshop/fastqs/$CHRS/WGS_Tumor.tar
-
-#cd /workspace/inputs/data/fastq
-#tar -xvf Exome_Norm.tar
-#tar -xvf Exome_Tumor.tar
-#tar -xvf RNAseq_Norm.tar
-#tar -xvf RNAseq_Tumor.tar
-#tar -xvf WGS_Norm.tar
-#tar -xvf WGS_Tumor.tar
-
-cd ~/workspace/inputs/data/fastq
-
-# list all files downloaded
+# list all files
 tree
 
 # view the exome normal sample data files
 tree Exome_Norm
-
-# view the WGS normal sample data files
-tree WGS_Norm
-
-# view the WGS tumor sample data files. why does it look so different from the tumor sample?
-tree WGS_Tumor
 
 # view the RNA-seq tumor sample data files.
 tree RNAseq_Tumor
@@ -43,11 +18,14 @@ tree RNAseq_Tumor
 cd ~/workspace/inputs/data/fastq/Exome_Tumor
 
 # show the first ten lines of the Exome Tumor fastq files
+# note this is how paird-end data is stored. 
+# Read 1
 zcat Exome_Tumor/Exome_Tumor_R1.fastq.gz | head
+# Read 2
 zcat Exome_Tumor/Exome_Tumor_R2.fastq.gz | head
 
-#This wikipedia file gives a very nice overview of fastq-files and Illumina base qualities
-#https://en.wikipedia.org/wiki/FASTQ_format
+# This wikipedia file gives a very nice overview of fastq-files and Illumina base qualities
+# https://en.wikipedia.org/wiki/FASTQ_format
 zcat Exome_Tumor/Exome_Tumor_R1.fastq.gz | head -n 8
 
 # what do R1 and R2 refer to? What is the length of each read?
@@ -76,6 +54,7 @@ echo "scale=2; (8331655 * (101 * 2))/6683920" | bc # Average covered expected = 
 # what is the fundamental assumption of this calculation that is at least partially not true? What effect will this have on the observed coverage?
 ```
 ## Run fastqc to check the quality of the fastq-files
+Have a look [here](https://www.youtube.com/watch?v=lUk5Ju3vCDM) for a short tutorial on the fastqc output.
 ```bash
 cd ~/workspace/inputs/data/fastq
 
@@ -83,25 +62,25 @@ fastqc Exome_Norm/Exome_Norm*.fastq.gz
 fastqc Exome_Tumor/Exome_Tumor*.fastq.gz
 tree
 
-#fastqc WGS_Norm/WGS_Norm*.fastq.gz
-#fastqc WGS_Tumor/WGS_Tumor*.fastq.gz
-#tree
-
 fastqc RNAseq_Norm/RNAseq_Norm*.fastq.gz
 fastqc RNAseq_Tumor/RNAseq_Tumor*.fastq.gz
 tree
 ```
 
 ## Run MultiQC 
+We will run mutliQC to provide a combined report of the fastQC data. 
+
+More info on MultiQC is available [here](https://multiqc.info).
 
 ```bash
 cd ~/workspace/inputs
-mkdir qc
+#Dont do if directory exist
+#mkdir qc
 cd qc
 multiqc ~/workspace/inputs/data/fastq/
 tree
 # Download MultiQC output to the local computer, open the .html in you favourite browser.
-scp -ri ~/course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/inputs/qc/multiqc_data/multiqc* .
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/inputs/qc/multiqc* .
 ```
 
 ## Run BWA
@@ -166,7 +145,7 @@ java -Xmx12g -jar $PICARD BuildBamIndex -I Exome_Norm_sorted_mrkdup.bam
 java -Xmx12g -jar $PICARD BuildBamIndex -I Exome_Tumor_sorted_mrkdup.bam
 ```
 
-## Perform Indel Realignment
+## Indel Realignment
 
 Depending on the downstream appoarch something called Indel realignment may be needed. During alignment of the DNA data, each individual read is aligned to the reference sequence individually. This may lead to misaligned reads in e.g. repetitive regions or due to somatic/germline variation. If needed, add the realignment-step here, see docs [here](https://software.broadinstitute.org/gatk/documentation/article?id=7156). In this course the HaplotypeCaller/MuTect2 will be applied to identify germline/somatic variantion. These two variant callers do realignment internally and therefore it is not needed. See the following [blog](https://software.broadinstitute.org/gatk/blog?id=7847) for a detailed discussion of this issue. See [here](https://drive.google.com/drive/folders/1U6Zm_tYn_3yeEgrD1bdxye4SXf5OseIt) for latest versions of all GATK tutorials.
 
@@ -178,7 +157,7 @@ BQSR stands for Base Quality Score Recalibration. In a nutshell, it is a data pr
 
 First, calculate the BQSR table.
 
-NOTE: For exome data, we should modify the below to use the `--intervals` (`-L`) option. "This excludes off-target sequences and sequences that may be poorly mapped, which have a higher error rate. Including them could lead to a skewed model and bad recalibration." https://software.broadinstitute.org/gatk/documentation/article.php?id=4133
+NOTE: For exome data, we should modify the below to use the `--intervals` (`-L`) option. This excludes off-target sequences and sequences that may be poorly mapped, which have a higher error rate. Including them could lead to a skewed model and bad recalibration.
 
 ```bash
 cd ~/workspace/align
@@ -193,10 +172,11 @@ Now, apply the BQSR table to bam files.
 ```bash
 cd ~/workspace/align
 gatk --java-options '-Xmx12g' ApplyBQSR -R ~/workspace/inputs/references/genome/ref_genome.fa -I ~/workspace/align/Exome_Norm_sorted_mrkdup.bam -O ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam --bqsr-recal-file ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.table --preserve-qscores-less-than 6 --static-quantized-quals 10 --static-quantized-quals 20 --static-quantized-quals 30
+
 gatk --java-options '-Xmx12g' ApplyBQSR -R ~/workspace/inputs/references/genome/ref_genome.fa -I ~/workspace/align/Exome_Tumor_sorted_mrkdup.bam -O ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam --bqsr-recal-file ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.table --preserve-qscores-less-than 6 --static-quantized-quals 10 --static-quantized-quals 20 --static-quantized-quals 30
 ```
 
-create an index for these new bams
+Create an index for these new bams
 
 ```bash
 cd ~/workspace/align
@@ -223,50 +203,32 @@ rmdir final/
 ```
 
 ## Run Samtools flagstat
+
+Samtools flagstat provides QC-metrics after aligning the reads, e.g. the fraction of read-pairs that map to different chromosomes (which should be limited).
+
 ```bash
 cd ~/workspace/align/
 samtools flagstat ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam > ~/workspace/align/Exome_Norm_flagstat.txt
 samtools flagstat ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam > ~/workspace/align/Exome_Tumor_flagstat.txt
-# Runtime: < 2min
-#samtools flagstat ~/workspace/align/WGS_Norm_merged_sorted_mrkdup_bqsr.bam > ~/workspace/align/WGS_Norm_merged_flagstat.txt
-#samtools flagstat ~/workspace/align/WGS_Tumor_merged_sorted_mrkdup_bqsr.bam > ~/workspace/align/WGS_Tumor_merged_flagstat.txt
-
 ```
 ## Run various picard CollectMetrics tools
+
+Picard is a widely used QC tool in genomics and it is named after a famous [Star Trek Captain](https://en.wikipedia.org/wiki/Jean-Luc_Picard).
+
+Description of the output of picard can be found [here](http://broadinstitute.github.io/picard/). 
 
 ```bash
 cd ~/workspace/align/
 java -Xmx12g -jar $PICARD CollectInsertSizeMetrics -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam -O ~/workspace/align/Exome_Norm_insert_size_metrics.txt -H ~/workspace/align/Exome_Norm_insert_size_metrics.pdf
 java -Xmx12g -jar $PICARD CollectInsertSizeMetrics -I ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam -O ~/workspace/align/Exome_Tumor_insert_size_metrics.txt -H ~/workspace/align/Exome_Tumor_insert_size_metrics.pdf
 
-#java -Xmx12g -jar $PICARD CollectInsertSizeMetrics -I ~/workspace/align/WGS_Norm_merged_sorted_mrkdup_bqsr.bam -O ~/workspace/align/WGS_Norm_merged_insert_size_metrics.txt -H ~/workspace/align/WGS_Norm_merged_insert_size_metrics.pdf
-#java -Xmx12g -jar $PICARD CollectInsertSizeMetrics -I ~/workspace/align/WGS_Tumor_merged_sorted_mrkdup_bqsr.bam -O ~/workspace/align/WGS_Tumor_merged_insert_size_metrics.txt -H ~/workspace/align/WGS_Tumor_merged_insert_size_metrics.pdf
-
-# Picard CollectAlignmentSummaryMetrics
 java -Xmx12g -jar $PICARD CollectAlignmentSummaryMetrics -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam -O ~/workspace/align/Exome_Norm_alignment_metrics.txt -R ~/workspace/inputs/references/genome/ref_genome.fa
 java -Xmx12g -jar $PICARD CollectAlignmentSummaryMetrics -I ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam -O ~/workspace/align/Exome_Tumor_exome_alignment_metrics.txt -R ~/workspace/inputs/references/genome/ref_genome.fa
-
-
-#java -Xmx12g -jar $PICARD CollectAlignmentSummaryMetrics -I ~/workspace/align/WGS_Norm_merged_sorted_mrkdup_bqsr.bam -O ~/workspace/align/WGS_Norm_merged_alignment_metrics.txt -R ~/workspace/inputs/references/genome/ref_genome.fa
-#java -Xmx12g -jar $PICARD CollectAlignmentSummaryMetrics -I ~/workspace/align/WGS_Tumor_merged_sorted_mrkdup_bqsr.bam -O ~/workspace/align/WGS_Tumor_merged_alignment_metrics.txt -R ~/workspace/inputs/references/genome/ref_genome.fa
 
 #Picard CollectHsMetrics
 #Exome Only
 java -Xmx12g -jar $PICARD CollectHsMetrics -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam -O ~/workspace/align/Exome_Norm_hs_metrics.txt -R ~/workspace/inputs/references/genome/ref_genome.fa -BI ~/workspace/inputs/references/exome/probe_regions.bed.interval_list -TI ~/workspace/inputs/references/exome/exome_regions.bed.interval_list
 java -Xmx12g -jar $PICARD CollectHsMetrics -I ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam -O ~/workspace/align/Exome_Tumor_hs_metrics.txt -R ~/workspace/inputs/references/genome/ref_genome.fa -BI ~/workspace/inputs/references/exome/probe_regions.bed.interval_list -TI ~/workspace/inputs/references/exome/exome_regions.bed.interval_list
-
-#Picard CollectGcBiasMetrics
-#WGS only
-#java -Xmx12g -jar $PICARD CollectGcBiasMetrics -I ~/workspace/align/WGS_Norm_merged_sorted_mrkdup_bqsr.bam -O ~/workspace/align/WGS_Norm_merged_gc_bias_metrics.txt -R ~/workspace/inputs/references/genome/ref_genome.fa -CHART ~/workspace/align/WGS_Norm_merged_gc_bias_metrics.pdf -S ~/workspace/align/WGS_Norm_merged_gc_bias_summary.txt
-#java -Xmx12g -jar $PICARD CollectGcBiasMetrics -I ~/workspace/align/WGS_Tumor_merged_sorted_mrkdup_bqsr.bam -O ~/workspace/align/WGS_Tumor_merged_gc_bias_metrics.txt -R ~/workspace/inputs/references/genome/ref_genome.fa -CHART ~/workspace/align/WGS_Tumor_merged_gc_bias_metrics.pdf -S ~/workspace/align/WGS_Tumor_merged_gc_bias_summary.txt
-
-#Picard CollectWgsMetrics
-
-#First we need to create the Autosomal Chromosome Interval List
-#egrep 'chr[0-9]{1,2}\s' ~/workspace/inputs/references/genome/ref_genome.fa.fai | awk '{print $1"\t1\t"$2"\t+\t"$1}' | cat ~/workspace/inputs/references/genome/ref_genome.dict - > ~/workspace/inputs/references/genome/ref_genome_autosomal.interval_list
-
-#java -Xmx12g -jar $PICARD CollectWgsMetrics -I ~/workspace/align/WGS_Norm_merged_sorted_mrkdup_bqsr.bam -O ~/workspace/align/WGS_Norm_merged_metrics.txt -R ~/workspace/inputs/references/genome/ref_genome.fa -INTERVALS ~/workspace/inputs/references/genome/ref_genome_autosomal.interval_list
-#java -Xmx12g -jar $PICARD CollectWgsMetrics -I ~/workspace/align/WGS_Tumor_merged_sorted_mrkdup_bqsr.bam -O ~/workspace/align/WGS_Tumor_merged_metrics.txt -R ~/workspace/inputs/references/genome/ref_genome.fa -INTERVALS ~/workspace/inputs/references/genome/ref_genome_autosomal.interval_list
 ```
 
 ## Run FastQC
@@ -276,26 +238,18 @@ cd ~/workspace/align
 fastqc -t 8 Exome_Norm_sorted_mrkdup_bqsr.bam
 fastqc -t 8 Exome_Tumor_sorted_mrkdup_bqsr.bam
 tree
-
-#fastqc -t 8 WGS_Norm_merged_sorted_mrkdup_bqsr.bam
-#fastqc -t 8 WGS_Tumor_merged_sorted_mrkdup_bqsr.bam
-#tree
-
-#fastqc RNAseq_Norm
-#fastqc RNAseq_Tumor
-#tree
-
 ```
 ## Run MultiQC to produce a final report
-
 ```bash
 cd ~/workspace/align
-mkdir post_align_qc
+#Dont do if directory exist
+#mkdir post_align_qc
 cd post_align_qc
 multiqc ~/workspace/align/
 tree
+
 # Download MultiQC output to the local computer, open the .html in you favourite browser.
 #Discuss the MultiQC output with a fellow student
-scp -ri ~/course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/align/post_align_qc/multiqc* .
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/align/post_align_qc/multiqc* .
 ```
 
