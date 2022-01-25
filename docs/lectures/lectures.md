@@ -13,7 +13,7 @@
      
 ??? example "Day 3 : Bioinformatics pipelines & SNV calling"
 
-    1. Bioinformatics pipelines & HTC computing environments.
+    1. Bioinformatics pipelines & HTC computing environments. [PDF](pdf/bioinformatics_pipelines.pdf)
     2. Processing and QC of DNA- and RNA sequencing data. [PDF](pdf/lecture_day_3_somatic_germline_variant_callers.pdf)
     3. Somatic and germline variant callers & Lab Introduction.
 
