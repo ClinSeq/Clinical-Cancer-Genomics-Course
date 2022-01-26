@@ -13,7 +13,7 @@
     
     
       
-        <title>Annotation - Clinical Cancer Genomics Course</title>
+        <title>Structural Variants - Clinical Cancer Genomics Course</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#annotation-files" class="md-skip">
+        <a href="#calling-structural-variation" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Annotation
+              Structural Variants
             
           </span>
         </div>
@@ -374,14 +374,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
       
       
       
@@ -416,80 +414,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Annotation
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../annotation_files/" class="md-nav__link">
         Annotation
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#files-for-annotation-of-variation-in-the-human-genome" class="md-nav__link">
-    Files for annotation of variation in the human genome
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#index-the-variation-files" class="md-nav__link">
-    Index the variation files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interval-files-and-coordinates-for-the-exome-sequencing-assay" class="md-nav__link">
-    Interval files and coordinates for the exome sequencing assay
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#calculate-the-size-of-the-seqcap-v3-exome" class="md-nav__link">
-    Calculate the size of the SeqCap v3 exome
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-an-inverval-list-for-the-exome-bed-files" class="md-nav__link">
-    Create an inverval list for the exome bed files
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -581,12 +510,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" checked>
       
       
       
@@ -607,11 +538,66 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../structural_variation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Structural Variants
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Structural Variants
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bcftools-filtering" class="md-nav__link">
+    bcftools filtering
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-and-view-the-structural-variants" class="md-nav__link">
+    Download and view the structural variants
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#investigate-the-variants-in-igv" class="md-nav__link">
+    Investigate the variants in IGV
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -685,36 +671,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#files-for-annotation-of-variation-in-the-human-genome" class="md-nav__link">
-    Files for annotation of variation in the human genome
+  <a href="#bcftools-filtering" class="md-nav__link">
+    bcftools filtering
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#index-the-variation-files" class="md-nav__link">
-    Index the variation files
+  <a href="#download-and-view-the-structural-variants" class="md-nav__link">
+    Download and view the structural variants
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#interval-files-and-coordinates-for-the-exome-sequencing-assay" class="md-nav__link">
-    Interval files and coordinates for the exome sequencing assay
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#calculate-the-size-of-the-seqcap-v3-exome" class="md-nav__link">
-    Calculate the size of the SeqCap v3 exome
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-an-inverval-list-for-the-exome-bed-files" class="md-nav__link">
-    Create an inverval list for the exome bed files
+  <a href="#investigate-the-variants-in-igv" class="md-nav__link">
+    Investigate the variants in IGV
   </a>
   
 </li>
@@ -732,141 +704,154 @@
               
                 
 
-<h1 id="annotation-files">Annotation files<a class="headerlink" href="#annotation-files" title="Permanent link">&para;</a></h1>
-<h2 id="files-for-annotation-of-variation-in-the-human-genome">Files for annotation of variation in the human genome<a class="headerlink" href="#files-for-annotation-of-variation-in-the-human-genome" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1">#These are available from the Broad institute in Boston, who also provides the GATK software suite.</span>
-<span class="nb">cd</span> ~/workspace/inputs/references/gatk
+<h1 id="calling-structural-variation">Calling structural variation<a class="headerlink" href="#calling-structural-variation" title="Permanent link">&para;</a></h1>
+<p>In this practical session we will look into structural rearrangements. The cfDNA sequencing was performed on commercial biomaterial from a patient with mCRPC. </p>
+<p>The in-solution hybridisation based capture assay, developed for the clinical trial (ProBio)[<a href="https://www.probiotrial.org">https://www.probiotrial.org</a>] was applied.</p>
+<hr />
+<p><img alt="" src="https://i.imgur.com/Onu5vYJ.png" /></p>
+<p><strong>Assay explained:</strong>
+<img alt="" src="https://i.imgur.com/HLDUR32.png" /></p>
+<hr />
+<p>Go to the folder that contain the ProBio ctDNA data from the mCRPC commercial reference sample</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/svs
 
-<span class="c1">#Download the following files:</span>
-<span class="c1"># SNP calibration call sets - dbsnp, hapmap, omni, and 1000G</span>
-<span class="c1"># Runtime: &lt; 2min</span>
-gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.dbsnp138.vcf .
-<span class="c1"># Runtime: ~ 2min</span>
-bgzip --threads <span class="m">8</span> Homo_sapiens_assembly38.dbsnp138.vcf
-gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/hapmap_3.3.hg38.vcf.gz .
-gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/1000G_omni2.5.hg38.vcf.gz .
-gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/1000G_phase1.snps.high_confidence.hg38.vcf.gz .
+<span class="c1"># First create smaller bam files for faster </span>
+<span class="c1"># processing since we already know where the structural variants are (on chromsome 10 and 21.</span>
 
-<span class="c1"># Have a loot what the files contain. </span>
-<span class="c1"># Dont worry, we will look at VCF files later.</span>
-gunzip -c 1000G_phase1.snps.high_confidence.hg38.vcf.gz <span class="p">|</span> less -SN
+<span class="c1"># To create the smaller bam file we will be using bedtools, </span>
+<span class="c1"># one of the most useful tools in genomics. </span>
+<span class="c1"># The mapped sequencing is fed into intersectBed and all </span>
+<span class="c1"># reads overlapping with chr10 or chr21 are kept. The rest are discarded.</span>
+<span class="c1"># This takes a couple of minutes</span>
+<span class="nv">BAM</span><span class="o">=</span>./bams/RB-P-ResBio12-CFDNA-sample12-KH-C3-nodups.bam
+nohup intersectBed -a <span class="nv">$BAM</span> -b chr.bed &gt; T_mini.bam  <span class="m">2</span>&gt; nohup_Tmini.log <span class="p">&amp;</span>
 
-<span class="c1"># Indel calibration call sets - dbsnp, Mills</span>
-gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/Homo_sapiens_assembly38.known_indels.vcf.gz .
-gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz .
+<span class="nv">BAM2</span><span class="o">=</span>./bams/PB-P-HD2-N-1811-KH-C3-nodups.bam
+nohup intersectBed -a <span class="nv">$BAM2</span> -b chr.bed &gt; N_mini.bam <span class="m">2</span>&gt; nohup_Nmini.log <span class="p">&amp;</span>
 
-<span class="c1"># Interval lists that can be used to parallelize certain GATK tasks</span>
-gsutil cp gs://genomics-public-data/resources/broad/hg38/v0/wgs_calling_regions.hg38.interval_list .
-gsutil cp -r gs://genomics-public-data/resources/broad/hg38/v0/scattered_calling_intervals/ .
+<span class="c1">#Index the bam files</span>
+samtools index T_mini.bam
+samtools index N_mini.bam
 
-<span class="c1"># list the files we just downloaded</span>
-ls -lh
+<span class="c1"># If you want to run dell on the entire bam file - takes one hour</span>
+<span class="c1">#nohup delly call -o ./RB-P-ResBio12-CFDNA-sample12-KH-C3_PB-P-HD2-N-1811-KH-C3_somatic_delly.bcf -g ./human_g1k_v37_decoy.fasta ./bams/RB-P-ResBio12-CFDNA-sample12-KH-C3-nodups.bam ./bams/PB-P-HD2-N-1811-KH-C3-nodups.bam &gt; delly_nohup.log &amp;</span>
+
+<span class="c1">#Now run Delly on the samll bam files, write to a .bcf file</span>
+nohup delly call -o ./mini.bcf -g ./human_g1k_v37_decoy.fasta ./T_mini.bam ./N_mini.bam &gt; delly_nohup.log <span class="p">&amp;</span>
+
+<span class="c1">#On the entire bam file</span>
+<span class="c1">#bcftools convert -O v -o ./RB-P-ResBio12-CFDNA-sample12-KH-C3_PB-P-HD2-N-1811-KH-C3_somatic_delly.vcf ./RB-P-ResBio12-CFDNA-sample12-KH-C3_PB-P-HD2-N-1811-KH-C3_somatic_delly.bcf</span>
+
+bcftools convert -O v -o ./mini.vcf ./mini.bcf
 </code></pre></div>
-<h2 id="index-the-variation-files">Index the variation files<a class="headerlink" href="#index-the-variation-files" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/inputs/references/gatk/
+<h2 id="bcftools-filtering">bcftools filtering<a class="headerlink" href="#bcftools-filtering" title="Permanent link">&para;</a></h2>
+<p>Now we will filter with some basic filters to remove false positive variants
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/svs/
+<span class="c1"># RB-P-ResBio12-CFDNA-sample12-KH-C3_delly.vcf </span>
+<span class="c1"># to check total number of variants </span>
 
-<span class="c1">#SNP calibration call sets - dbsnp, hapmap, omni, and 1000G</span>
-<span class="c1"># Runtime: ~ 4min</span>
-gatk --java-options <span class="s1">&#39;-Xmx12g&#39;</span> IndexFeatureFile -I ~/workspace/inputs/references/gatk/Homo_sapiens_assembly38.dbsnp138.vcf.gz
-gatk --java-options <span class="s1">&#39;-Xmx12g&#39;</span> IndexFeatureFile -I ~/workspace/inputs/references/gatk/hapmap_3.3.hg38.vcf.gz
-gatk --java-options <span class="s1">&#39;-Xmx12g&#39;</span> IndexFeatureFile -I ~/workspace/inputs/references/gatk/1000G_omni2.5.hg38.vcf.gz
-<span class="c1"># Runtime: ~ 3min</span>
-gatk --java-options <span class="s1">&#39;-Xmx12g&#39;</span> IndexFeatureFile -I ~/workspace/inputs/references/gatk/1000G_phase1.snps.high_confidence.hg38.vcf.gz
+<span class="c1">#If processing the entire bam files.</span>
+<span class="c1">#VCF_FILE=RB-P-ResBio12-CFDNA-sample12-KH-C3_PB-P-HD2-N-1811-KH-C3_somatic_delly.vcf</span>
+<span class="nv">VCF_FILE</span><span class="o">=</span>mini.vcf
 
-<span class="c1">#Indel calibration call sets - dbsnp, Mills</span>
-gatk --java-options <span class="s1">&#39;-Xmx12g&#39;</span> IndexFeatureFile -I ~/workspace/inputs/references/gatk/Homo_sapiens_assembly38.known_indels.vcf.gz
-gatk --java-options <span class="s1">&#39;-Xmx12g&#39;</span> IndexFeatureFile -I ~/workspace/inputs/references/gatk/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
-</code></pre></div>
-<h2 id="interval-files-and-coordinates-for-the-exome-sequencing-assay">Interval files and coordinates for the exome sequencing assay<a class="headerlink" href="#interval-files-and-coordinates-for-the-exome-sequencing-assay" title="Permanent link">&para;</a></h2>
-<p>These files contain the location of the exons in the human genome that were "targeted", that is for which targeting oligos were created (primary_targets). </p>
-<p>The files also contain the location of the actual oligos (capture_targets).</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># change directories</span>
-<span class="nb">cd</span> ~/workspace/inputs/references/exome
+grep -v <span class="s2">&quot;^#&quot;</span> <span class="nv">$VCF_FILE</span>  -c
+<span class="c1"># 49</span>
 
-<span class="c1"># download the files</span>
-wget -c https://sequencing.roche.com/content/dam/rochesequence/worldwide/shared-designs/SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
-unzip SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
+<span class="c1"># 1. Filter only &quot;PASS&quot; variants </span>
+bcftools view -f <span class="s2">&quot;PASS&quot;</span>  <span class="nv">$VCF_FILE</span> <span class="p">|</span> grep -v <span class="s2">&quot;^#&quot;</span> -c 
+<span class="c1">#37</span>
+bcftools view -f <span class="s2">&quot;PASS&quot;</span>  <span class="nv">$VCF_FILE</span> &gt; VCF_NEW.vcf
 
-<span class="c1"># remove the zip</span>
-rm -f SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
+<span class="c1"># 2. Filter by INFO column PE - Paired-End read SR - Split Read support </span>
+bcftools filter -i <span class="s1">&#39;INFO/PE&gt;15 | INFO/SR&gt;15&#39;</span> VCF_NEW.vcf <span class="p">|</span> grep -v <span class="s2">&quot;^#&quot;</span> -c 
+<span class="c1">#5</span>
+bcftools filter -i <span class="s1">&#39;INFO/PE&gt;15 | INFO/SR&gt;15&#39;</span> VCF_NEW.vcf &gt; VCF_NEW_FILTERED.vcf
+<span class="c1">#have a look at the output</span>
+less -SN VCF_NEW_FILTERED.vcf
+</code></pre></div></p>
+<h2 id="download-and-view-the-structural-variants">Download and view the structural variants<a class="headerlink" href="#download-and-view-the-structural-variants" title="Permanent link">&para;</a></h2>
+<p>Now we will filter with some basic filters to remove false positive variants
+<div class="highlight"><pre><span></span><code><span class="c1"># Download the output to your computer</span>
+scp -ri ~/course_EC2_01.pem ubuntu@ec2-54-204-196-95.compute-1.amazonaws.com:~/workspace/svs/*.bam .
+scp -ri ~/course_EC2_01.pem ubuntu@ec2-54-204-196-95.compute-1.amazonaws.com:~/workspace/svs/*.bai .
+scp -ri ~/course_EC2_01.pem ubuntu@ec2-54-204-196-95.compute-1.amazonaws.com:~/workspace/svs/VCF_NEW_FILTERED.vcf .
 
-<span class="c1"># Lift-over of the Roche coordinates from hg19 to the hg38 assembly.</span>
-<span class="c1"># the software is availble from USCS, downloadble here:</span>
-<span class="c1">#wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver</span>
-<span class="c1">#chmod +x liftOver</span>
-<span class="c1"># the chain file</span>
-wget -c http://hgdownload.cse.ucsc.edu/goldenPath/hg19/liftOver/hg19ToHg38.over.chain.gz
-
-<span class="c1"># run liftover</span>
-liftOver SeqCapEZ_Exome_v3.0_Design_Annotation_files/SeqCap_EZ_Exome_v3_hg19_primary_targets.bed  hg19ToHg38.over.chain.gz SeqCap_EZ_Exome_v3_hg38_primary_targets.bed unMapped.bed
-
-liftOver SeqCapEZ_Exome_v3.0_Design_Annotation_files/SeqCap_EZ_Exome_v3_hg19_capture_targets.bed  hg19ToHg38.over.chain.gz SeqCap_EZ_Exome_v3_hg38_capture_targets.bed unMapped1.bed
-
-<span class="c1"># create a version in standard bed format (chr, start, stop)</span>
-cut -f <span class="m">1</span>-3 SeqCap_EZ_Exome_v3_hg38_primary_targets.bed &gt; SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.bed
-
-cut -f <span class="m">1</span>-3 SeqCap_EZ_Exome_v3_hg38_capture_targets.bed &gt; SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.bed
-
-<span class="c1"># take a quick look at the format of these files</span>
-head SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.bed
-head SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.bed
-</code></pre></div>
-<h2 id="calculate-the-size-of-the-seqcap-v3-exome">Calculate the size of the SeqCap v3 exome<a class="headerlink" href="#calculate-the-size-of-the-seqcap-v3-exome" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1">#This can be done in many ways - give it a try yourself before trying the code below and compare results</span>
-
-<span class="c1"># first sort the bed files and store the sorted versions</span>
-bedtools sort -i SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.bed &gt; SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.bed
-bedtools sort -i SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.bed &gt; SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.sort.bed
-
-<span class="c1"># now merge the bed files to collapse any overlapping regions so they are not double counted.</span>
-bedtools merge -i SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.bed &gt; SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.merge.bed
-
-bedtools merge -i SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.sort.bed &gt; SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.sort.merge.bed
-
-<span class="c1"># finally use a Perl one liner to determine the size of the files in Mb</span>
-<span class="nv">FILES</span><span class="o">=(</span>SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.sort.merge.bed SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.merge.bed<span class="o">)</span>
-<span class="nb">echo</span> <span class="si">${</span><span class="nv">FILES</span><span class="p">[0]</span><span class="si">}</span>
-
-<span class="k">for</span> FILE <span class="k">in</span> <span class="si">${</span><span class="nv">FILES</span><span class="p">[@]</span><span class="si">}</span>
-<span class="k">do</span>
-<span class="nb">echo</span> <span class="s2">&quot;--------------------------------------------------------&quot;</span>
-<span class="nb">echo</span> <span class="nv">$FILE</span>
-<span class="c1">#With merge</span>
-cat <span class="nv">$FILE</span> <span class="p">|</span> sortBed -i stdin <span class="p">|</span> mergeBed -i stdin <span class="p">|</span> perl -e <span class="s1">&#39;$counter=0; while(&lt;&gt;){chomp; @array = split &quot;\t&quot;, $_; $counter = $counter + ($array[2] - $array[1]);}; print $counter/1000000, &quot;\n&quot;;&#39;</span>
-<span class="k">done</span>
-<span class="c1"># note that the size of the space targeted by the exome reagent is ~63 Mbp. Does that sound reasonable?</span>
-
-<span class="c1"># now create a subset of these bed files</span>
-grep -w -P <span class="s2">&quot;^chr6|^chr17&quot;</span> SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.merge.bed &gt; exome_regions.bed
-<span class="c1">#When creating files, make a habit to investigate the output to avoid downstream confusion</span>
-head -n <span class="m">10</span> exome_regions.bed
-
-grep -w -P <span class="s2">&quot;^chr6|^chr17&quot;</span> SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.sort.merge.bed &gt; probe_regions.bed
-head -n <span class="m">10</span> probe_regions.bed
-
-<span class="c1"># clean up intermediate files</span>
-<span class="c1">#rm -fr SeqCapEZ_Exome_v3.0_Design_Annotation_files/ SeqCap_EZ_Exome_v3_hg38_primary_targets.bed SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.bed SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.bed unMapped.bed</span>
-</code></pre></div>
-<h2 id="create-an-inverval-list-for-the-exome-bed-files">Create an inverval list for the exome bed files<a class="headerlink" href="#create-an-inverval-list-for-the-exome-bed-files" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># first for the complete exome and probe bed file</span>
-<span class="nb">cd</span> ~/workspace/inputs/references/
-<span class="c1">#Commands below already run</span>
-<span class="c1">#mkdir temp</span>
-<span class="nb">cd</span> temp
-<span class="c1">#Commands below already run</span>
-<span class="c1">#wget http://genomedata.org/pmbio-workshop/references/genome/all/ref_genome.dict</span>
-<span class="nb">cd</span> ~/workspace/inputs/references/exome
-java -jar <span class="nv">$PICARD</span> BedToIntervalList <span class="nv">I</span><span class="o">=</span>SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.merge.bed <span class="nv">O</span><span class="o">=</span>SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.merge.interval_list <span class="nv">SD</span><span class="o">=</span>~/workspace/inputs/references/temp/ref_genome.dict
-java -jar <span class="nv">$PICARD</span> BedToIntervalList <span class="nv">I</span><span class="o">=</span>SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.sort.merge.bed <span class="nv">O</span><span class="o">=</span>SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.sort.merge.interval_list <span class="nv">SD</span><span class="o">=</span>~/workspace/inputs/references/temp/ref_genome.dict
-<span class="c1">#rm -fr ~/workspace/inputs/references/temp/</span>
-<span class="c1">#Explore the interval-lists and what the files contain, scroll down until the coordinates are shown</span>
-less -SN SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.merge.interval_list
-
-<span class="c1"># next for our subset exome and probe regions file</span>
-<span class="nb">cd</span> ~/workspace/inputs/references/exome
-java -jar /usr/local/bin/picard.jar BedToIntervalList <span class="nv">I</span><span class="o">=</span>exome_regions.bed <span class="nv">O</span><span class="o">=</span>exome_regions.bed.interval_list <span class="nv">SD</span><span class="o">=</span>~/workspace/inputs/references/genome/ref_genome.dict
-java -jar /usr/local/bin/picard.jar BedToIntervalList <span class="nv">I</span><span class="o">=</span>probe_regions.bed <span class="nv">O</span><span class="o">=</span>probe_regions.bed.interval_list <span class="nv">SD</span><span class="o">=</span>~/workspace/inputs/references/genome/ref_genome.dict
-</code></pre></div>
+<span class="c1">#Now we will download a couple of files with data supporting the variants from an internally developed tool for identifying structural rearrangements</span>
+wget https://course-5534.s3.amazonaws.com/svs/evidence_svs.sort.bam
+wget https://course-5534.s3.amazonaws.com/svs/evidence_svs.sort.bam.bai
+wget https://course-5534.s3.amazonaws.com/svs/sample-cfdna-svcaller-DEL.gtf
+wget https://course-5534.s3.amazonaws.com/svs/sample-cfdna-svcaller-TRA.gtf
+</code></pre></div></p>
+<h2 id="investigate-the-variants-in-igv">Investigate the variants in IGV<a class="headerlink" href="#investigate-the-variants-in-igv" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Remember - these files are mapped to hg19</li>
+<li>Open the following files in IGV:<ul>
+<li>T_mini.bam</li>
+<li>N_mini.bam</li>
+<li>VCF_NEW_FILTERED.vcf</li>
+<li>evidence_svs.sort.bam<ul>
+<li>this bam file contains reads that are the output from a internally developed variant caller (SVcaller)</li>
+</ul>
+</li>
+<li>sample-cfdna-svcaller-DEL.gtf</li>
+<li>sample-cfdna-svcaller-TRA.gtf<ul>
+<li>The gtf-files mark the variants identified by SVcaller</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>It is possible to select multiple files at the same time by pressing CMD (mac, use other key on windows, likely CTRL)
+<img alt="" src="https://i.imgur.com/EiG2V7J.jpg" /></p>
+<p>You should now see something like this:
+<img alt="" src="https://i.imgur.com/PqkzmDx.png" /></p>
+<p>This sample was analysed using multiple structural variant callers and two variants are known</p>
+<ul>
+<li>One variant in PTEN</li>
+<li>One variant on chr21 resulting in the TMPRSS2-ERG gene fusion</li>
+<li>Write PTEN and press "GO" or just "ENTER"</li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/HGY0g7R.png" /></p>
+<ul>
+<li>Was the variant detected by Delly?</li>
+<li>Zoom in on the variant in PTEN </li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/hDNzQGG.png" /></p>
+<ul>
+<li>For the T_mini.bam<ul>
+<li>Color alignments "no color"</li>
+<li>Group alignments "none"</li>
+<li>Sort alignments "base"</li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/uVy0UZX.png" /></p>
+<ul>
+<li>Right click on a read in the evicence_svs.sort.bam<ul>
+<li>Select "View mate region in split screen".</li>
+<li>This is a very useful way of seing both ends of a structural variant.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/cBZCmD3.png" /></p>
+<p><img alt="" src="https://i.imgur.com/Kos5iz7.png" /></p>
+<ul>
+<li>
+<p>Try to answer the question in the screenshot above.</p>
+</li>
+<li>
+<p>Now, have a look at the TMPRSS2-ERG fusion</p>
+<ul>
+<li>Go here: chr21:39,766,196-42,940,331</li>
+<li>Is this variant found by Delly? How do you see that?</li>
+<li>Zoom in on the left end, how many reads are supportin the variant according to Delly?<ul>
+<li>Click on the VCF file and look for PE (paired-end) and SR (split-read) info.
+<img alt="" src="https://i.imgur.com/lvw5Tt1.png" /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
               
             </article>
@@ -885,7 +870,7 @@ java -jar /usr/local/bin/picard.jar BedToIntervalList <span class="nv">I</span><
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../human_genome/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Human Genome" rel="prev">
+        <a href="../variant_calling/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Variant Calling" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -894,20 +879,20 @@ java -jar /usr/local/bin/picard.jar BedToIntervalList <span class="nv">I</span><
               <span class="md-footer__direction">
                 Previous
               </span>
-              Human Genome
+              Variant Calling
             </div>
           </div>
         </a>
       
       
         
-        <a href="../processing_of_dna/" class="md-footer__link md-footer__link--next" aria-label="Next: Processing of DNA sequencing data" rel="next">
+        <a href="../analysis_of_cnv/" class="md-footer__link md-footer__link--next" aria-label="Next: Copy Number Variations" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Processing of DNA sequencing data
+              Copy Number Variations
             </div>
           </div>
           <div class="md-footer__button md-icon">

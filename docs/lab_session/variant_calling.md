@@ -345,21 +345,30 @@ cd ~/workspace/somatic/mutect
 
 #Creating a panel of normals
 # Runtime: ~ 17min
-gatk --java-options "-Xmx12G" Mutect2 \
+nohup gatk --java-options "-Xmx12G" Mutect2 \
     -R ~/workspace/inputs/references/genome/ref_genome.fa \
     -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam \
-    -tumor-sample HCC1395BL_DNA -O Exome_Norm_PON.vcf.gz
+    -tumor-sample HCC1395BL_DNA -O Exome_Norm_PON.vcf.gz &
+
+##### WAIT FOR THIS NOHUP STEP TO FINISH BEFORE CONTINUING #####
+##### WAIT FOR THIS NOHUP STEP TO FINISH BEFORE CONTINUING #####
+##### WAIT FOR THIS NOHUP STEP TO FINISH BEFORE CONTINUING #####
 
 #Running Mutect2 Using latest version of GATK
 # Runtime: ~20m
-gatk --java-options "-Xmx12G" Mutect2 \
+nohup gatk --java-options "-Xmx12G" Mutect2 \
     -R ~/workspace/inputs/references/genome/ref_genome.fa \
     -I ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam \
     -tumor HCC1395_DNA -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam \
     -normal HCC1395BL_DNA --germline-resource ~/workspace/inputs/references/af-only-gnomad.hg38.vcf.gz \
     --af-of-alleles-not-in-resource 0.00003125 --panel-of-normals \
     ~/workspace/somatic/mutect/Exome_Norm_PON.vcf.gz -O ~/workspace/somatic/mutect/exome.vcf.gz \
-    -L chr6 -L chr17
+    -L chr6 -L chr17 &
+
+##### WAIT FOR NOHUP FOR THIS STEP TO FINISH BEFORE CONTINUING #####
+##### WAIT FOR NOHUP FOR THIS STEP TO FINISH BEFORE CONTINUING #####
+##### WAIT FOR NOHUP FOR THIS STEP TO FINISH BEFORE CONTINUING #####
+
 
 # Filtering mutect variants
 gatk --java-options "-Xmx12G" FilterMutectCalls -V ~/workspace/somatic/mutect/exome.vcf.gz \
@@ -472,11 +481,8 @@ Answer the following:
 - The variant categories e.g. intron_variant and regulatory_region_variant should be approached carefully, why?
 
 ## Inspecting variants in IGV
-- Download the bam files to your local machine
-```bash
-scp -ri course_EC2_01.pem ubuntu@ec2-54-163-59-166.compute-1.amazonaws.com:~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.* .
-scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.* .
-```
+- Download the procdessed DNA bam files to your local machine if you have not done so yet, see the session "Introduction to IGV"
+
 - Open the Exome_Tumor_sorted_mrkdup_bqsr.bam and Exome_Norm_sorted_mrkdup_bqsr.bam in IGV.
 
 - Keep the VCF file open in a terminal window on AWS
@@ -492,6 +498,8 @@ less -SN exome.merged.norm.annotated.vcf
 - Why is the TP53 variant in three rows in the VCF file? 
     - lead: how many somatic variant callers were run?
 - Go to the position (chr17 7675088) on IGV in your local machine
+![](https://i.imgur.com/TQ8KKZ8.png)
+
     - Is it present in the normal DNA?
         - Do you still think it is valid? How come the variant can be present in the germline DNA?
 
@@ -502,6 +510,8 @@ grep "stop_gained" exome.merged.norm.annotated.vcf | less -SN
 ```
 - The top variant is seen only once, this is just identified correctly by one caller because it changes two bases in a row
     - open chr6 1930220 in IGV
+
+![](https://i.imgur.com/DbVcGjS.png)
 
 - let us convert the vcf-file to a MAF file format
     - note all information is not kept but it simplifies looking at the variants
@@ -527,13 +537,14 @@ grep Nonsense_Mutation ~/workspace/somatic/exome.merged.norm.annotated.maf | les
 - Can you find a variant in BRCA1? 
     - What is the impact? Is it relevant?
 
-- There was a BRCA 1 variant in the germline that we did not dicsuss
+- There was a BRCA 1 variant in the germline that we did not dicsuss earlier
 ```bash
 #Let us grep "BRCA1" and send the output to another grep command and take the "HIGH" impact variants
 grep BRCA1 ~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vep.vcf | grep "HIGH" | less -SN 
 ```
-- let us inspect this variant in IGV, why is one allel missing in the tumor?
+- let us inspect this variant in IGV, why is one allele missing in the tumor?
     - This is the variant location: chr17   43057078 
+![](https://i.imgur.com/PXKeG7C.png)
 
 
 

@@ -441,9 +441,165 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Processing of DNA sequencing data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Processing of DNA sequencing data
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#investigate-the-raw-data-files-fastq-files" class="md-nav__link">
+    Investigate the raw data files (fastq-files)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-fastqc-to-check-the-quality-of-the-fastq-files" class="md-nav__link">
+    Run fastqc to check the quality of the fastq-files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-multiqc" class="md-nav__link">
+    Run MultiQC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-bwa" class="md-nav__link">
+    Run BWA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-sam-to-bam-format" class="md-nav__link">
+    Convert sam to bam format
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sort-bam-files" class="md-nav__link">
+    Sort bam files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mark-duplicates" class="md-nav__link">
+    Mark duplicates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#position-sort-bam-file" class="md-nav__link">
+    Position sort bam file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-bam-index-for-use-with-gatk-igv-etc" class="md-nav__link">
+    Create bam index for use with GATK, IGV, etc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indel-realignment" class="md-nav__link">
+    Indel Realignment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perform-base-quality-score-recalibration" class="md-nav__link">
+    Perform Base Quality Score Recalibration
+  </a>
+  
+    <nav class="md-nav" aria-label="Perform Base Quality Score Recalibration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculate-bqsr-table" class="md-nav__link">
+    Calculate BQSR Table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apply-bqsr" class="md-nav__link">
+    Apply BQSR
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean-up-un-needed-sambam-files" class="md-nav__link">
+    Clean up un-needed sam/bam files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-samtools-flagstat" class="md-nav__link">
+    Run Samtools flagstat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-various-picard-collectmetrics-tools" class="md-nav__link">
+    Run various picard CollectMetrics tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-fastqc" class="md-nav__link">
+    Run FastQC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-multiqc-to-produce-a-final-report" class="md-nav__link">
+    Run MultiQC to produce a final report
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -550,6 +706,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../structural_variation/" class="md-nav__link">
+        Structural Variants
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../analysis_of_cnv/" class="md-nav__link">
         Copy Number Variations
       </a>
@@ -605,6 +775,146 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#investigate-the-raw-data-files-fastq-files" class="md-nav__link">
+    Investigate the raw data files (fastq-files)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-fastqc-to-check-the-quality-of-the-fastq-files" class="md-nav__link">
+    Run fastqc to check the quality of the fastq-files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-multiqc" class="md-nav__link">
+    Run MultiQC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-bwa" class="md-nav__link">
+    Run BWA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convert-sam-to-bam-format" class="md-nav__link">
+    Convert sam to bam format
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sort-bam-files" class="md-nav__link">
+    Sort bam files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mark-duplicates" class="md-nav__link">
+    Mark duplicates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#position-sort-bam-file" class="md-nav__link">
+    Position sort bam file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-bam-index-for-use-with-gatk-igv-etc" class="md-nav__link">
+    Create bam index for use with GATK, IGV, etc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indel-realignment" class="md-nav__link">
+    Indel Realignment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perform-base-quality-score-recalibration" class="md-nav__link">
+    Perform Base Quality Score Recalibration
+  </a>
+  
+    <nav class="md-nav" aria-label="Perform Base Quality Score Recalibration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculate-bqsr-table" class="md-nav__link">
+    Calculate BQSR Table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apply-bqsr" class="md-nav__link">
+    Apply BQSR
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clean-up-un-needed-sambam-files" class="md-nav__link">
+    Clean up un-needed sam/bam files
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-samtools-flagstat" class="md-nav__link">
+    Run Samtools flagstat
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-various-picard-collectmetrics-tools" class="md-nav__link">
+    Run various picard CollectMetrics tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-fastqc" class="md-nav__link">
+    Run FastQC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-multiqc-to-produce-a-final-report" class="md-nav__link">
+    Run MultiQC to produce a final report
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -628,7 +938,7 @@ tree Exome_Norm
 <span class="c1"># view the RNA-seq tumor sample data files.</span>
 tree RNAseq_Tumor
 </code></pre></div>
-<h1 id="investigate-the-raw-data-files-fastq-files">Investigate the raw data files (fastq-files)<a class="headerlink" href="#investigate-the-raw-data-files-fastq-files" title="Permanent link">&para;</a></h1>
+<h2 id="investigate-the-raw-data-files-fastq-files">Investigate the raw data files (fastq-files)<a class="headerlink" href="#investigate-the-raw-data-files-fastq-files" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/inputs/data/fastq/Exome_Tumor
 
 <span class="c1"># show the first ten lines of the Exome Tumor fastq files</span>
@@ -671,12 +981,12 @@ cat /workspace/inputs/references/exome/exome_regions.bed <span class="p">|</span
 <p>Have a look <a href="https://www.youtube.com/watch?v=lUk5Ju3vCDM">here</a> for a short tutorial on the fastqc output.
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/inputs/data/fastq
 
-fastqc Exome_Norm/Exome_Norm*.fastq.gz
-fastqc Exome_Tumor/Exome_Tumor*.fastq.gz
+fastqc -t <span class="m">8</span> Exome_Norm/Exome_Norm*.fastq.gz
+fastqc -t <span class="m">8</span> Exome_Tumor/Exome_Tumor*.fastq.gz
 tree
 
-fastqc RNAseq_Norm/RNAseq_Norm*.fastq.gz
-fastqc RNAseq_Tumor/RNAseq_Tumor*.fastq.gz
+fastqc -t <span class="m">8</span> RNAseq_Norm/RNAseq_Norm*.fastq.gz
+fastqc -t <span class="m">8</span> RNAseq_Tumor/RNAseq_Tumor*.fastq.gz
 tree
 </code></pre></div></p>
 <h2 id="run-multiqc">Run MultiQC<a class="headerlink" href="#run-multiqc" title="Permanent link">&para;</a></h2>
@@ -811,7 +1121,8 @@ multiqc ~/workspace/align/
 tree
 
 <span class="c1"># Download MultiQC output to the local computer, open the .html in you favourite browser.</span>
-<span class="c1">#Discuss the MultiQC output with a fellow student</span>
+
+<span class="c1"># Discuss the MultiQC output with a fellow student</span>
 scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/align/post_align_qc/multiqc* .
 </code></pre></div>
 

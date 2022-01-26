@@ -739,6 +739,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../structural_variation/" class="md-nav__link">
+        Structural Variants
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../analysis_of_cnv/" class="md-nav__link">
         Copy Number Variations
       </a>
@@ -1263,21 +1277,30 @@ mkdir -p ~/workspace/somatic/mutect
 
 <span class="c1">#Creating a panel of normals</span>
 <span class="c1"># Runtime: ~ 17min</span>
-gatk --java-options <span class="s2">&quot;-Xmx12G&quot;</span> Mutect2 <span class="se">\</span>
+nohup gatk --java-options <span class="s2">&quot;-Xmx12G&quot;</span> Mutect2 <span class="se">\</span>
     -R ~/workspace/inputs/references/genome/ref_genome.fa <span class="se">\</span>
     -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam <span class="se">\</span>
-    -tumor-sample HCC1395BL_DNA -O Exome_Norm_PON.vcf.gz
+    -tumor-sample HCC1395BL_DNA -O Exome_Norm_PON.vcf.gz <span class="p">&amp;</span>
+
+<span class="c1">##### WAIT FOR THIS NOHUP STEP TO FINISH BEFORE CONTINUING #####</span>
+<span class="c1">##### WAIT FOR THIS NOHUP STEP TO FINISH BEFORE CONTINUING #####</span>
+<span class="c1">##### WAIT FOR THIS NOHUP STEP TO FINISH BEFORE CONTINUING #####</span>
 
 <span class="c1">#Running Mutect2 Using latest version of GATK</span>
 <span class="c1"># Runtime: ~20m</span>
-gatk --java-options <span class="s2">&quot;-Xmx12G&quot;</span> Mutect2 <span class="se">\</span>
+nohup gatk --java-options <span class="s2">&quot;-Xmx12G&quot;</span> Mutect2 <span class="se">\</span>
     -R ~/workspace/inputs/references/genome/ref_genome.fa <span class="se">\</span>
     -I ~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.bam <span class="se">\</span>
     -tumor HCC1395_DNA -I ~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.bam <span class="se">\</span>
     -normal HCC1395BL_DNA --germline-resource ~/workspace/inputs/references/af-only-gnomad.hg38.vcf.gz <span class="se">\</span>
     --af-of-alleles-not-in-resource <span class="m">0</span>.00003125 --panel-of-normals <span class="se">\</span>
     ~/workspace/somatic/mutect/Exome_Norm_PON.vcf.gz -O ~/workspace/somatic/mutect/exome.vcf.gz <span class="se">\</span>
-    -L chr6 -L chr17
+    -L chr6 -L chr17 <span class="p">&amp;</span>
+
+<span class="c1">##### WAIT FOR NOHUP FOR THIS STEP TO FINISH BEFORE CONTINUING #####</span>
+<span class="c1">##### WAIT FOR NOHUP FOR THIS STEP TO FINISH BEFORE CONTINUING #####</span>
+<span class="c1">##### WAIT FOR NOHUP FOR THIS STEP TO FINISH BEFORE CONTINUING #####</span>
+
 
 <span class="c1"># Filtering mutect variants</span>
 gatk --java-options <span class="s2">&quot;-Xmx12G&quot;</span> FilterMutectCalls -V ~/workspace/somatic/mutect/exome.vcf.gz <span class="se">\</span>
@@ -1372,10 +1395,9 @@ scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/somatic/exome.merge
 - The variant categories e.g. intron_variant and regulatory_region_variant should be approached carefully, why?</p>
 <h2 id="inspecting-variants-in-igv">Inspecting variants in IGV<a class="headerlink" href="#inspecting-variants-in-igv" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Download the bam files to your local machine
-<div class="highlight"><pre><span></span><code>scp -ri course_EC2_01.pem ubuntu@ec2-54-163-59-166.compute-1.amazonaws.com:~/workspace/align/Exome_Tumor_sorted_mrkdup_bqsr.* .
-scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/align/Exome_Norm_sorted_mrkdup_bqsr.* .
-</code></pre></div></li>
+<li>
+<p>Download the procdessed DNA bam files to your local machine if you have not done so yet, see the session "Introduction to IGV"</p>
+</li>
 <li>
 <p>Open the Exome_Tumor_sorted_mrkdup_bqsr.bam and Exome_Norm_sorted_mrkdup_bqsr.bam in IGV.</p>
 </li>
@@ -1395,7 +1417,8 @@ less -SN exome.merged.norm.annotated.vcf
 </ul>
 </li>
 <li>
-<p>Go to the position (chr17 7675088) on IGV in your local machine</p>
+<p>Go to the position (chr17 7675088) on IGV in your local machine
+<img alt="" src="https://i.imgur.com/TQ8KKZ8.png" /></p>
 <ul>
 <li>Is it present in the normal DNA?<ul>
 <li>Do you still think it is valid? How come the variant can be present in the germline DNA?</li>
@@ -1409,15 +1432,14 @@ less -SN exome.merged.norm.annotated.vcf
 grep <span class="s2">&quot;stop_gained&quot;</span> exome.merged.norm.annotated.vcf <span class="p">|</span> less -SN
 </code></pre></div></p>
 </li>
-<li>
-<p>The top variant is seen only once, this is just identified correctly by one caller because it changes two bases in a row</p>
-<ul>
+<li>The top variant is seen only once, this is just identified correctly by one caller because it changes two bases in a row<ul>
 <li>open chr6 1930220 in IGV</li>
 </ul>
 </li>
-<li>
-<p>let us convert the vcf-file to a MAF file format</p>
+</ul>
+<p><img alt="" src="https://i.imgur.com/DbVcGjS.png" /></p>
 <ul>
+<li>let us convert the vcf-file to a MAF file format<ul>
 <li>note all information is not kept but it simplifies looking at the variants
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/somatic
 perl ~/workspace/bin/mskcc-vcf2maf/vcf2maf.pl --input-vcf ~/workspace/somatic/exome.merged.norm.annotated.vcf --output-maf ~/workspace/somatic/exome.merged.norm.annotated.maf  --tumor-id TUMOR --normal-id NORMAL --inhibit-vep --ref-fasta ~/workspace/inputs/references/genome/ref_genome.fa
@@ -1451,13 +1473,14 @@ grep Nonsense_Mutation ~/workspace/somatic/exome.merged.norm.annotated.maf <span
 </ul>
 </li>
 <li>
-<p>There was a BRCA 1 variant in the germline that we did not dicsuss
+<p>There was a BRCA 1 variant in the germline that we did not dicsuss earlier
 <div class="highlight"><pre><span></span><code><span class="c1">#Let us grep &quot;BRCA1&quot; and send the output to another grep command and take the &quot;HIGH&quot; impact variants</span>
 grep BRCA1 ~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vep.vcf <span class="p">|</span> grep <span class="s2">&quot;HIGH&quot;</span> <span class="p">|</span> less -SN 
 </code></pre></div></p>
 </li>
-<li>let us inspect this variant in IGV, why is one allel missing in the tumor?<ul>
-<li>This is the variant location: chr17   43057078 </li>
+<li>let us inspect this variant in IGV, why is one allele missing in the tumor?<ul>
+<li>This is the variant location: chr17   43057078 
+<img alt="" src="https://i.imgur.com/PXKeG7C.png" /></li>
 </ul>
 </li>
 </ul>
@@ -1495,13 +1518,13 @@ grep BRCA1 ~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vep.vcf <span 
       
       
         
-        <a href="../analysis_of_cnv/" class="md-footer__link md-footer__link--next" aria-label="Next: Copy Number Variations" rel="next">
+        <a href="../structural_variation/" class="md-footer__link md-footer__link--next" aria-label="Next: Structural Variants" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Copy Number Variations
+              Structural Variants
             </div>
           </div>
           <div class="md-footer__button md-icon">

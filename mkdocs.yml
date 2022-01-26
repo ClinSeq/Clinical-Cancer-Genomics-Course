@@ -119,5 +119,6 @@ nav:
       - Day 3:
         - Variant Calling: lab_session/variant_calling.md
       - Day 4:
+        - Structural Variants: lab_session/structural_variation.md
         - Copy Number Variations: lab_session/analysis_of_cnv.md
         - RNAseq: lab_session/processing_of_rnaseq.md

@@ -12,7 +12,7 @@ tree Exome_Norm
 # view the RNA-seq tumor sample data files.
 tree RNAseq_Tumor
 ```
-# Investigate the raw data files (fastq-files)
+## Investigate the raw data files (fastq-files)
 ```bash
 
 cd ~/workspace/inputs/data/fastq/Exome_Tumor
@@ -58,12 +58,12 @@ Have a look [here](https://www.youtube.com/watch?v=lUk5Ju3vCDM) for a short tuto
 ```bash
 cd ~/workspace/inputs/data/fastq
 
-fastqc Exome_Norm/Exome_Norm*.fastq.gz
-fastqc Exome_Tumor/Exome_Tumor*.fastq.gz
+fastqc -t 8 Exome_Norm/Exome_Norm*.fastq.gz
+fastqc -t 8 Exome_Tumor/Exome_Tumor*.fastq.gz
 tree
 
-fastqc RNAseq_Norm/RNAseq_Norm*.fastq.gz
-fastqc RNAseq_Tumor/RNAseq_Tumor*.fastq.gz
+fastqc -t 8 RNAseq_Norm/RNAseq_Norm*.fastq.gz
+fastqc -t 8 RNAseq_Tumor/RNAseq_Tumor*.fastq.gz
 tree
 ```
 
@@ -249,7 +249,8 @@ multiqc ~/workspace/align/
 tree
 
 # Download MultiQC output to the local computer, open the .html in you favourite browser.
-#Discuss the MultiQC output with a fellow student
+
+# Discuss the MultiQC output with a fellow student
 scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/align/post_align_qc/multiqc* .
 ```
 
