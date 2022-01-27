@@ -148,6 +148,9 @@ It is possible to select multiple files at the same time by pressing CMD (mac, u
 You should now see something like this:
 ![](https://i.imgur.com/PqkzmDx.png)
 
+Make sure you can see the soft-clipped reads:
+![](https://i.imgur.com/v4TFe0b.png)
+
 This sample was analysed using multiple structural variant callers and two variants are known
 
 - One variant in PTEN

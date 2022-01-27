@@ -22,8 +22,11 @@
     2. Calling structural variation. [PDF](pdf/structural_variant_analysis.pdf)
     3. RNA sequencing etc.Lab intro. [PDF](pdf/rnaseq_analysis.pdf)
 
-??? example "Day 5 : Manual Curation - Clinical Trials"
+??? example "Day 5 : Manual curation and interpretation"
 
-    1. Clinical trials. How to curate somatic- and germline variation for clinical use.
-    2. Annotating, interpreting and reporting somatic- and germline variation for clinical use.
+    1. Clinical trials. How to curate somatic- and germline variation for clinical use. [PDF](pdf/curation_somatic_and_germline_variation.pdf)
+    2. Interpretation of Genomics - I [PDF](pdf/interpretation_of_genomics_data-I.pdf)
+    3. Interpretation of Genomics - II [PDF](pdf/interpretation_of_genomics_data-II.pdf)
+    4. Interpretation of Genomics - III [PDF](pdf/interpretation_of_genomics_data-III.pdf)
+    5. Interpretation of Genomics - IV [PDF](pdf/interpretation_of_genomics_data-IV.pdf)
     

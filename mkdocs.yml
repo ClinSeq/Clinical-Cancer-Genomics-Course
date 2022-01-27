@@ -122,4 +122,6 @@ nav:
         - Structural Variants: lab_session/structural_variation.md
         - Copy Number Variations: lab_session/analysis_of_cnv.md
         - RNAseq: lab_session/processing_of_rnaseq.md
-        
+      - Day 5:
+        - Joint Curation: lab_session/joint_curation.md
+        - Genomic Alterations Interpretation: lab_session/genomic_alteration_interpretation_exe.md   
