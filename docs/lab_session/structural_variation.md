@@ -4,6 +4,7 @@ In this practical session we will look into structural rearrangements. The cfDNA
 
 The in-solution hybridisation based capture assay, developed for the clinical trial (ProBio)[https://www.probiotrial.org] was applied.
 
+## The ProBio Assay
 ---
 ![](https://i.imgur.com/Onu5vYJ.png)
 
@@ -15,12 +16,12 @@ The in-solution hybridisation based capture assay, developed for the clinical tr
 
 Go to the folder that contain the ProBio ctDNA data from the mCRPC commercial reference sample
 
-
+## Create mini-bam files and run Delly
 ```bash
 cd ~/workspace/svs
 
 # First create smaller bam files for faster 
-# processing since we already know where the structural variants are (on chromsome 10 and 21.
+# processing since we already know where the structural variants are (on chromsome 10 and 21).
 
 # To create the smaller bam file we will be using bedtools, 
 # one of the most useful tools in genomics. 
@@ -49,7 +50,7 @@ nohup delly call -o ./mini.bcf -g ./human_g1k_v37_decoy.fasta ./T_mini.bam ./N_m
 bcftools convert -O v -o ./mini.vcf ./mini.bcf
 ```
 
-## bcftools filtering
+## Filtering using bcftools
 
 Now we will filter with some basic filters to remove false positive variants
 ```bash

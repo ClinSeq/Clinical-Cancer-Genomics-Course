@@ -574,8 +574,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#bcftools-filtering" class="md-nav__link">
-    bcftools filtering
+  <a href="#the-probio-assay" class="md-nav__link">
+    The ProBio Assay
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-mini-bam-files-and-run-delly" class="md-nav__link">
+    Create mini-bam files and run Delly
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-using-bcftools" class="md-nav__link">
+    Filtering using bcftools
   </a>
   
 </li>
@@ -671,8 +685,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#bcftools-filtering" class="md-nav__link">
-    bcftools filtering
+  <a href="#the-probio-assay" class="md-nav__link">
+    The ProBio Assay
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-mini-bam-files-and-run-delly" class="md-nav__link">
+    Create mini-bam files and run Delly
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-using-bcftools" class="md-nav__link">
+    Filtering using bcftools
   </a>
   
 </li>
@@ -707,16 +735,18 @@
 <h1 id="calling-structural-variation">Calling structural variation<a class="headerlink" href="#calling-structural-variation" title="Permanent link">&para;</a></h1>
 <p>In this practical session we will look into structural rearrangements. The cfDNA sequencing was performed on commercial biomaterial from a patient with mCRPC. </p>
 <p>The in-solution hybridisation based capture assay, developed for the clinical trial (ProBio)[<a href="https://www.probiotrial.org">https://www.probiotrial.org</a>] was applied.</p>
+<h2 id="the-probio-assay">The ProBio Assay<a class="headerlink" href="#the-probio-assay" title="Permanent link">&para;</a></h2>
 <hr />
 <p><img alt="" src="https://i.imgur.com/Onu5vYJ.png" /></p>
 <p><strong>Assay explained:</strong>
 <img alt="" src="https://i.imgur.com/HLDUR32.png" /></p>
 <hr />
 <p>Go to the folder that contain the ProBio ctDNA data from the mCRPC commercial reference sample</p>
+<h2 id="create-mini-bam-files-and-run-delly">Create mini-bam files and run Delly<a class="headerlink" href="#create-mini-bam-files-and-run-delly" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/svs
 
 <span class="c1"># First create smaller bam files for faster </span>
-<span class="c1"># processing since we already know where the structural variants are (on chromsome 10 and 21.</span>
+<span class="c1"># processing since we already know where the structural variants are (on chromsome 10 and 21).</span>
 
 <span class="c1"># To create the smaller bam file we will be using bedtools, </span>
 <span class="c1"># one of the most useful tools in genomics. </span>
@@ -744,7 +774,7 @@ nohup delly call -o ./mini.bcf -g ./human_g1k_v37_decoy.fasta ./T_mini.bam ./N_m
 
 bcftools convert -O v -o ./mini.vcf ./mini.bcf
 </code></pre></div>
-<h2 id="bcftools-filtering">bcftools filtering<a class="headerlink" href="#bcftools-filtering" title="Permanent link">&para;</a></h2>
+<h2 id="filtering-using-bcftools">Filtering using bcftools<a class="headerlink" href="#filtering-using-bcftools" title="Permanent link">&para;</a></h2>
 <p>Now we will filter with some basic filters to remove false positive variants
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workspace/svs/
 <span class="c1"># RB-P-ResBio12-CFDNA-sample12-KH-C3_delly.vcf </span>

@@ -14,14 +14,13 @@
 ??? example "Day 3 : Bioinformatics pipelines & SNV calling"
 
     1. Bioinformatics pipelines & HTC computing environments. [PDF](pdf/bioinformatics_pipelines.pdf)
-    2. Processing and QC of DNA- and RNA sequencing data. [PDF](pdf/lecture_day_3_somatic_germline_variant_callers.pdf)
-    3. Somatic and germline variant callers & Lab Introduction.
+    2. QC of DNA data and mutation calling of germline- and somatic alterations. [PDF](pdf/lecture_day_3_somatic_germline_variant_callers.pdf)
 
 ??? example "Day 4 : GSR calling & RNA-Seq"
 
-    1. Calling somatic- and germline copy-number alterations.
-    2. Calling structural variation. 
-    3. "RNA sequencing etc.Lab intro."
+    1. Calling somatic- and germline copy-number alterations. [PDF](pdf/copynumbers_lecure_jan2022.pdf)
+    2. Calling structural variation. [PDF](pdf/rnaseq_analysis.pdf)
+    3. RNA sequencing etc.Lab intro. [PDF](pdf/structural_variant_analysis.pdf)
 
 ??? example "Day 5 : Manual Curation - Clinical Trials"
 
