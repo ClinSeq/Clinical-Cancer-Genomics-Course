@@ -27,12 +27,43 @@ cd ~/workspace/svs
 # one of the most useful tools in genomics. 
 # The mapped sequencing is fed into intersectBed and all 
 # reads overlapping with chr10 or chr21 are kept. The rest are discarded.
+# This is an example where the genome build needs to be known. 
+# Are we using chr10 or just 10? How can you find out?
+# Where is this info to be found at the terminal?
+# Clue - its a very quick thing to check in the current folder.
+
+
+# Create a bed file that can be used to slice out the desired chromsomes
+
+#Create an empty file and then add tab.delimited lines
+echo -ne "" > chr.bed
+echo -e "10\t1\t135534747" >> chr.bed
+echo -e "21\t1\t48129895" >> chr.bed
+
+#check the file
+cat chr.bed
+
+#OBS - the commands below will be using nohup which
+# means that the commands will be sent and running
+# in the backgrond. You should immediately get the 
+# prompt back after running nohup
+
 # This takes a couple of minutes
 BAM=./bams/RB-P-ResBio12-CFDNA-sample12-KH-C3-nodups.bam
 nohup intersectBed -a $BAM -b chr.bed > T_mini.bam  2> nohup_Tmini.log &
 
 BAM2=./bams/PB-P-HD2-N-1811-KH-C3-nodups.bam
 nohup intersectBed -a $BAM2 -b chr.bed > N_mini.bam 2> nohup_Nmini.log &
+
+#If you want to check what is running in the background type
+# "htop" and you will see an overview of the processes running
+# and the CPU load of your AWS instance.
+# Quit "htop" by pressing "q".
+
+#After the chr selection has been performed, check which chromosomes that re in the mini-bam file
+samtools view N_mini.bam | cut -f3 | sort | uniq -c
+samtools view T_mini.bam | cut -f3 | sort | uniq -c
+
 
 #Index the bam files
 samtools index T_mini.bam
@@ -84,9 +115,9 @@ less -SN VCF_NEW_FILTERED.vcf
 Now we will filter with some basic filters to remove false positive variants
 ```bash
 # Download the output to your computer
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-54-204-196-95.compute-1.amazonaws.com:~/workspace/svs/*.bam .
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-54-204-196-95.compute-1.amazonaws.com:~/workspace/svs/*.bai .
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-54-204-196-95.compute-1.amazonaws.com:~/workspace/svs/VCF_NEW_FILTERED.vcf .
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/svs/*.bam .
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/svs/*.bai .
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/svs/VCF_NEW_FILTERED.vcf .
 
 #Now we will download a couple of files with data supporting the variants from an internally developed tool for identifying structural rearrangements
 wget https://course-5534.s3.amazonaws.com/svs/evidence_svs.sort.bam

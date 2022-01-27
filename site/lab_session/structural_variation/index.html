@@ -752,12 +752,43 @@
 <span class="c1"># one of the most useful tools in genomics. </span>
 <span class="c1"># The mapped sequencing is fed into intersectBed and all </span>
 <span class="c1"># reads overlapping with chr10 or chr21 are kept. The rest are discarded.</span>
+<span class="c1"># This is an example where the genome build needs to be known. </span>
+<span class="c1"># Are we using chr10 or just 10? How can you find out?</span>
+<span class="c1"># Where is this info to be found at the terminal?</span>
+<span class="c1"># Clue - its a very quick thing to check in the current folder.</span>
+
+
+<span class="c1"># Create a bed file that can be used to slice out the desired chromsomes</span>
+
+<span class="c1">#Create an empty file and then add tab.delimited lines</span>
+<span class="nb">echo</span> -ne <span class="s2">&quot;&quot;</span> &gt; chr.bed
+<span class="nb">echo</span> -e <span class="s2">&quot;10\t1\t135534747&quot;</span> &gt;&gt; chr.bed
+<span class="nb">echo</span> -e <span class="s2">&quot;21\t1\t48129895&quot;</span> &gt;&gt; chr.bed
+
+<span class="c1">#check the file</span>
+cat chr.bed
+
+<span class="c1">#OBS - the commands below will be using nohup which</span>
+<span class="c1"># means that the commands will be sent and running</span>
+<span class="c1"># in the backgrond. You should immediately get the </span>
+<span class="c1"># prompt back after running nohup</span>
+
 <span class="c1"># This takes a couple of minutes</span>
 <span class="nv">BAM</span><span class="o">=</span>./bams/RB-P-ResBio12-CFDNA-sample12-KH-C3-nodups.bam
 nohup intersectBed -a <span class="nv">$BAM</span> -b chr.bed &gt; T_mini.bam  <span class="m">2</span>&gt; nohup_Tmini.log <span class="p">&amp;</span>
 
 <span class="nv">BAM2</span><span class="o">=</span>./bams/PB-P-HD2-N-1811-KH-C3-nodups.bam
 nohup intersectBed -a <span class="nv">$BAM2</span> -b chr.bed &gt; N_mini.bam <span class="m">2</span>&gt; nohup_Nmini.log <span class="p">&amp;</span>
+
+<span class="c1">#If you want to check what is running in the background type</span>
+<span class="c1"># &quot;htop&quot; and you will see an overview of the processes running</span>
+<span class="c1"># and the CPU load of your AWS instance.</span>
+<span class="c1"># Quit &quot;htop&quot; by pressing &quot;q&quot;.</span>
+
+<span class="c1">#After the chr selection has been performed, check which chromosomes that re in the mini-bam file</span>
+samtools view N_mini.bam <span class="p">|</span> cut -f3 <span class="p">|</span> sort <span class="p">|</span> uniq -c
+samtools view T_mini.bam <span class="p">|</span> cut -f3 <span class="p">|</span> sort <span class="p">|</span> uniq -c
+
 
 <span class="c1">#Index the bam files</span>
 samtools index T_mini.bam
@@ -802,9 +833,9 @@ less -SN VCF_NEW_FILTERED.vcf
 <h2 id="download-and-view-the-structural-variants">Download and view the structural variants<a class="headerlink" href="#download-and-view-the-structural-variants" title="Permanent link">&para;</a></h2>
 <p>Now we will filter with some basic filters to remove false positive variants
 <div class="highlight"><pre><span></span><code><span class="c1"># Download the output to your computer</span>
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-54-204-196-95.compute-1.amazonaws.com:~/workspace/svs/*.bam .
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-54-204-196-95.compute-1.amazonaws.com:~/workspace/svs/*.bai .
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-54-204-196-95.compute-1.amazonaws.com:~/workspace/svs/VCF_NEW_FILTERED.vcf .
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/svs/*.bam .
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/svs/*.bai .
+scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/svs/VCF_NEW_FILTERED.vcf .
 
 <span class="c1">#Now we will download a couple of files with data supporting the variants from an internally developed tool for identifying structural rearrangements</span>
 wget https://course-5534.s3.amazonaws.com/svs/evidence_svs.sort.bam

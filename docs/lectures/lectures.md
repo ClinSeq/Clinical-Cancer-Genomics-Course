@@ -19,8 +19,8 @@
 ??? example "Day 4 : GSR calling & RNA-Seq"
 
     1. Calling somatic- and germline copy-number alterations. [PDF](pdf/copynumbers_lecure_jan2022.pdf)
-    2. Calling structural variation. [PDF](pdf/rnaseq_analysis.pdf)
-    3. RNA sequencing etc.Lab intro. [PDF](pdf/structural_variant_analysis.pdf)
+    2. Calling structural variation. [PDF](pdf/structural_variant_analysis.pdf)
+    3. RNA sequencing etc.Lab intro. [PDF](pdf/rnaseq_analysis.pdf)
 
 ??? example "Day 5 : Manual Curation - Clinical Trials"
 

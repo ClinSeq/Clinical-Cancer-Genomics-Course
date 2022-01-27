@@ -818,13 +818,15 @@
 
 <h1 id="analysis-of-copy-number-variation">Analysis of copy number variation<a class="headerlink" href="#analysis-of-copy-number-variation" title="Permanent link">&para;</a></h1>
 <h3 id="copy-number-analysis-tools">Copy number analysis tools<a class="headerlink" href="#copy-number-analysis-tools" title="Permanent link">&para;</a></h3>
-<p>There are plenty of tools available for copy number analysis today, and you will likely be able to find one for free that suits your particular application. Although tailored for different types of sequence data, general processing steps of all copy number analysis tools include:
-1. Quantification of sequence read depth throughout the reference genome as a measure of DNA abundance in the sample
-1. Removal of sample-specific systematic noise using features such as GC content and mappability
-1. Removal of assay-specific systematic noise using normal (non-cancer) reference samples
-1. Segmentation - partitioning of the reference genome so that each segment can be assigned one copy number
-1. Copy number calling, assigning each segment some estimate of the number of copies per cell
-1. Combine normalized coverage with SNP allele frequencies to support copy number estimates</p>
+<p>There are plenty of tools available for copy number analysis today, and you will likely be able to find one for free that suits your particular application. Although tailored for different types of sequence data, general processing steps of all copy number analysis tools include:</p>
+<ol>
+<li>Quantification of sequence read depth throughout the reference genome as a measure of DNA abundance in the sample</li>
+<li>Removal of sample-specific systematic noise using features such as GC content and mappability</li>
+<li>Removal of assay-specific systematic noise using normal (non-cancer) reference samples</li>
+<li>Segmentation - partitioning of the reference genome so that each segment can be assigned one copy number</li>
+<li>Copy number calling, assigning each segment some estimate of the number of copies per cell</li>
+<li>Combine normalized coverage with SNP allele frequencies to support copy number estimates</li>
+</ol>
 <p>In this exercise we will perform the above steps using R, and a BAM file of aligned reads and a VCF file of SNPs as input.</p>
 <h3 id="download-data-and-prepare-r">Download data and prepare R<a class="headerlink" href="#download-data-and-prepare-r" title="Permanent link">&para;</a></h3>
 <p>The data used in this exercise is available for download here: <a href="https://course-cg-5534.s3.amazonaws.com/cnvs/copy_number_files.tar.bz2">copy_number_files.tar.bz2</a></p>

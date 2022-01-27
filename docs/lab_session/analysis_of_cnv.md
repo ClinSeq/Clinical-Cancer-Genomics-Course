@@ -2,12 +2,13 @@
 
 ### Copy number analysis tools
 There are plenty of tools available for copy number analysis today, and you will likely be able to find one for free that suits your particular application. Although tailored for different types of sequence data, general processing steps of all copy number analysis tools include:
+
 1. Quantification of sequence read depth throughout the reference genome as a measure of DNA abundance in the sample
-1. Removal of sample-specific systematic noise using features such as GC content and mappability
-1. Removal of assay-specific systematic noise using normal (non-cancer) reference samples
-1. Segmentation - partitioning of the reference genome so that each segment can be assigned one copy number
-1. Copy number calling, assigning each segment some estimate of the number of copies per cell
-1. Combine normalized coverage with SNP allele frequencies to support copy number estimates
+2. Removal of sample-specific systematic noise using features such as GC content and mappability
+3. Removal of assay-specific systematic noise using normal (non-cancer) reference samples
+4. Segmentation - partitioning of the reference genome so that each segment can be assigned one copy number
+5. Copy number calling, assigning each segment some estimate of the number of copies per cell
+6. Combine normalized coverage with SNP allele frequencies to support copy number estimates
 
 In this exercise we will perform the above steps using R, and a BAM file of aligned reads and a VCF file of SNPs as input.
 
