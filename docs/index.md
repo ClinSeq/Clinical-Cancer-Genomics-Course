@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Welcome to Clinical Cancer Genomics Course
 
 <p class="head-p1">This course aims to provide an introduction to cancer genomics and to support to obtain practical knowledge regarding how to apply state of the art methodology to interrogate the cancer genome in a routine clinical setting or a clinical trial setting.
@@ -71,6 +76,6 @@ Recommended reading before the course:
 
 ## Additional Information 
 
-:fontawesome-regular-calendar-alt: <span class="add-info">2022-01-24 to 2022-01-28</span></br>
+:fontawesome-regular-calendar: <span class="add-info">2023-04-24 to 2023-04-28</span></br>
 :fontawesome-regular-clock: <span class="add-info">Monday - Friday ( 09:00 - 17:00 ) </span></br>
 :fontawesome-regular-envelope: <span class="add-info"> johan.lindberg@ki.se</span>

@@ -4,7 +4,7 @@
 * Programme -	Tumörbiologi och onkologi (FoTO)
 * Language	- English
 * Credits -	1.5
-* Date -	2022-01-24 -- 2022-01-28
+* Date -	2023-04-24 -- 2023-04-28
 * Responsible KI department - 	Institutionen för medicinsk epidemiologi och biostatistik
 * Specific entry requirements -	Doktorander eller disputerade
 

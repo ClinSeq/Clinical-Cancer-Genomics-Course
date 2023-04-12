@@ -1,50 +1,58 @@
+# Document title
+
 site_name: Clinical Cancer Genomics Course
+site_description: Project documentation with Markdown.
 theme:
   name: material
   language: en
   direction: ltr
 
-  logo: assets/img/logo.svg
+  logo: assets/img/KI_digital_logotyp_negativ_RGB.svg
   favicon: assets/img/favicon.ico
   icon:
     admonition:
-      note: fontawesome/solid/sticky-note
+      note: fontawesome/solid/note-sticky
       abstract: fontawesome/solid/book
-      info: fontawesome/solid/info-circle
+      info: fontawesome/solid/circle-info
       tip: fontawesome/solid/bullhorn
       success: fontawesome/solid/check
-      question: fontawesome/solid/question-circle
-      warning: fontawesome/solid/exclamation-triangle
+      question: fontawesome/solid/circle-question
+      warning: fontawesome/solid/triangle-exclamation
       failure: fontawesome/solid/bomb
       danger: fontawesome/solid/skull
       bug: fontawesome/solid/robot
       example: fontawesome/solid/flask
       quote: fontawesome/solid/quote-left
   features:
-    - content.code.annotate
-    # - content.tabs.link
-    # - header.autohide
+    # - navigation.path
+    - navigation.tabs
+    - navigation.tabs.sticky
     # - navigation.expand
-    #   - navigation.indexes
+    # - navigation.indexes
     # - navigation.instant
-    - navigation.sections
-    #- navigation.tabs
-    # - navigation.tabs.sticky
+    # - navigation.sections
     - navigation.top
-    - navigation.tracking
+    # - navigation.tracking
+    # - navigation.footer
+    # - header.autohide
+    - content.code.annotate
+    - content.tabs.link
     - search.highlight
     - search.share
     - search.suggest
     # - toc.integrate
+    # - toc.follow
+
 
   palette:
     scheme: default
-    
-  font:
-    text: Roboto
-    code: Roboto Mono
 
-copyright: Copyright &copy; 2021, Johan Lindberg et. al., MEB, Karolinska Institutet, All rights reserved.
+  font: false    
+  # font:
+  #   text: Roboto
+  #   code: Roboto Mono
+
+copyright: Copyright &copy; 2023, Johan Lindberg et. al., MEB, Karolinska Institutet, All rights reserved.
 
 extra:
   generator: false
@@ -62,6 +70,11 @@ markdown_extensions:
   - footnotes
   - meta
   - md_in_html
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
   - tables
   - toc:
       permalink: true
@@ -111,6 +124,7 @@ nav:
         - Workspace - AWS : lab_session/aws_env.md
         - R for Bioinformatics: lab_session/R_for_bioinformatics.md
         - Command Line Usage in Real Life: lab_session/real_life_example_cli.md
+        - ggplot tutorial: lab_session/real_life_example_cli.md
       - Day 2:
         - Human Genome: lab_session/human_genome.md
         - Annotation: lab_session/annotation_files.md

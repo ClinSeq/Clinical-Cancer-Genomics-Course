@@ -1,82 +1,131 @@
-html body {
-  font-family: 'Roboto Slab', sans-serif;
-  font-size: 10px;
-  margin: 0;
+:root {
+  --md-primary-fg-color:        #4051B5;
+  --md-primary-fg-color--light: #b7c1ec;
+  --md-primary-fg-color--dark:  #031190;
 }
 
+html body {
+  /* font-family: Georgia, serif; */
+  font-family: 'Roboto Serif', serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
 
-/* :root {
-  --md-primary-fg-color:        #EE0F0F;
-  --md-primary-fg-color--light: #ECB7B7;
-  --md-primary-fg-color--dark:  #90030C;
-} */
 
 .md-grid {
-  max-width: 1440px; /* 
- */
+  max-width: 1440px; 
 }
 
+.md-typeset .admonition,
+.md-typeset details {
+  border-width: 0;
+  border-left-width: 4px;
+}
+
+/* .md-typeset .admonition.abstract,
+.md-typeset details.abstract {
+  border-color: #17A2B8;
+}
+.md-typeset .abstract > .admonition-title,
+.md-typeset .abstract > summary {
+  background-color: rgba(41, 217, 244, 0.1);
+}
+.md-typeset .abstract > .admonition-title::before,
+.md-typeset .abstract > summary::before {
+  background-color: #17A2B8;
+} */
+
 .md-typeset h1{
-  font-size: x-large;
+  font-size:1rem;
   text-transform: uppercase;
   text-align: center;
+  font-weight: 500;
 }
 
 .md-typeset h2{
-  font-size: x-large;
+  font-size: 20px;
   text-transform: uppercase;
 }
 
 p {
-  font-size: medium;
+  font-size: 18px;
 }
 
 ul li, ol li{
-  font-size: 14px;
+  font-size: 16px;
 }
 
+/* .md-header__button.md-logo :is(img, svg) {
+  width: 60px;
+  height: auto;
+} */
+
 .md-header__button.md-logo :is(img, svg) {
-  width: 35px;
-  height: 50px;
+  width: auto;
+  height: 60px;
 }
 
 .head-p1, .head-p2 {
   text-align: justify;
-  font-size: medium;
+  font-size: 18px;
 }
 
 #detailed-syllabus, #learning-outcomes,  #literature-and-other-teaching-material, #contents-of-the-course, #additional-information {
   color: black;
   font-weight: bold;
   text-transform: uppercase;
-  font-size: large;
+  font-size: 20px;
 }
 
 .add-info {
-  font-size: small;
+  font-size: 15px;
   padding: 0px 10px;
+}
+
+
+.md-typeset ol li, .md-typeset ul li{
+  font-size: 16px;
+}
+
+.md-typeset table{
+  width: 100%;
 }
 
 .md-typeset table:not([class]) :is(th):not([align]) {
   text-align: center;
+  text-transform: uppercase;
 }
 
 .md-typeset table:not([class]) :is(td):not([align]) {
-  text-align:left;
-  font-size: 14px;
+  font-size: 16px;
+  text-align: center;
 }
 
 .md-typeset table:not([class]) :is(ul,ol):not([hidden]) {
-  padding-left: 5px;
-  font-size: small;
+  /* padding-left: 5px; */
+  font-size: 16px;
 }
+
+/* .md-typeset table:not([class]) td:not([align]), .md-typeset table:not([class]) th:not([align]){
+  text-align: ;
+} */
+
+.md-typeset table:not([class]) :is(td).td-align-left{
+  text-align: left;
+}
+
+.md-typeset table:not([class]) :is(td).time{
+  width: 18%;
+}
+
 
 #transcriptome-reference-files {
   text-transform: uppercase;
-  font-size: large;
+  font-size: 18px;
 }
 
 .md-nav__list li{
-  font-size: small;
+  font-size: 16px;
   text-align: left;
 }

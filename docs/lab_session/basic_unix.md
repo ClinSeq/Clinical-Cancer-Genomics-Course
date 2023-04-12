@@ -5,12 +5,12 @@
 1. Directory Structure
 1. Syntax of a Command
 1. Options of a Command
-1. Command Line Basics (ls, pwd, Ctrl-C, man, alias, ls -lthra)
+1. Command Line Basics (ls, pwd, ++ctrl++ + C, man, alias, ls -lthra)
 1. Getting Around (cd)
 1. Absolute and Relative Paths
 1. Tab Completion
 1. History Repeats Itself (history, head, tail, )
-1. Editing Yourself (Ctrl-A, Ctrl-E, Ctrl-K, Ctrl-W)
+1. Editing Yourself ( ++ctrl++ + A, ++ctrl++ +E, ++ctrl++ +K, ++ctrl++ +W )
 1. Create and Destroy (echo, cat, rm, rmdir)
 1. Transferring Files (scp)
 1. Piping and Redirection (|, >, », cut, sort, grep)
@@ -146,7 +146,7 @@ list files somewhere else, like /tmp/
 ls /tmp
 ```
 > #### TIP!
-> * In unix one of the first things that’s good to know is how to escape once you’ve started something you don’t want. Use Ctrl-c (shows as ‘^C’ in the terminal) to exit (kill) a command. In some cases, a different key sequence is required (Ctrl-d). Note that anything including and after a “#” symbol is ignored, i.e. a comment. So in all the commands below, you do not have to type anything including and past a “#”.
+> * In unix one of the first things that’s good to know is how to escape once you’ve started something you don’t want. Use ++ctrl++ + c (shows as ‘^C’ in the terminal) to exit (kill) a command. In some cases, a different key sequence is required ( ++ctrl++ + d ). Note that anything including and after a “#” symbol is ignored, i.e. a comment. So in all the commands below, you do not have to type anything including and past a “#”.
 
 
 ### Options
@@ -157,7 +157,7 @@ Each command can act as a basic tool, or you can add ‘options’ or ‘flags�
 ls -R
 ```
 
-Lists directories and files recursively. This will be a very long output, so use Ctrl-C to break out of it. Sometimes you have to press Ctrl-C many times to get the terminal to recognize it. In order to know which options do what, you can use the manual pages. To look up a command in the manual pages type “man” and then the command name. So to look up the options for “ls”, type:
+Lists directories and files recursively. This will be a very long output, so use ++ctrl++ + C to break out of it. Sometimes you have to press ++ctrl++ + C many times to get the terminal to recognize it. In order to know which options do what, you can use the manual pages. To look up a command in the manual pages type “man” and then the command name. So to look up the options for “ls”, type:
 
 ```bash
 man ls

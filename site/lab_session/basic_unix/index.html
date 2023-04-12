@@ -8,8 +8,14 @@
       
       
       
+      
+        <link rel="prev" href="../../aws/aws_ec2_instances/">
+      
+      
+        <link rel="next" href="../basics_awk/">
+      
       <link rel="icon" href="../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.4">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
     
     
       
@@ -17,29 +23,67 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.bb3983ee.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ded33207.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
-        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h224V368c0-26.5 21.5-48 48-48h112V96c0-35.3-28.7-64-64-64H64zm384 320H336c-8.8 0-16 7.2-16 16v112l32-32 64-64 32-32z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M96 0C43 0 0 43 0 96v320c0 53 43 96 96 96h320c17.7 0 32-14.3 32-32s-14.3-32-32-32v-64c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H96zm0 384h256v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm-40-176h24v-64h-24c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-80c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M480 32c0-12.9-7.8-24.6-19.8-29.6S434.5.2 425.3 9.3L381.7 53c-48 48-113.1 75-181 75H64c-35.3 0-64 28.7-64 64v96c0 35.3 28.7 64 64 64v128c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V352h8.7c67.9 0 133 27 181 75l43.6 43.6c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V300.4c18.6-8.8 32-32.5 32-60.4s-13.4-51.6-32-60.4V32zm-64 76.7v262.6C357.2 317.8 280.5 288 200.7 288H192v-96h8.7c79.8 0 156.5-29.8 215.3-83.3z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512zm-86.2-346.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1 0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6-13.3 0-24-10.7-24-24v-13.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1 0-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1-64 0z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7.2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0-64 0 32 32 0 1 0 64 0z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.1 52.4 442.6 6.5c-1.9-3.9-6.1-6.5-10.5-6.5s-8.5 2.6-10.4 6.5l-16.5 45.9-46 16.8c-4.3 1.6-7.3 5.9-7.2 10.4 0 4.5 3 8.7 7.2 10.2l45.7 16.8 16.8 45.8c1.5 4.4 5.8 7.5 10.4 7.5s8.9-3.1 10.4-7.5l16.5-45.8 45.7-16.8c4.2-1.5 7.2-5.7 7.2-10.2 0-4.6-3-8.9-7.2-10.4l-45.6-16.8zm-132.4 53c-12.5-12.5-32.8-12.5-45.3 0l-2.9 2.9c-22-8-45.8-12.3-70.5-12.3C93.1 96 0 189.1 0 304s93.1 208 208 208 208-93.1 208-208c0-24.7-4.3-48.5-12.2-70.5l2.9-2.9c12.5-12.5 12.5-32.8 0-45.3l-80-80zM200 192c-57.4 0-104 46.6-104 104v8c0 8.8-7.2 16-16 16s-16-7.2-16-16v-8c0-75.1 60.9-136 136-136h8c8.8 0 16 7.2 16 16s-7.2 16-16 16h-8z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 398.9c58.5-41.1 96-104.1 96-174.9C512 100.3 397.4 0 256 0S0 100.3 0 224c0 70.7 37.5 133.8 96 174.9V464c0 26.5 21.5 48 48 48h48v-48c0-8.8 7.2-16 16-16s16 7.2 16 16v48h64v-48c0-8.8 7.2-16 16-16s16 7.2 16 16v48h48c26.5 0 48-21.5 48-48v-65.1zM96 256a64 64 0 1 1 128 0 64 64 0 1 1-128 0zm256-64a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M320 0c17.7 0 32 14.3 32 32v64h120c39.8 0 72 32.2 72 72v272c0 39.8-32.2 72-72 72H168c-39.8 0-72-32.2-72-72V168c0-39.8 32.2-72 72-72h120V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16h-32zM264 256a40 40 0 1 0-80 0 40 40 0 1 0 80 0zm152 40a40 40 0 1 0 0-80 40 40 0 1 0 0 80zM48 224h16v192H48c-26.5 0-48-21.5-48-48v-96c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48h-16V224h16z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M288 0H128c-17.7 0-32 14.3-32 32s14.3 32 32 32v132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6 0 480.9 31.1 512 69.4 512h309.2c38.3 0 69.4-31.1 69.4-69.4 0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7 0 32-14.3 32-32S337.7 0 320 0h-32zm-96 196.8V64h64v132.8c0 23.7 6.6 46.9 19 67.1l34.5 56.1h-171l34.5-56.1c12.4-20.2 19-43.4 19-67.1z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64h-64c-35.3 0-64-28.7-64-64V216z"/></svg>');}</style>
+
+
     
     
     
-      
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
       <link rel="stylesheet" href="../../assets/css/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
+    
     
     
   </head>
@@ -72,15 +116,17 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Clinical Cancer Genomics Course" class="md-header__button md-logo" aria-label="Clinical Cancer Genomics Course" data-md-component="logo">
       
-  <img src="../../assets/img/logo.svg" alt="logo">
+  <img src="../../assets/img/KI_digital_logotyp_negativ_RGB.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -102,7 +148,7 @@
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -110,17 +156,17 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg>
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
           </a>
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
         </button>
       </nav>
       
@@ -133,7 +179,7 @@
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -143,13 +189,95 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Course Details
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../schedule/" class="md-tabs__link">
+      Schedule
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../lectures/lectures/" class="md-tabs__link">
+      Lectures
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../aws/aws_ec2_instances/" class="md-tabs__link">
+      AWS Instances Login
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Lab Session
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -162,12 +290,14 @@
                   <div class="md-sidebar__inner">
                     
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Clinical Cancer Genomics Course" class="md-nav__button md-logo" aria-label="Clinical Cancer Genomics Course" data-md-component="logo">
       
-  <img src="../../assets/img/logo.svg" alt="logo">
+  <img src="../../assets/img/KI_digital_logotyp_negativ_RGB.svg" alt="logo">
 
     </a>
     Clinical Cancer Genomics Course
@@ -245,22 +375,33 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-        <label class="md-nav__link" for="__nav_5">
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
           Lab Session
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Lab Session" data-md-level="1">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Lab Session
@@ -278,17 +419,32 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
       
       
-        <label class="md-nav__link" for="__nav_5_1">
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
           Day 1
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Day 1" data-md-level="2">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_5_1">
           <span class="md-nav__icon md-icon"></span>
           Day 1
@@ -304,7 +460,7 @@
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
@@ -468,6 +624,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real_life_example_cli/" class="md-nav__link">
+        ggplot tutorial
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -484,17 +654,28 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
       
       
-        <label class="md-nav__link" for="__nav_5_2">
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
           Day 2
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Day 2" data-md-level="2">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_5_2">
           <span class="md-nav__icon md-icon"></span>
           Day 2
@@ -573,17 +754,22 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
       
       
-        <label class="md-nav__link" for="__nav_5_3">
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
           Day 3
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Day 3" data-md-level="2">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_5_3">
           <span class="md-nav__icon md-icon"></span>
           Day 3
@@ -620,17 +806,26 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
       
       
-        <label class="md-nav__link" for="__nav_5_4">
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
           Day 4
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Day 4" data-md-level="2">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_5_4">
           <span class="md-nav__icon md-icon"></span>
           Day 4
@@ -695,17 +890,24 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" >
       
       
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
       
       
-        <label class="md-nav__link" for="__nav_5_5">
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
           Day 5
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Day 5" data-md-level="2">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_5_5">
           <span class="md-nav__icon md-icon"></span>
           Day 5
@@ -856,10 +1058,12 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
+                  
+
 
 <h1 id="unix-for-bioinformatics">Unix for Bioinformatics<a class="headerlink" href="#unix-for-bioinformatics" title="Permanent link">&para;</a></h1>
 <h2 id="outline">Outline:<a class="headerlink" href="#outline" title="Permanent link">&para;</a></h2>
@@ -868,12 +1072,12 @@
 <li>Directory Structure</li>
 <li>Syntax of a Command</li>
 <li>Options of a Command</li>
-<li>Command Line Basics (ls, pwd, Ctrl-C, man, alias, ls -lthra)</li>
+<li>Command Line Basics (ls, pwd, <span class="keys"><kbd class="key-control">Ctrl</kbd></span> + C, man, alias, ls -lthra)</li>
 <li>Getting Around (cd)</li>
 <li>Absolute and Relative Paths</li>
 <li>Tab Completion</li>
 <li>History Repeats Itself (history, head, tail, )</li>
-<li>Editing Yourself (Ctrl-A, Ctrl-E, Ctrl-K, Ctrl-W)</li>
+<li>Editing Yourself ( <span class="keys"><kbd class="key-control">Ctrl</kbd></span> + A, <span class="keys"><kbd class="key-control">Ctrl</kbd></span> +E, <span class="keys"><kbd class="key-control">Ctrl</kbd></span> +K, <span class="keys"><kbd class="key-control">Ctrl</kbd></span> +W )</li>
 <li>Create and Destroy (echo, cat, rm, rmdir)</li>
 <li>Transferring Files (scp)</li>
 <li>Piping and Redirection (|, &gt;, », cut, sort, grep)</li>
@@ -953,94 +1157,94 @@ The separator used in issuing a command is space, number of spaces does not matt
 <div class="highlight"><pre><span></span><code>ls
 </code></pre></div>
 list files somewhere else, like /tmp/</p>
-<div class="highlight"><pre><span></span><code>ls /tmp
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>/tmp
 </code></pre></div>
 <blockquote>
 <h4 id="tip">TIP!<a class="headerlink" href="#tip" title="Permanent link">&para;</a></h4>
 <ul>
-<li>In unix one of the first things that’s good to know is how to escape once you’ve started something you don’t want. Use Ctrl-c (shows as ‘^C’ in the terminal) to exit (kill) a command. In some cases, a different key sequence is required (Ctrl-d). Note that anything including and after a “#” symbol is ignored, i.e. a comment. So in all the commands below, you do not have to type anything including and past a “#”.</li>
+<li>In unix one of the first things that’s good to know is how to escape once you’ve started something you don’t want. Use <span class="keys"><kbd class="key-control">Ctrl</kbd></span> + c (shows as ‘^C’ in the terminal) to exit (kill) a command. In some cases, a different key sequence is required ( <span class="keys"><kbd class="key-control">Ctrl</kbd></span> + d ). Note that anything including and after a “#” symbol is ignored, i.e. a comment. So in all the commands below, you do not have to type anything including and past a “#”.</li>
 </ul>
 </blockquote>
 <h3 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h3>
 <p>Each command can act as a basic tool, or you can add ‘options’ or ‘flags’ that modify the default behavior of the tool. These flags come in the form of ‘-v’ … or, when it’s a more descriptive word, two dashes: ‘--verbose’ … that’s a common (but not universal) one that tells a tool that you want it to give you output with more detail. Sometimes, options require specifying amounts or strings, like ‘-o results.txt’ or ‘--output results.txt’ … or ‘-n 4’ or ‘--numCPUs 4’. Let’s try some, and see what the man page for the ‘list files’ command ‘ls’ is like.</p>
-<div class="highlight"><pre><span></span><code>ls -R
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-R
 </code></pre></div>
-<p>Lists directories and files recursively. This will be a very long output, so use Ctrl-C to break out of it. Sometimes you have to press Ctrl-C many times to get the terminal to recognize it. In order to know which options do what, you can use the manual pages. To look up a command in the manual pages type “man” and then the command name. So to look up the options for “ls”, type:</p>
-<p><div class="highlight"><pre><span></span><code>man ls
+<p>Lists directories and files recursively. This will be a very long output, so use <span class="keys"><kbd class="key-control">Ctrl</kbd></span> + C to break out of it. Sometimes you have to press <span class="keys"><kbd class="key-control">Ctrl</kbd></span> + C many times to get the terminal to recognize it. In order to know which options do what, you can use the manual pages. To look up a command in the manual pages type “man” and then the command name. So to look up the options for “ls”, type:</p>
+<p><div class="highlight"><pre><span></span><code>man<span class="w"> </span>ls
 </code></pre></div>
 Navigate this page using the up and down arrow keys, PageUp and PageDown, and then use q to quit out of the manual. In this manual page, find the following options, quit the page, and then try those commands. You could even open another terminal, log in again, and run manual commands in that terminal.</p>
-<p><div class="highlight"><pre><span></span><code>ls -l /usr/bin/ 
+<p><div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span>/usr/bin/<span class="w"> </span>
 <span class="c1">#long format, gives permission values, owner, group, size, modification time, and name</span>
 </code></pre></div>
 <img alt="" src="../image/ubutnu_02.png" /></p>
 <h3 id="exercise">Exercise:<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h3>
 <p>Feel free to see manual pages for these basic commands</p>
 <p>Commands and their  Meanings
-<div class="highlight"><pre><span></span><code>man ls  
-ls -a   
-man mkdir   
+<div class="highlight"><pre><span></span><code>man<span class="w"> </span>ls<span class="w">  </span>
+ls<span class="w"> </span>-a<span class="w">   </span>
+man<span class="w"> </span>mkdir<span class="w">   </span>
 </code></pre></div></p>
 <p>Now see the difference between these three commands
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> 
-<span class="nb">cd</span> ~ 
-<span class="nb">cd</span> ..   change to parent directory
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>
+<span class="nb">cd</span><span class="w"> </span>~<span class="w"> </span>
+<span class="nb">cd</span><span class="w"> </span>..<span class="w">   </span>change<span class="w"> </span>to<span class="w"> </span>parent<span class="w"> </span>directory
 </code></pre></div></p>
 <p>Also these commands</p>
-<p><div class="highlight"><pre><span></span><code>ls -l
-ls -a
-ls -l -a 
-ls -la
-ls -ltrha
-ls -ltrha --color
+<p><div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-l
+ls<span class="w"> </span>-a
+ls<span class="w"> </span>-l<span class="w"> </span>-a<span class="w"> </span>
+ls<span class="w"> </span>-la
+ls<span class="w"> </span>-ltrha
+ls<span class="w"> </span>-ltrha<span class="w"> </span>--color
 </code></pre></div>
 <img alt="" src="../image/ubutnu_07.png" /></p>
 <p>Quick aside: what if I want to use same options repeatedly? and be lazy? You can create a shortcut to another command using ‘alias’.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -lah&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">alias</span><span class="w"> </span><span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -lah&#39;</span>
 ll
 </code></pre></div>
 <h2 id="getting-around">Getting Around<a class="headerlink" href="#getting-around" title="Permanent link">&para;</a></h2>
 <p>The filesystem you’re working on is like the branching root system of a tree. The top level, right at the root of the tree, is called the ‘root’ directory, specified by ‘/’ … which is the divider for directory addresses, or ‘paths’. </p>
 <p>Now let's see a little about the commands you checked in the exercise above. </p>
 <p>We move around using the ‘change directory’ command, ‘cd’. The command pwd return the present working directory.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span>  <span class="c1"># no effect? that&#39;s because by itself it sends you home (to ~)</span>
-<span class="nb">cd</span> /  <span class="c1"># go to root of tree&#39;s root system</span>
-<span class="nb">cd</span> home  <span class="c1"># go to where everyone&#39;s homes are</span>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w">  </span><span class="c1"># no effect? that&#39;s because by itself it sends you home (to ~)</span>
+<span class="nb">cd</span><span class="w"> </span>/<span class="w">  </span><span class="c1"># go to root of tree&#39;s root system</span>
+<span class="nb">cd</span><span class="w"> </span>home<span class="w">  </span><span class="c1"># go to where everyone&#39;s homes are</span>
 <span class="nb">pwd</span>
-<span class="nb">cd</span> username  <span class="c1"># use your actual home, not &quot;username&quot;</span>
+<span class="nb">cd</span><span class="w"> </span>username<span class="w">  </span><span class="c1"># use your actual home, not &quot;username&quot;</span>
 <span class="nb">pwd</span>
-<span class="nb">cd</span> /
+<span class="nb">cd</span><span class="w"> </span>/
 <span class="nb">pwd</span>
-<span class="nb">cd</span> ~  <span class="c1"># a shortcut to home, from anywhere</span>
+<span class="nb">cd</span><span class="w"> </span>~<span class="w">  </span><span class="c1"># a shortcut to home, from anywhere</span>
 <span class="nb">pwd</span>
-<span class="nb">cd</span> .  <span class="c1"># &#39;.&#39; always means *this* directory</span>
+<span class="nb">cd</span><span class="w"> </span>.<span class="w">  </span><span class="c1"># &#39;.&#39; always means *this* directory</span>
 <span class="nb">pwd</span>
-<span class="nb">cd</span> ..  <span class="c1"># &#39;..&#39; always means *one directory up*</span>
+<span class="nb">cd</span><span class="w"> </span>..<span class="w">  </span><span class="c1"># &#39;..&#39; always means *one directory up*</span>
 <span class="nb">pwd</span>
 </code></pre></div>
 <h2 id="absolute-and-relative-paths">Absolute and Relative Paths<a class="headerlink" href="#absolute-and-relative-paths" title="Permanent link">&para;</a></h2>
 <p>You can think of paths like addresses. You can tell your friend how to go to a particular store from where they are currently (a ‘relative’ path), or from the main Interstate Highway that everyone uses (in this case, the root of the filesystem, ‘/’ … this is an ‘absolute’ path). Both are valid. But absolute paths can’t be confused, because they always start off from the same place, and are unique. Relative paths, on the other hand, could be totally wrong for your friend if you assume they’re somewhere they’re not. With this in mind, let’s try a few more:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /usr/bin  <span class="c1"># let&#39;s start in /usr/bin</span>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/usr/bin<span class="w">  </span><span class="c1"># let&#39;s start in /usr/bin</span>
 <span class="c1">#relative (start here, take one step up, then down through lib and gcc)</span>
 
-<span class="nb">cd</span> ../lib/init/
+<span class="nb">cd</span><span class="w"> </span>../lib/init/
 <span class="nb">pwd</span>
 <span class="c1">#absolute (start at root, take steps)</span>
 
-<span class="nb">cd</span> /usr/lib/init/
+<span class="nb">cd</span><span class="w"> </span>/usr/lib/init/
 <span class="nb">pwd</span>
 </code></pre></div>
 <p>Now, because it can be a real pain to type out, or remember these long paths, we need to discuss …</p>
 <h2 id="tab-completion">Tab Completion<a class="headerlink" href="#tab-completion" title="Permanent link">&para;</a></h2>
 <p>Using tab-completion is a must on the command line. A single <code>&lt;tab&gt;</code> auto-completes file or directory names when there’s only one name that could be completed correctly. If multiple files could satisfy the tab-completion, then nothing will happen after the first <code>&lt;tab&gt;</code>. In this case, press <code>&lt;tab&gt;</code> a second time to list all the possible completing names. Note that if you’ve already made a mistake that means that no files will ever be completed correctly from its current state, then <code>&lt;tab&gt;</code>’s will do nothing.</p>
 <p>touch updates the timestamp on a file, here we use it to create three empty files.</p>
-<p><div class="highlight"><pre><span></span><code><span class="nb">cd</span> <span class="c1"># go to your home directory</span>
-mkdir ~/tmp
-<span class="nb">cd</span> ~/tmp
-touch one seven september
-ls o
+<p><div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="c1"># go to your home directory</span>
+mkdir<span class="w"> </span>~/tmp
+<span class="nb">cd</span><span class="w"> </span>~/tmp
+touch<span class="w"> </span>one<span class="w"> </span>seven<span class="w"> </span>september
+ls<span class="w"> </span>o
 </code></pre></div>
 tab with no enter should complete to ‘one’, then enter</p>
-<div class="highlight"><pre><span></span><code>ls s
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>s
 </code></pre></div>
 <p>tab with no enter completes up to ‘se’ since that’s in common between seven and september. tab again and no enter, this second tab should cause listing of seven and september. type ‘v’ then tab and no enter now it’s unique to seven, and should complete to seven. enter runs ‘ls seven’ command.</p>
 <p>It cannot be overstated how useful tab completion is. You should get used to using it constantly. Watch experienced users type and they maniacally hit tab once or twice in between almost every character. You don’t have to go that far, of course, but get used to constantly getting feedback from hitting tab and you will save yourself a huge amount of typing and trying to remember weird directory and filenames.</p>
@@ -1048,316 +1252,316 @@ tab with no enter should complete to ‘one’, then enter</p>
 <h2 id="history-repeats-itself">History Repeats Itself<a class="headerlink" href="#history-repeats-itself" title="Permanent link">&para;</a></h2>
 <p>Linux remembers everything you’ve done (at least in the current shell session), which allows you to pull steps from your history, potentially modify them, and redo them. This can obviously save a lot of time and typing.</p>
 <p>The ‘head’ command views the first 10 (by default) lines of a file. The ‘tail’ commands views the last 10 (by default) lines of a file. Type ‘man head’ or ‘man tail’ to consult their manuals.</p>
-<div class="highlight"><pre><span></span><code>&lt;up arrow&gt;  <span class="c1"># last command</span>
-&lt;up&gt;  <span class="c1"># next-to-last command</span>
-&lt;down&gt;  <span class="c1"># last command, again</span>
-&lt;down&gt;  <span class="c1"># current command, empty or otherwise</span>
-<span class="nb">history</span>  <span class="c1"># usually too much for one screen, so ...</span>
-<span class="nb">history</span> <span class="p">|</span> head <span class="c1"># we discuss pipes (the vertical bar) below</span>
-<span class="nb">history</span> <span class="p">|</span> tail
-<span class="nb">history</span> <span class="p">|</span> less <span class="c1"># use &#39;q&#39; to exit less</span>
-ls -l
+<div class="highlight"><pre><span></span><code>&lt;up<span class="w"> </span>arrow&gt;<span class="w">  </span><span class="c1"># last command</span>
+&lt;up&gt;<span class="w">  </span><span class="c1"># next-to-last command</span>
+&lt;down&gt;<span class="w">  </span><span class="c1"># last command, again</span>
+&lt;down&gt;<span class="w">  </span><span class="c1"># current command, empty or otherwise</span>
+<span class="nb">history</span><span class="w">  </span><span class="c1"># usually too much for one screen, so ...</span>
+<span class="nb">history</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span><span class="c1"># we discuss pipes (the vertical bar) below</span>
+<span class="nb">history</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail
+<span class="nb">history</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span><span class="c1"># use &#39;q&#39; to exit less</span>
+ls<span class="w"> </span>-l
 <span class="nb">pwd</span>
-<span class="nb">history</span> <span class="p">|</span> tail
-!560  <span class="c1"># re-executes 560th command (yours will have different numbers; choose the one that recreates your really important result!)</span>
+<span class="nb">history</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail
+!560<span class="w">  </span><span class="c1"># re-executes 560th command (yours will have different numbers; choose the one that recreates your really important result!)</span>
 </code></pre></div>
 <h2 id="editing-yourself">Editing Yourself<a class="headerlink" href="#editing-yourself" title="Permanent link">&para;</a></h2>
 <p>Here are some more ways to make editing previous commands, or novel commands that you’re building up, easier:</p>
-<div class="highlight"><pre><span></span><code>&lt;up&gt;&lt;up&gt;  <span class="c1"># go to some previous command, just to have something to work on</span>
-&lt;ctrl-a&gt;  <span class="c1"># go to the beginning of the line</span>
-&lt;ctrl-e&gt;  <span class="c1"># go to the end of the line</span>
+<div class="highlight"><pre><span></span><code>&lt;up&gt;&lt;up&gt;<span class="w">  </span><span class="c1"># go to some previous command, just to have something to work on</span>
+&lt;ctrl-a&gt;<span class="w">  </span><span class="c1"># go to the beginning of the line</span>
+&lt;ctrl-e&gt;<span class="w">  </span><span class="c1"># go to the end of the line</span>
 <span class="c1">#now use left and right to move to a single word (surrounded by whitespace: spaces or tabs)</span>
-&lt;ctrl-k&gt;  <span class="c1"># delete from here to end of line</span>
-&lt;ctrl-w&gt;  <span class="c1"># delete from here to beginning of preceeding word</span>
-blah blah blah&lt;ctrl-w&gt;&lt;ctrl-w&gt;  <span class="c1"># leaves you with only one &#39;blah&#39;</span>
+&lt;ctrl-k&gt;<span class="w">  </span><span class="c1"># delete from here to end of line</span>
+&lt;ctrl-w&gt;<span class="w">  </span><span class="c1"># delete from here to beginning of preceeding word</span>
+blah<span class="w"> </span>blah<span class="w"> </span>blah&lt;ctrl-w&gt;&lt;ctrl-w&gt;<span class="w">  </span><span class="c1"># leaves you with only one &#39;blah&#39;</span>
 </code></pre></div>
 <p>You can also search your history from the command line:</p>
-<div class="highlight"><pre><span></span><code>&lt;ctrl-r&gt;fir  <span class="c1"># should find most recent command containing &#39;fir&#39; string: echo &#39;first&#39; &gt; test.txt</span>
-&lt;enter&gt;  <span class="c1"># to run command</span>
-&lt;ctrl-c&gt;  <span class="c1"># get out of recursive search</span>
-&lt;ctr-r&gt;  <span class="c1"># repeat &lt;ctrl-r&gt; to find successively older string matches</span>
+<div class="highlight"><pre><span></span><code>&lt;ctrl-r&gt;fir<span class="w">  </span><span class="c1"># should find most recent command containing &#39;fir&#39; string: echo &#39;first&#39; &gt; test.txt</span>
+&lt;enter&gt;<span class="w">  </span><span class="c1"># to run command</span>
+&lt;ctrl-c&gt;<span class="w">  </span><span class="c1"># get out of recursive search</span>
+&lt;ctr-r&gt;<span class="w">  </span><span class="c1"># repeat &lt;ctrl-r&gt; to find successively older string matches</span>
 </code></pre></div>
 <h2 id="create-and-destroy">Create and Destroy<a class="headerlink" href="#create-and-destroy" title="Permanent link">&para;</a></h2>
 <p>We already learned one command that will create a file, touch. Now let’s look at create and removing files and directories.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span>  <span class="c1"># home again</span>
-mkdir ~/tmp2
-<span class="nb">cd</span> ~/tmp2
-<span class="nb">echo</span> <span class="s1">&#39;Hello, world!&#39;</span> &gt; first.txt
-<span class="nb">echo</span> text <span class="k">then</span> redirect <span class="o">(</span>‘&gt;’<span class="o">)</span> to a file.
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w">  </span><span class="c1"># home again</span>
+mkdir<span class="w"> </span>~/tmp2
+<span class="nb">cd</span><span class="w"> </span>~/tmp2
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;Hello, world!&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>first.txt
+<span class="nb">echo</span><span class="w"> </span>text<span class="w"> </span><span class="k">then</span><span class="w"> </span>redirect<span class="w"> </span><span class="o">(</span>‘&gt;’<span class="o">)</span><span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>file.
 
-cat first.txt  <span class="c1"># &#39;cat&#39; means &#39;concatenate&#39;, or just spit the contents of the file to the screen</span>
+cat<span class="w"> </span>first.txt<span class="w">  </span><span class="c1"># &#39;cat&#39; means &#39;concatenate&#39;, or just spit the contents of the file to the screen</span>
 </code></pre></div>
 <h1 id="why-concatenate-try-this">why ‘concatenate’? try this:<a class="headerlink" href="#why-concatenate-try-this" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code>cat first.txt first.txt first.txt &gt; second.txt
-cat second.txt
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>first.txt<span class="w"> </span>first.txt<span class="w"> </span>first.txt<span class="w"> </span>&gt;<span class="w"> </span>second.txt
+cat<span class="w"> </span>second.txt
 </code></pre></div>
 <p>OK, let’s destroy what we just created:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ../
-rmdir tmp2  <span class="c1"># &#39;rmdir&#39; meands &#39;remove directory&#39;, but this shouldn&#39;t work!</span>
-rm tmp2/first.txt
-rm tmp2/second.txt  <span class="c1"># clear directory first</span>
-rmdir tmp2  <span class="c1"># should succeed now</span>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>../
+rmdir<span class="w"> </span>tmp2<span class="w">  </span><span class="c1"># &#39;rmdir&#39; meands &#39;remove directory&#39;, but this shouldn&#39;t work!</span>
+rm<span class="w"> </span>tmp2/first.txt
+rm<span class="w"> </span>tmp2/second.txt<span class="w">  </span><span class="c1"># clear directory first</span>
+rmdir<span class="w"> </span>tmp2<span class="w">  </span><span class="c1"># should succeed now</span>
 </code></pre></div>
 <p>So, ‘mkdir’ and ‘rmdir’ are used to create and destroy (empty) directories. ‘rm’ to remove files. To create a file can be as simple as using ‘echo’ and the ‘&gt;’ (redirection) character to put text into a file. Even simpler is the ‘touch’ command.</p>
-<p><div class="highlight"><pre><span></span><code>mkdir ~/cli
-<span class="nb">cd</span> ~/cli
-touch newFile
-ls -ltra  <span class="c1"># look at the time listed for the file you just created</span>
-cat newFile  <span class="c1"># it&#39;s empty!</span>
-sleep <span class="m">60</span>  <span class="c1"># go grab some coffee</span>
-touch newFile
-ls -ltra  <span class="c1"># same time?</span>
+<p><div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>~/cli
+<span class="nb">cd</span><span class="w"> </span>~/cli
+touch<span class="w"> </span>newFile
+ls<span class="w"> </span>-ltra<span class="w">  </span><span class="c1"># look at the time listed for the file you just created</span>
+cat<span class="w"> </span>newFile<span class="w">  </span><span class="c1"># it&#39;s empty!</span>
+sleep<span class="w"> </span><span class="m">60</span><span class="w">  </span><span class="c1"># go grab some coffee</span>
+touch<span class="w"> </span>newFile
+ls<span class="w"> </span>-ltra<span class="w">  </span><span class="c1"># same time?</span>
 </code></pre></div>
 So ‘touch’ creates empty files, or updates the ‘last modified’ time. Note that the options on the ‘ls’ command you used here give you a Long listing, of All files, in Reverse Time order (l, a, r, t).</p>
 <h2 id="forced-removal-caution">Forced Removal (CAUTION!!!)<a class="headerlink" href="#forced-removal-caution" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>When you’re on the command line, there’s no ‘Recycle Bin’. Since we’ve expanded a whole directory tree, we need to be able to quickly remove a directory without clearing each subdirectory and using ‘rmdir’.
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span>
-mkdir -p rmtest/dir1/dir2 <span class="c1"># the -p option creates all the directories at once</span>
-rmdir rmtest <span class="c1"># gives an error since rmdir can only remove directories that are empty</span>
-rm -rf rmtest <span class="c1"># will remove the directory and EVERYTHING in it</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>rmtest/dir1/dir2<span class="w"> </span><span class="c1"># the -p option creates all the directories at once</span>
+rmdir<span class="w"> </span>rmtest<span class="w"> </span><span class="c1"># gives an error since rmdir can only remove directories that are empty</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>rmtest<span class="w"> </span><span class="c1"># will remove the directory and EVERYTHING in it</span>
 </code></pre></div></p>
 <p>Here -r = recursively remove sub-directories, -f means force. <strong>Obviously, be careful with ‘rm -rf’</strong>, <strong>there is no going back</strong>, if you delete something with rm, rmdir its gone! <strong>There is no Recycle Bin on the Command-Line!</strong></p>
 </blockquote>
 <h2 id="piping-and-redirection">Piping and Redirection<a class="headerlink" href="#piping-and-redirection" title="Permanent link">&para;</a></h2>
 <p>Pipes (‘|’) allow commands to hand output to other commands, and redirection characters (‘&gt;’ and ‘»’) allow you to put output into files.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;first&#39;</span> &gt; test.txt
-cat test.txt <span class="c1"># outputs the contents of the file to the terminal</span>
-<span class="nb">echo</span> <span class="s1">&#39;second&#39;</span> &gt; test.txt
-cat test.txt
-<span class="nb">echo</span> <span class="s1">&#39;third&#39;</span> &gt;&gt; test.txt
-cat test.txt
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;first&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>test.txt
+cat<span class="w"> </span>test.txt<span class="w"> </span><span class="c1"># outputs the contents of the file to the terminal</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;second&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>test.txt
+cat<span class="w"> </span>test.txt
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;third&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>test.txt
+cat<span class="w"> </span>test.txt
 </code></pre></div>
 <p>The ‘&gt;’ character redirects output of a command that would normally go to the screen instead into a specified file. ‘&gt;’ overwrites the file, ‘»’ appends to the file.</p>
 <p>The ‘cut’ command pieces of lines from a file line by line. This command cuts characters 1 to 3, from every line, from file ‘test.txt’</p>
-<p><div class="highlight"><pre><span></span><code>cut -c <span class="m">1</span>-3 test.txt
+<p><div class="highlight"><pre><span></span><code>cut<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span>-3<span class="w"> </span>test.txt
 </code></pre></div>
 same thing, piping output of one command into input of another</p>
-<p><div class="highlight"><pre><span></span><code>cat test.txt <span class="p">|</span> cut -c <span class="m">1</span>-3  
+<p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>test.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span>-3<span class="w">  </span>
 </code></pre></div>
 This pipes (i.e., sends the output of) cat to cut to sort (-r means reverse order sort), and then grep searches for pattern (‘s’) matches (i.e. for any line where an ‘s’ appears anywhere on the line.)</p>
-<div class="highlight"><pre><span></span><code>cat test.txt <span class="p">|</span> cut -c <span class="m">1</span>-3 <span class="p">|</span> sort -r
-cat test.txt <span class="p">|</span> cut -c <span class="m">1</span>-3 <span class="p">|</span> sort -r <span class="p">|</span> grep s
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>test.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span>-3<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-r
+cat<span class="w"> </span>test.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span>-3<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-r<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>s
 </code></pre></div>
 <p>This is a great way to build up a set of operations while inspecting the output of each step in turn. We’ll do more of this in a bit.</p>
 <h2 id="compression-and-archives">Compression and Archives<a class="headerlink" href="#compression-and-archives" title="Permanent link">&para;</a></h2>
 <p>As file sizes get large, you’ll often see compressed files, or whole compressed folders. Note that any good bioinformatics software should be able to work with compressed file formats.</p>
-<p><div class="highlight"><pre><span></span><code>gzip test.txt
-cat test.txt.gz
+<p><div class="highlight"><pre><span></span><code>gzip<span class="w"> </span>test.txt
+cat<span class="w"> </span>test.txt.gz
 </code></pre></div>
 To uncompress a file
-<div class="highlight"><pre><span></span><code>gunzip -c test.txt.gz
+<div class="highlight"><pre><span></span><code>gunzip<span class="w"> </span>-c<span class="w"> </span>test.txt.gz
 </code></pre></div></p>
 <p>The ‘-c’ leaves the original file alone, but dumps expanded output to screen</p>
-<div class="highlight"><pre><span></span><code>gunzip test.txt.gz  <span class="c1"># now the file should change back to uncompressed test.txt</span>
+<div class="highlight"><pre><span></span><code>gunzip<span class="w"> </span>test.txt.gz<span class="w">  </span><span class="c1"># now the file should change back to uncompressed test.txt</span>
 </code></pre></div>
 <p>Tape archives, or .tar files, are one way to compress entire folders and all contained folders into one file. When they’re further compressed they’re called ‘tarballs’. We can use wget (web get).</p>
-<div class="highlight"><pre><span></span><code>wget -L -O PhiX_Illumina_RTA.tar.gz http://igenomes.illumina.com.s3-website-us-east-1.amazonaws.com/PhiX/Illumina/RTA/PhiX_Illumina_RTA.tar.gz
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-L<span class="w"> </span>-O<span class="w"> </span>PhiX_Illumina_RTA.tar.gz<span class="w"> </span>http://igenomes.illumina.com.s3-website-us-east-1.amazonaws.com/PhiX/Illumina/RTA/PhiX_Illumina_RTA.tar.gz
 </code></pre></div>
 <p>The .tar.gz and .tgz are commonly used extensions for compressed tar files, when gzip compression is used. The application tar is used to uncompress .tar files</p>
-<p><div class="highlight"><pre><span></span><code>tar -xzvf PhiX_Illumina_RTA.tar.gz
+<p><div class="highlight"><pre><span></span><code>tar<span class="w"> </span>-xzvf<span class="w"> </span>PhiX_Illumina_RTA.tar.gz
 </code></pre></div>
 Here -x = extract, -z = use gzip/gunzip, -v = verbose (show each file in archive), -f filename</p>
 <p>Note that, unlike Windows, linux does not depend on file extensions to determine file behavior. So you could name a tarball ‘fish.puppy’ and the extract command above should work just fine. The only thing that should be different is that tab-completion doesn’t work within the ‘tar’ command if it doesn’t see the ‘correct’ file extension.</p>
 <h2 id="bash-wildcard-characters">BASH Wildcard Characters<a class="headerlink" href="#bash-wildcard-characters" title="Permanent link">&para;</a></h2>
 <p>We can use ‘wildcard characters’ when we want to specify or operate on sets of files all at once.</p>
-<p><div class="highlight"><pre><span></span><code>ls ?hiX/Illumina
+<p><div class="highlight"><pre><span></span><code>ls<span class="w"> </span>?hiX/Illumina
 </code></pre></div>
 list files in Illumina sub-directory of any directory ending in ‘hiX’</p>
-<p><div class="highlight"><pre><span></span><code>ls PhiX/Illumina/RTA/Sequence/*/*.fa
+<p><div class="highlight"><pre><span></span><code>ls<span class="w"> </span>PhiX/Illumina/RTA/Sequence/*/*.fa
 </code></pre></div>
 list all files ending in ‘.fa’ a few directories down. So, ‘?’ fills in for zero or one character, ‘*’ fills in for zero or more characters. The ‘find’ command can be used to locate files using a similar form.</p>
-<p><div class="highlight"><pre><span></span><code>find . -name <span class="s2">&quot;*.f*&quot;</span>
-find . -name <span class="s2">&quot;*.f?&quot;</span>
+<p><div class="highlight"><pre><span></span><code>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.f*&quot;</span>
+find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.f?&quot;</span>
 </code></pre></div>
 how is this different from the previous ls commands?</p>
 <h4 id="quick-note-about-the-quotes">Quick Note About the Quote(s)<a class="headerlink" href="#quick-note-about-the-quotes" title="Permanent link">&para;</a></h4>
 <p>The quote characters “ and ‘ are different. In general, single quotes preserve the literal meaning of all characters between them. On the other hand, double quotes allow the shell to see what’s between them and make substitutions when appropriate. For example:</p>
 <p><div class="highlight"><pre><span></span><code><span class="nv">VRBL</span><span class="o">=</span>someText
-<span class="nb">echo</span> <span class="s1">&#39;$VRBL&#39;</span>
-<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$VRBL</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;$VRBL&#39;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$VRBL</span><span class="s2">&quot;</span>
 </code></pre></div>
 However, some commands try to be ‘smarter’ about this behavior, so it’s a little hard to predict what will happen in all cases. It’s safest to experiment first when planning a command that depends on quoting … list filenames first, instead of changing them, etc. Finally, the ‘backtick’ characters ` (same key - unSHIFTED - as the tilde ~) causes the shell to interpret what’s between them as a command, and return the result.</p>
 <h1 id="counts-the-number-of-lines-in-file-and-stores-result-in-the-lines-variable">counts the number of lines in file and stores result in the LINES variable<a class="headerlink" href="#counts-the-number-of-lines-in-file-and-stores-result-in-the-lines-variable" title="Permanent link">&para;</a></h1>
-<div class="highlight"><pre><span></span><code><span class="nv">LINES</span><span class="o">=</span><span class="sb">`</span>cat PhiX/Illumina/RTA/Sequence/Bowtie2Index/genome.1.bt2 <span class="p">|</span> wc -l<span class="sb">`</span> 
-<span class="nb">echo</span> <span class="nv">$LINES</span>
+<div class="highlight"><pre><span></span><code><span class="nv">LINES</span><span class="o">=</span><span class="sb">`</span>cat<span class="w"> </span>PhiX/Illumina/RTA/Sequence/Bowtie2Index/genome.1.bt2<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="sb">`</span><span class="w"> </span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$LINES</span>
 </code></pre></div>
 <h2 id="symbolic-links">Symbolic Links<a class="headerlink" href="#symbolic-links" title="Permanent link">&para;</a></h2>
 <p>Since copying or even moving large files (like sequence data) around your filesystem may be impractical, we can use links to reference ‘distant’ files without duplicating the data in the files. Symbolic links are disposable pointers that refer to other files, but behave like the referenced files in commands. I.e., they are essentially ‘Shortcuts’ (to use a Windows term) to a file or directory.</p>
 <p>The ‘ln’ command creates a link. You should, by default, always create a symbolic link using the -s option.</p>
-<div class="highlight"><pre><span></span><code>ln -s PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/genome.fa .
-ls -ltrhaF  <span class="c1"># notice the symbolic link pointing at its target</span>
-grep -c <span class="s2">&quot;&gt;&quot;</span> genome.fa
+<div class="highlight"><pre><span></span><code>ln<span class="w"> </span>-s<span class="w"> </span>PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/genome.fa<span class="w"> </span>.
+ls<span class="w"> </span>-ltrhaF<span class="w">  </span><span class="c1"># notice the symbolic link pointing at its target</span>
+grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span>genome.fa
 </code></pre></div>
 <h2 id="stdout-stderr">STDOUT &amp; STDERR<a class="headerlink" href="#stdout-stderr" title="Permanent link">&para;</a></h2>
 <p>Programs can write to two separate output streams, ‘standard out’ (STDOUT), and ‘standard error’ (STDERR). The former is generally for direct output of a program, while the latter is supposed to be used for reporting problems. I’ve seen some bioinformatics tools use STDERR to report summary statistics about the output, but this is probably bad practice. Default behavior in a lot of cases is to dump both STDOUT and STDERR to the screen, unless you specify otherwise. In order to nail down what goes where, and record it for posterity:</p>
-<p><div class="highlight"><pre><span></span><code>wc -c genome.fa <span class="m">1</span>&gt; chars.txt <span class="m">2</span>&gt; any.err
+<p><div class="highlight"><pre><span></span><code>wc<span class="w"> </span>-c<span class="w"> </span>genome.fa<span class="w"> </span><span class="m">1</span>&gt;<span class="w"> </span>chars.txt<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>any.err
 </code></pre></div>
 the 1<sup>st</sup> output, STDOUT, goes to ‘chars.txt’
 the 2<sup>nd</sup> output, STDERR, goes to ‘any.err’</p>
-<p><div class="highlight"><pre><span></span><code>cat chars.txt
+<p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>chars.txt
 </code></pre></div>
 Contains the character count of the file genome.fa</p>
-<p><div class="highlight"><pre><span></span><code>cat any.err
+<p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>any.err
 </code></pre></div>
 Empty since no errors occured.</p>
 <p>Saving STDOUT is pretty routine (you want your results, yes?), but remember that explicitly saving STDERR is important on a remote server, since you may not directly see the ‘screen’ when you’re running jobs.</p>
 <h2 id="the-sed-command">The sed command<a class="headerlink" href="#the-sed-command" title="Permanent link">&para;</a></h2>
 <p>Let’s take a look at the ‘sed’ command. NOTE: On Macs use ‘gsed’. sed (short for stream editor) is a command that allows you to manipulate character data in various ways. One useful thing it can do is substitution. Let’s download a simple file to work on:</p>
-<div class="highlight"><pre><span></span><code>wget https://course-cg-5534.s3.amazonaws.com/unix_exercise/region.bed -O region.bed
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://course-cg-5534.s3.amazonaws.com/unix_exercise/region.bed<span class="w"> </span>-O<span class="w"> </span>region.bed
 </code></pre></div>
 <p>Take a look at the file:</p>
-<p><div class="highlight"><pre><span></span><code>cat region.bed
+<p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>region.bed
 </code></pre></div>
 Now, let’s make all the uppercase “CHR”s into lowercase:</p>
-<p><div class="highlight"><pre><span></span><code>cat region.bed <span class="p">|</span> sed <span class="s1">&#39;s/CHR/chr/&#39;</span>
+<p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>region.bed<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/CHR/chr/&#39;</span>
 </code></pre></div>
 What happened? Only the first CHR changed. That is because we need to add the “g” option:</p>
-<p><div class="highlight"><pre><span></span><code>cat region.bed <span class="p">|</span> sed <span class="s1">&#39;s/CHR/chr/g&#39;</span>
+<p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>region.bed<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/CHR/chr/g&#39;</span>
 </code></pre></div>
 We can also do the the substitution without regards to case:</p>
-<p><div class="highlight"><pre><span></span><code>cat region.bed <span class="p">|</span> sed <span class="s1">&#39;s/chr/chr/gi&#39;</span>
+<p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>region.bed<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/chr/chr/gi&#39;</span>
 </code></pre></div>
 Let’s break down the argument to sed (within the single quotes)… The “s” means “substitute”, the word between the 1<sup>st</sup> and 2<sup>nd</sup> forward slashes (i.e. /) is the word the substitute for, the word between the 2<sup>nd</sup> and 3<sup>rd</sup> slashes is the word to substitute with, and finally the “gi” at the end are flags for global substitution (i.e. substituting along an entire line instead of just the first occurence on a line), and for case insenstivity (i.e. it will ignore the case of the letters when doing the substitution).</p>
 <p>Note that this doesn’t change the file itself, it is simply piping the output of the cat command to sed and outputting to the screen. If you wanted to change the file itself, you could use the “-i” option to sed:</p>
-<p><div class="highlight"><pre><span></span><code>cat region.bed
-sed -i <span class="s1">&#39;s/chr/chr/gi&#39;</span> region.bed
+<p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>region.bed
+sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/chr/chr/gi&#39;</span><span class="w"> </span>region.bed
 </code></pre></div>
 Now if you look at the file, the lines have changed.</p>
-<p><div class="highlight"><pre><span></span><code>cat region.bed
+<p><div class="highlight"><pre><span></span><code>cat<span class="w"> </span>region.bed
 </code></pre></div>
 Another useful use of sed is for capturing certain lines from a file. You can select certain lines from a file:</p>
-<p><div class="highlight"><pre><span></span><code>sed <span class="s1">&#39;4q;d&#39;</span> region.bed
+<p><div class="highlight"><pre><span></span><code>sed<span class="w"> </span><span class="s1">&#39;4q;d&#39;</span><span class="w"> </span>region.bed
 </code></pre></div>
 This will just select the 4<sup>th</sup> line from the file.</p>
 <p>You can also extract a range of lines from a file:</p>
-<p><div class="highlight"><pre><span></span><code>sed -n <span class="s1">&#39;10,20p&#39;</span> region.bed
+<p><div class="highlight"><pre><span></span><code>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;10,20p&#39;</span><span class="w"> </span>region.bed
 </code></pre></div>
 This gets the 10<sup>th</sup> through 20<sup>th</sup> lines from the file.</p>
 <p>CHALLENGE: See if you can find a way to use sed to remove all the “CHR”s from the file.</p>
 <h2 id="more-pipes">More pipes<a class="headerlink" href="#more-pipes" title="Permanent link">&para;</a></h2>
 <p>Now, let’s delve into pipes a little more. Pipes are a very powerful way to look at and manipulate complex data using a series of simple programs. Let’s look at some fastq files. Get a few small fastq files:</p>
-<p><div class="highlight"><pre><span></span><code>wget https://course-cg-5534.s3.amazonaws.com/unix_exercise/C61.subset.fq.gz -O C61.subset.fq.gz
-wget https://course-cg-5534.s3.amazonaws.com/unix_exercise/I561.subset.fq.gz -O I561.subset.fq.gz
-wget https://course-cg-5534.s3.amazonaws.com/unix_exercise/I894.subset.fq.gz -O I894.subset.fq.gz
+<p><div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://course-cg-5534.s3.amazonaws.com/unix_exercise/C61.subset.fq.gz<span class="w"> </span>-O<span class="w"> </span>C61.subset.fq.gz
+wget<span class="w"> </span>https://course-cg-5534.s3.amazonaws.com/unix_exercise/I561.subset.fq.gz<span class="w"> </span>-O<span class="w"> </span>I561.subset.fq.gz
+wget<span class="w"> </span>https://course-cg-5534.s3.amazonaws.com/unix_exercise/I894.subset.fq.gz<span class="w"> </span>-O<span class="w"> </span>I894.subset.fq.gz
 </code></pre></div>
 Since the files are gzipped files we need to use “zcat” to look at them. zcat is just like cat except for gzipped files:</p>
-<p><div class="highlight"><pre><span></span><code>zcat C61.subset.fq.gz <span class="p">|</span> head
+<p><div class="highlight"><pre><span></span><code>zcat<span class="w"> </span>C61.subset.fq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
 </code></pre></div>
 Fastq records are 4 lines per sequence, a header line, the sequence, a plus sign (which is historical), and then the quality encoding for the sequence. Notice that each header line has the barcode for that read at the end of the line. Let’s count the number of each barcode. In order to do that we need to just capture the header lines from this file. We can use “sed” to do that:</p>
-<p><div class="highlight"><pre><span></span><code>zcat C61.subset.fq.gz <span class="p">|</span> sed -n <span class="s1">&#39;1~4p&#39;</span> <span class="p">|</span> head
+<p><div class="highlight"><pre><span></span><code>zcat<span class="w"> </span>C61.subset.fq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;1~4p&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head
 </code></pre></div>
 By default sed prints every line. In this case we are giving the “-n” option to sed which will not print every line. Instead, we are giving it the argument “1~4p”, which means to print the first line, then skip 4 lines and print again, and then continue to do that.</p>
 <p>Now that we have a way to get just the headers, we need to isolate the part of the header that is the barcode. There are multiple ways to do this… we will use the cut command:</p>
-<div class="highlight"><pre><span></span><code>zcat C61.subset.fq.gz <span class="p">|</span> sed -n <span class="s1">&#39;1~4p&#39;</span> <span class="p">|</span> cut -d: -f10 <span class="p">|</span> head
+<div class="highlight"><pre><span></span><code>zcat<span class="w"> </span>C61.subset.fq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;1~4p&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f10<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
 </code></pre></div>
 <p>So we are using the “-d” option to cut with “:” as the argument to that option, meaning that we will be using the delimiter “:” to split the input. Then we use the “-f” option with argument “10”, meaning that we want the 10<sup>th</sup> field after the split. In this case, that is the barcode.</p>
 <p>Finally, as before, we need to sort the data and then use “uniq -c” to count. Then put it all together and run it on the entire dataset (This will take about a minute to run):</p>
-<div class="highlight"><pre><span></span><code>zcat C61.subset.fq.gz <span class="p">|</span> sed -n <span class="s1">&#39;1~4p&#39;</span> <span class="p">|</span> cut -d: -f10 <span class="p">|</span> sort <span class="p">|</span> uniq -c
+<div class="highlight"><pre><span></span><code>zcat<span class="w"> </span>C61.subset.fq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;1~4p&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f10<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
 </code></pre></div>
 <p>Now you have a list of how many reads were categorized into each barcode. Here is a sed tutorial for more exercises.</p>
 <p>CHALLENGE: Find the distribution of the first 5 bases of all the reads in C61_S67_L006_R1_001.fq.gz. I.e., count the number of times the first 5 bases of every read occurs across all reads.</p>
 <h2 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h2>
 <p>Loops are useful for quickly telling the shell to perform one operation after another, in series. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> i <span class="k">in</span> <span class="o">{</span><span class="m">1</span>..21<span class="o">}</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$i</span> &gt;&gt; a<span class="p">;</span> <span class="k">done</span>  <span class="c1"># put multiple lines of code on one line, each line terminated by &#39;;&#39;</span>
-cat a
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">1</span>..21<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>a<span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="w">  </span><span class="c1"># put multiple lines of code on one line, each line terminated by &#39;;&#39;</span>
+cat<span class="w"> </span>a
 </code></pre></div>
 <h1 id="1-through-21-on-separate-lines">&lt;1 through 21 on separate lines&gt;<a class="headerlink" href="#1-through-21-on-separate-lines" title="Permanent link">&para;</a></h1>
 <p>The general form is:</p>
-<p><div class="highlight"><pre><span></span><code><span class="k">for</span> name <span class="k">in</span> <span class="o">{</span>list<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
-    commands
+<p><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>name<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span>list<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>commands
 <span class="k">done</span>
 </code></pre></div>
 The list can be a sequence of numbers or letters, or a group of files specified with wildcard characters:</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> i <span class="k">in</span> <span class="o">{</span><span class="m">3</span>,2,1,liftoff<span class="o">}</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span>  <span class="c1"># needs more excitement!</span>
-<span class="k">for</span> i <span class="k">in</span> <span class="o">{</span><span class="m">3</span>,2,1,<span class="s2">&quot;liftoff!&quot;</span><span class="o">}</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span>  <span class="c1"># exclamation point will confuse the shell unless quoted</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">3</span>,2,1,liftoff<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="w">  </span><span class="c1"># needs more excitement!</span>
+<span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">3</span>,2,1,<span class="s2">&quot;liftoff!&quot;</span><span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="w">  </span><span class="c1"># exclamation point will confuse the shell unless quoted</span>
 </code></pre></div>
 <p>A “while” loop is more convenient than a “for” loop … if you don’t readily know how many iterations of the loop you want:</p>
-<div class="highlight"><pre><span></span><code><span class="k">while</span> <span class="o">{</span>condition<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
-    commands
+<div class="highlight"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="o">{</span>condition<span class="o">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>commands
 <span class="k">done</span>
 </code></pre></div>
 <p>Now, let’s do some bioinformatics-y things with loops and pipes. First, let’s write a command to get the nucleotide count of the first 10,000 reads in a file. Use zcat and sed to get only the read lines of a file, and then only take the first 10,000:</p>
-<div class="highlight"><pre><span></span><code>zcat C61.subset.fq.gz <span class="p">|</span> sed -n <span class="s1">&#39;2~4p&#39;</span> <span class="p">|</span> head -10000 <span class="p">|</span> less
+<div class="highlight"><pre><span></span><code>zcat<span class="w"> </span>C61.subset.fq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;2~4p&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10000<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
 </code></pre></div>
 <p>Use grep’s “-o” option to get each nucleotide on a separate line (take a look at the man page for grep to understand how this works):</p>
-<div class="highlight"><pre><span></span><code>zcat C61.subset.fq.gz <span class="p">|</span> sed -n <span class="s1">&#39;2~4p&#39;</span> <span class="p">|</span> head -10000 <span class="p">|</span> grep -o . <span class="p">|</span> less
+<div class="highlight"><pre><span></span><code>zcat<span class="w"> </span>C61.subset.fq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;2~4p&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10000<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span>.<span class="w"> </span><span class="p">|</span><span class="w"> </span>less
 </code></pre></div>
 <p>Finally, use sort and uniq to get the counts:</p>
-<p><div class="highlight"><pre><span></span><code>zcat C61.subset.fq.gz <span class="p">|</span> sed -n <span class="s1">&#39;2~4p&#39;</span> <span class="p">|</span> head -10000 <span class="p">|</span> grep -o . <span class="p">|</span> sort <span class="p">|</span> uniq -c
- <span class="m">264012</span> A
- <span class="m">243434</span> C
- <span class="m">215045</span> G
-    <span class="m">278</span> N
- <span class="m">277231</span> T
+<p><div class="highlight"><pre><span></span><code>zcat<span class="w"> </span>C61.subset.fq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;2~4p&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10000<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span>.<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
+<span class="w"> </span><span class="m">264012</span><span class="w"> </span>A
+<span class="w"> </span><span class="m">243434</span><span class="w"> </span>C
+<span class="w"> </span><span class="m">215045</span><span class="w"> </span>G
+<span class="w">    </span><span class="m">278</span><span class="w"> </span>N
+<span class="w"> </span><span class="m">277231</span><span class="w"> </span>T
 </code></pre></div>
 And, voila, we have the per nucleotide count for these reads!</p>
 <p>We just did this for one file, but what if we wanted to do it for all of our files? We certainly don’t want to type the command by hand dozens of times. So we’ll use a while loop. You can pipe a command into a while loop and it will iterate through each line of the input. First, get a listing of all your files:</p>
-<div class="highlight"><pre><span></span><code>ls -1 *.fq.gz
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-1<span class="w"> </span>*.fq.gz
 </code></pre></div>
 <p>Pipe that into a while loop and read in the lines into a variable called “x”. We use “$x” to get the value of the variable in that iteration of the loop:</p>
-<p><div class="highlight"><pre><span></span><code>ls -1 *.fq.gz <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> x<span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$x</span> is being processed...<span class="p">;</span> <span class="k">done</span>
+<p><div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-1<span class="w"> </span>*.fq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>x<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$x</span><span class="w"> </span>is<span class="w"> </span>being<span class="w"> </span>processed...<span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </code></pre></div>
 Add the command we created above into the loop, placing $x where the filename would be and semi-colons inbetween commands:</p>
-<p><div class="highlight"><pre><span></span><code>ls -1 *.fq.gz <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> x<span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$x</span> is being processed...<span class="p">;</span> zcat <span class="nv">$x</span> <span class="p">|</span> sed -n <span class="s1">&#39;2~4p&#39;</span> <span class="p">|</span> head -10000 <span class="p">|</span> grep -o . <span class="p">|</span> sort <span class="p">|</span> uniq -c<span class="p">;</span> <span class="k">done</span>
+<p><div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-1<span class="w"> </span>*.fq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>x<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$x</span><span class="w"> </span>is<span class="w"> </span>being<span class="w"> </span>processed...<span class="p">;</span><span class="w"> </span>zcat<span class="w"> </span><span class="nv">$x</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;2~4p&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10000<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span>.<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </code></pre></div>
 When this runs it will print the name of every single file being processed and the nucleotide count for the reads from those files.</p>
 <p>Now, let’s say you wanted to write the output of each command to a separate file. We would redirect the output to a filename, but we need to create a different file name for each command and we want the file name to reflect its contents, i.e. the output file name should be based on the input file name. So we use “parameter expansion”, which is fancy way of saying substitution:</p>
-<div class="highlight"><pre><span></span><code>ls -1 *.fq.gz <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> x<span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$x</span> is being processed...<span class="p">;</span> zcat <span class="nv">$x</span> <span class="p">|</span> sed -n <span class="s1">&#39;2~4p&#39;</span> <span class="p">|</span> head -10000 <span class="p">|</span> grep -o . <span class="p">|</span> sort <span class="p">|</span> uniq -c &gt; <span class="si">${</span><span class="nv">x</span><span class="p">%.fq.gz</span><span class="si">}</span>.nucl_count.txt<span class="p">;</span> <span class="k">done</span>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-1<span class="w"> </span>*.fq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>x<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$x</span><span class="w"> </span>is<span class="w"> </span>being<span class="w"> </span>processed...<span class="p">;</span><span class="w"> </span>zcat<span class="w"> </span><span class="nv">$x</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;2~4p&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10000<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span>.<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">x</span><span class="p">%.fq.gz</span><span class="si">}</span>.nucl_count.txt<span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </code></pre></div>
 <p>This will put the output of the counting command into a file whose name is the prefix of the input file plus “.nucl_count.txt”. It will do this for every input file.</p>
 <h2 id="manipulation-of-a-fasta-file">Manipulation of a FASTA File<a class="headerlink" href="#manipulation-of-a-fasta-file" title="Permanent link">&para;</a></h2>
 <p>Let’s copy the phiX-174 genome (using the ‘cp’ command) to our current directory so we can play with it:</p>
-<div class="highlight"><pre><span></span><code>cp ./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/genome.fa phix.fa    
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/genome.fa<span class="w"> </span>phix.fa<span class="w">    </span>
 </code></pre></div>
 <p>Similarly we can also use the move command here, but then ./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/genome.fa will no longer be there:</p>
-<div class="highlight"><pre><span></span><code>cp ./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/genome.fa  ./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/genome2.fa
-ls ./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/
-mv ./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/genome2.fa phix.fa
-ls ./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/genome.fa<span class="w">  </span>./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/genome2.fa
+ls<span class="w"> </span>./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/
+mv<span class="w"> </span>./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/genome2.fa<span class="w"> </span>phix.fa
+ls<span class="w"> </span>./PhiX/Illumina/RTA/Sequence/WholeGenomeFasta/
 </code></pre></div>
 <p>This functionality of mv is why it is used to rename files.</p>
 <p>Note how we copied the ‘genome.fa’ file to a different name: ‘phix.fa’</p>
-<div class="highlight"><pre><span></span><code>wc -l phix.fa
+<div class="highlight"><pre><span></span><code>wc<span class="w"> </span>-l<span class="w"> </span>phix.fa
 </code></pre></div>
 <p>count the number of lines in the file using ‘wc’ (word count) and parameter ‘-l’ (lines).</p>
 <p>We can use the ‘grep’ command to search for matches to patterns. ‘grep’ comes from ‘globally search for a regular expression and print’.</p>
-<p><div class="highlight"><pre><span></span><code>grep -c <span class="s1">&#39;&gt;&#39;</span> phix.fa
+<p><div class="highlight"><pre><span></span><code>grep<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;&gt;&#39;</span><span class="w"> </span>phix.fa
 
 
 <span class="c1">#Only one FASTA sequence entry, since only one header line (‘&gt;gi|somethingsomething…’)</span>
 
 
-cat phix.fa
+cat<span class="w"> </span>phix.fa
 </code></pre></div>
 This may not be useful for anything larger than a virus! Let’s look at the start codon and the two following codons:</p>
-<div class="highlight"><pre><span></span><code>grep --color <span class="s2">&quot;ATG......&quot;</span> phix.fa
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>--color<span class="w"> </span><span class="s2">&quot;ATG......&quot;</span><span class="w"> </span>phix.fa
 <span class="c1">#’.’ characters are the single-character wildcards for grep. So “ATG……” matches any set of 9 characters that starts with ATG.</span>
 
 <span class="c1">#Use the –color ‘-o’ option to only print the pattern matches, one per line</span>
 
-grep -o <span class="s2">&quot;ATG......&quot;</span> phix.fa
+grep<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;ATG......&quot;</span><span class="w"> </span>phix.fa
 
 <span class="c1">#Use the ‘cut’ command with ‘-c’ to select characters 4-6, the second codon</span>
 
-grep --color  -o <span class="s2">&quot;ATG......&quot;</span> phix.fa <span class="p">|</span> cut -c4-6
-‘sort’ the second codon sequences <span class="o">(</span>default order is same as ASCII table<span class="p">;</span> see ‘man ascii’<span class="o">)</span>
+grep<span class="w"> </span>--color<span class="w">  </span>-o<span class="w"> </span><span class="s2">&quot;ATG......&quot;</span><span class="w"> </span>phix.fa<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c4-6
+‘sort’<span class="w"> </span>the<span class="w"> </span>second<span class="w"> </span>codon<span class="w"> </span>sequences<span class="w"> </span><span class="o">(</span>default<span class="w"> </span>order<span class="w"> </span>is<span class="w"> </span>same<span class="w"> </span>as<span class="w"> </span>ASCII<span class="w"> </span>table<span class="p">;</span><span class="w"> </span>see<span class="w"> </span>‘man<span class="w"> </span>ascii’<span class="o">)</span>
 
-grep --color  -o <span class="s2">&quot;ATG......&quot;</span> phix.fa <span class="p">|</span> cut -c4-6 <span class="p">|</span> sort
+grep<span class="w"> </span>--color<span class="w">  </span>-o<span class="w"> </span><span class="s2">&quot;ATG......&quot;</span><span class="w"> </span>phix.fa<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c4-6<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort
 
 <span class="c1">#Combine successive identical sequences, but count them using the ‘uniq’ command with the ‘-c’ option</span>
 
-grep --color  -o <span class="s2">&quot;ATG......&quot;</span> phix.fa <span class="p">|</span> cut -c4-6 <span class="p">|</span> sort <span class="p">|</span> uniq -c
+grep<span class="w"> </span>--color<span class="w">  </span>-o<span class="w"> </span><span class="s2">&quot;ATG......&quot;</span><span class="w"> </span>phix.fa<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c4-6<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
 
 <span class="c1">#Finally sort using reverse numeric order (‘-rn’)</span>
 
-grep --color  -o <span class="s2">&quot;ATG......&quot;</span> phix.fa <span class="p">|</span> cut -c4-6 <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -rn
-… which gives us the most common codons first
+grep<span class="w"> </span>--color<span class="w">  </span>-o<span class="w"> </span><span class="s2">&quot;ATG......&quot;</span><span class="w"> </span>phix.fa<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c4-6<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn
+…<span class="w"> </span>which<span class="w"> </span>gives<span class="w"> </span>us<span class="w"> </span>the<span class="w"> </span>most<span class="w"> </span>common<span class="w"> </span>codons<span class="w"> </span>first
 </code></pre></div>
 <p>This may not be a particularly useful thing to do with a genomic FASTA file, but it illustrates the process by which one can build up a string of operations, using pipes, in order to ask quantitative questions about sequence content. More generally than that, this process allows one to ask questions about files and file contents and the operating system, and verify at each step that the process so far is working as expected. The command line is, in this sense, really a modular workflow management system.</p>
 <h2 id="shell-scripts-file-permissions">Shell Scripts, File Permissions<a class="headerlink" href="#shell-scripts-file-permissions" title="Permanent link">&para;</a></h2>
 <p>Often it’s useful to define a whole string of commands to run on some input, so that (1) you can be sure you’re running the same commands on all data, and (2) so you don’t have to type the same commands in over and over! Let’s use the ‘nano’ text editor program that’s pretty reliably installed on most linux systems.</p>
-<div class="highlight"><pre><span></span><code>nano test.sh
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>test.sh
 </code></pre></div>
 <h3 id="insert-cli_figure7">insert cli_figure7<a class="headerlink" href="#insert-cli_figure7" title="Permanent link">&para;</a></h3>
 <p>nano now occupies the whole screen; see commands at the bottom. Let’s type in a few commands. First we need to put the following line at the top of the file:</p>
@@ -1366,22 +1570,22 @@ grep --color  -o <span class="s2">&quot;ATG......&quot;</span> phix.fa <span cla
 <p>The “#!” at the beginning of a script tells the shell what language to use to interpret the rest of the script. In our case, we will be writing “bash” commands, so we specify the full path of the bash executable after the “#!”. Then, add some commands:</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
-<span class="nb">echo</span> <span class="s2">&quot;Start script...&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Start script...&quot;</span>
 <span class="nb">pwd</span>
-ls -l
-sleep <span class="m">10</span>
-<span class="nb">echo</span> <span class="s2">&quot;End script.&quot;</span>
+ls<span class="w"> </span>-l
+sleep<span class="w"> </span><span class="m">10</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;End script.&quot;</span>
 </code></pre></div>
 <p>Hit Cntl-O and then enter to save the file, and then Cntl-X to exit nano.</p>
 <p>Though there are ways to run the commands in test.sh right now, it’s generally useful to give yourself (and others) ‘execute’ permissions for test.sh, really making it a shell script. Note the characters in the first (left-most) field of the file listing:</p>
-<div class="highlight"><pre><span></span><code>ls -lh test.sh
--rw-rw-r-- <span class="m">1</span> ubuntu workspace <span class="m">79</span> Dec <span class="m">19</span> <span class="m">15</span>:05 test.sh
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-lh<span class="w"> </span>test.sh
+-rw-rw-r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>ubuntu<span class="w"> </span>workspace<span class="w"> </span><span class="m">79</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">15</span>:05<span class="w"> </span>test.sh
 </code></pre></div>
 <p>The first ‘-‘ becomes a ‘d’ if the ‘file’ is actually a directory. The next three characters represent read, write, and execute permissions for the file owner (you), followed by three characters for users in the owner’s group, followed by three characters for all other users. Run the ‘chmod’ command to change permissions for the ‘test.sh’ file, adding execute permissions (‘+x’) for the user (you) and your group (‘ug’):</p>
-<p><div class="highlight"><pre><span></span><code>chmod ug+x test.sh
-ls -lh test.sh
+<p><div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>ug+x<span class="w"> </span>test.sh
+ls<span class="w"> </span>-lh<span class="w"> </span>test.sh
 
--rwxr-xr-- <span class="m">1</span> ubuntu workspace <span class="m">79</span> Dec <span class="m">19</span> <span class="m">15</span>:05 test.sh
+-rwxr-xr--<span class="w"> </span><span class="m">1</span><span class="w"> </span>ubuntu<span class="w"> </span>workspace<span class="w"> </span><span class="m">79</span><span class="w"> </span>Dec<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">15</span>:05<span class="w"> </span>test.sh
 </code></pre></div>
 The first 10 characters of the output represent the file and permissions. The first character is the file type, the next three sets of three represent the file permissions for the user, group, and everyone respectively.</p>
 <p>r = read
@@ -1393,124 +1597,97 @@ So let’s run this script. We have to provide a relative reference to the scrip
 
 <span class="c1">#or you can run it like this</span>
 
-bash test.sh
+bash<span class="w"> </span>test.sh
 </code></pre></div>
 And you should see all the commands in the file run in sequential order in the terminal.</p>
 <h2 id="command-line-arguments-for-shell-scripts">Command Line Arguments for Shell Scripts<a class="headerlink" href="#command-line-arguments-for-shell-scripts" title="Permanent link">&para;</a></h2>
 <p>Now let’s modify our script to use command line arguments, which are arguments that can come after the script name (when executing) to be part of the input inside the script. This allows us to use the same script with different inputs. In order to do so, we add variables $1, $2, $3, etc…. in the script where we want our input to be. So, for example, use nano to modify your test.sh script to look like this:</p>
 <p><div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
-<span class="nb">echo</span> <span class="s2">&quot;Start script...&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Start script...&quot;</span>
 <span class="nv">PWD</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
-<span class="nb">echo</span> <span class="s2">&quot;The present working directory is </span><span class="nv">$PWD</span><span class="s2">&quot;</span>
-ls -l <span class="nv">$1</span>
-sleep <span class="nv">$2</span>
-wc -l <span class="nv">$3</span>
-<span class="nb">echo</span> <span class="s2">&quot;End script.&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;The present working directory is </span><span class="nv">$PWD</span><span class="s2">&quot;</span>
+ls<span class="w"> </span>-l<span class="w"> </span><span class="nv">$1</span>
+sleep<span class="w"> </span><span class="nv">$2</span>
+wc<span class="w"> </span>-l<span class="w"> </span><span class="nv">$3</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;End script.&quot;</span>
 </code></pre></div>
 Now, rerun the script using command line arguments like this:</p>
-<div class="highlight"><pre><span></span><code>./test.sh genome.fa <span class="m">15</span> PhiX/Illumina/RTA/Annotation/Archives/archive-2013-03-06-19-09-31/Genes/ChromInfo.txt
+<div class="highlight"><pre><span></span><code>./test.sh<span class="w"> </span>genome.fa<span class="w"> </span><span class="m">15</span><span class="w"> </span>PhiX/Illumina/RTA/Annotation/Archives/archive-2013-03-06-19-09-31/Genes/ChromInfo.txt
 </code></pre></div>
 <p>Note that each argument is separated by a space, so $1 becomes “genome.fa”, $2 becomes “15”, and $3 becomes “PhiX/Illumina/RTA/Annotation/Archives/archive-2013-03-06-19-09-31/Genes/ChromInfo.txt”. Then the commands are run using those values. Now rerun the script with some other values:</p>
-<p><div class="highlight"><pre><span></span><code>./test.sh .. <span class="m">5</span> genome.fa
+<p><div class="highlight"><pre><span></span><code>./test.sh<span class="w"> </span>..<span class="w"> </span><span class="m">5</span><span class="w"> </span>genome.fa
 </code></pre></div>
 Now, $1 becomes “..”, $2 is “5”, and $3 is “genome.fa”.</p>
 <h2 id="pipes-and-loops-inside-scripts">Pipes and Loops inside scripts<a class="headerlink" href="#pipes-and-loops-inside-scripts" title="Permanent link">&para;</a></h2>
 <p>Open a new text file using the text editor “nano”:</p>
-<p><div class="highlight"><pre><span></span><code>nano get_nucl_counts.sh
+<p><div class="highlight"><pre><span></span><code>nano<span class="w"> </span>get_nucl_counts.sh
 </code></pre></div>
 Copy and Paste the following into the file:</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
-zcat <span class="nv">$1</span> <span class="p">|</span> sed -n <span class="s1">&#39;2~4p&#39;</span> <span class="p">|</span> head -<span class="nv">$2</span> <span class="p">|</span> grep -o . <span class="p">|</span> sort <span class="p">|</span> uniq -c
+zcat<span class="w"> </span><span class="nv">$1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;2~4p&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-<span class="nv">$2</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-o<span class="w"> </span>.<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
 </code></pre></div>
 <p>Save the file and exit. Change the permissions on the file to make it executable:</p>
-<div class="highlight"><pre><span></span><code>chmod a+x get_nucl_counts.sh
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>a+x<span class="w"> </span>get_nucl_counts.sh
 </code></pre></div>
 <p>Now, we can run this script giving it different arguments every time. The first argument (i.e. the first text after the script name when it is run) will get put into the variable “<span class="arithmatex">\(1”. The second argument (delimited by spaces) will get put into “\)</span>2”. In this case, “<span class="arithmatex">\(1” is the file name, and “\)</span>2” is the number of reads we want to count. So, then we can run the script over and over again using different values and the command will run based on those values:</p>
-<div class="highlight"><pre><span></span><code>./get_nucl_counts.sh I561.subset.fq.gz <span class="m">1000</span>
-./get_nucl_counts.sh I561.subset.fq.gz <span class="m">10000</span>
-./get_nucl_counts.sh C61.subset.fq.gz <span class="m">555</span>
+<div class="highlight"><pre><span></span><code>./get_nucl_counts.sh<span class="w"> </span>I561.subset.fq.gz<span class="w"> </span><span class="m">1000</span>
+./get_nucl_counts.sh<span class="w"> </span>I561.subset.fq.gz<span class="w"> </span><span class="m">10000</span>
+./get_nucl_counts.sh<span class="w"> </span>C61.subset.fq.gz<span class="w"> </span><span class="m">555</span>
 </code></pre></div>
 <p>We can also put loops into a script. We’ll take the loop we created earlier and put it into a file, breaking it up for readability and using backslashes for line continuation:</p>
-<p><div class="highlight"><pre><span></span><code>nano get_nucl_counts_loop.sh
+<p><div class="highlight"><pre><span></span><code>nano<span class="w"> </span>get_nucl_counts_loop.sh
 </code></pre></div>
 Put this in the file and save it:
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
-ls -1 *.fq.gz <span class="p">|</span> <span class="se">\</span>
-<span class="k">while</span> <span class="nb">read</span> x<span class="p">;</span> <span class="k">do</span> <span class="se">\</span>
-    <span class="nb">echo</span> <span class="nv">$x</span> is being processed...<span class="p">;</span> <span class="se">\</span>
-    zcat <span class="nv">$x</span> <span class="p">|</span> sed -n <span class="s1">&#39;2~4p&#39;</span> <span class="p">|</span> head -<span class="nv">$1</span> <span class="p">|</span> <span class="se">\</span>
-        grep -o . <span class="p">|</span> sort <span class="p">|</span> uniq -c &gt; <span class="si">${</span><span class="nv">x</span><span class="p">%.fq.gz</span><span class="si">}</span>.nucl_count.txt<span class="p">;</span> <span class="se">\</span>
+ls<span class="w"> </span>-1<span class="w"> </span>*.fq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>x<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$x</span><span class="w"> </span>is<span class="w"> </span>being<span class="w"> </span>processed...<span class="p">;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>zcat<span class="w"> </span><span class="nv">$x</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;2~4p&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-<span class="nv">$1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>grep<span class="w"> </span>-o<span class="w"> </span>.<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">x</span><span class="p">%.fq.gz</span><span class="si">}</span>.nucl_count.txt<span class="p">;</span><span class="w"> </span><span class="se">\</span>
 <span class="k">done</span>
 </code></pre></div></p>
 <p>Make it executable:
-<div class="highlight"><pre><span></span><code>chmod a+x get_nucl_counts_loop.sh
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>a+x<span class="w"> </span>get_nucl_counts_loop.sh
 </code></pre></div>
 And now we can execute the entire loop using the script. Note that there is only one argument now, the number of reads to use:</p>
-<div class="highlight"><pre><span></span><code>./get_nucl_counts_loop.sh <span class="m">100</span>
+<div class="highlight"><pre><span></span><code>./get_nucl_counts_loop.sh<span class="w"> </span><span class="m">100</span>
 </code></pre></div>
 <h2 id="finally-a-good-summary-for-rounding-up-the-session">FINALLY - a good summary for rounding up the session<a class="headerlink" href="#finally-a-good-summary-for-rounding-up-the-session" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008645">TEN SIMPLE RULES FOR GETTING STARTED WITH COMMAND-LINE BIOINFORMATICS</a></li>
 </ul>
 
-              
-            </article>
-          </div>
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
             Back to top
-          </a>
+          </button>
         
       </main>
       
         <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../../aws/aws_ec2_instances/" class="md-footer__link md-footer__link--prev" aria-label="Previous: AWS Instances Login" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              AWS Instances Login
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../basics_awk/" class="md-footer__link md-footer__link--next" aria-label="Next: AWK" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              AWK
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2021, Johan Lindberg et. al., MEB, Karolinska Institutet, All rights reserved.
+      Copyright &copy; 2023, Johan Lindberg et. al., MEB, Karolinska Institutet, All rights reserved.
     </div>
   
   
@@ -1524,10 +1701,11 @@ And now we can execute the entire loop using the script. Note that there is only
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.361d90f1.min.js"}</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.path", "content.code.annotate", "content.tabs.link", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.289a2a4b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.51198bba.min.js"></script>
       
     
   </body>
