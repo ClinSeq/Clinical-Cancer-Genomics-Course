@@ -90,6 +90,7 @@ ul li, ol li{
 
 .md-typeset table{
   width: 100%;
+  line-height: 1;
 }
 
 .md-typeset table:not([class]) :is(th):not([align]) {
@@ -117,6 +118,26 @@ ul li, ol li{
 
 .md-typeset table:not([class]) :is(td).time{
   width: 18%;
+}
+
+th, td {
+  border: 1px solid var(--md-typeset-table-color);
+  border-spacing: 0;
+  border-bottom: none;
+  border-left: none;
+  border-top: none;
+}
+.md-typeset__table table:not([class]) {
+  border-right: none;
+}
+
+.md-typeset__table table:not([class]) td,
+.md-typeset__table table:not([class]) th {
+  padding: 15px 50px;
+}
+
+.md-typeset__table tr:nth-child(2n) {
+  background-color: #f8f8f8;
 }
 
 

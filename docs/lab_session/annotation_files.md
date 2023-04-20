@@ -62,11 +62,11 @@ The files also contain the location of the actual oligos (capture_targets).
 cd ~/workspace/inputs/references/exome
 
 # download the files
-wget -c https://sequencing.roche.com/content/dam/rochesequence/worldwide/shared-designs/SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
-unzip SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
+#wget -c https://sequencing.roche.com/content/dam/rochesequence/worldwide/shared-designs/SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
+#unzip SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
 
 # remove the zip
-rm -f SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
+#rm -f SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
 
 # Lift-over of the Roche coordinates from hg19 to the hg38 assembly.
 # the software is availble from USCS, downloadble here:

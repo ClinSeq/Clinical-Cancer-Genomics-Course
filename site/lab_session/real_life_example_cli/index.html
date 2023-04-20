@@ -6,20 +6,22 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Project documentation with Markdown.">
       
       
       
-        <link rel="prev" href="./">
+      
+        <link rel="prev" href="../R_for_bioinformatics/">
       
       
-        <link rel="next" href="../human_genome/">
+        <link rel="next" href="../ggplot2/">
       
       <link rel="icon" href="../../assets/img/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
     
     
       
-        <title>ggplot tutorial - Clinical Cancer Genomics Course</title>
+        <title>Command Line Usage in Real Life - Clinical Cancer Genomics Course</title>
       
     
     
@@ -104,7 +106,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#real-life-example-of-how-to-use-command-line-features" class="md-skip">
+        <a href="#real-life-example-of-how-to-use-command-line-features-vt-2023" class="md-skip">
           Skip to content
         </a>
       
@@ -138,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ggplot tutorial
+              Command Line Usage in Real Life
             
           </span>
         </div>
@@ -225,8 +227,8 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../lectures/lectures/" class="md-tabs__link">
-      Lectures
+    <a href="../../aws/aws_ec2_instances/" class="md-tabs__link">
+      AWS Instances Login
     </a>
   </li>
 
@@ -237,8 +239,8 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../aws/aws_ec2_instances/" class="md-tabs__link">
-      AWS Instances Login
+    <a href="../../lectures/lectures/" class="md-tabs__link">
+      Lectures
     </a>
   </li>
 
@@ -343,8 +345,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lectures/lectures/" class="md-nav__link">
-        Lectures
+      <a href="../../aws/aws_ec2_instances/" class="md-nav__link">
+        AWS Instances Login
       </a>
     </li>
   
@@ -358,8 +360,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../aws/aws_ec2_instances/" class="md-nav__link">
-        AWS Instances Login
+      <a href="../../lectures/lectures/" class="md-nav__link">
+        Lectures
       </a>
     </li>
   
@@ -382,18 +384,6 @@
       
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
       
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
       
       
         <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -423,20 +413,6 @@
       
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
       
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
       
       
         <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
@@ -511,20 +487,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="./" class="md-nav__link">
-        Command Line Usage in Real Life
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -537,9 +499,23 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        ggplot tutorial
+        Command Line Usage in Real Life
       </a>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ggplot2/" class="md-nav__link">
+        ggplot tutorial
+      </a>
     </li>
   
 
@@ -565,16 +541,6 @@
       
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
       
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
       
       
         <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
@@ -666,10 +632,6 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
       
       
-        
-          
-        
-      
       
         <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
           Day 3
@@ -718,14 +680,6 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
       
       
-        
-          
-        
-          
-        
-          
-        
-      
       
         <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
           Day 4
@@ -760,7 +714,7 @@
   
     <li class="md-nav__item">
       <a href="../analysis_of_cnv/" class="md-nav__link">
-        Copy Number Variations
+        Copy Number Analysis
       </a>
     </li>
   
@@ -801,12 +755,6 @@
       
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
       
-      
-        
-          
-        
-          
-        
       
       
         <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
@@ -895,129 +843,170 @@
                   
 
 
-<h1 id="real-life-example-of-how-to-use-command-line-features">Real life example of how to use command line features<a class="headerlink" href="#real-life-example-of-how-to-use-command-line-features" title="Permanent link">&para;</a></h1>
-<p>This is an example of how to use various UNIX/bash/command line features for finding files, assigning variables, parsing and modifying text strings etc. The purpose in the example is to run programs that creates bam files from fastq files and then calculates some quality control metrics. This is done as a loop over multiple samples, where the same commands are applied to every sample. At the end, a table of the resulting metrics of interest is created.</p>
+<h1 id="real-life-example-of-how-to-use-command-line-features-vt-2023">Real life example of how to use command line features - vt 2023<a class="headerlink" href="#real-life-example-of-how-to-use-command-line-features-vt-2023" title="Permanent link">&para;</a></h1>
+<p>This is an example of how to use various UNIX/bash/command line features for finding files, assigning variables, parsing and modifying text strings etc. The purpose in the example is to find files containing quality control metrics, and creating a table of certain variables from these files. </p>
 <p>This is not to be run as part of the lab, just a demonstration of a real life example when multiple various command line features are utilized.</p>
-<p><div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/project_dir<span class="w">  </span><span class="c1"># move to project directory</span>
-<span class="nv">ref</span><span class="o">=</span>/path/to/human_g1k_v37_decoy.fasta<span class="w">  </span><span class="c1"># assign path to file as variable</span>
-<span class="nv">bwaRef</span><span class="o">=</span>/path/to/bwa/human_g1k_v37_decoy.fasta<span class="w">  </span><span class="c1"># assign path to file as variable</span>
-<span class="nv">tmpDir</span><span class="o">=</span>/scratch/tmp/rebber<span class="w">  </span><span class="c1"># assign path to directory as variable</span>
-<span class="nv">inbox</span><span class="o">=</span>/path/to/fastq_dir<span class="w">  </span><span class="c1"># assign path to directory as variable</span>
-<span class="c1"># find fastq files of interest, </span>
-<span class="c1"># extract the sample names from found paths with basename, </span>
-<span class="c1"># sort and assign results to array (one sample per array entry):</span>
-<span class="nv">samples</span><span class="o">=(</span><span class="k">$(</span>find<span class="w"> </span><span class="nv">$inbox</span><span class="w"> </span>-maxdepth<span class="w"> </span><span class="m">1</span><span class="w"> </span>-mindepth<span class="w"> </span><span class="m">1</span><span class="w"> </span>-newermt<span class="w"> </span><span class="m">2021</span>-01-11<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>!<span class="w"> </span>-newermt<span class="w"> </span><span class="m">2021</span>-01-12<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;PB-P-HD*&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-I<span class="w"> </span><span class="o">{}</span><span class="w"> </span>basename<span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="k">)</span><span class="o">)</span>
-<span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">samples</span><span class="p">[@]</span><span class="si">}</span><span class="w">  </span><span class="c1"># display all entries of array</span>
-<span class="nb">echo</span><span class="w"> </span><span class="si">${#</span><span class="nv">samples</span><span class="p">[@]</span><span class="si">}</span><span class="w">  </span><span class="c1"># display number of entries in array</span>
-mkdir<span class="w"> </span>-p<span class="w"> </span>bams<span class="w">  </span><span class="c1"># create output directory</span>
-
-<span class="c1"># for loop over the samples:</span>
-<span class="k">for</span><span class="w"> </span>samp<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="nv">samples</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="c1"># get correct design files:</span>
-<span class="w">    </span><span class="c1"># extract info from sample name (7th field, everything before &quot;2020&quot;):</span>
-<span class="w">    </span><span class="nv">design</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$samp</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f<span class="w"> </span><span class="m">7</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;-&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/2020.*//g&#39;</span><span class="k">)</span>
-<span class="w">    </span><span class="c1"># --&gt; e.g. PB-P-HD181117-N-7minfrag-KH20201002-PS20201005 --&gt; PS</span>
-<span class="w">    </span><span class="c1"># assign variables depending on the value of the $design variable:</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$design</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;PB&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span><span class="nv">baits</span><span class="o">=</span>/path/to/PB.baits.interval_list
-<span class="w">        </span><span class="nv">targets</span><span class="o">=</span>/path/to/PB.targets.interval_list
-<span class="w">    </span><span class="k">elif</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$design</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;PS&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
-<span class="w">        </span><span class="nv">baits</span><span class="o">=</span>/path/to/PS.baits.interval_list
-<span class="w">        </span><span class="nv">targets</span><span class="o">=</span>/path/to/PS.targets.interval_list
-<span class="w">    </span><span class="k">else</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Unknown design </span><span class="nv">$design</span><span class="s2">, skipping sample </span><span class="nv">$samp</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># print message</span>
-<span class="w">        </span><span class="k">continue</span><span class="w">  </span><span class="c1"># skip the rest of the loop for this value of $samp</span>
-<span class="w">    </span><span class="k">fi</span>
-
-<span class="w">    </span><span class="c1"># skewer (trimming of fastq files)</span>
-<span class="w">    </span><span class="nv">threads</span><span class="o">=</span><span class="m">6</span><span class="w">  </span><span class="c1"># set variable to use for this tool</span>
-<span class="w">    </span><span class="nv">dep_jids</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w">  </span><span class="c1"># reset list of jobs to depend on (from previous iterations)</span>
-<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span>skewer/<span class="nv">$samp</span><span class="w">  </span><span class="c1">#create output dir</span>
-<span class="w">    </span><span class="c1"># find the &quot;first in pair&quot; fastq files for this sample:</span>
-<span class="w">    </span><span class="nv">fq1s</span><span class="o">=(</span><span class="k">$(</span>find<span class="w"> </span><span class="nv">$inbox</span>/<span class="nv">$samp</span><span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*_1.fastq.gz&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="k">)</span><span class="o">)</span>
-
-<span class="w">    </span><span class="k">for</span><span class="w"> </span>fq1<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="nv">fq1s</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w">  </span><span class="c1"># loop over the found fastq files</span>
-<span class="w">        </span><span class="c1"># get the basename of the current fastq file,</span>
-<span class="w">        </span><span class="c1"># sed replaces the pattern (to nothing), </span>
-<span class="w">        </span><span class="c1"># basename removes the path to the file:</span>
-<span class="w">        </span><span class="nv">fqbase</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$fq1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/_1.fastq.gz//g&#39;</span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-I<span class="w"> </span><span class="o">{}</span><span class="w"> </span>basename<span class="w"> </span><span class="o">{}</span><span class="k">)</span>
-<span class="w">        </span><span class="c1"># find the corresponding second in pair fastq file, </span>
-<span class="w">        </span><span class="c1"># for the current first in pair fastq file:</span>
-<span class="w">        </span><span class="nv">fq2</span><span class="o">=</span><span class="k">$(</span>find<span class="w"> </span><span class="nv">$inbox</span>/<span class="nv">$samp</span><span class="w"> </span>-name<span class="w"> </span><span class="si">${</span><span class="nv">fqbase</span><span class="si">}</span>_2.fastq.gz<span class="k">)</span>
-<span class="w">        </span><span class="c1"># assign output path and base name:</span>
-<span class="w">        </span><span class="nv">outPrefix</span><span class="o">=</span>skewer/<span class="nv">$samp</span>/skewer.<span class="nv">$fqbase</span>
-<span class="w">        </span><span class="c1"># use sbatch for submitting a job to the slurm queue, set options for it, </span>
-<span class="w">        </span><span class="c1"># then use &quot;here document&quot; to create script on the fly, </span>
-<span class="w">        </span><span class="c1"># that is submitted to slurm</span>
-<span class="w">        </span>sbatch<span class="w"> </span>-o<span class="w"> </span><span class="nv">$outPrefix</span>.slurm.log<span class="w"> </span>-n<span class="w"> </span><span class="nv">$threads</span><span class="w"> </span>-J<span class="w"> </span>skewer_<span class="nv">$fqbase</span><span class="w"> </span>&lt;<span class="o">(</span>cat<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
-<span class="s">#!/bin/bash  # initiate bash script with shebang</span>
-<span class="s"># activate a bash profile which activates access to e.g. a tool set:</span>
-<span class="s">. /path/to/.bash_profile</span>
-<span class="s">skewer -z -t $threads --quiet -o $outPrefix $fq1 $fq2  # run the desired program </span>
-<span class="s">EOF</span>
-<span class="o">)</span>
-
-<span class="w">        </span><span class="c1"># list jobs with squeue command, </span>
-<span class="w">        </span><span class="c1"># get job ID of previously submitted job:</span>
-<span class="w">        </span><span class="nv">jid</span><span class="o">=</span><span class="k">$(</span>squeue<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;%j %i&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>skewer_<span class="nv">$fqbase</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="k">)</span>
-<span class="w">        </span><span class="nv">dep_jids</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">dep_jids</span><span class="si">}</span><span class="s2">:</span><span class="nv">$jid</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># append to list of job IDs from this sample</span>
-<span class="w">    </span><span class="k">done</span><span class="w">  </span><span class="c1"># end of loop over fastq files</span>
-
-<span class="w">    </span><span class="c1"># assign variable with job IDs that the next job is going to be dependent on:</span>
-<span class="w">    </span><span class="nv">dep</span><span class="o">=</span><span class="s2">&quot;--dependency=afterok</span><span class="nv">$dep_jids</span><span class="s2">&quot;</span>
-
-<span class="w">    </span><span class="c1"># mapping</span>
-<span class="w">    </span><span class="nv">threads</span><span class="o">=</span><span class="m">12</span>
-<span class="w">    </span><span class="nv">fastqDir</span><span class="o">=</span>skewer/<span class="nv">$samp</span>
-<span class="w">    </span><span class="nv">outBam</span><span class="o">=</span>bams/raw/<span class="nv">$samp</span>.mapped.bam
-<span class="w">    </span><span class="c1"># submit to slurm queue, with dependency on the previous jobs,</span>
-<span class="w">    </span><span class="c1"># now a pre-written script which takes positional arguments</span>
-<span class="w">    </span>sbatch<span class="w"> </span>-o<span class="w"> </span><span class="nv">$outBam</span>.slurm.log<span class="w"> </span>-n<span class="w"> </span><span class="nv">$threads</span><span class="w"> </span>-J<span class="w"> </span><span class="si">${</span><span class="nv">samp</span><span class="si">}</span>_fastq2mappedBam<span class="w"> </span><span class="nv">$dep</span><span class="w"> </span><span class="se">\</span>
-<span class="w">        </span>/path/to/scripts/fastq2mappedBam.sh<span class="w"> </span><span class="nv">$fastqDir</span><span class="w"> </span><span class="nv">$outBam</span><span class="w"> </span><span class="nv">$ref</span><span class="w"> </span><span class="nv">$bwaRef</span><span class="w"> </span><span class="se">\</span>
-<span class="w">        </span><span class="nv">$threads</span><span class="w"> </span><span class="nv">$tmpDir</span>
-
-<span class="w">    </span><span class="c1"># get jobid of submitted job</span>
-<span class="w">    </span><span class="nv">jid</span><span class="o">=</span><span class="k">$(</span>squeue<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;%j %i&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="si">${</span><span class="nv">samp</span><span class="si">}</span>_fastq2mappedBam<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="k">)</span>
-<span class="w">    </span><span class="nv">dep</span><span class="o">=</span><span class="s2">&quot;--dependency=afterok:</span><span class="nv">$jid</span><span class="s2">&quot;</span><span class="w">  </span><span class="c1"># dependency</span>
-
-<span class="w">    </span><span class="c1"># HsMetrics</span>
-<span class="w">    </span><span class="nv">threads</span><span class="o">=</span><span class="m">1</span>
-<span class="w">    </span><span class="nv">inbam</span><span class="o">=</span>bams/raw/<span class="si">${</span><span class="nv">samp</span><span class="si">}</span>.mapped.bam
-<span class="w">    </span><span class="nv">outdir1</span><span class="o">=</span>metrics/HsMetrics/<span class="nv">$design</span>
-<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$outdir1</span>
-<span class="w">    </span>sbatch<span class="w"> </span>-o<span class="w"> </span><span class="nv">$outdir1</span>/<span class="nv">$samp</span>.<span class="nv">$design</span>.hsmetrics.slurm.log<span class="w"> </span>-J<span class="w"> </span><span class="si">${</span><span class="nv">samp</span><span class="si">}</span>_HsMetrics<span class="w"> </span><span class="se">\</span>
-<span class="w">        </span>-n<span class="w"> </span><span class="nv">$threads</span><span class="w"> </span><span class="nv">$dep</span><span class="w"> </span>/path/to/scripts/runHsmetrics.sh<span class="w"> </span><span class="nv">$inbam</span><span class="w"> </span><span class="nv">$outdir1</span><span class="w"> </span><span class="se">\</span>
-<span class="w">        </span><span class="nv">$targets</span><span class="w"> </span><span class="nv">$baits</span><span class="w"> </span><span class="nv">$design</span>
-
-<span class="k">done</span><span class="w">  </span><span class="c1"># end of loop over samples</span>
-
-squeue<span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-SN<span class="w">  </span><span class="c1"># check the slurm queue</span>
-ls<span class="w"> </span>-lhtr<span class="w"> </span>skewer/*<span class="w">  </span><span class="c1"># list content of skewer output dir</span>
-<span class="c1"># find the log files and view them with less:</span>
-find<span class="w"> </span>skewer/<span class="w"> </span>-newermt<span class="w"> </span><span class="m">2021</span>-01-11<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*slurm.log&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>less<span class="w"> </span>-SN
-<span class="c1"># grep for any error message in the log files, </span>
-<span class="c1"># remove irrelevant hits, and view the remaining results:</span>
-grep<span class="w"> </span>-iP<span class="w"> </span><span class="s2">&quot;(error|fail|exception|traceback|cancel|slurm|retry|No such file or directory)&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span><span class="k">$(</span>find<span class="w"> </span>skewer/*<span class="w"> </span>-newermt<span class="w"> </span><span class="m">2021</span>-01-11<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.slurm.log&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="k">)</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;error ratio allowed&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-SN
-<span class="c1"># more checks of output files can be done...</span>
-
-<span class="c1"># make a table of columns 34 (MEAN_TARGET_COVERAGE) and 13 (FOLD_ENRICHMENT)</span>
-<span class="c1"># for all the samples</span>
-<span class="c1"># the relevant data is on line 8, with the header on line 7</span>
-<span class="c1"># use awk to extract the relevant lines and columns</span>
-<span class="c1"># NR: row number in total; FNR: row number in file</span>
-<span class="c1"># column -t aligns the columns nicely</span>
-awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;\t&quot;</span><span class="w"> </span>-v<span class="w"> </span><span class="nv">OFS</span><span class="o">=</span><span class="s2">&quot;\t&quot;</span><span class="w"> </span><span class="s1">&#39;NR==7 || FNR==8 {print FILENAME, $34, $13}&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>metrics/HsMetrics/*/*txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>column<span class="w"> </span>-t
+<p>First, move to the directory of interest and find the files:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/Courses/cancer<span class="se">\ </span>bioinfo<span class="se">\ </span>course<span class="se">\ </span>v2/cmd_line_demo<span class="w">  </span><span class="c1"># move to project directory</span>
+<span class="nb">pwd</span><span class="w">  </span><span class="c1"># check present working directory</span>
+ls<span class="w"> </span>-lhtr<span class="w">  </span><span class="c1"># list files with detailed info (-l), human readable size (-h), in time order (-t), reveresed order with latest last (-r)</span>
+find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*hsmetrics.txt&quot;</span><span class="w">  </span><span class="c1"># find the files in this directory that ends with &quot;txt&quot;</span>
+find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*hsmetrics.txt&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="w">  </span><span class="c1"># count the number of found files</span>
+<span class="nv">files</span><span class="o">=(</span><span class="k">$(</span>find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*hsmetrics.txt&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="k">)</span><span class="o">)</span><span class="w">  </span><span class="c1"># assign a sorted list of the files to an array</span>
+<span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">files</span><span class="p">[@]</span><span class="si">}</span><span class="w">  </span><span class="c1"># print all items of the array</span>
+<span class="nb">echo</span><span class="w"> </span><span class="si">${#</span><span class="nv">files</span><span class="p">[@]</span><span class="si">}</span><span class="w">  </span><span class="c1"># print number of items of the array</span>
 </code></pre></div>
-Resulting QC metrics table:
-<div class="highlight"><pre><span></span><code>metrics/HsMetrics/PB/PB-P-HD181110-CFDNA-benchmarking-KH20201002-PB20201005.PB.hsmetrics.txt  MEAN_TARGET_COVERAGE  FOLD_ENRICHMENT
-metrics/HsMetrics/PB/PB-P-HD181110-CFDNA-benchmarking-KH20201002-PB20201005.PB.hsmetrics.txt  36390.640776          6267.968261
-metrics/HsMetrics/PB/PB-P-HD181115-CFDNA-benchmarking-KH20201002-PB20201005.PB.hsmetrics.txt  34498.125895          6251.155829
-metrics/HsMetrics/PS/PB-P-HD181110-N-4minfrag-KH20201002-PS20201005.PS.hsmetrics.txt          64569.379242          16489.157949
-metrics/HsMetrics/PS/PB-P-HD181115-N-4minfrag-KH20201002-PS20201005.PS.hsmetrics.txt          67690.957504          17337.593473
+Output : </p>
+<div class="highlight"><pre><span></span><code>## /Users/rebber/Courses/cancer bioinfo course v2/cmd_line_demo
+## total 136
+## -rw-r--r--  1 rebber  staff   7.0K Apr 14 12:01 PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.slurm.log
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   7.8K Apr 14 12:01 PB-P-HD2-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.slurm.log
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 PB-P-HD2-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   8.1K Apr 14 12:01 PB-P-HD3-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.slurm.log
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 PB-P-HD3-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   5.3K Apr 14 12:01 PB-P-HD6-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.slurm.log
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 PB-P-HD6-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## ./PB-P-HD6-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## ./PB-P-HD3-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## ./PB-P-HD2-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## ./PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+##        4
+## ./PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt ./PB-P-HD2-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt ./PB-P-HD3-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt ./PB-P-HD6-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## 4
+</code></pre></div>
+<p>Now we have the files of interest in the array <code>$files</code>.
+We can use this array for running further operations on the files.</p>
+<p>Inspect the files:
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-lh<span class="w"> </span><span class="si">${</span><span class="nv">files</span><span class="p">[@]</span><span class="si">}</span><span class="w">  </span><span class="c1"># list files with detailed view and human readable sizes</span>
+wc<span class="w"> </span>-l<span class="w"> </span><span class="si">${</span><span class="nv">files</span><span class="p">[@]</span><span class="si">}</span><span class="w">  </span><span class="c1"># count number of rows of all files</span>
+less<span class="w"> </span>-SN<span class="w"> </span><span class="si">${</span><span class="nv">files</span><span class="p">[@]</span><span class="si">}</span><span class="w">  </span><span class="c1"># open files in simple file viewer, with lines chopped (-S) and numbered (-N), next file can be accessed with :n, more options available in help page by pressing &quot;h&quot;</span>
+head<span class="w"> </span>-n10<span class="w"> </span><span class="si">${</span><span class="nv">files</span><span class="p">[0]</span><span class="si">}</span><span class="w">  </span><span class="c1"># view 10 first lines of first file</span>
+tail<span class="w"> </span>-n3<span class="w"> </span><span class="si">${</span><span class="nv">files</span><span class="p">[0]</span><span class="si">}</span><span class="w">  </span><span class="c1"># view 3 last lines of first file</span>
+</code></pre></div></p>
+<p>Output :
+<div class="highlight"><pre><span></span><code>## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 ./PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 ./PB-P-HD2-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 ./PB-P-HD3-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 ./PB-P-HD6-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+##      213 ./PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+##      213 ./PB-P-HD2-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+##      213 ./PB-P-HD3-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+##      213 ./PB-P-HD6-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+##      852 total
+## ## htsjdk.samtools.metrics.StringHeader
+## # CollectHsMetrics BAIT_INTERVALS=[/nfs/PROBIO/new_design_eval/targets/all_baits_twist.interval_list] BAIT_SET_NAME=PB TARGET_INTERVALS=[/nfs/PROBIO/new_design_eval/targets/all_customized_targets_twist.interval_list] INPUT=/dev/stdin OUTPUT=metrics/realignment_cust_targets/HsMetrics/MarkDuplicates/PB/PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt METRIC_ACCUMULATION_LEVEL=[ALL_READS] TMP_DIR=[/scratch/tmp/rebber] REFERENCE_SEQUENCE=/nfs/PROBIO/autoseq-genome/genome/human_g1k_v37_decoy.fasta    NEAR_DISTANCE=250 MINIMUM_MAPPING_QUALITY=20 MINIMUM_BASE_QUALITY=20 CLIP_OVERLAPPING_READS=true INCLUDE_INDELS=false COVERAGE_CAP=200 SAMPLE_SIZE=10000 ALLELE_FRACTION=[0.001, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.3, 0.5] VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+## ## htsjdk.samtools.metrics.StringHeader
+## # Started on: Tue May 26 17:12:11 CEST 2020
+## 
+## ## METRICS CLASS picard.analysis.directed.HsMetrics
+## BAIT_SET BAIT_TERRITORY  BAIT_DESIGN_EFFICIENCY  ON_BAIT_BASES   NEAR_BAIT_BASES OFF_BAIT_BASES  PCT_SELECTED_BASES  PCT_OFF_BAIT    ON_BAIT_VS_SELECTED MEAN_BAIT_COVERAGE  PCT_USABLE_BASES_ON_BAIT    PCT_USABLE_BASES_ON_TARGET  FOLD_ENRICHMENT HS_LIBRARY_SIZE HS_PENALTY_10X  HS_PENALTY_20X  HS_PENALTY_30X  HS_PENALTY_40X  HS_PENALTY_50X  HS_PENALTY_100X TARGET_TERRITORY    GENOME_SIZE TOTAL_READS PF_READS    PF_BASES    PF_UNIQUE_READS PF_UQ_READS_ALIGNED PF_BASES_ALIGNED    PF_UQ_BASES_ALIGNED ON_TARGET_BASES PCT_PF_READS    PCT_PF_UQ_READS PCT_PF_UQ_READS_ALIGNED MEAN_TARGET_COVERAGE    MEDIAN_TARGET_COVERAGE  MAX_TARGET_COVERAGE ZERO_CVG_TARGETS_PCT    PCT_EXC_DUPE    PCT_EXC_ADAPTER PCT_EXC_MAPQ    PCT_EXC_BASEQ   PCT_EXC_OVERLAP PCT_EXC_OFF_TARGET  FOLD_80_BASE_PENALTY    PCT_TARGET_BASES_1X PCT_TARGET_BASES_2X PCT_TARGET_BASES_10X    PCT_TARGET_BASES_20X    PCT_TARGET_BASES_30X    PCT_TARGET_BASES_40X    PCT_TARGET_BASES_50X    PCT_TARGET_BASES_100X   AT_DROPOUT  GC_DROPOUT  HET_SNP_SENSITIVITY HET_SNP_Q   SAMPLE  LIBRARY READ_GROUP
+## PB   290831  0.91208 682291515   195630134   1507472292  0.368041    0.631959    0.777167    2346.006839 0.281894    0.169875    3085.649544     0   0   0   0   0   0   265261  3137454505  16795512    16795512    2420380851  16795512    16679404    2385393941  2385393941  411162960   1   1   0.993087    1550.031705 200 7219    0   0   0   0.101408    0.004983    0.298104    0.423367    7.750159    0.999612    0.999585    0.999582    0.999529    0.999457    0.999416    0.999359    0.99928 7.694876    0.179254    0.999597    34          
+## 
+## ## HISTOGRAM java.lang.Integer
+## 199  0   0
+## 200  265028  0
+</code></pre></div></p>
+<p>Extract sample names from file names:
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-lh<span class="w"> </span><span class="si">${</span><span class="nv">files</span><span class="p">[@]</span><span class="si">}</span>
+
+<span class="c1"># Method 1: all at once</span>
+<span class="c1"># print content of array with line break as separator to get one item on each line</span>
+<span class="c1"># use cut to get the second field of each line when separator is &quot;/&quot;</span>
+<span class="c1"># use cut to get the first field of each line when separator is &quot;.&quot;</span>
+<span class="nb">printf</span><span class="w"> </span><span class="s1">&#39;%s\n&#39;</span><span class="w"> </span><span class="si">${</span><span class="nv">files</span><span class="p">[@]</span><span class="si">}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;.&quot;</span>
+
+<span class="c1"># Method 2: one at a time in for loop</span>
+<span class="c1"># loop over each of the items in the $files array</span>
+<span class="c1"># get the basename for the file, i.e. just the file name not full path </span>
+<span class="c1"># use sed to remove everything matching pattern &quot;.PB.hsmetrics.txt&quot; (actually replace it with nothing)</span>
+<span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="nv">files</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>basename<span class="w"> </span><span class="nv">$f</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/.PB.hsmetrics.txt//g&#39;</span>
+<span class="k">done</span>
+</code></pre></div>
+Output:
+<div class="highlight"><pre><span></span><code>## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 ./PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 ./PB-P-HD2-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 ./PB-P-HD3-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 ./PB-P-HD6-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## PB-P-HD1-CFDNA-1811-KH20190925-PB20190927
+## PB-P-HD2-CFDNA-1811-KH20190925-PB20190927
+## PB-P-HD3-CFDNA-1811-KH20190925-PB20190927
+## PB-P-HD6-CFDNA-1811-KH20190925-PB20190927
+## PB-P-HD1-CFDNA-1811-KH20190925-PB20190927
+## PB-P-HD2-CFDNA-1811-KH20190925-PB20190927
+## PB-P-HD3-CFDNA-1811-KH20190925-PB20190927
+## PB-P-HD6-CFDNA-1811-KH20190925-PB20190927
+</code></pre></div>
+Other combinations of the tools in the two methods can also be used to get the same results. 
+For most tasks there are many possible ways to solve them on the command line. Just use whatever tools you are familiar with, and when there is something you can't figure out how to do, google offers tons of knowledge and ideas.</p>
+<p>Some more things that can be done with a for loop:
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="si">${</span><span class="nv">files</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="c1"># assign output of commands to a variable with the $() construction:</span>
+<span class="w">    </span><span class="nv">samp</span><span class="o">=</span><span class="k">$(</span>basename<span class="w"> </span><span class="nv">$f</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/.PB.hsmetrics.txt//g&#39;</span><span class="k">)</span>
+<span class="w">    </span><span class="c1"># check conditions with if, here if $samp varaible matches some regex:</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$samp</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>HD1<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;This is HD1 sample:&quot;</span>
+<span class="w">    </span><span class="k">elif</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$samp</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span>HD2<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;This is HD2 sample:&quot;</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;This another sample:&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$samp</span>
+<span class="w">    </span><span class="c1"># search for the sample name in the file content with grep, -c gives the count of hits</span>
+<span class="w">    </span><span class="nv">hits</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$samp</span><span class="s2">&quot;</span><span class="w"> </span><span class="nv">$f</span><span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;File </span><span class="nv">$f</span><span class="s2"> contains sample name </span><span class="nv">$samp</span><span class="s2"> </span><span class="nv">$hits</span><span class="s2"> times&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w">  </span><span class="c1"># empty line</span>
+<span class="k">done</span>
+</code></pre></div>
+Output:
+<div class="highlight"><pre><span></span><code>## This is HD1 sample:
+## PB-P-HD1-CFDNA-1811-KH20190925-PB20190927
+## File ./PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt contains sample name PB-P-HD1-CFDNA-1811-KH20190925-PB20190927 1 times
+## 
+## This is HD2 sample:
+## PB-P-HD2-CFDNA-1811-KH20190925-PB20190927
+## File ./PB-P-HD2-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt contains sample name PB-P-HD2-CFDNA-1811-KH20190925-PB20190927 1 times
+## 
+## This another sample:
+## PB-P-HD3-CFDNA-1811-KH20190925-PB20190927
+## File ./PB-P-HD3-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt contains sample name PB-P-HD3-CFDNA-1811-KH20190925-PB20190927 1 times
+## 
+## This another sample:
+## PB-P-HD6-CFDNA-1811-KH20190925-PB20190927
+## File ./PB-P-HD6-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt contains sample name PB-P-HD6-CFDNA-1811-KH20190925-PB20190927 1 times
+</code></pre></div>
+To create a table with the info from specific rows and columns we can use the awk program. In this case we will take columns MEAN_TARGET_COVERAGE (number 34) and FOLD_ENRICHMENT (number 13). The relevant data is on line 8, with the header on line 7. 
+NR: row number in total; FNR: row number in file.
+"&gt;" writes the output to a new file
+column -t aligns the output columns nicely
+<div class="highlight"><pre><span></span><code>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;\t&quot;</span><span class="w"> </span>-v<span class="w"> </span><span class="nv">OFS</span><span class="o">=</span><span class="s2">&quot;\t&quot;</span><span class="w"> </span><span class="s1">&#39;NR==7 {print &quot;file&quot;, $34, $13}; FNR==8 {print FILENAME, $34, $13}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="si">${</span><span class="nv">files</span><span class="p">[@]</span><span class="si">}</span><span class="w"> </span>&gt;<span class="w"> </span>qc_summary.txt
+ls<span class="w"> </span>-lhtr<span class="w"> </span>
+cat<span class="w"> </span>qc_summary.txt
+cat<span class="w"> </span>qc_summary.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>column<span class="w"> </span>-t
+</code></pre></div>
+Output:
+<div class="highlight"><pre><span></span><code>## total 144
+## -rw-r--r--  1 rebber  staff   7.0K Apr 14 12:01 PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.slurm.log
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   7.8K Apr 14 12:01 PB-P-HD2-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.slurm.log
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 PB-P-HD2-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   8.1K Apr 14 12:01 PB-P-HD3-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.slurm.log
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 PB-P-HD3-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   5.3K Apr 14 12:01 PB-P-HD6-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.slurm.log
+## -rw-r--r--  1 rebber  staff   4.1K Apr 14 12:01 PB-P-HD6-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt
+## -rw-r--r--  1 rebber  staff   382B Apr 14 17:56 qc_summary.txt
+## file MEAN_TARGET_COVERAGE    FOLD_ENRICHMENT
+## ./PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt 1550.031705 3085.649544
+## ./PB-P-HD2-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt 2283.624973 3389.760665
+## ./PB-P-HD3-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt 2599.327089 3688.749254
+## ./PB-P-HD6-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt 1173.933741 4831.030898
+## file                                                          MEAN_TARGET_COVERAGE  FOLD_ENRICHMENT
+## ./PB-P-HD1-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt  1550.031705           3085.649544
+## ./PB-P-HD2-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt  2283.624973           3389.760665
+## ./PB-P-HD3-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt  2599.327089           3688.749254
+## ./PB-P-HD6-CFDNA-1811-KH20190925-PB20190927.PB.hsmetrics.txt  1173.933741           4831.030898
 </code></pre></div></p>
 
 
@@ -1062,7 +1051,7 @@ metrics/HsMetrics/PS/PB-P-HD181115-N-4minfrag-KH20201002-PS20201005.PS.hsmetrics
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.path", "content.code.annotate", "content.tabs.link", "navigation.indexes", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "content.code.annotate", "content.tabs.link", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.51198bba.min.js"></script>

@@ -32,16 +32,15 @@ Many users think of R as a statistics system. The R group prefers to think of it
 ### The R Homepage
 The R homepage has a wealth of information on it,
 
-R-project.org
+[R-project.org](https://www.r-project.org/){:target="_blank"}
 
-On the homepage you can:
+On the homepage you can learn more about R
 
-Learn more about R
-* Download R
-* Get Documentation (official and user supplied)
-* Get access to CRAN ‘Comprehensive R archival network’
-* RStudio
-* RStudio started in 2010, to offer R a more full featured integrated development environment (IDE) and modeled after matlabs IDE.
+  * Download R
+  * Get Documentation (official and user supplied)
+  * Get access to CRAN ‘Comprehensive R archival network’
+  * RStudio
+  * RStudio started in 2010, to offer R a more full featured integrated development environment (IDE) and modeled after matlabs IDE.
 
 ### RStudio has many features:
 
@@ -69,7 +68,7 @@ RStudio and its team have contributed to many R packages. These include:
 
 Let’s start RStudio
 
-![](https://i.imgur.com/Rg8hId9.jpg)
+![](https://i.imgur.com/Rg8hId9.jpg){:target="_blank"}
 
 
 #### 2. Open a new RScript File
@@ -122,6 +121,7 @@ x
 The two act the same in most cases. The difference in assignment operators is clearer when you use them to set an argument value in a function call. For example:
 
 ```
+rm(x)  # first remove the previously defined x variable
 median(x = 1:10)
 x 
 Error: object 'x' not found
@@ -137,7 +137,7 @@ In this case, x is declared in the user workspace, so you can use it after the f
 
 #### 6. The RStudio Cheat Sheets
 
-[rstudio-ide.pdf](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
+[rstudio-ide.pdf](https://course-cg-5534.s3.amazonaws.com/pdf/rstudio-ide.pdf){:target="_blank"}
 
 spend 15m getting to know RStudio a little
 
@@ -146,8 +146,13 @@ Import and export data in R
 ====================================================
 
 R base function read.table() is a general funciton that can be used to read a file in table format. The data will be imported as a data frame.
+To download the data, run the following in your terminal/commnad line if you have a Mac or Linux machine. If you have Windows, you can skip download and instead use the option below to read the file in R directly from the Internet.
 
-
+```bash
+# Download the raw_counts.txt file into your local machine using wget
+cd ~/my_wokingdir  # replace "~/my_workingdir" with the output of "getwd()" in your R session
+wget https://course-cg-5534.s3.amazonaws.com/awk_exercise/raw_counts.txt
+```
 ```r
 # To read a local file. If you have downloaded the raw_counts.txt file to your local machine, you may use the following command to read it in, by providing the full path for the file location. The way to specify the full path is the same as taught in the command line session. Here we assume raw_counts.txt is in our current working directory
 data <- read.table(file="./raw_counts.txt", sep="\t", header=T, stringsAsFactors=F)
@@ -182,18 +187,18 @@ head(data)
 
 Depending on the format of the file, several variants of read.table() are available to make reading a file easier.
 
-read.csv(): for reading "comma separated value" files (.csv).
+**read.csv()**: for reading "comma separated value" files (.csv).
 
-read.csv2(): variant used in countries that use a comma "," as decimal point and a semicolon ";" as field separators.
+**read.csv2()**: variant used in countries that use a comma "," as decimal point and a semicolon ";" as field separators.
 
-read.delim(): for reading "tab separated value" files (".txt"). By default, point(".") is used as decimal point.
+**read.delim()**: for reading "tab separated value" files (".txt"). By default, point(".") is used as decimal point.
 
-read.delim2(): for reading "tab separated value" files (".txt"). By default, comma (",") is used as decimal point.
+**read.delim2()**: for reading "tab separated value" files (".txt"). By default, comma (",") is used as decimal point.
 
 Choosing the correct function (or parameters) is important! If we use `read.csv()` to read our tab-delimited file, it becomes a mess.
 
 ```r
-data2 <- read.csv(file="https://raw_counts.txt", stringsAsFactors=F)
+data2 <- read.csv(file="./raw_counts.txt", stringsAsFactors=F)
 
 head(data2)
 ```
@@ -210,41 +215,11 @@ head(data2)
 
 However, the `read.csv()` function is appropriate for a comma-delimited file.
 
-```r
-data3 <- read.csv(file="https://raw_counts.csv", stringsAsFactors=F)
 
-head(data3)
-```
-
-```
-##            C61  C62  C63  C64  C91  C92  C93 C94 I561 I562 I563 I564 I591 I592
-## AT1G01010  322  346  256  396  372  506  361 342  638  488  440  479  770  430
-## AT1G01020  149   87  162  144  189  169  147 108  163  141  119  147  182  156
-## AT1G01030   15   32   35   22   24   33   21  35   18    8   54   35   23    8
-## AT1G01040  687  469  568  651  885  978  794 862  799  769  725  715  811  567
-## AT1G01046    1    1    5    4    5    3    0   2    4    3    1    0    2    8
-## AT1G01050 1447 1032 1083 1204 1413 1484 1138 938 1247 1516  984 1044 1374 1355
-##           I593 I594 I861 I862 I863 I864 I891 I892 I893 I894
-## AT1G01010  656  467  143  453  429  206  567  458  520  474
-## AT1G01020  153  177   43  144  114   50  161  195  157  144
-## AT1G01030   16   24   42   17   22   39   26   28   39   30
-## AT1G01040  831  694  345  575  605  404  735  651  725  591
-## AT1G01046    8    1    0    4    0    3    5    7    0    5
-## AT1G01050 1437 1577  412 1338 1051  621 1434 1552 1248 1186
-```
-
-Since the data contained in these files is the same, we don't need to keep three copies.
+Since the data contained in these files is the same, we don't need to keep data2 copy.
 
 ```r
-identical(data, data3)
-```
-
-```
-## [1] TRUE
-```
-
-```r
-rm(data2, data3)
+rm(data2)
 ```
 
 
@@ -264,21 +239,62 @@ write.csv2()
 
 ---
 
-Basic statistics in R
-====================================================
+## Basic statistics in R
 
-| Description                            |  R_function  |
-|----------------------------------------|--------------|
-|  Mean                                  |  mean()      |
-|  Standard deviation                    |  sd()        |
-|  Variance                              |  var()       |
-|  Minimum                               |  min()       |
-|  Maximum                               |  max()       |
-|  Median                                |  median()    |
-|  Range of values: minimum and maximum  |  range()     |
-|  Sample quantiles                      |  quantile()  |
-|  Generic function                      |  summary()   |
-|  Interquartile range                   |  IQR()       |
+<div class="row">
+    <div class="col-12 typeset__table">
+      <table>
+      <thead>
+        <tr>
+        <th style="text-align:center;"> Description </th>
+        <th style="text-align:center;"> R_function </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td class="td-align-left"> Mean </td>
+        <td style="text-align:center;"> mean() </td>
+        </tr>
+        <tr>
+        <td class="td-align-left"> Standard deviation </td>
+        <td style="text-align:center;"> sd() </td>
+        </tr>
+        <tr>
+        <td class="td-align-left"> Variance </td>
+        <td style="text-align:center;"> var() </td>
+        </tr>
+        <tr>
+        <td class="td-align-left"> Minimum </td>
+        <td style="text-align:center;"> min() </td>
+        </tr>
+        <tr>
+        <td class="td-align-left"> Maximum </td>
+        <td style="text-align:center;"> max() </td>
+        </tr>
+        <tr>
+        <td class="td-align-left"> Median </td>
+        <td style="text-align:center;"> median() </td>
+        </tr>
+        <tr>
+        <td class="td-align-left"> Range of values: <br/> minimum and maximum </td>
+        <td style="text-align:center;"> range() </td>
+        </tr>
+        <tr>
+        <td class="td-align-left"> Sample quantiles </td>
+        <td style="text-align:center;"> quantile() </td>
+        </tr>
+        <tr>
+        <td class="td-align-left"> Generic function </td>
+        <td style="text-align:center;"> summary() </td>
+        </tr>
+        <tr>
+        <td class="td-align-left"> Interquartile range </td>
+        <td style="text-align:center;"> IQR() </td>
+        </tr>
+      </tbody>
+      </table>
+  </div>
+</div>
 
 Calculate the mean expression for each sample.
 
@@ -288,8 +304,8 @@ apply(data, 2, mean)
 ```
 
 ```
-##         V1         V2         V3         V4         V5         V6         V7 
-##  0.1800418 -0.2534468 -0.1897400 -0.5426865 -0.1894511 -0.2531511 -0.3651648
+##      C61      C62      C63      C64      C91      C92      C93      C94     I561     I562     I563     I564     I591     I592     I593     I594     I861     I862     I863     I864     I891     I892     I893     I894 
+## 391.9998 336.4872 333.7007 380.6545 364.6587 407.0191 361.3672 314.1931 398.8421 380.4970 382.0019 378.7685 387.7994 349.4061 400.9421 385.1493 219.8517 379.0522 341.6387 271.0391 395.3089 426.0254 350.8965 358.8508 
 ```
 
 Calculate the range of expression for each sample.
@@ -300,9 +316,9 @@ apply(data, 2, range)
 ```
 
 ```
-##              V1        V2         V3         V4        V5         V6        V7
-## [1,] -0.6225434 -2.452988 -1.1885474 -1.5352739 -1.311441 -1.3231301 -3.108072
-## [2,]  0.9157785  1.558738  0.5844574  0.5020093  1.986243  0.8357217  1.515365
+##        C61   C62   C63   C64   C91   C92   C93   C94   I561  I562  I563  I564   I591  I592   I593  I594  I861   I862  I863  I864   I891  I892   I893  I894
+## [1,]     0     0     0     0     0     0     0     0      0     0     0     0      0     0      0     0     0      0     0     0      0     0      0     0
+## [2,] 81764 89072 43781 64539 51516 68279 64407 53799 116414 90133 69623 76426 111873 73071 114566 89630 69853 122114 98449 51835 102672 80998 116025 89270
 ```
 
 Calculate the quantiles of each samples.
@@ -313,18 +329,12 @@ apply(data, 2, quantile)
 ```
 
 ```
-##               V1         V2         V3          V4          V5         V6
-## 0%   -0.62254340 -2.4529883 -1.1885474 -1.53527385 -1.31144098 -1.3231301
-## 25%  -0.24319891 -1.4878457 -0.4367767 -1.03930207 -0.83116242 -0.9900499
-## 50%   0.08886876  0.2487017 -0.3765026 -0.58285066 -0.50073601 -0.4826310
-## 75%   0.68229320  0.9235564  0.2629829 -0.05204306  0.08105049  0.5890407
-## 100%  0.91577852  1.5587378  0.5844574  0.50200930  1.98624311  0.8357217
-##               V7
-## 0%   -3.10807211
-## 25%  -0.84236920
-## 50%  -0.05402889
-## 75%   0.38766034
-## 100%  1.51536487
+##        C61   C62   C63   C64   C91   C92   C93   C94   I561  I562  I563  I564   I591  I592   I593  I594  I861   I862  I863  I864   I891  I892      I893  I894
+## 0%       0     0     0     0     0     0     0     0      0     0     0     0      0     0      0     0     0      0     0     0      0     0      0.00     0
+## 25%      0     0     0     0     0     0     0     0      0     0     0     0      0     0      0     0     0      0     0     0      0     0      0.00     0
+## 50%     43    38    45    47    48    45    47    39     41    45    47    45     48    41     45    43    21     49    33    31     46    49     44.00    41
+## 75%    330   270   294   331   326   344   311   266    327   333   314   316    330   298    338   333   149    327   274   211    333   354    300.75   304
+## 100% 81764 89072 43781 64539 51516 68279 64407 53799 116414 90133 69623 76426 111873 73071 114566 89630 69853 122114 98449 51835 102672 80998 116025.00 89270
 ```
 
 ---
@@ -356,7 +366,7 @@ plot(x,y)
 lines(x,y, type="l")
 ```
 
-![Plot2](https://course-5534.s3.amazonaws.com/Course_img/Rplot_03.png)
+![Plot3](https://course-5534.s3.amazonaws.com/Course_img/Rplot_03.png)
 
 ```r
 ## lines() can only be used to add information to a graph, while it cannot produce a graph on its own.
@@ -370,7 +380,7 @@ boxplot() can be used to summarize data.
 boxplot(data, xlab="Sample ID", ylab="Raw Counts")
 ```
 
-![Plot4](plot_uploaded--HERE)<!-- -->
+![Plot4](https://course-cg-5534.s3.amazonaws.com/Course_img/Rplot_04.png)
 
 add more details to the plot.
 
@@ -379,7 +389,7 @@ add more details to the plot.
 boxplot(data, xlab="Sample ID", ylab="Raw Counts", main="Expression levels", col="blue", border="black")
 ```
 
-![Plot5](plot_uploaded--HERE)<!-- -->
+![Plot5](https://course-cg-5534.s3.amazonaws.com/Course_img/Rplot_05.png)
 
 
 
@@ -418,77 +428,47 @@ dev.off()
 
 ---
 
-ggplot2
-====================================================
+## R - packages for RNAseq Analysis
 
-ggplot2 is an R package for making visualizations and is based on the ‘Grammar of Graphics’ . It is often referred as one of the best packages for visualizations . Actually , there are other tools for making graphs in R such as Lattice and base R graphics . However , ggplot2 is straightforwardly easy to make any kind of graphs even complex ones . It is easy to add complexity or take it away which makes ggplot2 superior among these three . Since you can’t go back and forth once you created a plot in base R or in lattice . That’s enough for comparison , let’s start learning it now.
+The following packages need to be installed in your local machine using Rstudio to process RNAseq data in upcoming lab sessions.
 
-> Tip: In order to take most out of this tutorial you should not miss reading any lines in this tutorial and follow the flow and write codes on your computer.
-
-***Grammar of Graphics***
-
-Just as the grammar of language helps us construct meaningful sentences out of words, the Grammar of Graphics helps us to construct graphical figures out of different visual elements. This grammar gives us a way to talk about parts of a plot: all the circles, lines, arrows, and words that are combined into a diagram for visualizing data. Originally developed by Leland Wilkinson, the Grammar of Graphics was adapted by Hadley Wickham to describe the components of a plot, including
-
-* the data being plotted
-* the geometric objects (circles, lines, etc.) that appear on the plot
-* a set of mappings from variables in the data to the aesthetics (appearance) of the geometric objects
-* a statistical transformation used to calculate the data values used in the plot
-* a position adjustment for locating each geometric object on the plot
-* a scale (e.g., range of values) for each aesthetic mapping used
-* a coordinate system used to organize the geometric objects
-* the facets or groups of data shown in different plots
-
-Similar to how tidyr and dplyr provide efficient data transformation and manipulation, ggplot2 provides more efficient ways to create specific visual images. 
-
-ggplot objects can be highly complex, but the basic order of layers will usually look like this:
-
-* Begin with the baseline ggplot() command - this “opens” the ggplot and allow subsequent functions to be added with +. Typically the dataset is also specified in this command
-* Add “geom” layers - these functions visualize the data as geometries (shapes), e.g. as a bar graph, line plot, scatter plot, histogram (or a combination!). These functions all start with geom_ as a prefix.
-* Add design elements to the plot such as axis labels, title, fonts, sizes, color schemes, legends, or axes rotation
-* A simple example of skeleton code is as follows. We will explain each component in the sections below.
-
-```r
-# plot data from my_data columns as red points
-ggplot(data = my_data)+                   # use the dataset "my_data"
-  geom_point(                             # add a layer of points (dots)
-    mapping = aes(x = col1, y = col2),    # "map" data column to axes
-    color = "red")+                       # other specification for the geom
-  labs()+                                 # here you add titles, axes labels, etc.
-  theme()                                 # here you adjust color, font, size etc of non-data plot elements (axes, title, etc.) 
-```
-
-## Starting up with ggplot
-
-Firstly , we need to install ggplot2 package
-```r
-install.packages("ggplot2")
-library("ggplot2")
-```
-
-### The Basics of plotting with ggplot
-
-In order to create a plot, you:
-
-1. Call the ggplot() function which creates a blank canvas
-1. Specify aesthetic mappings, which specifies how you want to map variables to visual aspects. In this case we are simply mapping the displ and hwy variables to the x- and y-axes.
-1. You then add new layers that are geometric objects which will show up on the plot. In this case we add geom_point to add a layer with points (dot) elements as the geometric shapes to represent the data.
-
-```r
-# create canvas
-ggplot(data)
-
-# variables of interest mapped
-ggplot(data, aes(x = displ, y = hwy))
-
-# data plotted
-ggplot(data, aes(x = displ, y = hwy)) +
-  geom_point()
-```
-![](https://i.imgur.com/g5rCVvp.png)
-
-
-To try ggplot hands-on, we will follow the original ggplot basics chapter from [The Epidemiologist R Handbook](https://www.epirhandbook.com/en/index.html) (Batra, Neale, et al. The Epidemiologist R Handbook. 2021).
-
-## Now let's go to [<b>ggplot hands-on exercise.</b>](https://www.epirhandbook.com/en/ggplot-basics.html)
-(clicking on the link above will take you to the handbook's website, please feel free to bookmark the page for later reference.)
+R-packages list:
  
+ - `dplyr`
+ - `cowplot`
+ - `reshape2`
+ - `ggplot2`
+ - `jsonlite`
+
+```r
+# create a list of packages need to be installed
+packages <- c("dplyr", "cowplot", "reshape2", "ggplot2", "jsonlite")
+
+install.packages(packages, dependencies = TRUE)
+
+```
+
+R - Bioconductor Packages:
+ 
+ - `BiocManager`
+ - `biomaRt`
+ - `Biostrings`
+ - `ensembldb`
+ - `EnsDb.Hsapiens.v86`
+ - `chimeraviz` 
+
+```r
+# install BiocManager 
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("biomaRt")
+
+BiocManager::install("Biostrings")
+
+BiocManager::install("ensembldb")
+
+BiocManager::install("EnsDb.Hsapiens.v86")
+
+BiocManager::install("chimeraviz")
+```

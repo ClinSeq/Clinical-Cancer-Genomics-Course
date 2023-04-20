@@ -19,10 +19,14 @@ hide:
                 <tr>
                     <td class="time">09:00-9:45</td>
                     <td class="td-align-left">
-                        An introduction to the cancer genome and mutational processes in cancer.
+                        <b>Course overview</b>
+                        <ul>
+                            <li>Learning outcomes</li>
+                            <li>Examination, finish labs (computer work and questions during the labwork) and show a teacher.</li>
+                        </ul>
                     </td>
                     <td >Johan</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td class="time">09:45-10:00</td>
@@ -31,10 +35,10 @@ hide:
                 <tr>
                     <td class="time">10:00-10:45</td>
                     <td class="td-align-left">
-                        An introduction to the cancer genome and mutational processes in cancer <b>(conti).</b>
+                        An Introduction to the cancer genome and mutational processes in cancer <b>(conti).</b>
                     </td>
                     <td>Johan</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td  class="time">10:45-11:00</td>
@@ -42,9 +46,9 @@ hide:
                 </tr>
                 <tr>
                     <td  class="time">11:00-11:45</td>
-                    <td class="td-align-left">Practical considerations for performing cancer genomics</td>
+                    <td class="td-align-left">Practical considerations for performing cancer genomics.</td>
                     <td>Johan</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td  class="time">12:00-13:00</td>
@@ -62,7 +66,7 @@ hide:
                         </ul>
                     </td>
                     <td>Johan & Rebecka & Venki</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
             </tbody>
         </table>
@@ -89,7 +93,7 @@ hide:
                         Liquid biopsies 
                     </td>
                     <td>Johan</td>
-                    <td>Zoom</td>
+                    <td>North 3</td>
                 </tr>
                 <tr>
                     <td  class="time">09:45-10:00</td>
@@ -101,7 +105,7 @@ hide:
                         The clinical impact of analysing the cancer genome.
                     </td>
                     <td>Felix</td>
-                    <td>Zoom</td>
+                    <td>North 3</td>
                 </tr>
                 <tr>
                     <td  class="time">10:45-11:00</td>
@@ -110,10 +114,13 @@ hide:
                 <tr>
                     <td  class="time">11:00-11:45</td>
                     <td class="td-align-left">
-                        Lab Introduction
+                        <b>Lab intro.</b>
+                        <ul>
+                            <li>Add new human genome reference paper.</li>
+                            <li>Redo (read about alignment etc)</li>
                     </td>
                     <td>Johan</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td  class="time">12:00-13:00</td>
@@ -131,7 +138,7 @@ hide:
                         </ul>
                     </td>
                     <td>Johan & Rebecka & Venki</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
             </tbody>
         </table>
@@ -157,8 +164,8 @@ hide:
                     <td class="td-align-left">
                         Somatic and germline variant callers.
                     </td>
-                    <td>Venkatesh</td>
-                    <td>Zoom</td>
+                    <td>Rebecka</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td class="time">09:45-10:00</td>
@@ -167,11 +174,10 @@ hide:
                 <tr>
                     <td class="time">10:00-10:45</td>
                     <td class="td-align-left">
-                        RNA sequencing.<br/> 
-                        Expression outliers, classification, subtypes (breast cancer), neopeptides.
+                        RNA-Seq Data Analysis.
                     </td>
-                    <td>Rebecka</td>
-                    <td>Zoom</td>
+                    <td>Sinja</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td class="time">10:45-11:00</td>
@@ -183,7 +189,7 @@ hide:
                        Processing and QC of DNA- and RNA sequencing data. 
                     </td>
                     <td>Rebecka</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td class="time">12:00-13:00</td>
@@ -192,7 +198,7 @@ hide:
                 <tr>
                     <td class="time">13:00-17:00</td>
                     <td class="td-align-left">
-                        <b>Lab sessions</b>
+                        <b>Practical session</b>
                         <ul>
                             <li>Calling somatic and germline mutations.</li>
                             <li>Filtering variants. </li>
@@ -201,7 +207,7 @@ hide:
                         </ul>                 
                     </td>
                     <td>Johan & Rebecka & Venki & Sinja</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
             </tbody>
         </table>
@@ -225,10 +231,10 @@ hide:
                 <tr>
                     <td class="time">09:00-9:45</td>
                     <td class="td-align-left">
-                        Somatic- and germline copy-number alterations.
+                        Somatic and germline copy-number alterations.
                     </td>
                     <td>Markus</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td class="time">09:45-10:00</td>
@@ -240,7 +246,7 @@ hide:
                         Structural variation.
                     </td>
                     <td>Johan</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td class="time">10:45-11:00</td>
@@ -252,7 +258,7 @@ hide:
                         Lab introduction.
                     </td>
                     <td>Markus & Johan & Sinja</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td class="time">12:00-13:00</td>
@@ -270,7 +276,7 @@ hide:
                         </ul>
                     </td>
                     <td>Johan & Markus & Sinja</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
             </tbody>
         </table>
@@ -297,7 +303,7 @@ hide:
                         Continue labwork from yesterday.
                     </td>
                     <td>Johan</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td class="time">09:45-10:00</td>
@@ -306,10 +312,10 @@ hide:
                 <tr>
                     <td class="time">10:00-10:45</td>
                     <td class="td-align-left">
-                        How to curate somatic- and germline variation for clinical use.
+                        How to curate somatic and germline variation for clinical use.
                     </td>
                     <td>Johan</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td class="time">10:45-11:00</td>
@@ -318,18 +324,32 @@ hide:
                 <tr>
                     <td class="time">11:00-11:45</td>
                     <td class="td-align-left">
-                        Clinical Interpretation of genomic data. </br>
-                        Databases, visualization and interpretation. </br>
+                        <ul>
+                            <li>Clinical Interpretation of genomic data. </li>
+                            <li>Databases, visualization and interpretation. </li>
+                        </ul>
                     </td>
                     <td>Venki</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
                     <td class="time">12:00-13:00</td>
                     <td class="td-align-left" colspan="3">Lunch</td>
                 </tr>
                 <tr>
-                    <td class="time">13:00-17:00</td>
+                    <td class="time">13:00-13:45</td>
+                    <td class="td-align-left">
+                          Bioinformatics pipelines & HTC computing environments        
+                    </td>
+                    <td>Venki</td>
+                    <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td class="time">13:45-14:00</td>
+                    <td class="td-align-left" colspan="3">Break</td>
+                </tr>
+                <tr>
+                    <td class="time">14:00-17:00</td>
                     <td class="td-align-left">
                           <b> --continue leftover labwork.</b>
                           <ul>
@@ -339,7 +359,7 @@ hide:
                         </ul>           
                     </td>
                     <td>Johan & Rebecka & Venki & Sinja</td>
-                    <td>Zoom</td>
+                    <td>Wargentin</td>
                 </tr>
             </tbody>
         </table>

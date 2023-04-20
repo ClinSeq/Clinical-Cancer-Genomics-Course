@@ -32,7 +32,7 @@ theme:
     # - navigation.instant
     # - navigation.sections
     - navigation.top
-    # - navigation.tracking
+    - navigation.tracking
     # - navigation.footer
     # - header.autohide
     - content.code.annotate
@@ -110,8 +110,8 @@ markdown_extensions:
 nav:
   - Course Details: index.md
   - Schedule: schedule.md
-  - Lectures: lectures/lectures.md
   - AWS Instances Login: aws/aws_ec2_instances.md
+  - Lectures: lectures/lectures.md
   # - Pre-course setup:
   #   - Installation : installation.md
   #   - Download Files:
@@ -124,7 +124,7 @@ nav:
         - Workspace - AWS : lab_session/aws_env.md
         - R for Bioinformatics: lab_session/R_for_bioinformatics.md
         - Command Line Usage in Real Life: lab_session/real_life_example_cli.md
-        - ggplot tutorial: lab_session/real_life_example_cli.md
+        - ggplot tutorial: lab_session/ggplot2.md
       - Day 2:
         - Human Genome: lab_session/human_genome.md
         - Annotation: lab_session/annotation_files.md
@@ -134,7 +134,7 @@ nav:
         - Variant Calling: lab_session/variant_calling.md
       - Day 4:
         - Structural Variants: lab_session/structural_variation.md
-        - Copy Number Variations: lab_session/analysis_of_cnv.md
+        - Copy Number Analysis: lab_session/analysis_of_cnv.md
         - RNAseq: lab_session/processing_of_rnaseq.md
       - Day 5:
         - Joint Curation: lab_session/joint_curation.md
