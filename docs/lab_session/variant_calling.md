@@ -75,6 +75,7 @@ less -SN Exome_Norm_HC_calls.vcf
 The VCF file format is quite complex, the specification can be found [here](https://samtools.github.io/hts-specs/VCFv4.2.pdf).
 
 Try to do the following:
+
 - Identify the VCF header section.
 - Identify the data column header.
 - Find the variant on chr17 pos 106742 in the VCF file.
@@ -139,6 +140,7 @@ gatk --java-options '-Xmx12g' VariantFiltration \
 ```
 
 Notice that warnings are given with regards to MQRankSum and ReadPosRankSum, these are only calculated if the site is called as heterozygous. E.g. for this site (inspect in IGV and in the VCF file):
+
 - chr17:1067361
 
 This was discussed at the [GATK forum](https://sites.google.com/a/broadinstitute.org/legacy-gatk-forum-discussions/2017-01-18-2016-08-11/8323-Why-do-MQRankSum-and-ReadPosRankSum-not-appear-in-some-vcf-file-entries).
@@ -152,6 +154,7 @@ grep -v "##" Exome_Norm_HC_calls.snps.filtered.vcf | grep -vP "\tPASS\t" | head 
 grep -v "##" Exome_Norm_HC_calls.snps.filtered.vcf | grep -P "\tPASS\t" | head -10
 ```
 Try to do the following:
+
 - Count the number of variants that failed and passed filtering.
 
 #### Merge filtered SNP and INDEL vcfs back together
@@ -229,7 +232,8 @@ scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/germline/Exome_Norm
 
 Open the HTML file.
 
-Answer the following:
+***Answer the following:***
+
 - How many variants were processed by VEP?
 - What is the most common kind of consequence?
 - Why are only variants the coding regions detected?
@@ -240,7 +244,7 @@ Answer the following:
 - VEP assigns each variant a consequence types, as described [here](https://m.ensembl.org/info/genome/variation/prediction/predicted_data.html).
     - What is the difference between splice region variants and splice donor/acceptor variants?
     - The --pick option is used, as described [here](https://m.ensembl.org/info/docs/tools/vep/script/vep_other.html#pick), do you think it makes sense to use? 
-
+----
 ## Somatic variants
 
 We will run multiple variant callers and merging the callset.
@@ -475,7 +479,8 @@ scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/somatic/exome.merge
 
 Open the HTML file.
 
-Answer the following:
+***Answer the following:***
+
 - How many variants were processed by VEP?
 - Any diffrence in the distribution of variants vs. the germline variants? 
 - The variant categories e.g. intron_variant and regulatory_region_variant should be approached carefully, why?

@@ -20,6 +20,7 @@ hide:
 
     1. QC metrics for DNA sequencing. [PDF](pdf/day_3/DNA_QC.pdf){:target="_blank"}
     2. Somatic and germline variant calling. [PDF](pdf/day_3//somatic_germline_variant_callers.pdf){:target="_blank"}
+    3. RNA sequencing. [PDF](pdf/day_3/RNAseq.pdf){:target="_blank"}
 
 ??? abstract "Day 4 : GSR calling & RNA-Seq"
 

@@ -132,7 +132,7 @@ hide:
                         <b>Lab sessions</b>
                         <ul>
                             <li>Looking into the human genome reference.</li>
-                            <li>Annotatation files needed for bioinformatic processing.</li>
+                            <li>Annotation files needed for bioinformatic processing.</li>
                             <li>Executing commands for processing and checking the quality of DNA sequencing data.</li>
                             <li>Introduction to the Integrative Genomics Viewer (IGV).</li>
                         </ul>
@@ -324,10 +324,8 @@ hide:
                 <tr>
                     <td class="time">11:00-11:45</td>
                     <td class="td-align-left">
-                        <ul>
-                            <li>Clinical Interpretation of genomic data. </li>
-                            <li>Databases, visualization and interpretation. </li>
-                        </ul>
+                        Clinical Interpretation of genomic data. </br>
+                        Databases, visualization and interpretation.
                     </td>
                     <td>Venki</td>
                     <td>Wargentin</td>

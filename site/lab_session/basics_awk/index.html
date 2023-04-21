@@ -481,13 +481,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#an-introduction-on-how-to-analyze-table-data-without-ms-excel" class="md-nav__link">
-    An introduction on how to analyze table data without MS Excel
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#what-is-awk" class="md-nav__link">
     What is AWK?
   </a>
@@ -957,13 +950,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#an-introduction-on-how-to-analyze-table-data-without-ms-excel" class="md-nav__link">
-    An introduction on how to analyze table data without MS Excel
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#what-is-awk" class="md-nav__link">
     What is AWK?
   </a>
@@ -1068,13 +1054,15 @@
 
 
 <h1 id="awk-crash-course-for-bioinformatics">AWK crash course for Bioinformatics<a class="headerlink" href="#awk-crash-course-for-bioinformatics" title="Permanent link">&para;</a></h1>
-<h2 id="an-introduction-on-how-to-analyze-table-data-without-ms-excel">An introduction on how to analyze table data without MS Excel<a class="headerlink" href="#an-introduction-on-how-to-analyze-table-data-without-ms-excel" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Note: An introduction on how to analyze table data without MS Excel</p>
+</blockquote>
 <h2 id="what-is-awk">What is AWK?<a class="headerlink" href="#what-is-awk" title="Permanent link">&para;</a></h2>
 <p>AWK is an interpreted programming language designed for text processing and typically used as a data extraction and reporting tool.</p>
 <p>The AWK language is a data-driven scripting language consisting of a set of actions to be taken against streams of textual data - either run directly on files or used as part of a pipeline - for purposes of extracting or transforming text, such as producing formatted reports. The language extensively uses the string datatype, associative arrays (that is, arrays indexed by key strings), and regular expressions.</p>
 <p>AWK has a limited intended application domain, and was especially designed to support one-liner programs.</p>
 <p>It is a standard feature of most Unix-like operating systems.</p>
-<p>source: <a href="https://en.wikipedia.org/wiki/AWK">Wikipedia</a></p>
+<p>source: <a href="https://en.wikipedia.org/wiki/AWK" target="_blank">Wikipedia</a></p>
 <h2 id="why-awk">Why awk?<a class="headerlink" href="#why-awk" title="Permanent link">&para;</a></h2>
 <p>You can replace a pipeline of 'stuff | grep | sed | cut...' with a single call to awk. For a simple script, most of the timelag is in loading these apps into memory, and it's much faster to do it all with one. This is ideal for something like an openbox pipe menu where you want to generate something on the fly. You can use awk to make a neat one-liner for some quick job in the terminal, or build an awk section into a shell script. </p>
 <h3 id="simple-awk-commands">Simple AWK commands<a class="headerlink" href="#simple-awk-commands" title="Permanent link">&para;</a></h3>
@@ -1194,7 +1182,7 @@ The average score is 77.56</p>
 <p>Here, the AWK program sends data to the wc command via the pipe. In the AWK program, we find out those users who use bash. Their names are passed to the wc command which counts them. In our case, there are three users using bash.</p>
 <h3 id="awk-for-bioinformatics-looking-at-transcriptome-data">AWK for Bioinformatics - looking at transcriptome data<a class="headerlink" href="#awk-for-bioinformatics-looking-at-transcriptome-data" title="Permanent link">&para;</a></h3>
 <p>You can find a lot of online tutorials, but here we will try out a few steps which show how a bioinformatician analyses a <strong>GTF file</strong> using awk.</p>
-<p>GTF is a special file format that contains information about different regions of the genome and their associated annotations. More on that here - <a href="https://www.ensembl.org/info/website/upload/gff.html">Ensembl File Formats-GTF</a>.</p>
+<p>GTF is a special file format that contains information about different regions of the genome and their associated annotations. More on that here - <a href="https://www.ensembl.org/info/website/upload/gff.html" target="_blank">Ensembl File Formats-GTF</a>.</p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://course-cg-5534.s3.amazonaws.com/awk_exercise/transcriptome.gtf<span class="w"> </span>-O<span class="w"> </span>transcriptome.gtf
 
 head<span class="w"> </span>transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-S
@@ -1419,7 +1407,7 @@ If you are using the real transcriptome, it takes less than a minute to count up
 <div class="highlight"><pre><span></span><code>awk<span class="w"> </span><span class="s1">&#39;$2 == 1&#39;</span><span class="w"> </span>number_of_exons_by_gene.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="w"> </span><span class="c1"># 1362</span>
 </code></pre></div>
 <p>I will suggest to follow the original tutorial if you need to refer to these steps later on for your own data:<br />
-<a href="http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1/">AWK GTF! How to Analyze a Transcriptome Like a Pro</a></p>
+<a href="http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1/" target="_blank">AWK GTF! How to Analyze a Transcriptome Like a Pro</a></p>
 
 
 

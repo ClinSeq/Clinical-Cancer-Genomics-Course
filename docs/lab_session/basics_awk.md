@@ -1,6 +1,6 @@
 # AWK crash course for Bioinformatics
 
-## An introduction on how to analyze table data without MS Excel
+> Note: An introduction on how to analyze table data without MS Excel
 
 ## What is AWK?
 
@@ -12,7 +12,7 @@ AWK has a limited intended application domain, and was especially designed to su
 
 It is a standard feature of most Unix-like operating systems.
 
-source: [Wikipedia](https://en.wikipedia.org/wiki/AWK)
+source: [Wikipedia](https://en.wikipedia.org/wiki/AWK){:target="_blank"}
 
 ## Why awk? 
 
@@ -184,7 +184,7 @@ Here, the AWK program sends data to the wc command via the pipe. In the AWK prog
 
 You can find a lot of online tutorials, but here we will try out a few steps which show how a bioinformatician analyses a **GTF file** using awk.
 
-GTF is a special file format that contains information about different regions of the genome and their associated annotations. More on that here - [Ensembl File Formats-GTF](https://www.ensembl.org/info/website/upload/gff.html).
+GTF is a special file format that contains information about different regions of the genome and their associated annotations. More on that here - [Ensembl File Formats-GTF](https://www.ensembl.org/info/website/upload/gff.html){:target="_blank"}.
 
 ```bash
 wget https://course-cg-5534.s3.amazonaws.com/awk_exercise/transcriptome.gtf -O transcriptome.gtf
@@ -455,4 +455,4 @@ awk '$2 == 1' number_of_exons_by_gene.txt | wc -l # 1362
 
 
 I will suggest to follow the original tutorial if you need to refer to these steps later on for your own data:  
-[AWK GTF! How to Analyze a Transcriptome Like a Pro](http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1/)
+[AWK GTF! How to Analyze a Transcriptome Like a Pro](http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1/){:target="_blank"}

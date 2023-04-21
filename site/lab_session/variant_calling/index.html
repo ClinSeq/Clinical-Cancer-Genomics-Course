@@ -1262,23 +1262,31 @@ ls<span class="w"> </span>-halt
 less<span class="w"> </span>-SN<span class="w"> </span>Exome_Norm_HC_calls.vcf
 </code></pre></div>
 <p>The VCF file format is quite complex, the specification can be found <a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf">here</a>.</p>
-<p>Try to do the following:
-- Identify the VCF header section.
-- Identify the data column header.
-- Find the variant on chr17 pos 106742 in the VCF file.
-    - Lead, type /106742 and press ENTER
-    - What is the read depth in this position?
-    - Is it a high quality variant?
-    - Go go IGV in this position
-        - Select expanded view.
-        - Color alignments by read strand.
-        - Sort alignments by base.
-        - Does the visual impression in IGV support the quality of the variant?
-- Identify a way to quickly separate SNPs and INDELs in the VCF.
-- Find the variant on chr17 pos 1787008 in the VCF file
-    - Is this a high quality variant?
-    - Navgiate in IGV to the position.
-    - Try to explain the information in the VCF to what is shown in IGV, is it correct?</p>
+<p>Try to do the following:</p>
+<ul>
+<li>Identify the VCF header section.</li>
+<li>Identify the data column header.</li>
+<li>Find the variant on chr17 pos 106742 in the VCF file.<ul>
+<li>Lead, type /106742 and press ENTER</li>
+<li>What is the read depth in this position?</li>
+<li>Is it a high quality variant?</li>
+<li>Go go IGV in this position<ul>
+<li>Select expanded view.</li>
+<li>Color alignments by read strand.</li>
+<li>Sort alignments by base.</li>
+<li>Does the visual impression in IGV support the quality of the variant?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Identify a way to quickly separate SNPs and INDELs in the VCF.</li>
+<li>Find the variant on chr17 pos 1787008 in the VCF file<ul>
+<li>Is this a high quality variant?</li>
+<li>Navgiate in IGV to the position.</li>
+<li>Try to explain the information in the VCF to what is shown in IGV, is it correct?</li>
+</ul>
+</li>
+</ul>
 <h3 id="filtering-germline-variants">Filtering germline variants<a class="headerlink" href="#filtering-germline-variants" title="Permanent link">&para;</a></h3>
 <p>As noted above, the raw output of GATK HaplotypeCaller will include many variants with varying degrees of quality. For various reasons we might wish to further filter these to a higher confidence set of variants. The hard-filtering approached applied here is futher described in detail at the <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890471-Hard-filtering-germline-short-variants">GATK webside</a>. </p>
 <h3 id="separate-snps-from-indels-in-the-variant-call-set">Separate SNPs from Indels in the variant call set<a class="headerlink" href="#separate-snps-from-indels-in-the-variant-call-set" title="Permanent link">&para;</a></h3>
@@ -1316,8 +1324,10 @@ gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s
 <span class="w">    </span>--filter-expression<span class="w"> </span><span class="s2">&quot;SOR &gt; 10.0&quot;</span><span class="w"> </span>--filter-name<span class="w"> </span><span class="s2">&quot;SOR_gt_10&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-O<span class="w"> </span>~/workspace/germline/Exome_Norm_HC_calls.indels.filtered.vcf
 </code></pre></div>
-<p>Notice that warnings are given with regards to MQRankSum and ReadPosRankSum, these are only calculated if the site is called as heterozygous. E.g. for this site (inspect in IGV and in the VCF file):
-- chr17:1067361</p>
+<p>Notice that warnings are given with regards to MQRankSum and ReadPosRankSum, these are only calculated if the site is called as heterozygous. E.g. for this site (inspect in IGV and in the VCF file):</p>
+<ul>
+<li>chr17:1067361</li>
+</ul>
 <p>This was discussed at the <a href="https://sites.google.com/a/broadinstitute.org/legacy-gatk-forum-discussions/2017-01-18-2016-08-11/8323-Why-do-MQRankSum-and-ReadPosRankSum-not-appear-in-some-vcf-file-entries">GATK forum</a>.</p>
 <p>The variants are now marked as PASS or or <em>filter-name</em>. Use <code>grep -v</code> and <code>head</code> to skip past all the VCF header lines and view the first few records. </p>
 <p><div class="highlight"><pre><span></span><code><span class="c1">#inspect the 10 first variants that did not pass</span>
@@ -1325,8 +1335,10 @@ grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;##&
 <span class="c1">#inspect the 10 first variants that did pass</span>
 grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;##&quot;</span><span class="w"> </span>Exome_Norm_HC_calls.snps.filtered.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-P<span class="w"> </span><span class="s2">&quot;\tPASS\t&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
 </code></pre></div>
-Try to do the following:
-- Count the number of variants that failed and passed filtering.</p>
+Try to do the following:</p>
+<ul>
+<li>Count the number of variants that failed and passed filtering.</li>
+</ul>
 <h4 id="merge-filtered-snp-and-indel-vcfs-back-together">Merge filtered SNP and INDEL vcfs back together<a class="headerlink" href="#merge-filtered-snp-and-indel-vcfs-back-together" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s1">&#39;-Xmx12g&#39;</span><span class="w"> </span>MergeVcfs<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-I<span class="w"> </span>~/workspace/germline/Exome_Norm_HC_calls.snps.filtered.vcf<span class="w"> </span><span class="se">\</span>
@@ -1389,17 +1401,26 @@ grep<span class="w"> </span><span class="s2">&quot;##&quot;</span><span class="w
 scp<span class="w"> </span>-ri<span class="w"> </span>~/PEM_KEY_ID.pem<span class="w"> </span>ubuntu@AWS_ADDRESS_HERE:~/workspace/germline/Exome_Norm_HC_calls.filtered.PASS.vep.vcf_summary.html<span class="w"> </span>.
 </code></pre></div>
 <p>Open the HTML file.</p>
-<p>Answer the following:
-- How many variants were processed by VEP?
-- What is the most common kind of consequence?
-- Why are only variants the coding regions detected?
-- Open the Exome_Norm_HC_out.bam and Exome_Norm_sorted_mrkdup_bqsr.bam in IGV 
-    - Find a missense variant and examine it in IGV, does the variant look real?
-    - E.g. take chr17 744946
-        - Find the variant in the VEP VCF as well as IGV.
-- VEP assigns each variant a consequence types, as described <a href="https://m.ensembl.org/info/genome/variation/prediction/predicted_data.html">here</a>.
-    - What is the difference between splice region variants and splice donor/acceptor variants?
-    - The --pick option is used, as described <a href="https://m.ensembl.org/info/docs/tools/vep/script/vep_other.html#pick">here</a>, do you think it makes sense to use? </p>
+<p><strong><em>Answer the following:</em></strong></p>
+<ul>
+<li>How many variants were processed by VEP?</li>
+<li>What is the most common kind of consequence?</li>
+<li>Why are only variants the coding regions detected?</li>
+<li>Open the Exome_Norm_HC_out.bam and Exome_Norm_sorted_mrkdup_bqsr.bam in IGV <ul>
+<li>Find a missense variant and examine it in IGV, does the variant look real?</li>
+<li>E.g. take chr17 744946<ul>
+<li>Find the variant in the VEP VCF as well as IGV.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>VEP assigns each variant a consequence types, as described <a href="https://m.ensembl.org/info/genome/variation/prediction/predicted_data.html">here</a>.<ul>
+<li>What is the difference between splice region variants and splice donor/acceptor variants?</li>
+<li>The --pick option is used, as described <a href="https://m.ensembl.org/info/docs/tools/vep/script/vep_other.html#pick">here</a>, do you think it makes sense to use? </li>
+</ul>
+</li>
+</ul>
+<hr />
 <h2 id="somatic-variants">Somatic variants<a class="headerlink" href="#somatic-variants" title="Permanent link">&para;</a></h2>
 <p>We will run multiple variant callers and merging the callset.</p>
 <h3 id="varscan">Varscan<a class="headerlink" href="#varscan" title="Permanent link">&para;</a></h3>
@@ -1602,10 +1623,12 @@ nohup<span class="w"> </span>vep<span class="w"> </span>--cache<span class="w"> 
 scp<span class="w"> </span>-ri<span class="w"> </span>~/PEM_KEY_ID.pem<span class="w"> </span>ubuntu@AWS_ADDRESS_HERE:~/workspace/somatic/exome.merged.norm.annotated.vcf_summary.html<span class="w"> </span>.
 </code></pre></div>
 <p>Open the HTML file.</p>
-<p>Answer the following:
-- How many variants were processed by VEP?
-- Any diffrence in the distribution of variants vs. the germline variants? 
-- The variant categories e.g. intron_variant and regulatory_region_variant should be approached carefully, why?</p>
+<p><strong><em>Answer the following:</em></strong></p>
+<ul>
+<li>How many variants were processed by VEP?</li>
+<li>Any diffrence in the distribution of variants vs. the germline variants? </li>
+<li>The variant categories e.g. intron_variant and regulatory_region_variant should be approached carefully, why?</li>
+</ul>
 <h2 id="inspecting-variants-in-igv">Inspecting variants in IGV<a class="headerlink" href="#inspecting-variants-in-igv" title="Permanent link">&para;</a></h2>
 <ul>
 <li>

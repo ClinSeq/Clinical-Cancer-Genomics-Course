@@ -910,5 +910,5 @@ And now we can execute the entire loop using the script. Note that there is only
 
 ## FINALLY - a good summary for rounding up the session
 
-* [TEN SIMPLE RULES FOR GETTING STARTED WITH COMMAND-LINE BIOINFORMATICS](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008645)
+* [TEN SIMPLE RULES FOR GETTING STARTED WITH COMMAND-LINE BIOINFORMATICS](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008645){:target="_blank"}
 
