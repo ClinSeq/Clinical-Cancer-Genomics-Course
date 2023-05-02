@@ -61,13 +61,14 @@ install.packages("package_name")
 
 -   bamsignals
 -   biomaRt
--   bioStrings
+-   Biostrings
 -   BSgenome
 -   BSgenome.Hsapiens.UCSC.hg19
 -   DNAcopy
 -   GenomicRanges
 -   Rsamtools
 -   VariantAnnotation
+-   aroma.light
 
 Type once:
 

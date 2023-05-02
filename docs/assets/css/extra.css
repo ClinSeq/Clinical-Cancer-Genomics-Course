@@ -117,6 +117,10 @@ ul li, ol li{
   text-align: ;
 } */
 
+.md-typeset table:not([class]) th {
+  text-align: center;
+}
+
 .md-typeset table:not([class]) :is(td).td-align-left{
   text-align: left;
 }

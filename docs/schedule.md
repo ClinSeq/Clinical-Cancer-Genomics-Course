@@ -2,6 +2,8 @@
 hide:
   - navigation
 ---
+> **Note** : Zoom link for sick/absent students: [https://ki-se.zoom.us/j/68252300844](https://ki-se.zoom.us/j/68252300844){:target="_blank"}
+
 #### Day 1 : 2023-04-24 - Monday
 
 <div class="row">
@@ -19,11 +21,7 @@ hide:
                 <tr>
                     <td class="time">09:00-9:45</td>
                     <td class="td-align-left">
-                        <b>Course overview</b>
-                        <ul>
-                            <li>Learning outcomes</li>
-                            <li>Examination, finish labs (computer work and questions during the labwork) and show a teacher.</li>
-                        </ul>
+                        Course overview - An introduction to the cancer genome and mutational processes in cancer
                     </td>
                     <td >Johan</td>
                     <td>Wargentin</td>
@@ -35,7 +33,7 @@ hide:
                 <tr>
                     <td class="time">10:00-10:45</td>
                     <td class="td-align-left">
-                        An Introduction to the cancer genome and mutational processes in cancer <b>(conti).</b>
+                        An introduction to the cancer genome and mutational processes in cancer (cont)
                     </td>
                     <td>Johan</td>
                     <td>Wargentin</td>
@@ -46,9 +44,14 @@ hide:
                 </tr>
                 <tr>
                     <td  class="time">11:00-11:45</td>
-                    <td class="td-align-left">Practical considerations for performing cancer genomics.</td>
-                    <td>Johan</td>
+                    <td class="td-align-left">Practical considerations for performing cancer genomics </br>
+                    Real life examples how to use the command line</td>
+                    <td>Johan & Rebecka</td>
                     <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td  class="time">11:45-12:00</td>
+                    <td class="td-align-left" colspan="3">Q&A</td>
                 </tr>
                 <tr>
                     <td  class="time">12:00-13:00</td>
@@ -114,13 +117,14 @@ hide:
                 <tr>
                     <td  class="time">11:00-11:45</td>
                     <td class="td-align-left">
-                        <b>Lab intro.</b>
-                        <ul>
-                            <li>Add new human genome reference paper.</li>
-                            <li>Redo (read about alignment etc)</li>
+                        Lab intro
                     </td>
                     <td>Johan</td>
                     <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td  class="time">11:45-12:00</td>
+                    <td class="td-align-left" colspan="3">Q&A</td>
                 </tr>
                 <tr>
                     <td  class="time">12:00-13:00</td>
@@ -174,7 +178,7 @@ hide:
                 <tr>
                     <td class="time">10:00-10:45</td>
                     <td class="td-align-left">
-                        RNA-Seq Data Analysis.
+                        RNA sequencing
                     </td>
                     <td>Sinja</td>
                     <td>Wargentin</td>
@@ -186,10 +190,15 @@ hide:
                 <tr>
                     <td class="time">11:00-11:45</td>
                     <td class="td-align-left">
-                       Processing and QC of DNA- and RNA sequencing data. 
+                       Processing and QC of DNA- and RNA sequencing data.</br>
+                       Lab intro
                     </td>
                     <td>Rebecka</td>
                     <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td  class="time">11:45-12:00</td>
+                    <td class="td-align-left" colspan="3">Q&A</td>
                 </tr>
                 <tr>
                     <td class="time">12:00-13:00</td>
@@ -204,6 +213,7 @@ hide:
                             <li>Filtering variants. </li>
                             <li>Familiarizing with the variant formats.</li>
                             <li>Visualising variants in IGV.</li>
+                            <li>if ready start RNAseq work,  time runs out, continue tomorrow</li>
                         </ul>                 
                     </td>
                     <td>Johan & Rebecka & Venki & Sinja</td>
@@ -255,10 +265,14 @@ hide:
                 <tr>
                     <td class="time">11:00-11:45</td>
                     <td class="td-align-left">
-                        Lab introduction.
+                        Lab intro
                     </td>
                     <td>Markus & Johan & Sinja</td>
                     <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td  class="time">11:45-12:00</td>
+                    <td class="td-align-left" colspan="3">Q&A</td>
                 </tr>
                 <tr>
                     <td class="time">12:00-13:00</td>
@@ -269,10 +283,9 @@ hide:
                     <td class="td-align-left">          
                         <b>Lab sessions</b>   
                         <ul>
-                            <li>RNA analysis, expression and fusion calling.</li>
                             <li>Analysis of copy number alterations. </li>
                             <li>Identification of structural variants.</li>
-                            <li>Inspecting variants</li>
+                            <li>Continue with RNAseq work from yesterday</li>
                         </ul>
                     </td>
                     <td>Johan & Markus & Sinja</td>
@@ -302,7 +315,7 @@ hide:
                     <td class="td-align-left">
                         Continue labwork from yesterday.
                     </td>
-                    <td>Johan</td>
+                    <td>Johan & Rebecka & Sinja</td>
                     <td>Wargentin</td>
                 </tr>
                 <tr>
@@ -312,7 +325,8 @@ hide:
                 <tr>
                     <td class="time">10:00-10:45</td>
                     <td class="td-align-left">
-                        How to curate somatic and germline variation for clinical use.
+                        How to curate somatic- and germline variation for clinical use </br>
+                        Joint curation of variants
                     </td>
                     <td>Johan</td>
                     <td>Wargentin</td>
@@ -324,36 +338,29 @@ hide:
                 <tr>
                     <td class="time">11:00-11:45</td>
                     <td class="td-align-left">
-                        Clinical Interpretation of genomic data. </br>
-                        Databases, visualization and interpretation.
+                        <ul>
+                            <li>Curation demonstration, real samples. </li>
+                            <li>Bioinformatics pipelines & HTC computing environments</li>
+                        </ul>
                     </td>
-                    <td>Venki</td>
+                    <td>Johan & Venki</td>
                     <td>Wargentin</td>
+                </tr>
+                <tr>
+                    <td  class="time">11:45-12:00</td>
+                    <td class="td-align-left" colspan="3">Q&A</td>
                 </tr>
                 <tr>
                     <td class="time">12:00-13:00</td>
                     <td class="td-align-left" colspan="3">Lunch</td>
                 </tr>
                 <tr>
-                    <td class="time">13:00-13:45</td>
-                    <td class="td-align-left">
-                          Bioinformatics pipelines & HTC computing environments        
-                    </td>
-                    <td>Venki</td>
-                    <td>Wargentin</td>
-                </tr>
-                <tr>
-                    <td class="time">13:45-14:00</td>
-                    <td class="td-align-left" colspan="3">Break</td>
-                </tr>
-                <tr>
-                    <td class="time">14:00-17:00</td>
+                    <td class="time">13:00-17:00</td>
                     <td class="td-align-left">
                           <b> --continue leftover labwork.</b>
                           <ul>
-                            <li>Data visualisation/interpretation exercises.</li>
-                            <li>Finishing off any remaining labwork from previous days.</li>
-                            <li>Seek out and brainstorm personal projects with course teachers.</li>
+                            <li>Genomic Alteration Interpretation</li>
+                           <li>Depending on time: TCGA/ICGC papers</li>
                         </ul>           
                     </td>
                     <td>Johan & Rebecka & Venki & Sinja</td>

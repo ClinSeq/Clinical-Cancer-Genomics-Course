@@ -381,8 +381,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#connect-to-your-linux-instance-using-an-ssh-client" class="md-nav__link">
-    Connect to your Linux instance using an SSH client
+  <a href="#connect-aws-instance-on-ubuntumac" class="md-nav__link">
+    Connect AWS instance on ubuntu/Mac
   </a>
   
 </li>
@@ -875,8 +875,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#connect-to-your-linux-instance-using-an-ssh-client" class="md-nav__link">
-    Connect to your Linux instance using an SSH client
+  <a href="#connect-aws-instance-on-ubuntumac" class="md-nav__link">
+    Connect AWS instance on ubuntu/Mac
   </a>
   
 </li>
@@ -904,26 +904,140 @@
 
 
 <h1 id="aws-login">AWS Login<a class="headerlink" href="#aws-login" title="Permanent link">&para;</a></h1>
-<h2 id="connect-to-your-linux-instance-using-an-ssh-client">Connect to your Linux instance using an SSH client<a class="headerlink" href="#connect-to-your-linux-instance-using-an-ssh-client" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="n">ssh</span> <span class="o">-</span><span class="n">i</span> <span class="n">course</span><span class="o">-</span><span class="n">setup</span><span class="o">-</span><span class="n">student</span><span class="o">-</span><span class="n">key</span><span class="o">.</span><span class="n">pem</span> <span class="o">&lt;</span><span class="n">Instance</span> <span class="n">ID</span><span class="o">&gt;</span>
+<h3 id="connect-aws-instance-on-ubuntumac">Connect AWS instance on ubuntu/Mac<a class="headerlink" href="#connect-aws-instance-on-ubuntumac" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Download key </p>
+<ul>
+<li><a href="https://course-cg-5534.s3.amazonaws.com/aws_key/course-setup-student-key.pem" target="_blank">Linux/Mac OS</a></li>
+<li><a href="https://course-cg-5534.s3.amazonaws.com/aws_key/course-setup-student-key.ppk" target="_blank">Windows OS</a></li>
+</ul>
+</li>
+<li>
+<p>Locate the private key and set the permissions
+    <div class="highlight"><pre><span></span><code>    chmod 400 course-setup-student-key.pem
+</code></pre></div></p>
+</li>
+<li>Connect to your Linux instance using an SSH client
+    <div class="highlight"><pre><span></span><code>    ssh -i course-setup-student-key.pem &lt;Instance ID&gt;
 </code></pre></div>
-<blockquote>
-<p><strong>Note</strong>: Please use the new <code>course-setup-student-key.pem/course-setup-student-key.ppk</code> key file for aws login.</p>
-</blockquote>
+    <!-- **Note**: <code>&lt;Instance ID&gt;</code> - check in the below table  --></li>
+</ol>
+<p><strong>Note</strong>: </p>
+<ul>
+<li>Fetch <code>&lt;Instance ID&gt;</code> from your name in the below table.</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M464 256a208 208 0 1 1-416 0 208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0 256 256 0 1 0-512 0zm232-136v136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg></span> <strong>AWS Instance</strong> :<span class="add-info"> Monday - Friday ( 13:00 - 22:00 ) </span></li>
+</ul>
+<hr />
 <h2 id="list-of-user-and-instance-details">List of user and instance details<a class="headerlink" href="#list-of-user-and-instance-details" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th align="center">Name</th>
-<th align="center">Instance ID</th>
-<th align="center">Status</th>
+<th align="left">Name</th>
+<th align="left">Instance ID</th>
+<th align="left">Status</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">sarath</td>
-<td align="center">-</td>
-<td align="center">STOPPED</td>
+<td align="left">Caroline Hesselager</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Sulaf Abd Own</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Tina Becirovic</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Anna Thulin</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Chao Zheng</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Lina Stepanauskaite</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Yelin Zhao</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Ziyan Ma</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Tove Ekdahl Hjelm</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Petar Mitev</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Linn Hjelmgren</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Andreas Ekholm</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Donal Barrett</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Blaz Oder</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Ye Yuan</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Elin Barnekow</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Evangelos Doukoumopoulos</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Alen Lovric</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Anna Plym</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
+</tr>
+<tr>
+<td align="left">Ioannis Zerdes</td>
+<td align="left">-</td>
+<td align="left">STOPPED</td>
 </tr>
 </tbody>
 </table>

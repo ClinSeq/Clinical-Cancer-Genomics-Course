@@ -72,6 +72,7 @@ Recommended reading before the course:
 1. Lectures in the morning with computer exercises in the afternoon.
 2. 100% attendance is recommended, due to that each session is exclusive and cannot be compensated for later on. The student will be asked to review the issue presented in case of absence in a session.
 3. Each computer exercise addresses one or multiple learning outcomes. Each student will hand in a written report form each computer exercise. All intended learning outcomes need to be achieved in order to pass the exam.
+4. Zoom link for sick/absent students: [https://ki-se.zoom.us/j/68252300844](https://ki-se.zoom.us/j/68252300844){:target="_blank"}
 
 ## Additional Information 
 

@@ -1083,8 +1083,8 @@ fastqc<span class="w"> </span>RNAseq_Tumor_Lane1_R1.fastq.gz
 fastqc<span class="w"> </span>RNAseq_Tumor_Lane1_1.fastq.gz
 
 <span class="c1"># Download the output to your computer</span>
-scp<span class="w"> </span>-ri<span class="w"> </span>~/course_EC2_01.pem<span class="w"> </span>ubuntu@AWS_ADDRESS_HERE:~/workspace/inputs/data/fastq/RNAseq_Tumor/RNAseq_Tumor_Lane1_1_fastqc.html<span class="w"> </span>.
-scp<span class="w"> </span>-ri<span class="w"> </span>~/course_EC2_01.pem<span class="w"> </span>ubuntu@AWS_ADDRESS_HERE:~/workspace/inputs/data/fastq/RNAseq_Tumor/RNAseq_Tumor_Lane1_R1_fastqc.html<span class="w"> </span>.
+scp<span class="w"> </span>-ri<span class="w"> </span>~/course-setup-student-key.pem<span class="w"> </span>ubuntu@AWS_ADDRESS_HERE:~/workspace/inputs/data/fastq/RNAseq_Tumor/RNAseq_Tumor_Lane1_1_fastqc.html<span class="w"> </span>.
+scp<span class="w"> </span>-ri<span class="w"> </span>~/course-setup-student-key.pem<span class="w"> </span>ubuntu@AWS_ADDRESS_HERE:~/workspace/inputs/data/fastq/RNAseq_Tumor/RNAseq_Tumor_Lane1_R1_fastqc.html<span class="w"> </span>.
 </code></pre></div>
 Compare the two html files side by side:
 - Any obivous difference?</p>
@@ -1199,7 +1199,7 @@ multiqc<span class="w"> </span>~/workspace/rnaseq/alignments/
 
 <span class="c1">#Finally, download multiqc files to your local computer</span>
 <span class="c1"># Download MultiQC output to the local computer, open the .html in you favourite browser.</span>
-scp<span class="w"> </span>-ri<span class="w"> </span>~/course_EC2_01.pem<span class="w"> </span>ubuntu@AWS_ADDRESS_HERE:~/workspace/rnaseq/post_align_qc/multiqc*<span class="w"> </span>.
+scp<span class="w"> </span>-ri<span class="w"> </span>~/course-setup-student-key.pem<span class="w"> </span>ubuntu@AWS_ADDRESS_HERE:~/workspace/rnaseq/post_align_qc/multiqc*<span class="w"> </span>.
 </code></pre></div>
 Familiarize yourself with the RNAseq MultiQC data</p>
 <h2 id="indexing-bams">Indexing BAMs<a class="headerlink" href="#indexing-bams" title="Permanent link">&para;</a></h2>
@@ -1320,11 +1320,11 @@ less<span class="w"> </span>-SN<span class="w"> </span>gene_tpms_all_samples.tsv
 <p>First - download the files to your local machine</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#Run these commands on your local machine</span>
 
-scp<span class="w"> </span>-ri<span class="w"> </span>~/course_EC2_01.pem<span class="w"> </span>ubuntu@AWS_ADDRESS_HERE:/home/ubuntu/workspace/rnaseq/kallisto/transcript_tpms_all_samples.tsv<span class="w"> </span>.
+scp<span class="w"> </span>-ri<span class="w"> </span>~/course-setup-student-key.pem<span class="w"> </span>ubuntu@AWS_ADDRESS_HERE:/home/ubuntu/workspace/rnaseq/kallisto/transcript_tpms_all_samples.tsv<span class="w"> </span>.
 
 mv<span class="w"> </span>transcript_tpms_all_samples.tsv<span class="w"> </span>kallisto_transcript_tpms_all_samples.tsv
 
-scp<span class="w"> </span>-ri<span class="w"> </span>~/course_EC2_01.pem<span class="w"> </span>ubuntu@AWS_ADDRESS_HERE:/home/ubuntu/workspace/rnaseq/ref-only-expression/transcript_tpm_all_samples.tsv<span class="w"> </span>.
+scp<span class="w"> </span>-ri<span class="w"> </span>~/course-setup-student-key.pem<span class="w"> </span>ubuntu@AWS_ADDRESS_HERE:/home/ubuntu/workspace/rnaseq/ref-only-expression/transcript_tpm_all_samples.tsv<span class="w"> </span>.
 mv<span class="w"> </span>transcript_tpm_all_samples.tsv<span class="w"> </span>stringtie_transcript_tpms_all_samples.tsv
 
 <span class="c1">#Remember, one gene can have many transcripts. The ensembl gene ID for TP53 is ENSG00000141510. Check which ensembl transcripts that exist in the reference gtf.</span>
@@ -1333,9 +1333,10 @@ mv<span class="w"> </span>transcript_tpm_all_samples.tsv<span class="w"> </span>
 grep<span class="w"> </span>ENST<span class="w"> </span>~/workspace/inputs/references/transcriptome/ref_transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ENSG00000141510<span class="w"> </span><span class="p">|</span><span class="w"> </span>perl<span class="w"> </span>-nle<span class="w"> </span><span class="s1">&#39;@a = split /\t/; $_ =~ /transcript_id\s&quot;(\S*)&quot;;/g; print $1;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
 
 <span class="c1"># start R</span>
+/home/ubuntu/miniconda3/envs/r-rnaseq/bin/R
 
 <span class="c1"># set the working directory to where the files were downloaded</span>
-setwd<span class="o">(</span><span class="s2">&quot;DIR GOES HERE&quot;</span><span class="o">)</span>
+setwd<span class="o">(</span><span class="s2">&quot;DIRECTORY WHERE YOU DOWNLOADED THE FILES&quot;</span><span class="o">)</span>
 
 <span class="c1"># load libraries</span>
 library<span class="o">(</span>ggplot2<span class="o">)</span>
@@ -1502,12 +1503,6 @@ nohup<span class="w"> </span>pizzly<span class="w"> </span>-k<span class="w"> </
 <div class="highlight"><pre><span></span><code><span class="c1">#To go the fusion directory</span>
 <span class="nb">cd</span><span class="w"> </span>~/workspace/rnaseq/fusion
 
-<span class="c1"># ALREADY RUN: Get R scripts for later use</span>
-<span class="c1">#wget https://raw.githubusercontent.com/griffithlab/pmbio.org/master/assets/course_scripts/mod.grolar.R</span>
-<span class="c1">#wget https://raw.githubusercontent.com/griffithlab/pmbio.org/master/assets/course_scripts/import_Pizzly.R</span>
-scp<span class="w"> </span>-ri<span class="w"> </span>~/course_EC2_01.pem<span class="w"> </span>ubuntu@ec2-34-203-226-9.compute-1.amazonaws.com:~/workspace/rnaseq/fusion/*.json<span class="w"> </span>.
-scp<span class="w"> </span>-ri<span class="w"> </span>~/course_EC2_01.pem<span class="w"> </span>ubuntu@ec2-34-203-226-9.compute-1.amazonaws.com:~/workspace/rnaseq/fusion/mod20220117.grolar.R<span class="w"> </span>.
-
 <span class="c1">#list files</span>
 ls<span class="w"> </span>-halt
 
@@ -1525,13 +1520,14 @@ library<span class="o">(</span>EnsDb.Hsapiens.v86<span class="o">)</span>
 library<span class="o">(</span>ggplot2<span class="o">)</span>
 library<span class="o">(</span>chimeraviz<span class="o">)</span>
 
-<span class="c1"># Change to your own output location</span>
-setwd<span class="o">(</span><span class="s2">&quot;~&quot;</span><span class="o">)</span>
+<span class="c1"># If working on local computer - change to your own output location</span>
+<span class="c1"># setwd(&quot;~&quot;)</span>
 
 <span class="c1"># Load data</span>
 <span class="nv">suffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;617.json&quot;</span>
 print<span class="o">(</span>suffix<span class="o">)</span>
-<span class="nv">JSON_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>list.files<span class="o">(</span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;~&quot;</span>,<span class="w"> </span><span class="nv">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>paste0<span class="o">(</span><span class="s2">&quot;*&quot;</span>,suffix<span class="o">))</span>
+<span class="c1">#Note if working on your own computer - change path</span>
+<span class="nv">JSON_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>list.files<span class="o">(</span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;~/workspace/rnaseq/fusion/&quot;</span>,<span class="w"> </span><span class="nv">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>paste0<span class="o">(</span><span class="s2">&quot;*&quot;</span>,suffix<span class="o">))</span>
 print<span class="o">(</span>JSON_files<span class="o">)</span>
 <span class="nv">Ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>gsub<span class="o">(</span>suffix,<span class="w"> </span><span class="s2">&quot;&quot;</span>,<span class="w"> </span>JSON_files<span class="o">)</span>
 print<span class="o">(</span>Ids<span class="o">)</span>
@@ -1541,8 +1537,9 @@ edb<span class="w"> </span>&lt;-<span class="w"> </span>EnsDb.Hsapiens.v86
 listColumns<span class="o">(</span>edb<span class="o">)</span>
 supportedFilters<span class="o">(</span>edb<span class="o">)</span>
 
+<span class="c1">######### CHANGE HERE</span>
 <span class="c1"># Load the functoin https://github.com/MattBashton/grolar/blob/master/grolar.R</span>
-source<span class="o">(</span><span class="s2">&quot;mod20220117.grolar.R&quot;</span><span class="o">)</span>
+source<span class="o">(</span><span class="s2">&quot;/home/ubuntu/Rfunctions/grolar20230422.R&quot;</span><span class="o">)</span>
 
 <span class="c1"># Suffix which apears after sample id in output file name</span>
 <span class="c1"># Use above funciton on all output files</span>
@@ -1552,24 +1549,22 @@ lapply<span class="o">(</span>Ids,<span class="w"> </span><span class="k">functi
 <span class="c1"># Each fusion now has a unique identifier, sequence positions, and distance values for genes from the same chromosome:</span>
 
 <span class="c1"># Read the flattened files</span>
-<span class="nv">normal</span><span class="o">=</span>read.table<span class="o">(</span><span class="s2">&quot;~/norm-fuse_fusions_filt_sorted.txt&quot;</span>,<span class="w"> </span><span class="nv">header</span><span class="o">=</span>T<span class="o">)</span>
-<span class="nv">tumor</span><span class="o">=</span>read.table<span class="o">(</span><span class="s2">&quot;~/tumor-fuse_fusions_filt_sorted.txt&quot;</span>,<span class="w"> </span><span class="nv">header</span><span class="o">=</span>T<span class="o">)</span>
+<span class="nv">normal</span><span class="o">=</span>read.table<span class="o">(</span><span class="s2">&quot;norm-fuse_fusions_filt_sorted.txt&quot;</span>,<span class="w"> </span><span class="nv">header</span><span class="o">=</span>T<span class="o">)</span>
+<span class="nv">tumor</span><span class="o">=</span>read.table<span class="o">(</span><span class="s2">&quot;tumor-fuse_fusions_filt_sorted.txt&quot;</span>,<span class="w"> </span><span class="nv">header</span><span class="o">=</span>T<span class="o">)</span>
 
 <span class="c1">#Investigate the first five rows</span>
 head<span class="o">(</span>normal,<span class="w"> </span><span class="m">5</span><span class="o">)</span>
 head<span class="o">(</span>tumor,<span class="w"> </span><span class="m">5</span><span class="o">)</span>
 
 <span class="c1"># Common filtering tasks for fusion output include removing fusions from the tumor sample which are present in the normal, and removing fusions for which the is little support by pair and split read counts:</span>
-
 normal<span class="nv">$genepr</span><span class="o">=</span>paste0<span class="o">(</span>normal<span class="nv">$geneA</span>.name,<span class="s2">&quot;.&quot;</span>,normal<span class="nv">$geneB</span>.name<span class="o">)</span>
 tumor<span class="nv">$genepr</span><span class="o">=</span>paste0<span class="o">(</span>tumor<span class="nv">$geneA</span>.name,<span class="s2">&quot;.&quot;</span>,tumor<span class="nv">$geneB</span>.name<span class="o">)</span>
 <span class="nv">uniqueTumor</span><span class="o">=</span>subset<span class="o">(</span>tumor,<span class="w"> </span>!<span class="o">(</span>tumor<span class="nv">$genepr</span><span class="w"> </span>%in%<span class="w"> </span>normal<span class="nv">$genepr</span><span class="o">))</span>
 nrow<span class="o">(</span>uniqueTumor<span class="o">)==</span>nrow<span class="o">(</span>tumor<span class="o">)</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span>FALSE
 nrow<span class="o">(</span>tumor<span class="o">)</span>-nrow<span class="o">(</span>uniqueTumor<span class="o">)</span>
-<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="m">2</span>
+
 <span class="c1"># There are two fusions (or at least fusion gene pairs) from the normal sample which are also present in the tumor. </span>
-<span class="c1"># Examine the output of- </span>
+<span class="c1"># Examine the output of </span>
 <span class="nv">shared_src_tumor</span><span class="o">=</span>subset<span class="o">(</span>tumor,<span class="w"> </span><span class="o">(</span>tumor<span class="nv">$genepr</span><span class="w"> </span>%in%<span class="w"> </span>normal<span class="nv">$genepr</span><span class="o">))</span>
 <span class="nv">shared_src_normal</span><span class="o">=</span>subset<span class="o">(</span>normal,<span class="w"> </span><span class="o">(</span>normal<span class="nv">$genepr</span><span class="w"> </span>%in%<span class="w"> </span>tumor<span class="nv">$genepr</span><span class="o">))</span>
 shared_src_tumor
@@ -1581,6 +1576,7 @@ shared_src_normal
 normal<span class="nv">$sample</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span>
 tumor<span class="nv">$sample</span><span class="o">=</span><span class="s2">&quot;tumor&quot;</span>
 <span class="nv">allfusions</span><span class="o">=</span>rbind<span class="o">(</span>normal,tumor<span class="o">)</span>
+
 <span class="c1"># Compare counts of paired and split reads</span>
 tapply<span class="o">(</span>allfusions<span class="nv">$paircount</span>,<span class="w"> </span>allfusions<span class="nv">$sample</span>,<span class="w"> </span>summary<span class="o">)</span>
 tapply<span class="o">(</span>allfusions<span class="nv">$splitcount</span>,<span class="w"> </span>allfusions<span class="nv">$sample</span>,<span class="w"> </span>summary<span class="o">)</span>
@@ -1596,7 +1592,14 @@ geom_density<span class="o">(</span><span class="nv">alpha</span><span class="o"
 geom_vline<span class="o">(</span><span class="nv">xintercept</span><span class="o">=</span><span class="m">5</span><span class="o">)</span>+
 coord_fixed<span class="o">(</span><span class="nv">ratio</span><span class="o">=</span><span class="m">200</span><span class="o">)</span>
 
-plot_grid<span class="o">(</span>p1,p2,<span class="w"> </span><span class="nv">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="nv">rel_heights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>c<span class="o">(</span><span class="m">1</span>,1<span class="o">))</span>
+<span class="c1">#If plotting locally</span>
+<span class="c1">#plot_grid(p1,p2, ncol = 2, rel_heights = c(1,1))</span>
+
+<span class="c1">############## If plotting in AWS</span>
+ggsave<span class="o">(</span>plot_grid<span class="o">(</span>p1,p2,<span class="w"> </span><span class="nv">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="nv">rel_heights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>c<span class="o">(</span><span class="m">1</span>,1<span class="o">))</span>,<span class="w"> </span><span class="nv">filename</span><span class="o">=</span><span class="s2">&quot;fusionplot.pdf&quot;</span><span class="o">)</span>
+
+<span class="c1">############## If copy to the local disk:</span>
+<span class="c1">#scp -ri course-setup-student-key.pem ubuntu@CHANGE_TO_YOUR_AWS_INSTANCE:/home/ubuntu/workspace/rnaseq/fusion/fusionplot.pdf .</span>
 
 nrow<span class="o">(</span>allfusions<span class="o">)</span>
 <span class="nv">allfusions</span><span class="o">=</span>allfusions<span class="o">[</span>which<span class="o">(</span>allfusions<span class="nv">$paircount</span><span class="w"> </span>&gt;<span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>allfusions<span class="nv">$splitcount</span><span class="w"> </span>&gt;<span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="o">)</span>,<span class="o">]</span>
@@ -1606,19 +1609,15 @@ write.table<span class="o">(</span>allfusions,<span class="w"> </span><span clas
 
 <span class="c1">#Chimeraviz is an R package for visualizing fusions from RNA-seq data. The chimeraviz package has import functions built in for a variety of fusion-finder programs, but not for pizzly. We will have to load our own import function that you downloaded above:</span>
 
-<span class="c1"># Enter R, install and load chimeraviz </span>
-R
-source<span class="o">(</span><span class="s2">&quot;https://bioconductor.org/biocLite.R&quot;</span><span class="o">)</span>
-biocLite<span class="o">(</span><span class="s2">&quot;chimeraviz&quot;</span><span class="o">)</span>
-<span class="c1"># (if asked to update old packages, you can ignore- Update all/some/none? [a/s/n]:)</span>
-library<span class="o">(</span>chimeraviz<span class="o">)</span>
-
 <span class="c1"># Use the pizzly importer script to import fusion data</span>
-source<span class="o">(</span><span class="s2">&quot;./import_Pizzly.R&quot;</span><span class="o">)</span>
 <span class="c1">#  You can view the function by calling it without variables</span>
 <span class="c1">#importPizzly</span>
 <span class="nv">fusions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>importPizzly<span class="o">(</span><span class="s2">&quot;./allfusions.txt&quot;</span>,<span class="s2">&quot;hg38&quot;</span><span class="o">)</span>
 plot_circle<span class="o">(</span>fusions<span class="o">)</span>
+dev.off<span class="o">()</span>
+
+<span class="c1">############## Now copy the file to your local computer. </span>
+<span class="c1">#scp -ri course-setup-student-key.pem ubuntu@CHANGE_TO_YOUR_AWS_INSTANCE:/home/ubuntu/workspace/rnaseq/fusion/Rplots.pdf .</span>
 </code></pre></div>
 
 

@@ -461,7 +461,7 @@ Again, we will use VEP to annotate the somatic variants as we did for the germli
 cd ~/workspace/somatic
 # Runtime: ~4min
 
-#ssh -o ServerAliveInterval=300 -i course_EC2_01.pem ubuntu@ec2-52-23-206-90.compute-1.amazonaws.com
+#ssh -o ServerAliveInterval=300 -i course-setup-student-key.pem ubuntu@ec2-52-23-206-90.compute-1.amazonaws.com
 #source .bashrc
 #cd workspace/somatic/
 nohup vep --cache --dir_cache ~/workspace/vep_cache \

@@ -74,8 +74,8 @@ fastqc RNAseq_Tumor_Lane1_R1.fastq.gz
 fastqc RNAseq_Tumor_Lane1_1.fastq.gz
 
 # Download the output to your computer
-scp -ri ~/course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/inputs/data/fastq/RNAseq_Tumor/RNAseq_Tumor_Lane1_1_fastqc.html .
-scp -ri ~/course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/inputs/data/fastq/RNAseq_Tumor/RNAseq_Tumor_Lane1_R1_fastqc.html .
+scp -ri ~/course-setup-student-key.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/inputs/data/fastq/RNAseq_Tumor/RNAseq_Tumor_Lane1_1_fastqc.html .
+scp -ri ~/course-setup-student-key.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/inputs/data/fastq/RNAseq_Tumor/RNAseq_Tumor_Lane1_R1_fastqc.html .
 ```
 Compare the two html files side by side:
 - Any obivous difference?
@@ -206,7 +206,7 @@ multiqc ~/workspace/rnaseq/alignments/
 
 #Finally, download multiqc files to your local computer
 # Download MultiQC output to the local computer, open the .html in you favourite browser.
-scp -ri ~/course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/rnaseq/post_align_qc/multiqc* .
+scp -ri ~/course-setup-student-key.pem ubuntu@AWS_ADDRESS_HERE:~/workspace/rnaseq/post_align_qc/multiqc* .
 ```
 Familiarize yourself with the RNAseq MultiQC data
 
@@ -353,11 +353,11 @@ First - download the files to your local machine
 
 #Run these commands on your local machine
 
-scp -ri ~/course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE:/home/ubuntu/workspace/rnaseq/kallisto/transcript_tpms_all_samples.tsv .
+scp -ri ~/course-setup-student-key.pem ubuntu@AWS_ADDRESS_HERE:/home/ubuntu/workspace/rnaseq/kallisto/transcript_tpms_all_samples.tsv .
 
 mv transcript_tpms_all_samples.tsv kallisto_transcript_tpms_all_samples.tsv
 
-scp -ri ~/course_EC2_01.pem ubuntu@AWS_ADDRESS_HERE:/home/ubuntu/workspace/rnaseq/ref-only-expression/transcript_tpm_all_samples.tsv .
+scp -ri ~/course-setup-student-key.pem ubuntu@AWS_ADDRESS_HERE:/home/ubuntu/workspace/rnaseq/ref-only-expression/transcript_tpm_all_samples.tsv .
 mv transcript_tpm_all_samples.tsv stringtie_transcript_tpms_all_samples.tsv
 
 #Remember, one gene can have many transcripts. The ensembl gene ID for TP53 is ENSG00000141510. Check which ensembl transcripts that exist in the reference gtf.
@@ -366,9 +366,10 @@ mv transcript_tpm_all_samples.tsv stringtie_transcript_tpms_all_samples.tsv
 grep ENST ~/workspace/inputs/references/transcriptome/ref_transcriptome.gtf | grep ENSG00000141510 | perl -nle '@a = split /\t/; $_ =~ /transcript_id\s"(\S*)";/g; print $1;' | sort | uniq
 
 # start R
+/home/ubuntu/miniconda3/envs/r-rnaseq/bin/R
 
 # set the working directory to where the files were downloaded
-setwd("DIR GOES HERE")
+setwd("DIRECTORY WHERE YOU DOWNLOADED THE FILES")
 
 # load libraries
 library(ggplot2)
@@ -551,14 +552,9 @@ nohup pizzly -k 31 --gtf ~/workspace/inputs/reference/fusion/chr617.gtf --cache 
 - If using 30% of reads with the above process, expect about 13,000 retained transcripts from normal and about 3,000 retained transcripts from tumor. See next section to investigate the output of the pizzly fusion calling.
 
 ```bash
+
 #To go the fusion directory
 cd ~/workspace/rnaseq/fusion
-
-# ALREADY RUN: Get R scripts for later use
-#wget https://raw.githubusercontent.com/griffithlab/pmbio.org/master/assets/course_scripts/mod.grolar.R
-#wget https://raw.githubusercontent.com/griffithlab/pmbio.org/master/assets/course_scripts/import_Pizzly.R
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-34-203-226-9.compute-1.amazonaws.com:~/workspace/rnaseq/fusion/*.json .
-scp -ri ~/course_EC2_01.pem ubuntu@ec2-34-203-226-9.compute-1.amazonaws.com:~/workspace/rnaseq/fusion/mod20220117.grolar.R .
 
 #list files
 ls -halt
@@ -577,13 +573,14 @@ library(EnsDb.Hsapiens.v86)
 library(ggplot2)
 library(chimeraviz)
 
-# Change to your own output location
-setwd("~")
+# If working on local computer - change to your own output location
+# setwd("~")
 
 # Load data
 suffix = "617.json"
 print(suffix)
-JSON_files = list.files(path = "~", pattern = paste0("*",suffix))
+#Note if working on your own computer - change path
+JSON_files = list.files(path = "~/workspace/rnaseq/fusion/", pattern = paste0("*",suffix))
 print(JSON_files)
 Ids = gsub(suffix, "", JSON_files)
 print(Ids)
@@ -593,8 +590,9 @@ edb <- EnsDb.Hsapiens.v86
 listColumns(edb)
 supportedFilters(edb)
 
+######### CHANGE HERE
 # Load the functoin https://github.com/MattBashton/grolar/blob/master/grolar.R
-source("mod20220117.grolar.R")
+source("/home/ubuntu/Rfunctions/grolar20230422.R")
 
 # Suffix which apears after sample id in output file name
 # Use above funciton on all output files
@@ -604,24 +602,22 @@ lapply(Ids, function(x) GetFusionz_and_namez(x, suffix = "617.json") )
 # Each fusion now has a unique identifier, sequence positions, and distance values for genes from the same chromosome:
 
 # Read the flattened files
-normal=read.table("~/norm-fuse_fusions_filt_sorted.txt", header=T)
-tumor=read.table("~/tumor-fuse_fusions_filt_sorted.txt", header=T)
+normal=read.table("norm-fuse_fusions_filt_sorted.txt", header=T)
+tumor=read.table("tumor-fuse_fusions_filt_sorted.txt", header=T)
 
 #Investigate the first five rows
 head(normal, 5)
 head(tumor, 5)
 
 # Common filtering tasks for fusion output include removing fusions from the tumor sample which are present in the normal, and removing fusions for which the is little support by pair and split read counts:
-
 normal$genepr=paste0(normal$geneA.name,".",normal$geneB.name)
 tumor$genepr=paste0(tumor$geneA.name,".",tumor$geneB.name)
 uniqueTumor=subset(tumor, !(tumor$genepr %in% normal$genepr))
 nrow(uniqueTumor)==nrow(tumor)
-[1] FALSE
 nrow(tumor)-nrow(uniqueTumor)
-[1] 2
+
 # There are two fusions (or at least fusion gene pairs) from the normal sample which are also present in the tumor. 
-# Examine the output of- 
+# Examine the output of 
 shared_src_tumor=subset(tumor, (tumor$genepr %in% normal$genepr))
 shared_src_normal=subset(normal, (normal$genepr %in% tumor$genepr))
 shared_src_tumor
@@ -633,6 +629,7 @@ shared_src_normal
 normal$sample="normal"
 tumor$sample="tumor"
 allfusions=rbind(normal,tumor)
+
 # Compare counts of paired and split reads
 tapply(allfusions$paircount, allfusions$sample, summary)
 tapply(allfusions$splitcount, allfusions$sample, summary)
@@ -648,7 +645,14 @@ geom_density(alpha=.4)+coord_cartesian(ylim= c(0,.2))+
 geom_vline(xintercept=5)+
 coord_fixed(ratio=200)
 
-plot_grid(p1,p2, ncol = 2, rel_heights = c(1,1))
+#If plotting locally
+#plot_grid(p1,p2, ncol = 2, rel_heights = c(1,1))
+
+############## If plotting in AWS
+ggsave(plot_grid(p1,p2, ncol = 2, rel_heights = c(1,1)), filename="fusionplot.pdf")
+
+############## If copy to the local disk:
+#scp -ri course-setup-student-key.pem ubuntu@CHANGE_TO_YOUR_AWS_INSTANCE:/home/ubuntu/workspace/rnaseq/fusion/fusionplot.pdf .
 
 nrow(allfusions)
 allfusions=allfusions[which(allfusions$paircount >= 2 & allfusions$splitcount >= 5),]
@@ -658,17 +662,13 @@ write.table(allfusions, file="allfusions.txt",row.names=F, col.names=T, quote=F,
 
 #Chimeraviz is an R package for visualizing fusions from RNA-seq data. The chimeraviz package has import functions built in for a variety of fusion-finder programs, but not for pizzly. We will have to load our own import function that you downloaded above:
 
-# Enter R, install and load chimeraviz 
-R
-source("https://bioconductor.org/biocLite.R")
-biocLite("chimeraviz")
-# (if asked to update old packages, you can ignore- Update all/some/none? [a/s/n]:)
-library(chimeraviz)
-
 # Use the pizzly importer script to import fusion data
-source("./import_Pizzly.R")
 #  You can view the function by calling it without variables
 #importPizzly
 fusions = importPizzly("./allfusions.txt","hg38")
 plot_circle(fusions)
+dev.off()
+
+############## Now copy the file to your local computer. 
+#scp -ri course-setup-student-key.pem ubuntu@CHANGE_TO_YOUR_AWS_INSTANCE:/home/ubuntu/workspace/rnaseq/fusion/Rplots.pdf .
 ```
