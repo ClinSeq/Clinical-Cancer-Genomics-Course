@@ -2,10 +2,9 @@
 
 # HUMAN GENOME ANNOTATION FILES
 
-
 #### Files for annotation of variation in the human genome
 ```bash
-cd ~/workspace/inputs/references/
+cd /nfs/course/inputs/references/
 mkdir -p gatk
 cd gatk
 
@@ -37,43 +36,52 @@ ls -lh
 #### Index the variation files
 
 ```bash
-cd ~/workspace/inputs/references/gatk/
+cd /nfs/course/inputs/references/gatk/
 
 #SNP calibration call sets - dbsnp, hapmap, omni, and 1000G
 # Runtime: ~ 4min
-gatk --java-options '-Xmx12g' IndexFeatureFile -I ~/workspace/inputs/references/gatk/Homo_sapiens_assembly38.dbsnp138.vcf.gz
-gatk --java-options '-Xmx12g' IndexFeatureFile -I ~/workspace/inputs/references/gatk/hapmap_3.3.hg38.vcf.gz
-gatk --java-options '-Xmx12g' IndexFeatureFile -I ~/workspace/inputs/references/gatk/1000G_omni2.5.hg38.vcf.gz
+gatk --java-options '-Xmx12g' IndexFeatureFile -I /nfs/course/inputs/references/gatk/Homo_sapiens_assembly38.dbsnp138.vcf.gz
+gatk --java-options '-Xmx12g' IndexFeatureFile -I /nfs/course/inputs/references/gatk/hapmap_3.3.hg38.vcf.gz
+gatk --java-options '-Xmx12g' IndexFeatureFile -I /nfs/course/inputs/references/gatk/1000G_omni2.5.hg38.vcf.gz
 # Runtime: ~ 3min
-gatk --java-options '-Xmx12g' IndexFeatureFile -I ~/workspace/inputs/references/gatk/1000G_phase1.snps.high_confidence.hg38.vcf.gz
+gatk --java-options '-Xmx12g' IndexFeatureFile -I /nfs/course/inputs/references/gatk/1000G_phase1.snps.high_confidence.hg38.vcf.gz
 
 #Indel calibration call sets - dbsnp, Mills
-gatk --java-options '-Xmx12g' IndexFeatureFile -I ~/workspace/inputs/references/gatk/Homo_sapiens_assembly38.known_indels.vcf.gz
-gatk --java-options '-Xmx12g' IndexFeatureFile -I ~/workspace/inputs/references/gatk/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
+gatk --java-options '-Xmx12g' IndexFeatureFile -I /nfs/course/inputs/references/gatk/Homo_sapiens_assembly38.known_indels.vcf.gz
+gatk --java-options '-Xmx12g' IndexFeatureFile -I /nfs/course/inputs/references/gatk/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
 
 ```
 
 ### Interval files and coordinates for the exome sequencing assay
 ```bash
 # change directories
-mkdir -p ~/workspace/inputs/references/exome
-cd ~/workspace/inputs/references/exome
+mkdir -p /nfs/course/inputs/references/exome
+cd /nfs/course/inputs/references/exome
 
-# download the files
-wget -c https://sequencing.roche.com/content/dam/rochesequence/worldwide/shared-designs/SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
+# download the files --- FILES NOT FOUND ON INTERNET, SITE DOWN
+# wget -c https://sequencing.roche.com/content/dam/rochesequence/worldwide/shared-designs/SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
 unzip SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
+# remove the zip --- OBSELETE
+#rm -f SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
 
-# remove the zip
-rm -f SeqCapEZ_Exome_v3.0_Design_Annotation_files.zip
+# download the SeqCapEZ_Exome_v3.0 design file from UCSC as bigBed and then convert it to bed file
+
+wget -c https://hgdownload.soe.ucsc.edu/gbdb/hg19/exomeProbesets/sorted-SeqCap_EZ_ExomeV3_Plus_UTR_hg19_capture_annotated.bb
+
+# download the software for conversion
+cd /nfs/course/bin
+wget https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/bigBedToBed
+chmod 755 bigBedToBed #alternatively we can use chmod +x
+./bigBedToBed sorted-SeqCap_EZ_ExomeV3_Plus_UTR_hg19_capture_annotated.bb SeqCap_EZ_Exome_v3_hg19_primary_targets.bed
 
 # Lift-over of the Roche coordinates from hg19 to the hg38 assembly.
-# download the software
-cd ~/workspace/bin
-wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/liftOver
+wget https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/liftOver
 chmod +x liftOver
 
+./liftOver SeqCap_EZ_Exome_v3_hg19_primary_targets.bed  hg19ToHg38.over.chain.gz SeqCap_EZ_Exome_v3_hg38_primary_targets.bed unMapped.bed
+
 # change to the appropriate directory
-cd ~/workspace/inputs/references/exome
+cd /nfs/course/inputs/references/exome
 
 # download the chain file
 wget -c http://hgdownload.cse.ucsc.edu/goldenPath/hg19/liftOver/hg19ToHg38.over.chain.gz
@@ -135,17 +143,17 @@ head -n 10 probe_regions.bed
 
 ```bash
 # first for the complete exome and probe bed file
-cd ~/workspace/inputs/references/
+cd /nfs/course/inputs/references/
 mkdir temp
 cd temp
 wget http://genomedata.org/pmbio-workshop/references/genome/all/ref_genome.dict
-cd ~/workspace/inputs/references/exome
-java -jar $PICARD BedToIntervalList I=SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.merge.bed O=SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.merge.interval_list SD=~/workspace/inputs/references/temp/ref_genome.dict
-java -jar $PICARD BedToIntervalList I=SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.sort.merge.bed O=SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.sort.merge.interval_list SD=~/workspace/inputs/references/temp/ref_genome.dict
-rm -fr ~/workspace/inputs/references/temp/
+cd /nfs/course/inputs/references/exome
+java -jar $PICARD BedToIntervalList I=SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.merge.bed O=SeqCap_EZ_Exome_v3_hg38_primary_targets.v2.sort.merge.interval_list SD=/nfs/course/inputs/references/temp/ref_genome.dict
+java -jar $PICARD BedToIntervalList I=SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.sort.merge.bed O=SeqCap_EZ_Exome_v3_hg38_capture_targets.v2.sort.merge.interval_list SD=/nfs/course/inputs/references/temp/ref_genome.dict
+rm -fr /nfs/course/inputs/references/temp/
 
 # next for our subset exome and probe regions file
-cd ~/workspace/inputs/references/exome
-java -jar /usr/local/bin/picard.jar BedToIntervalList I=exome_regions.bed O=exome_regions.bed.interval_list SD=~/workspace/inputs/references/genome/ref_genome.dict
-java -jar /usr/local/bin/picard.jar BedToIntervalList I=probe_regions.bed O=probe_regions.bed.interval_list SD=~/workspace/inputs/references/genome/ref_genome.dict
+cd /nfs/course/inputs/references/exome
+java -jar /usr/local/bin/picard.jar BedToIntervalList I=exome_regions.bed O=exome_regions.bed.interval_list SD=/nfs/course/inputs/references/genome/ref_genome.dict
+java -jar /usr/local/bin/picard.jar BedToIntervalList I=probe_regions.bed O=probe_regions.bed.interval_list SD=/nfs/course/inputs/references/genome/ref_genome.dict
 ```
