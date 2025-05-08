@@ -4,15 +4,13 @@
 #### Download a refernce file for human genome
 
 ```bash
-# Make sure CHRS environment variable is set. 
-echo $CHRS
 
 # Create a directory for reference genome files and enter this dir.
-mkdir -p ~/workspace/inputs/references/genome
-cd ~/workspace/inputs/references/genome
+mkdir -p /nfs/course/inputs/references/genome
+cd /nfs/course/inputs/references/genome
 
 # Dowload human reference genome files from the course data server.
-wget http://genomedata.org/pmbio-workshop/references/genome/$CHRS/ref_genome.tar
+wget http://genomedata.org/pmbio-workshop/references/genome/all/ref_genome.tar
 
 # Unpack the archive using `tar -xvf` (`x` for extract, `v` for verbose,
 #  `f` for file).
@@ -37,18 +35,21 @@ cat ref_genome.fa | grep -P "^>"
 #### Split the long fasta by chromosome
 ```bash
 # Make new directory and change directories.
-mkdir -p ~/workspace/inputs/references/genome/ref_genome_split/
-cd ~/workspace/inputs/references/genome
+mkdir -p /nfs/course/inputs/references/genome/ref_genome_split/
+cd /nfs/course/inputs/references/genome
 
 # Split.
-faSplit byname ref_genome.fa ./ref_genome_split/
+
+wget https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/faSplit
+chmod +x faSplit
+./faSplit byname ref_genome.fa ./ref_genome_split/
 ```
 
 #### Explore the contents of the reference genome file
 ```bash
 # View the first 10 lines of this file. Note the header line starting with `>`. 
 # Why does the sequence look like this?
-cd ~/workspace/inputs/references/genome
+cd /nfs/course/inputs/references/genome
 head -n 10 ref_genome.fa
 
 # Pull out only the header lines.
@@ -75,7 +76,7 @@ cat ref_genome.fa | grep -v ">" | perl -ne 'chomp $_; $bases{$_}++ for split //;
 #### Index the fasta files
 ```bash
 # first remove the .fai and .dict files that were downloaded. Do not remove the .fa file though!
-cd ~/workspace/inputs/references/genome
+cd /nfs/course/inputs/references/genome
 rm -f ref_genome.fa.fai ref_genome.dict
 
 # Use samtools to create a fasta index file.
@@ -85,7 +86,7 @@ samtools faidx ref_genome.fa
 head ref_genome.fa.fai
 
 # Use picard to create a dictionary file.
-java -jar $PICARD CreateSequenceDictionary -R ref_genome.fa -O ref_genome.dict
+picard CreateSequenceDictionary -R ref_genome.fa -O ref_genome.dict
 
 # View the content of the dictionary file.
 cat ref_genome.dict
@@ -94,7 +95,7 @@ cat ref_genome.dict
 samtools faidx ./ref_genome_split/chr6.fa
 samtools faidx ./ref_genome_split/chr17.fa
 
-# Create reference index for the genome to use BWA
+# Create reference index for the genome to use BWA (takes a while.. around 45-60 mins as constructing BWT for the packed sequence needs to run several iterations)
 bwa index ref_genome.fa
 ```
 
@@ -107,8 +108,8 @@ bwa index ref_genome.fa
 echo $CHRS
 
 # Create a directory for transcriptome input files.
-mkdir -p ~/workspace/inputs/references/transcriptome
-cd ~/workspace/inputs/references/transcriptome
+mkdir -p /nfs/course/inputs/references/transcriptome
+cd /nfs/course/inputs/references/transcriptome
 
 # Download the files.
 wget http://genomedata.org/pmbio-workshop/references/transcriptome/$CHRS/ref_transcriptome.gtf
@@ -135,25 +136,25 @@ cut -f 3 ref_transcriptome.gtf | sort | uniq -c
 #### Create a reference index for transcriptome with HISAT for splice RNA alignments to the genome
 
 ```bash
-cd ~/workspace/inputs/references/transcriptome
+cd /nfs/course/inputs/references/transcriptome
 
 # Create a database of observed splice sites represented in our reference transcriptome GTF
-~/workspace/bin/hisat2-2.1.0/hisat2_extract_splice_sites.py ref_transcriptome.gtf > splicesites.tsv
+/nfs/course/bin/hisat2-2.1.0/hisat2_extract_splice_sites.py ref_transcriptome.gtf > splicesites.tsv
 head splicesites.tsv
 
 # Create a database of exon regions in our reference transcriptome GTF
-~/workspace/bin/hisat2-2.1.0/hisat2_extract_exons.py ref_transcriptome.gtf > exons.tsv
+/nfs/course/bin/hisat2-2.1.0/hisat2_extract_exons.py ref_transcriptome.gtf > exons.tsv
 head exons.tsv
 
 # build the reference genome index for HISAT and supply the exon and splice site information extracted in the previous steps
 # specify to use 8 threads with the `-p 8` option
 # run time for this index is ~5 minutes
-~/workspace/bin/hisat2-2.1.0/hisat2-build -p 8 --ss splicesites.tsv --exon exons.tsv ~/workspace/inputs/references/genome/ref_genome.fa ref_genome
+/nfs/course/bin/hisat2-2.1.0/hisat2-build -p 8 --ss splicesites.tsv --exon exons.tsv /nfs/course/inputs/references/genome/ref_genome.fa ref_genome
 ```
 
 #### Create a reference transcriptome index for use with Kallisto
 ```bash
-cd ~/workspace/inputs/references/transcriptome
+cd /nfs/course/inputs/references/transcriptome
 mkdir kallisto
 cd kallisto
 
