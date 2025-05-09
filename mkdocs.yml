@@ -113,21 +113,21 @@ nav:
   #     - Annotation: annotations.md
   - Lab Session:
       - Exercise 1:
-        - Basic Unix: lab_session/basic_unix.md
-        - AWK : lab_session/basics_awk.md
+        # - Basic Unix: lab_session/basic_unix.md
+        # - AWK : lab_session/basics_awk.md
         - Workspace - KI-HPC : lab_session/workspace_KI.md
-        - R for Bioinformatics: lab_session/R_for_bioinformatics.md
+        # - R for Bioinformatics: lab_session/R_for_bioinformatics.md
         - Reference Genome, Annotations and Raw Data: lab_session/exercise_1_reference-genome_annotation-files_rawdata.md
-        - Introduction to IGV: lab_session/intro_igv.md
+        - Introduction to IGV: lab_session/Introduction_to_IGV.md
         - Command Line Usage in Real Life: lab_session/real_life_examples_cmdline.md
-      - Exercise 2:
-        - Processing of DNA sequencing data: lab_session/processing_of_dna.md
-      - Exercise 3:
-        - Variant Calling: lab_session/variant_calling.md
-      - Exercise 4:
-        - Structural Variants: lab_session/structural_variation.md
-        - Copy Number Variations: lab_session/analysis_of_cnv.md
-        - RNAseq: lab_session/processing_of_rnaseq.md
-      - Exercise 5:
-        - Joint Curation: lab_session/joint_curation.md
-        - Genomic Alterations Interpretation: lab_session/genomic_alteration_interpretation_exe.md   
+      # - Exercise 2:
+      #   - Processing of DNA sequencing data: lab_session/processing_of_dna.md
+      # - Exercise 3:
+      #   - Variant Calling: lab_session/variant_calling.md
+      # - Exercise 4:
+      #   - Structural Variants: lab_session/structural_variation.md
+      #   - Copy Number Variations: lab_session/analysis_of_cnv.md
+      #   - RNAseq: lab_session/processing_of_rnaseq.md
+      # - Exercise 5:
+      #   - Joint Curation: lab_session/joint_curation.md
+      #   - Genomic Alterations Interpretation: lab_session/genomic_alteration_interpretation_exe.md   

@@ -15,7 +15,7 @@ We will use sequencing data from the HCC1143 cell line to explore the features o
 
 Start by downloading a BAM file of HCC1143 DNA-sequencing data aligned to the reference genome hg19 to your local computer.
 
-``` bash
+```bash
 # Go to a directory on your computer where you would like to download the file using ´cd´
 # Then, download the BAM file and its index file for this IGV introduction
 wget https://rnabio.org/assets/module_2/HCC1143.normal.21.19M-20M.bam

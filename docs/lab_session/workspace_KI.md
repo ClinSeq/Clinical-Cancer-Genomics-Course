@@ -72,45 +72,40 @@ Note during the course you will be visualising data using R. If some of the libr
 
 
 ## How to use the terminal download files to your local machine
+
 This will can be used for both downloading files plotted in R on AWS and other files and file types, such as bam-files that will be visualised in IGV.
 
 ```bash
 cd TO_PREFERRED_DIRECTORY
-scp -ri ~/PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE:~/PATH_TO_PDF/FILENAME .
+scp ki-username@c8cancergen02.ki.se:/PATH_TO_PDF/FILENAME .
 
 # Try to download some test file to your local computer. If not, ask for assistance.
 ```
 
 ## Explore the workspace on KI VM
 ```bash
-#Make sure the credentials are set for the "pem" (key) file.
-# If needed run:
-# chmod 400 course_ec2_new.pem
 
-# Log onto AWS cloud (make sure in are in the same directory as the pem key).
-ssh -i ./PEM_KEY_ID.pem ubuntu@AWS_ADDRESS_HERE
+ssh ki-username@c8cancergen02.ki.se
  
 # Check where you are
 pwd
 
 # Note "~"" is a shortcut for the user directory. 
 # Pre-load shortcut and settings 
+echo 'export PATH=/nfs/course/miniforge3/bin:$PATH' >> ~/.bashrc
+echo 'source activate base' >> ~/.bashrc
 source .bashrc
 
-# the workspace folder contains the course files and pre-installed bioinformatic tools
-cd workspace/
+# the KI /nfs/course/ contains the course files and pre-installed bioinformatic tools
+cd /nfs/course/
 
-# The workspace folder contains the course files and pre-installed bioinformatic tools. Navigate to the folders, list the files and reflecton what is there
-cd  ~/workspace/inputs
-ls -alF
-# Look around in the folders
-
-cd ~/workspace/bin
+# The /nfs/course/ folder contains the course files and pre-installed bioinformatic tools. Navigate to the folders, list the files and reflecton what is there
+cd  /nfs/course/inputs/
 ls -alF
 # Look around in the folders
 
 # Have a look at the raw exone sequencing data for the germline DNA
-cd ~/workspace/inputs/data/fastq/Exome_Norm
+cd /nfs/course/inputs/data/fastq/Exome_Norm
 
 # What are the files in this folder?
 
@@ -122,13 +117,14 @@ gunzip -c Exome_Norm_R1.fastq.gz | less -SN
 # Read through the fastq format to get an understanding of
 # base qualities from illumina DNA sequencing data.
 # The format will be discussed tomorrow during the lab intro.
+
+## Each user has their own working directory
+# NOTE: Your results, outputs, everything should be written inside your
+# working directory
+cd /nfs/course/students/KI-USERNAME
 ```
 
 ## List of preinstalled bioinformatic tools
-
-### bam-readcount
-
-[bam-readcount](https://github.com/genome/bam-readcount) is a program for determing read support for individual variants (SNVs and Indels only). 
 
 ### BCFtools
 
@@ -207,3 +203,7 @@ gunzip -c Exome_Norm_R1.fastq.gz | less -SN
 ### vt
 
 [vt](https://github.com/atks/vt) is a variant tool set that discovers short variants from Next Generation Sequencing data. We will use this for the purpose of splitting multi-allelic variants.
+
+### SAGE
+
+[SAGE](https://github.com/hartwigmedical/hmftools/tree/master/sage) is a precise and highly sensitive somatic SNV, MNV and small INDEL caller. It has dynamically scaling sensitivity based on the depth of the provided tumor and germline BAMs, but performs best if both BAMs have at least 30x typical depth.
