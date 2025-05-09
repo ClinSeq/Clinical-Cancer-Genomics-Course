@@ -71,6 +71,6 @@ Recommended reading before the course:
 
 ## Additional Information 
 
-:fontawesome-regular-calendar-alt: <span class="add-info">2022-01-24 to 2022-01-28</span></br>
+:fontawesome-regular-calendar-days: <span class="add-info">2025-05-12 to 2025-05-23</span></br>
 :fontawesome-regular-clock: <span class="add-info">Monday - Friday ( 09:00 - 17:00 ) </span></br>
 :fontawesome-regular-envelope: <span class="add-info"> johan.lindberg@ki.se</span>
