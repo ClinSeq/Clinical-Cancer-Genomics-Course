@@ -120,8 +120,9 @@ nav:
         - Reference Genome, Annotations and Raw Data: lab_session/exercise_1_reference-genome_annotation-files_rawdata.md
         - Introduction to IGV: lab_session/Introduction_to_IGV.md
         - Command Line Usage in Real Life: lab_session/real_life_examples_cmdline.md
-      # - Exercise 2:
-      #   - Processing of DNA sequencing data: lab_session/processing_of_dna.md
+      - Exercise 2:
+        - Processing of DNA sequencing data: lab_session/bioinformatic_processing_of_DNA_data.md
+        - Variant Calling: lab_session/variant_calling.md
       # - Exercise 3:
       #   - Variant Calling: lab_session/variant_calling.md
       # - Exercise 4:
