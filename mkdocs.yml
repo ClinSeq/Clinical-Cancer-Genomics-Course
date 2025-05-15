@@ -123,12 +123,11 @@ nav:
       - Exercise 2:
         - Processing of DNA sequencing data: lab_session/bioinformatic_processing_of_DNA_data.md
         - Variant Calling: lab_session/variant_calling.md
-      # - Exercise 3:
-      #   - Variant Calling: lab_session/variant_calling.md
-      # - Exercise 4:
-      #   - Structural Variants: lab_session/structural_variation.md
+      - Exercise 3:
+        - Structural Variants: lab_session/calling_structural_variation.md
       #   - Copy Number Variations: lab_session/analysis_of_cnv.md
-      #   - RNAseq: lab_session/processing_of_rnaseq.md
+      - Exercise 4:
+        - RNAseq: lab_session/Bioinformatic_processing_of_RNA_data.md
       # - Exercise 5:
       #   - Joint Curation: lab_session/joint_curation.md
       #   - Genomic Alterations Interpretation: lab_session/genomic_alteration_interpretation_exe.md   
