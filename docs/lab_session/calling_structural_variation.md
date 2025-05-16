@@ -126,11 +126,11 @@ scp -r KI-username@c8cancergen02.ki.se:/nfs/course/inputs/svs/sample-tumor-svcal
 
 
 It is possible to select multiple files at the same time by pressing CMD (mac, use other key on windows, likely CTRL)
-![image](https://hackmd.io/_uploads/BkEygNX-gg.png)
+![image](image/select_multiple_files.png)
 
 
 You should now see something like this:
-![image](https://hackmd.io/_uploads/B1pLlNmZex.png)
+![image](image/igv_preview.png)
 
 Make sure you can see the soft-clipped reads:
 ![](https://i.imgur.com/v4TFe0b.png)
@@ -142,7 +142,7 @@ less -SN somatic_mini_pass_filtered.vcf
 ```
 
 Go to BRCA2
-![image](https://hackmd.io/_uploads/By7pINmWel.png)
+![image](image/igv_svs_screenshot_1.png)
 
 - Zoom in on the right variant
 
@@ -151,7 +151,7 @@ Go to BRCA2
     - Group alignments "none"
     - Sort alignments "base" at the first colored base.
 
-![image](https://hackmd.io/_uploads/SyR7WL7-ex.png)
+![image](image/igv_svs_screenshot_2.png)
 
 - Part of the reads does not map to the genome, why?
 
@@ -162,7 +162,7 @@ Go to BRCA2
     - Select "View mate region in split screen".
     - This is a very useful way of seing both ends of a structural variant.
 
-![image](https://hackmd.io/_uploads/H1i_-U7-gg.png)
+![image](image/igv_svs_screenshot_3.png)
 
 - What is the consequence of the variant?
  
