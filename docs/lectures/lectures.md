@@ -6,8 +6,10 @@
     4. Practical considerations for performing cancer genomics. [PDF](pdf/practical_considerations_for_performing_cancer_genomics_vt2025.pdf)
     5. Bioinformatics Analysis Inputs [PDF](pdf/bioinformatics_analysis_inputs_vt2025.pdf)
     6. DNA alignment and QC [PDF](pdf/1_DNA_alignment_and_QC.pdf)
-    7. Somatic & Germline variant callers [PDF](pdf/2_somatic_germline_variant_callers.pdf) 
-    8. RNA sequencing etc.Lab intro. [PDF](pdf/RNAseq.pdf)
+    7. Somatic & Germline variant callers [PDF](pdf/2_somatic_germline_variant_callers.pdf)
+    8. Calling structural variation. [PDF](pdf/Structural_variant_analysis_2025.pdf)
+    9. Calling somatic- and germline copy-number alterations. [PDF](pdf/copynumbers_lecure_may2025.pdf)
+    10. RNA sequencing etc.Lab intro. [PDF](pdf/RNAseq.pdf)
 
 <!-- ??? example "Module 2 " -->
 
