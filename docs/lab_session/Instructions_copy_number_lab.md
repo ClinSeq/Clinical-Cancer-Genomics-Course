@@ -51,11 +51,11 @@ installed:
 
 To install these packages, open RStudio and type in the R console for each one:
 
-::: cell
+
 ``` {.r .cell-code}
 install.packages("package_name")
 ```
-:::
+
 
 ### From Bioconductor
 
@@ -72,21 +72,21 @@ install.packages("package_name")
 
 To install these packages, type this once in the R console:
 
-::: cell
+
 ``` {.r .cell-code}
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 ```
-:::
+
 
 Then, for each package (note that the installation of some of the packages may
 take a few minutes):
 
-::: cell
+
 ``` {.r .cell-code}
 BiocManager::install("package_name")
 ```
-:::
+
 
 > Several packages from the
 > [Bioconductor](https://www.bioconductor.org/) repository are used in
@@ -104,11 +104,11 @@ number and structural variant detection.
 
 In RStudio, navigate to the folder containing the exercise files:
 
-::: cell
+
 ``` {.r .cell-code}
 setwd('your/path/to/exercise_folder')
 ```
-:::
+
 
 > Create a new Quarto Document in the exercise folder. Keep your code as
 > shown in the template, and write your comments and answers to
@@ -126,7 +126,7 @@ other sequencing projects.
 
 We begin by parsing and investigating the target definition BED file.
 
-::: cell
+
 ``` {.r .cell-code}
 library(data.table)
 
@@ -155,7 +155,7 @@ summary(targets)
 # Check target distribution over chromosomes
 targets[,table(chromosome)]
 ```
-:::
+
 
 The R code in this exercise features `data.table` syntax, for example
 using `:=` to modify the content of a table. If you are more familiar
@@ -171,7 +171,7 @@ that overlap a gene. We'll take advantage of databases accessible
 through Bioconductor packages. First, we need to create a GenomicRanges
 object representing our targets:
 
-::: cell
+
 ``` {.r .cell-code}
 library(GenomicRanges)
 
@@ -182,7 +182,7 @@ target_ranges
 # Check the sequence naming style
 seqlevelsStyle(target_ranges)
 ```
-:::
+
 
 As you may recognize, our targets have the NCBI/EMBL sequence naming
 style (*1* and not *chr1*, etc). This matches the reference genome used
@@ -196,7 +196,7 @@ reference genome b37/Hg19.
 > To learn more about a function, just type ?function_name to open its
 > documentation in RStudio's bottom right window.
 
-::: cell
+
 ``` {.r .cell-code}
 library(biomaRt)
 
@@ -217,11 +217,11 @@ genes <- as.data.table(genes)
 
 genes
 ```
-:::
+
 
 We can now make a GenomicRanges object for the genes:
 
-::: cell
+
 ``` {.r .cell-code}
 colnames(genes)[3:5] <- c('chromosome','start','end')
 
@@ -229,28 +229,28 @@ gene_ranges <- makeGRangesFromDataFrame(genes)
 
 seqlevelsStyle(gene_ranges)
 ```
-:::
+
 
 ### Overlap targets and genes
 
 The chromosome naming style of the genes is also NCBI/EMBL. We can now
 go ahead and match them up to targets using the findOverlaps function:
 
-::: cell
+
 ``` {.r .cell-code}
 # Overlap the two GRanges sets
 overlap <- findOverlaps(target_ranges,gene_ranges)
 
 overlap
 ```
-:::
+
 
 Overlaps are presented as pairs of query (first argument) and subject
 (second argument) rows for which there is any overlap. We can simply
 assign targets their corresponding gene name for each overlap and check
 the result:
 
-::: cell
+
 ``` {.r .cell-code}
 targets$gene <- '' # default if no overlap
 
@@ -262,7 +262,7 @@ as.data.table(table(targets$gene))
 
 as.data.table(sort(table(targets$gene),decreasing = T))[N>25]
 ```
-:::
+
 
 > There are many ways to achieve the same thing. You should focus mostly
 > on *what* we do, and not worry too much about exactly how. Google,
@@ -278,7 +278,7 @@ object representing the targets. To count a read pair, we require its
 midpoint to fall within a target, and that it is not flagged as a
 [duplicate](http://samtools.github.io/hts-specs/SAMv1.pdf).
 
-::: cell
+
 ``` {.r .cell-code}
 library(bamsignals)
 library(Rsamtools)
@@ -294,7 +294,7 @@ targets
 
 summary(targets)
 ```
-:::
+
 
 ## Plot sequence read count
 
@@ -302,7 +302,7 @@ Let's investigate the raw sequence read count across targets. You are
 probably already familiar with
 [ggplot2](https://ggplot2.tidyverse.org/).
 
-::: cell
+
 ``` {.r .cell-code}
 library(ggplot2)
 theme_set(theme_bw())
@@ -314,26 +314,26 @@ ggplot(data = targets) + geom_point(mapping = aes(x = target, y = count))
 ggplot(data = targets) + ylim(c(0,3500)) +
     geom_point(mapping = aes(x = target, y = count),size=.5)
 ```
-:::
+
 
 Targets are just shown in order. To plot genomic positions without
 mixing up chromosomes, we can separate the plot by chromosome:
 
-::: cell
+
 ``` {.r .cell-code}
 # Plot start pos by chromosome
 ggplot(data = targets) + ylim(c(0,3500)) +
     geom_point(mapping = aes(x = start, y = count),size=.5) + 
     facet_wrap(facets = vars(chromosome),ncol = 3)
 ```
-:::
+
 
 The figure may now not look a bit squished in RStudio's bottom-right
 plots tab. Click the **Zoom** button and enlarge the new window.
 
 Let's choose a few genes to highlight in the plot.
 
-::: cell
+
 ``` {.r .cell-code}
 # Genes of interest
 my_genes <- c('AR','ATM','BRCA1','BRCA2','PTEN','TMPRSS2','ERG')
@@ -346,7 +346,7 @@ ggplot(data = targets) + ylim(c(0,3500)) +
     geom_point(mapping = aes(x = start, y = count, col = label), size=.5) +
     facet_wrap(facets = vars(chromosome),ncol = 3)
 ```
-:::
+
 
 ## Model and correct for GC content bias
 
@@ -360,19 +360,19 @@ locations, exons, and transcription start sites.
 
 First we check whether a matching reference genome is available:
 
-::: cell
+
 ``` {.r .cell-code}
 library(BSgenome)
 
 # Check which genomes are available
 available.genomes()
 ```
-:::
+
 
 The best match is `BSgenome.Hsapiens.UCSC.hg19`. But that means our
 target `GenomicRanges` object needs to have UCSC-style sequence naming:
 
-::: cell
+
 ``` {.r .cell-code}
 ucsc_ranges <- target_ranges
 
@@ -382,11 +382,11 @@ ucsc_ranges
 
 seqlevelsStyle(ucsc_ranges)
 ```
-:::
+
 
 We can now assign GC content to targets:
 
-::: cell
+
 ``` {.r .cell-code}
 library(BSgenome.Hsapiens.UCSC.hg19)
 library(stringr)
@@ -401,22 +401,22 @@ targets$gc <- str_count(as.character(dna),pattern = '[GC]') / width(dna)
 ggplot(data = targets) + ylim(c(0,3500)) +
     geom_point(mapping = aes(x = gc, y = count),alpha=.1)
 ```
-:::
+
 
 There appears to be a modest effect of target GC content on read count.
 Let's build a [loess](https://en.wikipedia.org/wiki/Local_regression)
 model of the effect.
 
-::: cell
+
 ``` {.r .cell-code}
 # Make a loess model
 loess_model=loess(count ~ gc, data = targets)
 ```
-:::
+
 
 To plot the model, we predict the read count from GC:
 
-::: cell
+
 ``` {.r .cell-code}
 # Add predicted count (model y value) to targets
 targets[,gc_predicted_count:=predict(loess_model,gc)]
@@ -426,25 +426,25 @@ ggplot(data=targets) + ylim(c(0,3500)) +
     geom_point(mapping = aes(x = gc, y = count),alpha=.1,size=1) +
     geom_line(mapping = aes(x = gc,y = gc_predicted_count),col='blue')
 ```
-:::
+
 
 To remove the GC content bias, we divide the observed count with the
 predicted. This new count *ratio* should be a slightly better measure of
 DNA abundance in our sample.
 
-::: cell
+
 ``` {.r .cell-code}
 # Correct for the effect of GC content
 targets[,count_ratio:=count/gc_predicted_count]
 targets
 ```
-:::
+
 
 To compare the new metric with the previous, we can plot them
 side-by-side. With [patchwork](https://patchwork.data-imaginist.com/), we
 can use arithmetic operators to combine and align multiple plots.
 
-::: cell
+
 ``` {.r .cell-code}
 library(patchwork)
 
@@ -457,7 +457,7 @@ p2 <- ggplot(data = targets) +
 
 p1+p2
 ```
-:::
+
 
 The GC content correction seems to have had a small but positive effect.
 It is common to also use either a matched normal or a pool of normal
@@ -496,7 +496,7 @@ CBS requires a DNA abundance measure to be log-transformed, making its
 distribution more normal-like. If you have worked with copy number
 analysis before, you may recognize the term **log ratio**.
 
-::: cell
+
 ``` {.r .cell-code}
 library(PSCBS)
 
@@ -512,12 +512,12 @@ summary(targets)
 segments <- segmentByCBS(y=targets$log_ratio)
 segments
 ```
-:::
+
 
 After segmentation we can transform the segment mean values back and
 plot the segments with the targets.
 
-::: cell
+
 ``` {.r .cell-code}
 # Linear space segment means
 segments <- as.data.table(segments)[,count_ratio:=2^mean]
@@ -528,7 +528,7 @@ ggplot() + ylim(c(0,2.5)) +
     geom_segment(data=segments,col='green',size=2,
                  mapping = aes(x=start,xend=end,y=count_ratio,yend=count_ratio))
 ```
-:::
+
 
 Note that the segmentation is based only on the target log ratio and
 order, and that segment start and end refer to target number. To avoid
@@ -536,7 +536,7 @@ segments spanning across chromosomes, and breakpoints just missing the
 chromosome boundary, we can add chromosomes to the segmentation call.
 The chromosome vector is required to be numeric.
 
-::: cell
+
 ``` {.r .cell-code}
 # Segment with chromosomes specified
 segments <- segmentByCBS(y=targets$log_ratio,
@@ -552,13 +552,13 @@ ggplot() + ylim(c(0,2.5)) +
     geom_segment(data=segments,col='green',size=2,
                  mapping = aes(x=start,xend=end,y=count_ratio,yend=count_ratio))
 ```
-:::
+
 
 CBS can also take a vector of chromosomal positions as input, in which
 case the resulting segment start and end positions are based on them. We
 use the target midpoints:
 
-::: cell
+
 ``` {.r .cell-code}
 # Segment with position and chromosome positions
 segments_pos <- segmentByCBS(y=targets$log_ratio,
@@ -579,14 +579,14 @@ ggplot(data = targets) + ylim(c(0,2.5)) +
     facet_wrap(facets = vars(chromosome),ncol = 2) +
     theme(panel.spacing = unit(0, "lines"),strip.text.x = element_text(size = 6))
 ```
-:::
+
 
 Let's now take another look at segmented targets plotted in order, as
 they are very unevenly distributed over the genome. We can spot some
 apparent copy number losses and gains of genes in our selection. Take a
 closer look at BRCA2 and part of PTEN.
 
-::: cell
+
 ``` {.r .cell-code}
 p1 <- ggplot() + ylim(c(0,2.5)) + 
     geom_point(data = targets, mapping = aes(x = target, y = count_ratio,fill=chromosome),shape=21) + 
@@ -600,7 +600,7 @@ p2 <- ggplot() + ylim(c(0,2.5)) +
 
 p1/p2
 ```
-:::
+
 
 > **Question 2:** Target density is only about one per megabase, with
 > much higher density in some cancer genes. How many targets do you
@@ -662,7 +662,7 @@ their variant allele ratios.
 Let's use the `VariantAnnotation` package to parse a VCF file containing
 SNPs.
 
-::: cell
+
 ``` {.r .cell-code}
 library(VariantAnnotation)
 
@@ -678,13 +678,13 @@ g
 as.data.table(g$AD)
 as.data.table(g$DP)
 ```
-:::
+
 
 The AD column of the VCF file contains the number of reads supporting
 the reference and alternative allele. The DP column contains the total
 read depth. Let's make a table of SNPs containing the alt-allele ratio.
 
-::: cell
+
 ``` {.r .cell-code}
 # A table of SNPs
 snp_table <- data.table(id=names(vcf),
@@ -696,14 +696,14 @@ snp_table
 snp_table[,allele_ratio:=round(AD/DP,3)]
 snp_table
 ```
-:::
+
 
 A GenomicRanges object defining the SNPs' positions on the reference
 genome can be accessed with the `rowRanges` function. We can now overlap
 that with the GenomicRanges representing our targets and use the
 resulting `Hits` object to assign allele ratio to targets.
 
-::: cell
+
 ``` {.r .cell-code}
 # Match targets to SNPs
 overlaps <- findOverlaps(target_ranges,rowRanges(vcf))
@@ -713,7 +713,7 @@ overlaps
 targets[queryHits(overlaps),allele_ratio:=snp_table$allele_ratio[subjectHits(overlaps)]]
 targets
 ```
-:::
+
 
 Let's plot the SNP allele ratio with the count ratio and see if the copy
 number status becomes more clear. Note that many targets contain no SNP,
@@ -722,7 +722,7 @@ is either 0 or 1, depending on whether the alleles match the reference
 genome or not. Only heterozygous SNP allele ratio is affected by copy
 number alteration.
 
-::: cell
+
 ``` {.r .cell-code}
 p1 <- ggplot() + ylim(c(0,2.5)) +
     geom_point(data = targets, mapping = aes(x = target, y = count_ratio,fill=label),shape=21) + 
@@ -734,7 +734,7 @@ p2 <- ggplot() +
 
 p1 / p2 + plot_layout(guides = 'collect')
 ```
-:::
+
 
 We can see that for most segments, particularly segments with a count
 ratio near 1, heterozygous SNPs have allele ratios near 0.5. This

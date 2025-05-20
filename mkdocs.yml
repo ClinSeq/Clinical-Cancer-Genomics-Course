@@ -128,6 +128,8 @@ nav:
         - Copy Number Variations: lab_session/Instructions_copy_number_lab.md
       - Exercise 4:
         - RNAseq: lab_session/Bioinformatic_processing_of_RNA_data.md
+      - Project:
+        - Project: lab_session/Instructions_project.md
       # - Exercise 5:
       #   - Joint Curation: lab_session/joint_curation.md
       #   - Genomic Alterations Interpretation: lab_session/genomic_alteration_interpretation_exe.md   
