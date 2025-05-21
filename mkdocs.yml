@@ -130,7 +130,7 @@ nav:
         - RNAseq: lab_session/Bioinformatic_processing_of_RNA_data.md
       - Exercise 5:
         - Variant Interpretation: lab_session/exercise_5.md
-      - Project:
+      - Exercise 6:
         - Project: lab_session/Instructions_project.md
       # - Exercise 5:
       #   - Joint Curation: lab_session/joint_curation.md
