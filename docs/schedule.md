@@ -434,14 +434,13 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>9:00-17:00</td>
+                    <td>9:00-16:00</td>
                     <td>
                          <p>
-                         Introduction to Exercise Set 6 - integrated analysis of different data types from a set of cancer genomes.
-                         Work on Exercise Set 6, course teachers will be present in Wargentin
+                         Project work - integrated analysis of different data types from a set of cancer genomes.
                          </p>
                     </td>
-                    <td>Johan</td>
+                    <td>Markus</td>
                     <td>Wargentin</td>
                 </tr>
             </tbody>
@@ -466,7 +465,7 @@
                 <tr>
                     <td>9:00-13:00</td>
                     <td>
-                        Work on Exercise Set 6, course teachers will be present in Wargentin
+                        Work on Exercise Set 6
                     </td>
                     <td>Johan</td>
                     <td>Wargentin</td>
@@ -474,13 +473,15 @@
                 <tr>
                     <td>13:00-13:30</td>
                     <td>Course wrap up in Wargentin. </td>
+                    <td>Everyone</td>
+                    <td>Wargentin</td>
                 </tr>
                 <tr>
-                    <td>13:30-?</td>
+                    <td>13:30-16:00</td>
                     <td>
-                        Work on Exercise Set 6, course teachers will be present in Wargentin
+                        Work on Exercise Set 6
                     </td>
-                    <td>Johan</td>
+                    <td></td>
                     <td>Wargentin</td>
                 </tr>
             </tbody>

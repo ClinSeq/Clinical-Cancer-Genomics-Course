@@ -12,6 +12,7 @@
     10. RNA sequencing etc.Lab intro. [PDF](pdf/RNAseq.pdf)
     11. Curation of somatic and germline variants [PDF](pdf/Curation_of_somatic_and_germline_variants.pdf)
     12. Clinical trials in prostate cancer - the data that populates the biomarker databases [PDF](pdf/Clinical_trials_in_prostate_cancer_the_data_that_populates_the_biomarker_databases.pdf)
+    13. Variant annotation and Interpretation [PDF](pdf/variant_annotation_and_interpretation.pdf)
 
 <!-- ??? example "Module 2 " -->
 
