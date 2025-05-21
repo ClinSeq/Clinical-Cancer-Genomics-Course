@@ -1,0 +1,82 @@
+html body {
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 10px;
+  margin: 0;
+}
+
+
+/* :root {
+  --md-primary-fg-color:        #EE0F0F;
+  --md-primary-fg-color--light: #ECB7B7;
+  --md-primary-fg-color--dark:  #90030C;
+} */
+
+.md-grid {
+  max-width: 1440px; /* 
+ */
+}
+
+.md-typeset h1{
+  font-size: x-large;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.md-typeset h2{
+  font-size: x-large;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: medium;
+}
+
+ul li, ol li{
+  font-size: 14px;
+}
+
+.md-header__button.md-logo :is(img, svg) {
+  width: 35px;
+  height: 50px;
+}
+
+.head-p1, .head-p2 {
+  text-align: justify;
+  font-size: medium;
+}
+
+#detailed-syllabus, #learning-outcomes,  #literature-and-other-teaching-material, #contents-of-the-course, #additional-information {
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: large;
+}
+
+.add-info {
+  font-size: small;
+  padding: 0px 10px;
+}
+
+.md-typeset table:not([class]) :is(th):not([align]) {
+  text-align: center;
+}
+
+.md-typeset table:not([class]) :is(td):not([align]) {
+  text-align:left;
+  font-size: 14px;
+}
+
+.md-typeset table:not([class]) :is(ul,ol):not([hidden]) {
+  padding-left: 5px;
+  font-size: small;
+}
+
+#transcriptome-reference-files {
+  text-transform: uppercase;
+  font-size: large;
+}
+
+.md-nav__list li{
+  font-size: small;
+  text-align: left;
+}

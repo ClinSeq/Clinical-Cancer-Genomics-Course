@@ -1,0 +1,1882 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../bioinformatic_processing_of_DNA_data/">
+      
+      
+        <link rel="next" href="../calling_structural_variation/">
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Calling germline and somatic mutations - Clinical Cancer Genomics Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M64%2032C28.7%2032%200%2060.7%200%2096v320c0%2035.3%2028.7%2064%2064%2064h224V368c0-26.5%2021.5-48%2048-48h112V96c0-35.3-28.7-64-64-64zm384%20320H336c-8.8%200-16%207.2-16%2016v112l32-32%2064-64z%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M96%200C43%200%200%2043%200%2096v320c0%2053%2043%2096%2096%2096h320c17.7%200%2032-14.3%2032-32s-14.3-32-32-32v-64c17.7%200%2032-14.3%2032-32V32c0-17.7-14.3-32-32-32H96m0%20384h256v64H96c-17.7%200-32-14.3-32-32s14.3-32%2032-32m32-240c0-8.8%207.2-16%2016-16h192c8.8%200%2016%207.2%2016%2016s-7.2%2016-16%2016H144c-8.8%200-16-7.2-16-16m16%2048h192c8.8%200%2016%207.2%2016%2016s-7.2%2016-16%2016H144c-8.8%200-16-7.2-16-16s7.2-16%2016-16%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-40-176h24v-64h-24c-13.3%200-24-10.7-24-24s10.7-24%2024-24h48c13.3%200%2024%2010.7%2024%2024v88h8c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-80c-13.3%200-24-10.7-24-24s10.7-24%2024-24m40-208a32%2032%200%201%201%200%2064%2032%2032%200%201%201%200-64%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M480%2032c0-12.9-7.8-24.6-19.8-29.6S434.5.2%20425.3%209.3L381.7%2053c-48%2048-113.1%2075-181%2075H64c-35.3%200-64%2028.7-64%2064v96c0%2035.3%2028.7%2064%2064%2064v128c0%2017.7%2014.3%2032%2032%2032h64c17.7%200%2032-14.3%2032-32V352h8.7c67.9%200%20133%2027%20181%2075l43.6%2043.6c9.2%209.2%2022.9%2011.9%2034.9%206.9s19.8-16.6%2019.8-29.6V300.3c18.6-8.8%2032-32.5%2032-60.4s-13.4-51.6-32-60.4zm-64%2076.7v262.6C357.2%20317.8%20280.5%20288%20200.7%20288H192v-96h8.7c79.8%200%20156.5-29.8%20215.3-83.3%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M438.6%20105.4c12.5%2012.5%2012.5%2032.8%200%2045.3l-256%20256c-12.5%2012.5-32.8%2012.5-45.3%200l-128-128c-12.5-12.5-12.5-32.8%200-45.3s32.8-12.5%2045.3%200L160%20338.7l233.4-233.3c12.5-12.5%2032.8-12.5%2045.3%200z%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-86.2-346.7c7.9-22.3%2029.1-37.3%2052.8-37.3h58.3c34.9%200%2063.1%2028.3%2063.1%2063.1%200%2022.6-12.1%2043.5-31.7%2054.8L280%20264.4c-.2%2013-10.9%2023.6-24%2023.6-13.3%200-24-10.7-24-24v-13.5c0-8.6%204.6-16.5%2012.1-20.8l44.3-25.4c4.7-2.7%207.6-7.7%207.6-13.1%200-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4%200-6.4%202.1-7.5%205.3l-.4%201.2c-4.4%2012.5-18.2%2019-30.6%2014.6s-19-18.2-14.6-30.6l.4-1.2zM224%20352a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M256%2032c14.2%200%2027.3%207.5%2034.5%2019.8l216%20368c7.3%2012.4%207.3%2027.7.2%2040.1S486.3%20480%20472%20480H40c-14.3%200-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7%2039.5%20241.8%2032%20256%2032m0%20128c-13.3%200-24%2010.7-24%2024v112c0%2013.3%2010.7%2024%2024%2024s24-10.7%2024-24V184c0-13.3-10.7-24-24-24m32%20224a32%2032%200%201%200-64%200%2032%2032%200%201%200%2064%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M459.1%2052.4%20442.6%206.5c-1.9-3.9-6.1-6.5-10.5-6.5s-8.5%202.6-10.4%206.5l-16.5%2045.9-46%2016.8c-4.3%201.6-7.3%205.9-7.2%2010.4%200%204.5%203%208.7%207.2%2010.2l45.7%2016.8%2016.8%2045.8c1.5%204.4%205.8%207.5%2010.4%207.5s8.9-3.1%2010.4-7.5l16.5-45.8%2045.7-16.8c4.2-1.5%207.2-5.7%207.2-10.2%200-4.6-3-8.9-7.2-10.4zm-132.4%2053c-12.5-12.5-32.8-12.5-45.3%200l-2.9%202.9c-22-8-45.8-12.3-70.5-12.3C93.1%2096%200%20189.1%200%20304s93.1%20208%20208%20208%20208-93.1%20208-208c0-24.7-4.3-48.5-12.2-70.5l2.9-2.9c12.5-12.5%2012.5-32.8%200-45.3l-80-80zM200%20192c-57.4%200-104%2046.6-104%20104v8c0%208.8-7.2%2016-16%2016s-16-7.2-16-16v-8c0-75.1%2060.9-136%20136-136h8c8.8%200%2016%207.2%2016%2016s-7.2%2016-16%2016z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M416%20398.9c58.5-41.1%2096-104.1%2096-174.9C512%20100.3%20397.4%200%20256%200S0%20100.3%200%20224c0%2070.7%2037.5%20133.8%2096%20174.9V464c0%2026.5%2021.5%2048%2048%2048h48v-48c0-8.8%207.2-16%2016-16s16%207.2%2016%2016v48h64v-48c0-8.8%207.2-16%2016-16s16%207.2%2016%2016v48h48c26.5%200%2048-21.5%2048-48v-65.1M96%20256a64%2064%200%201%201%20128%200%2064%2064%200%201%201-128%200m256-64a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M320%200c17.7%200%2032%2014.3%2032%2032v64h120c39.8%200%2072%2032.2%2072%2072v272c0%2039.8-32.2%2072-72%2072H168c-39.8%200-72-32.2-72-72V168c0-39.8%2032.2-72%2072-72h120V32c0-17.7%2014.3-32%2032-32M208%20384c-8.8%200-16%207.2-16%2016s7.2%2016%2016%2016h32c8.8%200%2016-7.2%2016-16s-7.2-16-16-16zm96%200c-8.8%200-16%207.2-16%2016s7.2%2016%2016%2016h32c8.8%200%2016-7.2%2016-16s-7.2-16-16-16zm96%200c-8.8%200-16%207.2-16%2016s7.2%2016%2016%2016h32c8.8%200%2016-7.2%2016-16s-7.2-16-16-16zM264%20256a40%2040%200%201%200-80%200%2040%2040%200%201%200%2080%200m152%2040a40%2040%200%201%200%200-80%2040%2040%200%201%200%200%2080M48%20224h16v192H48c-26.5%200-48-21.5-48-48v-96c0-26.5%2021.5-48%2048-48m544%200c26.5%200%2048%2021.5%2048%2048v96c0%2026.5-21.5%2048-48%2048h-16V224z%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M288%200H128c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032v132.8c0%2011.8-3.3%2023.5-9.5%2033.5L10.3%20406.2C3.6%20417.2%200%20429.7%200%20442.6%200%20480.9%2031.1%20512%2069.4%20512h309.2c38.3%200%2069.4-31.1%2069.4-69.4%200-12.8-3.6-25.4-10.3-36.4L329.5%20230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7%200%2032-14.3%2032-32S337.7%200%20320%200zm-96%20196.8V64h64v132.8c0%2023.7%206.6%2046.9%2019%2067.1l34.5%2056.1h-171l34.5-56.1c12.4-20.2%2019-43.4%2019-67.1%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M0%20216C0%20149.7%2053.7%2096%20120%2096h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64V216m256%200c0-66.3%2053.7-120%20120-120h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064h-64c-35.3%200-64-28.7-64-64V216%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#calling-germline-and-somatic-mutations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Clinical Cancer Genomics Course" class="md-header__button md-logo" aria-label="Clinical Cancer Genomics Course" data-md-component="logo">
+      
+  <img src="../../assets/img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Clinical Cancer Genomics Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Calling germline and somatic mutations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Clinical Cancer Genomics Course" class="md-nav__button md-logo" aria-label="Clinical Cancer Genomics Course" data-md-component="logo">
+      
+  <img src="../../assets/img/logo.svg" alt="logo">
+
+    </a>
+    Clinical Cancer Genomics Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Course Details
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schedule
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/lectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lectures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lab Session
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lab Session
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workspace_KI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Workspace - KI-HPC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise_1_reference-genome_annotation-files_rawdata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reference Genome, Annotations and Raw Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction_to_IGV/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to IGV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real_life_examples_cmdline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Line Usage in Real Life
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bioinformatic_processing_of_DNA_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Processing of DNA sequencing data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Variant Calling
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variant Calling
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#germline-variant-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Germline variant calling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-the-haplotypecaller-output-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploring the HaplotypeCaller output files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exploring the HaplotypeCaller output files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copying-and-opening-the-realigned-bam-file-in-igv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying and opening the realigned BAM file in IGV
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspecting-the-haplotypecaller-vcf-variant-call-format-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspecting the HaplotypeCaller VCF (variant call format) file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-germline-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering germline variants
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-snps-from-indels-in-the-variant-call-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Separate SNPs from indels in the variant call set
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apply-filters-to-the-snp-and-indel-call-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apply filters to the SNP and indel call sets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Apply filters to the SNP and indel call sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merge-the-filtered-snp-and-indel-vcfs-back-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge the filtered SNP and indel VCFs back together
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extract-pass-variants-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extract PASS variants only
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perform-annotation-of-the-filtered-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perform annotation of the filtered variants
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#somatic-variant-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Somatic variant calling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Somatic variant calling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sage" class="md-nav__link">
+    <span class="md-ellipsis">
+      SAGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mutect2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mutect2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-mutect2-for-exome-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Mutect2 for exome data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#now-we-are-going-to-merge-the-variants-detected-from-the-two-variant-callers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Now we are going to merge the variants detected from the two variant callers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#left-align-and-trim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Left Align and Trim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-multi-allelic-variants-into-multiple-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Split multi-allelic variants into multiple records
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-filtering-on-somatic-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Filtering on Somatic Variants
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#annotation-with-vep" class="md-nav__link">
+    <span class="md-ellipsis">
+      Annotation with VEP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-the-somatic-variants-in-igv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspecting the somatic variants in IGV
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calling_structural_variation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Structural Variants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Instructions_copy_number_lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Copy Number Variations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bioinformatic_processing_of_RNA_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RNAseq
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variant Interpretation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 6
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 6
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Instructions_project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#germline-variant-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Germline variant calling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-the-haplotypecaller-output-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploring the HaplotypeCaller output files
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exploring the HaplotypeCaller output files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copying-and-opening-the-realigned-bam-file-in-igv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copying and opening the realigned BAM file in IGV
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspecting-the-haplotypecaller-vcf-variant-call-format-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspecting the HaplotypeCaller VCF (variant call format) file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-germline-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering germline variants
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#separate-snps-from-indels-in-the-variant-call-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Separate SNPs from indels in the variant call set
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apply-filters-to-the-snp-and-indel-call-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apply filters to the SNP and indel call sets
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Apply filters to the SNP and indel call sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merge-the-filtered-snp-and-indel-vcfs-back-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge the filtered SNP and indel VCFs back together
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extract-pass-variants-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extract PASS variants only
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perform-annotation-of-the-filtered-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perform annotation of the filtered variants
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#somatic-variant-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Somatic variant calling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Somatic variant calling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sage" class="md-nav__link">
+    <span class="md-ellipsis">
+      SAGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mutect2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mutect2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-mutect2-for-exome-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Mutect2 for exome data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#now-we-are-going-to-merge-the-variants-detected-from-the-two-variant-callers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Now we are going to merge the variants detected from the two variant callers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#left-align-and-trim" class="md-nav__link">
+    <span class="md-ellipsis">
+      Left Align and Trim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-multi-allelic-variants-into-multiple-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Split multi-allelic variants into multiple records
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-filtering-on-somatic-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Filtering on Somatic Variants
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#annotation-with-vep" class="md-nav__link">
+    <span class="md-ellipsis">
+      Annotation with VEP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-the-somatic-variants-in-igv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inspecting the somatic variants in IGV
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="calling-germline-and-somatic-mutations">Calling germline and somatic mutations<a class="headerlink" href="#calling-germline-and-somatic-mutations" title="Permanent link">&para;</a></h1>
+<h2 id="germline-variant-calling">Germline variant calling<a class="headerlink" href="#germline-variant-calling" title="Permanent link">&para;</a></h2>
+<p>We will start by calling germline variants. For this purpose we will use the <a href="https://gatk.broadinstitute.org/hc/en-us/articles/4414586765723-HaplotypeCaller">GATK HaplotypeCaller</a> from the Broad Institute. We will use this tool on the germline DNA BAM files that we processed earlier in the day. </p>
+<p>Active forum and tutorials for the GATK software suite are available <a href="https://gatk.broadinstitute.org/hc/en-us/community/topics">here</a>.</p>
+<p>HaplotypeCaller can be run in single- or joint sample mode. The joint sample mode gives improved accuracy, especially in samples with low coverage. For simplicity, we will only use the single sample mode in this course. </p>
+<p>When HaplotypeCaller detects variation in the genome, it performs local realignment of the reads in the regions with detected variation. This improves variant accuracy, especially in e.g., repetitive regions. </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">#Make sure that $GATK_REGIONS variable is set correctly</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GATK_REGIONS</span><span class="o">=</span><span class="s1">&#39;-L chr6 -L chr17&#39;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$GATK_REGIONS</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">#Create working directory for germline results</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1">#Call variants from exome data</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">#The argument --java-options &#39;-Xmx12g&#39; tells GATK to use 12GB of memory</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s1">&#39;-Xmx12g&#39;</span><span class="w"> </span>HaplotypeCaller<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span>-R<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/references/genome/ref_genome.fa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span>-I<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/data/dna_alignments/Exome_Norm_sorted_mrkdup_bqsr.bam<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span>-O<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span>--bam-output<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_out.bam<span class="w"> </span><span class="nv">$GATK_REGIONS</span>
+</span></code></pre></div>
+<h2 id="exploring-the-haplotypecaller-output-files">Exploring the HaplotypeCaller output files<a class="headerlink" href="#exploring-the-haplotypecaller-output-files" title="Permanent link">&para;</a></h2>
+<p>Next, we will take a look at the results from HaplotypeCaller in IGV. To do this, we need to copy some files to our local computer to open in IGV.</p>
+<h3 id="copying-and-opening-the-realigned-bam-file-in-igv">Copying and opening the realigned BAM file in IGV<a class="headerlink" href="#copying-and-opening-the-realigned-bam-file-in-igv" title="Permanent link">&para;</a></h3>
+<p>Navigate to the folder where you want to place the BAM files on your local computer, e.g. ~/course_bams.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">#Copy the HaplotypeCaller realigned BAM file to your local computer </span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>scp<span class="w"> </span>-r<span class="w"> </span>YOUR_KI_ID@c8cancergen02.ki.se:/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_out.ba*<span class="w"> </span>.
+</span></code></pre></div>
+<p>Next, launch IGV on your computer and remember to select the <strong>hg38</strong> reference genome. Follow the steps below:
+- Open the BAM files in IGV (File &gt; Load from file):
+    - Exome_Norm_sorted_mrkdup_bqsr.bam (input file to HaplotypeCaller).
+    - Exome_Norm_HC_out.bam (realigned BAM file generated by HaplotypeCaller).
+- Navigate to chr17:76286974-76287203.
+    - Color alignments by: no color.
+    - Enable ruler in the menu bar.
+    - In the first base of the indel: Sort alignments according to base.
+    - Select squished view.
+    - Zoom out.</p>
+<p>Answer the following questions:
+- What characterizes misaligned variant-supporting reads in the non-realigned BAM file (i.e. what features do they have in IGV)?
+- Are there any false positive variants in the non-realigned BAM file?</p>
+<p><img alt="" src="https://i.imgur.com/yQS7rie.png" /></p>
+<h3 id="inspecting-the-haplotypecaller-vcf-variant-call-format-file">Inspecting the HaplotypeCaller VCF (variant call format) file<a class="headerlink" href="#inspecting-the-haplotypecaller-vcf-variant-call-format-file" title="Permanent link">&para;</a></h3>
+<p>Next, let's take a look at the VCF file produced by HaplotypeCaller on the server.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">#Make sure you hare in the same directory as the output files</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">#List files</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>ls<span class="w"> </span>-halt
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1">#Open the VCF file</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>less<span class="w"> </span>-SN<span class="w"> </span>Exome_Norm_HC_calls.vcf
+</span></code></pre></div>
+<p>The VCF file format is quite complex, but the specifications can be found <a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf">here</a>.</p>
+<p>After opening the VCF file as shown above, do the following:
+- Identify the VCF header section.
+- Identify the data column header.
+- Find the variant on chr17 pos 106742 in the VCF file using the following method:
+    - With the file open using ´less´, type ´/106742´ and press ENTER. This will scroll the file to the position where the variant with coordinate 106742 is located. </p>
+<p>Answer the following questions:
+- What is the read depth at this position?</p>
+<ul>
+<li>Is this a high quality variant?</li>
+</ul>
+<p>Next, go back to IGV and the BAM files you have opened there. Go to the variant position chr17:106742 and do the following by right clicking on the reads:
+- Select expanded view.
+- Color alignments by read strand.
+- Sort alignments by base.</p>
+<p>Answer the following question:
+- Does the visual impression in IGV support the quality of the variant?</p>
+<p>Finally, find the variant on chr17 pos 1787008 in the VCF file and answer the following questions:
+- Is this a high quality variant?</p>
+<ul>
+<li>Navigate in IGV to the variant position. Does the information in IGV match the VCF file?</li>
+</ul>
+<h3 id="filtering-germline-variants">Filtering germline variants<a class="headerlink" href="#filtering-germline-variants" title="Permanent link">&para;</a></h3>
+<p>The raw output of GATK HaplotypeCaller will include many variants with varying degrees of quality. For various reasons we might wish to further filter these to a higher confidence set of variants. We will use a hard-filtering approach that is further described in detail on the <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890471-Hard-filtering-germline-short-variants">GATK webside</a>. </p>
+<h3 id="separate-snps-from-indels-in-the-variant-call-set">Separate SNPs from indels in the variant call set<a class="headerlink" href="#separate-snps-from-indels-in-the-variant-call-set" title="Permanent link">&para;</a></h3>
+<p>First, we will separate out the SNPs and indels from the VCF into new separate VCFs. Note that the variant type (SNP, INDEL, MIXED, etc) is not stored explicitly in the VCF but instead inferred from the genotypes. We will use a versatile GATK tool called <code>SelectVariants</code>. This command can be used for all kinds of simple filtering or subsetting purposes. We will run it twice to select variants from the VCF files, once for SNPs, and then again for indels, ultimately producing two new VCFs.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s1">&#39;-Xmx12g&#39;</span><span class="w"> </span>SelectVariants<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span>-R<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span>-V<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.vcf<span class="w"> </span>-select-type<span class="w"> </span>SNP<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span>-O<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.snps.vcf
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s1">&#39;-Xmx12g&#39;</span><span class="w"> </span>SelectVariants<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span>-R<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span>-V<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.vcf<span class="w"> </span>-select-type<span class="w"> </span>INDEL<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span>-O<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.indels.vcf
+</span></code></pre></div>
+<h3 id="apply-filters-to-the-snp-and-indel-call-sets">Apply filters to the SNP and indel call sets<a class="headerlink" href="#apply-filters-to-the-snp-and-indel-call-sets" title="Permanent link">&para;</a></h3>
+<p>Next, we will perform so-called hard filtering by applying a number of cutoffs to the variants. As you will see, each can be given its own name so that you can later determine which filters a variant has failed. Visit the <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035890471-Hard-filtering-germline-short-variants">GATK documentation on hard-filtering</a> to learn more about the following hard filtering options. Notice that different filters and cutoffs are recommended for SNVs and indels. This is why we first split them into separate files.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s1">&#39;-Xmx12g&#39;</span><span class="w"> </span>VariantFiltration<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span>-R<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span>-V<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.snps.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span>--filter-expression<span class="w"> </span><span class="s2">&quot;QD &lt; 2.0&quot;</span><span class="w"> </span>--filter-name<span class="w"> </span><span class="s2">&quot;QD_lt_2&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span>--filter-expression<span class="w"> </span><span class="s2">&quot;FS &gt; 60.0&quot;</span><span class="w"> </span>--filter-name<span class="w"> </span><span class="s2">&quot;FS_gt_60&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span>--filter-expression<span class="w"> </span><span class="s2">&quot;MQ &lt; 40.0&quot;</span><span class="w"> </span>--filter-name<span class="w"> </span><span class="s2">&quot;MQ_lt_40&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span>--filter-expression<span class="w"> </span><span class="s2">&quot;MQRankSum &lt; -12.5&quot;</span><span class="w"> </span>--filter-name<span class="w"> </span><span class="s2">&quot;MQRS_lt_n12.5&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span>--filter-expression<span class="w"> </span><span class="s2">&quot;ReadPosRankSum &lt; -8.0&quot;</span><span class="w"> </span>--filter-name<span class="w"> </span><span class="s2">&quot;RPRS_lt_n8&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span>--filter-expression<span class="w"> </span><span class="s2">&quot;SOR &gt; 3.0&quot;</span><span class="w"> </span>--filter-name<span class="w"> </span><span class="s2">&quot;SOR_gt_3&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span>-O<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.snps.filtered.vcf
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s1">&#39;-Xmx12g&#39;</span><span class="w"> </span>VariantFiltration<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span>-R<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span>-V<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.indels.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span>--filter-expression<span class="w"> </span><span class="s2">&quot;QD &lt; 2.0&quot;</span><span class="w"> </span>--filter-name<span class="w"> </span><span class="s2">&quot;QD_lt_2&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span>--filter-expression<span class="w"> </span><span class="s2">&quot;FS &gt; 200.0&quot;</span><span class="w"> </span>--filter-name<span class="w"> </span><span class="s2">&quot;FS_gt_200&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">    </span>--filter-expression<span class="w"> </span><span class="s2">&quot;ReadPosRankSum &lt; -20.0&quot;</span><span class="w"> </span>--filter-name<span class="w"> </span><span class="s2">&quot;RPRS_lt_n20&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">    </span>--filter-expression<span class="w"> </span><span class="s2">&quot;SOR &gt; 10.0&quot;</span><span class="w"> </span>--filter-name<span class="w"> </span><span class="s2">&quot;SOR_gt_10&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">    </span>-O<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.indels.filtered.vcf
+</span></code></pre></div>
+<p>Notice that warnings are given with regards to MQRankSum and ReadPosRankSum. These are only calculated if the site is called as heterozygous, e.g. for this site (inspect in IGV and in the VCF file): chr17:1067361.nThis was discussed at the <a href="https://sites.google.com/a/broadinstitute.org/legacy-gatk-forum-discussions/2017-01-18-2016-08-11/8323-Why-do-MQRankSum-and-ReadPosRankSum-not-appear-in-some-vcf-file-entries">GATK forum</a>.</p>
+<p>The variants are now marked as PASS or <em>filter-name</em>. Use <code>grep -v</code> and <code>head</code> to skip past all the VCF header lines and view the first few records. </p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">#inspect the 10 first variants that did not pass</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;##&quot;</span><span class="w"> </span>Exome_Norm_HC_calls.snps.filtered.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-vP<span class="w"> </span><span class="s2">&quot;\tPASS\t&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">#inspect the 10 first variants that did pass</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;##&quot;</span><span class="w"> </span>Exome_Norm_HC_calls.snps.filtered.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-P<span class="w"> </span><span class="s2">&quot;\tPASS\t&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+</span></code></pre></div>
+Answer the following question:
+- How many varinats have failed and passed filtering?</p>
+<h4 id="merge-the-filtered-snp-and-indel-vcfs-back-together">Merge the filtered SNP and indel VCFs back together<a class="headerlink" href="#merge-the-filtered-snp-and-indel-vcfs-back-together" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s1">&#39;-Xmx12g&#39;</span><span class="w"> </span>MergeVcfs<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>-I<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.snps.filtered.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span>-I<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.indels.filtered.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span>-O<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.filtered.vcf
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1">#Number of variants in the SNP file</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;##&quot;</span><span class="w"> </span>Exome_Norm_HC_calls.snps.filtered.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1">#Number of variants in the indel file</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;##&quot;</span><span class="w"> </span>Exome_Norm_HC_calls.indels.filtered.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c1">#Number of variants in the merged file</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;##&quot;</span><span class="w"> </span>Exome_Norm_HC_calls.filtered.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span></code></pre></div>
+<h4 id="extract-pass-variants-only">Extract PASS variants only<a class="headerlink" href="#extract-pass-variants-only" title="Permanent link">&para;</a></h4>
+<p>It would also be convenient to have a VCF with only passing variants. For this, we can go back the <code>GATK SelectVariants</code> tool. This will be run much as above except with the <code>--exlude-filtered</code> option instead of <code>-select-type</code>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s1">&#39;-Xmx12g&#39;</span><span class="w"> </span>SelectVariants<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span>-R<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>-V<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.filtered.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span>-O<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.filtered.PASS.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span>--exclude-filtered
+</span></code></pre></div>
+<h3 id="perform-annotation-of-the-filtered-variants">Perform annotation of the filtered variants<a class="headerlink" href="#perform-annotation-of-the-filtered-variants" title="Permanent link">&para;</a></h3>
+<p>Now that we have high-confidence, filtered variants, we want to start understanding which of these variants might be clinically or biologically relevant. Ensembl's Variant Effect Predictor (VEP) annotation software is a powerful tool for annotating variants with a great deal of biological features. This includes information such as protein consequence (non-coding or coding), population frequencies, links to external databases, various scores designed to estimate the importance of individual variants on protein function, and much more.</p>
+<p>Note, the first time you run VEP it will create a FASTA index for the reference genome in the VEP cache. Therefore, it will take longer to run the first time but should speed up substantially for subsequent runs on files with similar numbers of variants.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">#VEP annotate hard-filtered exome results</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1">####### Already run code below for your reference (no need to run these commands)</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1">#cd /nfs/course/inputs/references/vep/</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1">#wget https://github.com/Ensembl/VEP_plugins/archive/refs/heads/release/104.zip</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1">#unzip 104.zip </span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1">#ls -halt /nfs/course/inputs/references/vep/</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1">#mv VEP_plugins-release-104 Plugins</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1">#ls -halt /nfs/course/inputs/references/vep/Plugins</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="c1">#Get annotation fasta for homo_sapiens </span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="c1">#cd /nfs/course/inputs/references/vep/homo_sapiens</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="c1">#wget ftp://ftp.ensembl.org/pub/release-104/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="c1">####### Start running commands from here</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="c1">#Remember, we are using the reference genome file /nfs/course/inputs/references/genome/ref_genome.fa that only contains chr6 and chr17.</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>ensembl-vep-113<span class="w">  </span><span class="c1"># activate a separate environment for vep</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="c1"># Runtime ~1 min</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>nohup<span class="w"> </span>vep<span class="w"> </span>--cache<span class="w"> </span>--dir_cache<span class="w"> </span>/nfs/course/inputs/references/vep<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">    </span>--fasta<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span>--fork<span class="w"> </span><span class="m">4</span><span class="w"> </span>--assembly<span class="o">=</span>GRCh38<span class="w"> </span>--offline<span class="w"> </span>--vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">    </span>-i<span class="w"> </span>Exome_Norm_HC_calls.filtered.PASS.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">    </span>-o<span class="w"> </span>Exome_Norm_HC_calls.filtered.PASS.vep.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">    </span>--check_existing<span class="w"> </span>--total_length<span class="w"> </span>--allele_number<span class="w"> </span>--no_escape<span class="w"> </span>--everything<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">    </span>--use_given_ref<span class="w"> </span>--force_overwrite<span class="w"> </span>--coding_only<span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="c1">#Open the VEP VCF file: lines 39-41 contain information about the VEP annotation.</span>
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>less<span class="w"> </span>-SN<span class="w"> </span>Exome_Norm_HC_calls.filtered.PASS.vep.vcf
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="c1">#Or just grep the VEP info.</span>
+</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>grep<span class="w"> </span><span class="s2">&quot;##&quot;</span><span class="w"> </span>Exome_Norm_HC_calls.filtered.PASS.vep.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;VEP&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-SN
+</span></code></pre></div>
+<p>Copy the HTML VEP summary to your local computer, run locally and first navigate to your preferred folder:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>YOUR_KI_ID@c8cancergen02.ki.se:/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.filtered.PASS.vep.vcf_summary.html<span class="w"> </span>.
+</span></code></pre></div></p>
+<p>Open the HTML VEP summary file on your local computer.</p>
+<p>Answer the following questions:
+- How many variants were processed by VEP?</p>
+<ul>
+<li>
+<p>Why are only variants the coding regions detected?</p>
+</li>
+<li>
+<p>VEP assigns each variant a consequence types, as described <a href="https://m.ensembl.org/info/genome/variation/prediction/predicted_data.html">here</a>.</p>
+<ul>
+<li>
+<p>What is the most common kind of variant consequence in the HTML summary file?</p>
+</li>
+<li>
+<p>What is the difference between splice region variants and splice donor/acceptor variants?</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Let's also inspect one of the germline variants in IGV, a BRCA1 variant.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">#Let us grep &quot;BRCA1&quot; and send the output to another grep command and take the &quot;HIGH&quot; impact variants</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>grep<span class="w"> </span>BRCA1<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/germline/Exome_Norm_HC_calls.filtered.PASS.vep.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;HIGH&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-SN<span class="w"> </span>
+</span></code></pre></div>
+Copy the file to your local computer to open it in IGV.</p>
+<p>Answer the following question:
+- In IGV, for the BRCA1 variant found above at the location chr17:43057078, why is one allele missing in the tumor?</p>
+<p><img alt="" src="https://i.imgur.com/PXKeG7C.png" /></p>
+<h2 id="somatic-variant-calling">Somatic variant calling<a class="headerlink" href="#somatic-variant-calling" title="Permanent link">&para;</a></h2>
+<p>We have now finished calling germline variants and will proceed to call somatic variants from our data. We will run two variant callers, SAGE and Mutect2, and then merge the results to form a final callset.</p>
+<h3 id="sage">SAGE<a class="headerlink" href="#sage" title="Permanent link">&para;</a></h3>
+<p>We will first run <a href="https://github.com/hartwigmedical/hmftools/blob/master/sage/README.md">SAGE</a>. SAGE stands for Somatic Alternations in GEnome and is a precise and highly sensitive somatic SNV, MNV and small INDEL caller.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">#Obtaining HMFtools resources</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1">#Already done, no need to run these commands, only shown for demonstration purpose</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1">#mkdir /nfs/course/inputs/references/sage</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1">#cd /nfs/course/inputs/references/sage</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1">#wget https://storage.googleapis.com/hmf-public/HMFtools-Resources/pipeline/oncoanalyser/2.0/38/hmf_pipeline_resources.38_v2.0.0--3.tar.gz</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1">#tar -xzf hmf_pipeline_resources.38_v2.0.0--3.tar.gz</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/somatic/sage
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/somatic/sage
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="c1">#Files</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="c1"># Normal: /nfs/course/students/YOUR_KI_ID/data/dna_alignments/Exome_Norm_sorted_mrkdup_bqsr.bam</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="c1"># Tumor: /nfs/course/students/YOUR_KI_ID/data/dna_alignments/Exome_Tumor_sorted_mrkdup_bqsr.bam</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="c1"># activate the bioinfo tools environment</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>bioinfo-tools
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>java<span class="w"> </span>-Xms4G<span class="w"> </span>-Xmx25G<span class="w"> </span>-cp<span class="w"> </span>/nfs/course/bin/sage_v3.4.4.jar<span class="w"> </span>com.hartwig.hmftools.sage.SageApplication<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">    </span>-threads<span class="w"> </span><span class="m">4</span><span class="w"> </span>-tumor<span class="w"> </span>exome_tumor_lib1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">    </span>-tumor_bam<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/data/dna_alignments/Exome_Tumor_sorted_mrkdup_bqsr.bam<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">    </span>-reference<span class="w"> </span>exome_norm_lib1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="w">    </span>-reference_bam<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/data/dna_alignments/Exome_Norm_sorted_mrkdup_bqsr.bam<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="w">    </span>-ref_genome_version<span class="w"> </span><span class="m">38</span><span class="w"> </span>-ref_genome<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="w">    </span>-hotspots<span class="w"> </span>/nfs/course/inputs/references/sage/hmf_pipeline_resources.38_v2.0--3/dna/variants/KnownHotspots.somatic.38.vcf.gz<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="w">    </span>-panel_bed<span class="w"> </span>/nfs/course/inputs/references/sage/hmf_pipeline_resources.38_v2.0--3/dna/variants/ActionableCodingPanel.38.bed.gz<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="w">    </span>-high_confidence_bed<span class="w"> </span>/nfs/course/inputs/references/sage/hmf_pipeline_resources.38_v2.0--3/dna/variants/HG001_GRCh38_GIAB_highconf_CG-IllFB-IllGATKHC-Ion-10X-SOLID_CHROM1-X_v.3.3.2_highconf_nosomaticdel_noCENorHET7.bed.gz<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="w">    </span>-ensembl_data_dir<span class="w"> </span>/nfs/course/inputs/references/sage/hmf_pipeline_resources.38_v2.0--3/common/ensembl_data<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="w">    </span>-hotspot_min_tumor_qual<span class="w"> </span><span class="m">150</span><span class="w"> </span>-hotspot_min_tumor_vaf<span class="w"> </span><span class="m">0</span>.0002<span class="w"> </span>-panel_min_tumor_qual<span class="w"> </span><span class="m">250</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="w">    </span>-panel_min_tumor_vaf<span class="w"> </span><span class="m">0</span>.0002<span class="w"> </span>-panel_only<span class="w"> </span>-hard_min_tumor_vaf<span class="w"> </span><span class="m">0</span>.002<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="w">    </span>-min_map_quality<span class="w"> </span><span class="m">20</span><span class="w"> </span>-min_avg_base_qual<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="w">    </span>-output_vcf<span class="w"> </span>exome.sage.vcf.gz
+</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a>ls<span class="w"> </span>-lhtr
+</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a>less<span class="w"> </span>-SN<span class="w"> </span>exome.sage.vcf.gz<span class="w">  </span><span class="c1"># look at the produced vcf</span>
+</span></code></pre></div>
+<h3 id="mutect2">Mutect2<a class="headerlink" href="#mutect2" title="Permanent link">&para;</a></h3>
+<p>Next we will run <a href="https://software.broadinstitute.org/gatk/documentation/tooldocs/3.8-0/org_broadinstitute_gatk_tools_walkers_cancer_m2_MuTect2.php">MuTect2</a>. MuTect2 is a somatic SNP and indel caller that combines the DREAM challenge-winning somatic genotyping engine of the original MuTect (Cibulskis et al., 2013) with the assembly-based machinery of HaplotypeCaller.</p>
+<h3 id="running-mutect2-for-exome-data">Running Mutect2 for exome data<a class="headerlink" href="#running-mutect2-for-exome-data" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">#Obtaining germline resource from GATK</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/inputs/references
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1">#Already done, no need to run the two lines below</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1">#gsutil cp gs://gatk-best-practices/somatic-hg38/af-only-gnomad.hg38.vcf.gz .</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1">#gsutil cp gs://gatk-best-practices/somatic-hg38/af-only-gnomad.hg38.vcf.gz.tbi .</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/somatic/mutect
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/somatic/mutect
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="c1">#Creating a panel of normals</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="c1"># Runtime: ~ 13 min</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>nohup<span class="w"> </span>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s2">&quot;-Xmx12G&quot;</span><span class="w"> </span>Mutect2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w">    </span>-R<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">    </span>-I<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/data/dna_alignments/Exome_Norm_sorted_mrkdup_bqsr.bam<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">    </span>-tumor-sample<span class="w"> </span>HCC1395BL_DNA<span class="w"> </span>-O<span class="w"> </span>Exome_Norm_PON.vcf.gz<span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="c1">##### WAIT FOR THIS NOHUP STEP TO FINISH BEFORE CONTINUING #####</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="c1">#Running Mutect2 using GATK</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="c1"># Runtime: ~18m</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>nohup<span class="w"> </span>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s2">&quot;-Xmx12G&quot;</span><span class="w"> </span>Mutect2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="w">    </span>-R<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span class="w">    </span>-I<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/data/dna_alignments/Exome_Tumor_sorted_mrkdup_bqsr.bam<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span class="w">    </span>-tumor<span class="w"> </span>HCC1395_DNA<span class="w"> </span>-I<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/data/dna_alignments/Exome_Norm_sorted_mrkdup_bqsr.bam<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a><span class="w">    </span>-normal<span class="w"> </span>HCC1395BL_DNA<span class="w"> </span>--germline-resource<span class="w"> </span>/nfs/course/inputs/references/af-only-gnomad.hg38.vcf.gz<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="w">    </span>--af-of-alleles-not-in-resource<span class="w"> </span><span class="m">0</span>.00003125<span class="w"> </span>--panel-of-normals<span class="w"> </span>Exome_Norm_PON.vcf.gz<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="w">    </span>-O<span class="w"> </span>exome.mutect.vcf.gz<span class="w"> </span>-L<span class="w"> </span>chr6<span class="w"> </span>-L<span class="w"> </span>chr17<span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a><span class="c1">##### WAIT FOR THIS NOHUP STEP TO FINISH BEFORE CONTINUING #####</span>
+</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>
+</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a><span class="c1"># Filtering the Mutect variants</span>
+</span><span id="__span-12-32"><a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s2">&quot;-Xmx12G&quot;</span><span class="w"> </span>FilterMutectCalls<span class="w"> </span>-V<span class="w"> </span>exome.mutect.vcf.gz<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-33"><a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a><span class="w">    </span>-O<span class="w"> </span>exome_filtered.mutect.vcf.gz<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-34"><a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a><span class="w">    </span>-R<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa
+</span><span id="__span-12-35"><a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a>
+</span><span id="__span-12-36"><a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a><span class="nb">echo</span><span class="w"> </span>exome_filtered.mutect.vcf.gz<span class="w"> </span>&gt;<span class="w"> </span>exome_vcf.mutect.fof
+</span><span id="__span-12-37"><a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a>bcftools<span class="w"> </span>concat<span class="w"> </span>--allow-overlaps<span class="w"> </span>--remove-duplicates<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-38"><a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a><span class="w">    </span>--file-list<span class="w"> </span>exome_vcf.mutect.fof<span class="w"> </span>--output-type<span class="w"> </span>z<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-39"><a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a><span class="w">    </span>--output<span class="w"> </span>mutect_exome_filtered.vcf.gz
+</span><span id="__span-12-40"><a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a>
+</span><span id="__span-12-41"><a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a><span class="c1"># index the vcf</span>
+</span><span id="__span-12-42"><a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a>tabix<span class="w"> </span>mutect_exome_filtered.vcf.gz
+</span></code></pre></div>
+<h3 id="now-we-are-going-to-merge-the-variants-detected-from-the-two-variant-callers">Now we are going to merge the variants detected from the two variant callers<a class="headerlink" href="#now-we-are-going-to-merge-the-variants-detected-from-the-two-variant-callers" title="Permanent link">&para;</a></h3>
+<p>The reason for merging is that the variant callers are working differently internally to identify somatic alterations, with different strengths and weaknesses. With outputs from two algorithms, we can now merge the variants to generate a comprehensive list of detected variants.</p>
+<p><strong>Edit the commands below to merge the SAGE and Mutect2 variants</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Unzip the vcf.gz files before combining Variants</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/somatic
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>ls<span class="w"> </span>-halt<span class="w"> </span>sage/exome.sage.vcf.gz
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>ls<span class="w"> </span>-halt<span class="w"> </span>mutect/mutect_exome_filtered.vcf.gz
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>gunzip<span class="w"> </span>sage/exome.sage.vcf.gz
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>gunzip<span class="w"> </span>mutect/mutect_exome_filtered.vcf.gz
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>ls<span class="w"> </span>-halt<span class="w"> </span>sage/exome.sage.vcf
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>ls<span class="w"> </span>-halt<span class="w"> </span>mutect/mutect_exome_filtered.vcf
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="c1">#Need to change header sample names in vcf files in order to combine variants from different algorithms</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="c1">#lets set something easily understandable, i.e. &quot;TUMOR&quot; and &quot;NORMAL&quot;</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>grep<span class="w"> </span><span class="s2">&quot;^#CHROM&quot;</span><span class="w"> </span>mutect/mutect_exome_filtered.vcf<span class="w"> </span>sage/exome.sage.vcf<span class="w">  </span><span class="c1"># checkthe header lines where the sample names are the two last columns</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/HCC1395BL_DNA/NORMAL/&#39;</span><span class="w"> </span>mutect/mutect_exome_filtered.vcf
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/HCC1395_DNA/TUMOR/&#39;</span><span class="w"> </span>mutect/mutect_exome_filtered.vcf
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/exome_norm_lib1/NORMAL/&#39;</span><span class="w"> </span>sage/exome.sage.vcf
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/exome_tumor_lib1/TUMOR/&#39;</span><span class="w"> </span>sage/exome.sage.vcf
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>grep<span class="w"> </span><span class="s2">&quot;^#CHROM&quot;</span><span class="w"> </span>mutect/mutect_exome_filtered.vcf<span class="w"> </span>sage/exome.sage.vcf<span class="w">  </span><span class="c1"># checkthe header lines where the sample names are the two last columns</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="c1"># merge</span>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s2">&quot;-Xmx12G&quot;</span><span class="w"> </span>MergeVcfs<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="w">    </span>-I<span class="w"> </span>sage/exome.sage.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="w">    </span>-I<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/somatic/mutect/mutect_exome_filtered.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="w">    </span>-O<span class="w"> </span>exome.merged.vcf
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="c1"># compress the vcf</span>
+</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>bgzip<span class="w"> </span>-c<span class="w"> </span>exome.merged.vcf<span class="w"> </span>&gt;<span class="w"> </span>exome.merged.vcf.gz
+</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>tabix<span class="w"> </span>-p<span class="w"> </span>vcf<span class="w"> </span>exome.merged.vcf.gz
+</span></code></pre></div>
+<h3 id="left-align-and-trim">Left Align and Trim<a class="headerlink" href="#left-align-and-trim" title="Permanent link">&para;</a></h3>
+<p>The reason for left aligning the variants and trimming them is explained <a href="https://genome.sph.umich.edu/wiki/Variant_Normalization#Left_alignment">here</a>.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/somatic/
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s2">&quot;-Xmx12G&quot;</span><span class="w"> </span>LeftAlignAndTrimVariants<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span>-V<span class="w"> </span>exome.merged.vcf.gz<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span>-O<span class="w"> </span>exome.merged.leftalignandtrim.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span>-R<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa
+</span></code></pre></div></p>
+<h3 id="split-multi-allelic-variants-into-multiple-records">Split multi-allelic variants into multiple records<a class="headerlink" href="#split-multi-allelic-variants-into-multiple-records" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/somatic/
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>vt<span class="w"> </span>decompose<span class="w"> </span>-s<span class="w"> </span>exome.merged.leftalignandtrim.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span>-o<span class="w"> </span>exome.merged.leftalignandtrim.decomposed.vcf
+</span></code></pre></div>
+<h3 id="basic-filtering-on-somatic-variants">Basic Filtering on Somatic Variants<a class="headerlink" href="#basic-filtering-on-somatic-variants" title="Permanent link">&para;</a></h3>
+<p>First, let's do a basic filtering for <code>PASS</code> only variants on our merged and normalized vcf file:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/somatic
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>gatk<span class="w"> </span>--java-options<span class="w"> </span><span class="s2">&quot;-Xmx12G&quot;</span><span class="w"> </span>SelectVariants<span class="w"> </span>-R<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span>--exclude-filtered<span class="w"> </span>-V<span class="w"> </span>exome.merged.leftalignandtrim.decomposed.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span>-O<span class="w"> </span>exome.merged.norm.pass_only.vcf
+</span></code></pre></div></p>
+<h3 id="annotation-with-vep">Annotation with VEP<a class="headerlink" href="#annotation-with-vep" title="Permanent link">&para;</a></h3>
+<p>Again, we will use VEP to annotate the somatic variants as we did for the germline variants. </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/somatic
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1"># Runtime: ~1min</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>ensembl-vep-113<span class="w">  </span><span class="c1"># activate a separate environment for vep</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>nohup<span class="w"> </span>vep<span class="w"> </span>--cache<span class="w"> </span>--dir_cache<span class="w"> </span>/nfs/course/inputs/references/vep<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span>--fasta<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa<span class="w"> </span>--fork<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span>--assembly<span class="o">=</span>GRCh38<span class="w"> </span>--offline<span class="w"> </span>--vcf<span class="w"> </span>-i<span class="w"> </span>exome.merged.norm.pass_only.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span>-o<span class="w"> </span>exome.merged.norm.annotated.vcf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span>--check_existing<span class="w"> </span>--total_length<span class="w"> </span>--allele_number<span class="w">  </span>--no_escape<span class="w"> </span>--everything<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">    </span>--use_given_ref<span class="w"> </span>--force_overwrite<span class="w"> </span><span class="p">&amp;</span>
+</span></code></pre></div>
+<p>Copy the HTML VEP summary to your local computer, run locally and first navigate to your preferred folder:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>scp<span class="w"> </span>-r<span class="w"> </span>YOUR_KI_ID@c8cancergen02.ki.se:/nfs/course/students/YOUR_KI_ID/somatic/exome.merged.norm.annotated.vcf_summary.html<span class="w"> </span>.
+</span></code></pre></div></p>
+<p>Open the HTML file.</p>
+<p>Answer the following questions:</p>
+<ul>
+<li>
+<p>How many variants were processed by VEP?</p>
+</li>
+<li>
+<p>Is there any difference in the distribution of somatic variants vs the germline variants? </p>
+</li>
+<li>
+<p>The variant categories e.g. intron_variant and regulatory_region_variant should be approached carefully- why?</p>
+</li>
+</ul>
+<h2 id="inspecting-the-somatic-variants-in-igv">Inspecting the somatic variants in IGV<a class="headerlink" href="#inspecting-the-somatic-variants-in-igv" title="Permanent link">&para;</a></h2>
+<p>Download the processed DNA BAM files to your local machine if you have not done so yet. Open the Exome_Tumor_sorted_mrkdup_bqsr.bam and Exome_Norm_sorted_mrkdup_bqsr.bam in IGV.</p>
+<p>Below, we will try to find a relevant variant in TP53 in the VCF file on the server to inspect further.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">#Can be done in many ways, this is just an example.</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/somatic
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>grep<span class="w"> </span><span class="s2">&quot;TP53&quot;</span><span class="w"> </span>exome.merged.norm.annotated.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-SN
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1">#### Or </span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>less<span class="w"> </span>-SN<span class="w"> </span>exome.merged.norm.annotated.vcf
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="c1">#In the less window type /TP53</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="c1"># to skip the very long INFO column, and align header and columns</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>grep<span class="w"> </span>-P<span class="w"> </span><span class="s2">&quot;#CHROM|TP53&quot;</span><span class="w"> </span>exome.merged.norm.annotated.vcf<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>-7,9-11<span class="w"> </span><span class="p">|</span><span class="w"> </span>column<span class="w"> </span>-t<span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-SN
+</span></code></pre></div></p>
+<p>Answer the following questions:</p>
+<ul>
+<li>
+<p>Why is the TP53 variant on two rows in the VCF file? (Hint: how many somatic variant callers were run?)</p>
+</li>
+<li>
+<p>What is the VAF of the TP53 variant? (Hint: look in the "FORMAT" column which field corresponds to "AF" and then check this field in the correct sample column)</p>
+</li>
+<li>
+<p>Download the vepped vcf to your local machine and go to the position (chr17:7675088) on IGV in your local machine. Is the TP53 variant present in the normal DNA? Do you still think this is a valid variant? How come the variant can be present in the germline DNA but be called by a somatic variant caller?</p>
+</li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/TQ8KKZ8.png" /></p>
+<p>Let's convert the VCF file to the MAF file format. In this conversion, all information from the VCF file is not kept but it simplifies looking at the variants.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/somatic
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>perl<span class="w"> </span>/nfs/course/bin/vcf2maf-1.6.22/vcf2maf.pl<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span>--input-vcf<span class="w"> </span>exome.merged.norm.annotated.vcf<span class="w"> </span>--output-maf<span class="w"> </span>exome.merged.norm.annotated.maf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span>--tumor-id<span class="w"> </span>TUMOR<span class="w"> </span>--normal-id<span class="w"> </span>NORMAL<span class="w"> </span>--inhibit-vep<span class="w"> </span>--ref-fasta<span class="w"> </span>/nfs/course/inputs/references/genome/ref_genome.fa
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>less<span class="w"> </span>-SN<span class="w"> </span>exome.merged.norm.annotated.maf
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="c1">#Count the number of variant types</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>cut<span class="w"> </span>-f9<span class="w"> </span>exome.merged.norm.annotated.maf<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="c1">#As you see the variant nomenclature is not the same in VCF and MAF</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>grep<span class="w"> </span>Nonsense_Mutation<span class="w"> </span>exome.merged.norm.annotated.maf<span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-SN<span class="w"> </span>
+</span></code></pre></div>
+Have a look at the nonsense variant in CCDC40 in IGV, at the position chr17:80050160. Then answer the following questions:</p>
+<ul>
+<li>
+<p>What is the VAF?</p>
+</li>
+<li>
+<p>Is the variant clonal (present in all cancer cells) or subclonal (present in only a subset of the cancer cells)?</p>
+</li>
+<li>
+<p>Can you find a somatic variant in BRCA1? What is the impact? Is it relevant?</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021, Johan Lindberg et. al., MEB, Karolinska Institutet, All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

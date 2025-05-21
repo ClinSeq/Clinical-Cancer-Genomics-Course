@@ -1,0 +1,1500 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Instructions_copy_number_lab/">
+      
+      
+        <link rel="next" href="../exercise_5/">
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>BIOINFORMATIC PROCESSING OF RNA DATA - Clinical Cancer Genomics Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M64%2032C28.7%2032%200%2060.7%200%2096v320c0%2035.3%2028.7%2064%2064%2064h224V368c0-26.5%2021.5-48%2048-48h112V96c0-35.3-28.7-64-64-64zm384%20320H336c-8.8%200-16%207.2-16%2016v112l32-32%2064-64z%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M96%200C43%200%200%2043%200%2096v320c0%2053%2043%2096%2096%2096h320c17.7%200%2032-14.3%2032-32s-14.3-32-32-32v-64c17.7%200%2032-14.3%2032-32V32c0-17.7-14.3-32-32-32H96m0%20384h256v64H96c-17.7%200-32-14.3-32-32s14.3-32%2032-32m32-240c0-8.8%207.2-16%2016-16h192c8.8%200%2016%207.2%2016%2016s-7.2%2016-16%2016H144c-8.8%200-16-7.2-16-16m16%2048h192c8.8%200%2016%207.2%2016%2016s-7.2%2016-16%2016H144c-8.8%200-16-7.2-16-16s7.2-16%2016-16%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-40-176h24v-64h-24c-13.3%200-24-10.7-24-24s10.7-24%2024-24h48c13.3%200%2024%2010.7%2024%2024v88h8c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-80c-13.3%200-24-10.7-24-24s10.7-24%2024-24m40-208a32%2032%200%201%201%200%2064%2032%2032%200%201%201%200-64%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M480%2032c0-12.9-7.8-24.6-19.8-29.6S434.5.2%20425.3%209.3L381.7%2053c-48%2048-113.1%2075-181%2075H64c-35.3%200-64%2028.7-64%2064v96c0%2035.3%2028.7%2064%2064%2064v128c0%2017.7%2014.3%2032%2032%2032h64c17.7%200%2032-14.3%2032-32V352h8.7c67.9%200%20133%2027%20181%2075l43.6%2043.6c9.2%209.2%2022.9%2011.9%2034.9%206.9s19.8-16.6%2019.8-29.6V300.3c18.6-8.8%2032-32.5%2032-60.4s-13.4-51.6-32-60.4zm-64%2076.7v262.6C357.2%20317.8%20280.5%20288%20200.7%20288H192v-96h8.7c79.8%200%20156.5-29.8%20215.3-83.3%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M438.6%20105.4c12.5%2012.5%2012.5%2032.8%200%2045.3l-256%20256c-12.5%2012.5-32.8%2012.5-45.3%200l-128-128c-12.5-12.5-12.5-32.8%200-45.3s32.8-12.5%2045.3%200L160%20338.7l233.4-233.3c12.5-12.5%2032.8-12.5%2045.3%200z%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-86.2-346.7c7.9-22.3%2029.1-37.3%2052.8-37.3h58.3c34.9%200%2063.1%2028.3%2063.1%2063.1%200%2022.6-12.1%2043.5-31.7%2054.8L280%20264.4c-.2%2013-10.9%2023.6-24%2023.6-13.3%200-24-10.7-24-24v-13.5c0-8.6%204.6-16.5%2012.1-20.8l44.3-25.4c4.7-2.7%207.6-7.7%207.6-13.1%200-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4%200-6.4%202.1-7.5%205.3l-.4%201.2c-4.4%2012.5-18.2%2019-30.6%2014.6s-19-18.2-14.6-30.6l.4-1.2zM224%20352a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M256%2032c14.2%200%2027.3%207.5%2034.5%2019.8l216%20368c7.3%2012.4%207.3%2027.7.2%2040.1S486.3%20480%20472%20480H40c-14.3%200-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7%2039.5%20241.8%2032%20256%2032m0%20128c-13.3%200-24%2010.7-24%2024v112c0%2013.3%2010.7%2024%2024%2024s24-10.7%2024-24V184c0-13.3-10.7-24-24-24m32%20224a32%2032%200%201%200-64%200%2032%2032%200%201%200%2064%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M459.1%2052.4%20442.6%206.5c-1.9-3.9-6.1-6.5-10.5-6.5s-8.5%202.6-10.4%206.5l-16.5%2045.9-46%2016.8c-4.3%201.6-7.3%205.9-7.2%2010.4%200%204.5%203%208.7%207.2%2010.2l45.7%2016.8%2016.8%2045.8c1.5%204.4%205.8%207.5%2010.4%207.5s8.9-3.1%2010.4-7.5l16.5-45.8%2045.7-16.8c4.2-1.5%207.2-5.7%207.2-10.2%200-4.6-3-8.9-7.2-10.4zm-132.4%2053c-12.5-12.5-32.8-12.5-45.3%200l-2.9%202.9c-22-8-45.8-12.3-70.5-12.3C93.1%2096%200%20189.1%200%20304s93.1%20208%20208%20208%20208-93.1%20208-208c0-24.7-4.3-48.5-12.2-70.5l2.9-2.9c12.5-12.5%2012.5-32.8%200-45.3l-80-80zM200%20192c-57.4%200-104%2046.6-104%20104v8c0%208.8-7.2%2016-16%2016s-16-7.2-16-16v-8c0-75.1%2060.9-136%20136-136h8c8.8%200%2016%207.2%2016%2016s-7.2%2016-16%2016z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M416%20398.9c58.5-41.1%2096-104.1%2096-174.9C512%20100.3%20397.4%200%20256%200S0%20100.3%200%20224c0%2070.7%2037.5%20133.8%2096%20174.9V464c0%2026.5%2021.5%2048%2048%2048h48v-48c0-8.8%207.2-16%2016-16s16%207.2%2016%2016v48h64v-48c0-8.8%207.2-16%2016-16s16%207.2%2016%2016v48h48c26.5%200%2048-21.5%2048-48v-65.1M96%20256a64%2064%200%201%201%20128%200%2064%2064%200%201%201-128%200m256-64a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M320%200c17.7%200%2032%2014.3%2032%2032v64h120c39.8%200%2072%2032.2%2072%2072v272c0%2039.8-32.2%2072-72%2072H168c-39.8%200-72-32.2-72-72V168c0-39.8%2032.2-72%2072-72h120V32c0-17.7%2014.3-32%2032-32M208%20384c-8.8%200-16%207.2-16%2016s7.2%2016%2016%2016h32c8.8%200%2016-7.2%2016-16s-7.2-16-16-16zm96%200c-8.8%200-16%207.2-16%2016s7.2%2016%2016%2016h32c8.8%200%2016-7.2%2016-16s-7.2-16-16-16zm96%200c-8.8%200-16%207.2-16%2016s7.2%2016%2016%2016h32c8.8%200%2016-7.2%2016-16s-7.2-16-16-16zM264%20256a40%2040%200%201%200-80%200%2040%2040%200%201%200%2080%200m152%2040a40%2040%200%201%200%200-80%2040%2040%200%201%200%200%2080M48%20224h16v192H48c-26.5%200-48-21.5-48-48v-96c0-26.5%2021.5-48%2048-48m544%200c26.5%200%2048%2021.5%2048%2048v96c0%2026.5-21.5%2048-48%2048h-16V224z%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M288%200H128c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032v132.8c0%2011.8-3.3%2023.5-9.5%2033.5L10.3%20406.2C3.6%20417.2%200%20429.7%200%20442.6%200%20480.9%2031.1%20512%2069.4%20512h309.2c38.3%200%2069.4-31.1%2069.4-69.4%200-12.8-3.6-25.4-10.3-36.4L329.5%20230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7%200%2032-14.3%2032-32S337.7%200%20320%200zm-96%20196.8V64h64v132.8c0%2023.7%206.6%2046.9%2019%2067.1l34.5%2056.1h-171l34.5-56.1c12.4-20.2%2019-43.4%2019-67.1%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M0%20216C0%20149.7%2053.7%2096%20120%2096h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64V216m256%200c0-66.3%2053.7-120%20120-120h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064h-64c-35.3%200-64-28.7-64-64V216%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bioinformatic-processing-of-rna-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Clinical Cancer Genomics Course" class="md-header__button md-logo" aria-label="Clinical Cancer Genomics Course" data-md-component="logo">
+      
+  <img src="../../assets/img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Clinical Cancer Genomics Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              BIOINFORMATIC PROCESSING OF RNA DATA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Clinical Cancer Genomics Course" class="md-nav__button md-logo" aria-label="Clinical Cancer Genomics Course" data-md-component="logo">
+      
+  <img src="../../assets/img/logo.svg" alt="logo">
+
+    </a>
+    Clinical Cancer Genomics Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Course Details
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schedule
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/lectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lectures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lab Session
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lab Session
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workspace_KI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Workspace - KI-HPC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise_1_reference-genome_annotation-files_rawdata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reference Genome, Annotations and Raw Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction_to_IGV/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to IGV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real_life_examples_cmdline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Line Usage in Real Life
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bioinformatic_processing_of_DNA_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Processing of DNA sequencing data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variant_calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variant Calling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calling_structural_variation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Structural Variants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Instructions_copy_number_lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Copy Number Variations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    RNAseq
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    RNAseq
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      The data
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variant Interpretation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 6
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 6
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Instructions_project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      The data
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="bioinformatic-processing-of-rna-data">Bioinformatic processing of RNA data<a class="headerlink" href="#bioinformatic-processing-of-rna-data" title="Permanent link">&para;</a></h1>
+<p>In this exercise set we will learn how to process data produced from an RNA-sequencing experiment. This will involve FASTQ file processing and quality control, alignment, gene expression abundance estimation, and detection of fusions from the data.</p>
+<h2 id="the-data">The data<a class="headerlink" href="#the-data" title="Permanent link">&para;</a></h2>
+<p>We will analyze RNA-sequencing data from the same samples we analyzed during the DNA-sequencing exercises. As a reminder, these were a sample from the breast cancer cell line HCC1395 (the tumor sample) and its matched lymphoblastoid cell line HCC1395BL (the normal sample). These are meant to represent a tumor and a normal tissue samples from a hypothetical patient. <strong>As before, we are focusing our analyses on chromosomes 6 and 17 to reduce computation times.</strong></p>
+<p>You will notice that our tumor and normal samples have different tissues of origin. While we will compare their RNA-seq samples to each other in this exercise set for practice, note that doing so would not make sense in a real analysis to e.g., uncover features of tumor vs normal.</p>
+<p>These are the names of the samples we will analyze (<strong>note that we have data from two sequencing lanes</strong>- this was required to achieve the target total depth in the RNA-seq experiment):
+<code>RNAseq_Tumor_Lane1</code>
+<code>RNAseq_Tumor_Lane2</code>
+<code>RNAseq_Norm_Lane1</code>
+<code>RNAseq_Norm_Lane2</code></p>
+<p>The files are several gigabytes in size and can take a while to process, so we have run some of the preliminary analyses (FastQC/MultiQC and alignment) for you to make the exercises more manageable. Let's take a look at these analyses below.
+```bash!</p>
+<h1 id="fastqc-and-multiqc-have-been-run-using-commands-like-what-you-saw-in-exercise-set-1">FastQC and MultiQC have been run using commands like what you saw in Exercise Set 1.<a class="headerlink" href="#fastqc-and-multiqc-have-been-run-using-commands-like-what-you-saw-in-exercise-set-1" title="Permanent link">&para;</a></h1>
+<h1 id="copy-the-multiqc-html-file-to-your-local-computer-for-inspection-and-then-answer-question-1-below">Copy the MultiQC HTML file to your local computer for inspection and then answer Question 1 below.<a class="headerlink" href="#copy-the-multiqc-html-file-to-your-local-computer-for-inspection-and-then-answer-question-1-below" title="Permanent link">&para;</a></h1>
+<p>scp <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#89;&#79;&#85;&#82;&#95;&#75;&#73;&#95;&#73;&#68;&#64;&#99;&#56;&#99;&#97;&#110;&#99;&#101;&#114;&#103;&#101;&#110;&#48;&#50;&#46;&#107;&#105;&#46;&#115;&#101;">&#89;&#79;&#85;&#82;&#95;&#75;&#73;&#95;&#73;&#68;&#64;&#99;&#56;&#99;&#97;&#110;&#99;&#101;&#114;&#103;&#101;&#110;&#48;&#50;&#46;&#107;&#105;&#46;&#115;&#101;</a>:/nfs/course/inputs/data/rna/multiqc_report.html .
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>**Question 1:** Based on the MultiQC report, is there adapter contamination in the samples? Are there issues we should address with sequence duplication levels? (Hint: recall we are working with data only from chr6 and chr17. Also, see a brief discussion of sequence duplication in RNA-seq under `Common reasons for warnings` [here](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/3%20Analysis%20Modules/8%20Duplicate%20Sequences.html)).
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>We have used the aligner [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml) to perform spliced alignments to the reference genome. You can see the commands used below (**you do not need to run them yourself!**). For efficiency, the output of HISAT2 (SAM format) was piped directly to another program called [sambamba](http://lomereiter.github.io/sambamba/) to first convert to BAM format and then sort the BAM file. Before each command we also created and assigned a path for temporary directories.
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>```bash!
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a># All the commands below have already been run, they are only for your reference! 
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a># Align tumor data using HISAT2
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a># First for Lane 1
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>TUMOR_DATA_1_TEMP=`mktemp -d /nfs/course/inputs/data/rna/alignments/2895626107.XXXXXXXXXXXX`
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>hisat2 -p 7 --dta -x /nfs/course/inputs/references/transcriptome/ref_genome --rg-id 2895626107 --rg PL:ILLUMINA --rg PU:H3MYFBBXX-GCCAAT.4 --rg LB:rna_tumor_lib1 --rg SM:HCC1395_RNA --rna-strandness RF -1 /nfs/course/inputs/data/rna/RNAseq_Tumor/RNAseq_Tumor_Lane1_R1.fastq.gz -2  /nfs/course/inputs/data/rna/RNAseq_Tumor/RNAseq_Tumor_Lane1_R2.fastq.gz | sambamba view -S -f bam -l 0 /dev/stdin | sambamba sort -t 8 -m 24G --tmpdir $TUMOR_DATA_1_TEMP -o /nfs/course/inputs/data/rna/alignments/RNAseq_Tumor_Lane1.bam /dev/stdin
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a># Then for Lane 2
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>TUMOR_DATA_2_TEMP=`mktemp -d /nfs/course/inputs/data/rna/alignments/2895626112.XXXXXXXXXXXX`
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>hisat2 -p 7 --dta -x /nfs/course/inputs/references/transcriptome/ref_genome --rg-id 2895626112 --rg PL:ILLUMINA --rg PU:H3MYFBBXX-GCCAAT.5 --rg LB:rna_tumor_lib1 --rg SM:HCC1395_RNA --rna-strandness RF -1 /nfs/course/inputs/data/rna/RNAseq_Tumor/RNAseq_Tumor_Lane2_R1.fastq.gz -2 /nfs/course/inputs/data/rna/RNAseq_Tumor/RNAseq_Tumor_Lane2_R2.fastq.gz | sambamba view -S -f bam -l 0 /dev/stdin | sambamba sort -t 8 -m 24G --tmpdir $TUMOR_DATA_2_TEMP -o /nfs/course/inputs/data/rna/alignments/RNAseq_Tumor_Lane2.bam /dev/stdin
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a># Align normal data using HISAT2
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a># First for Lane 1
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>NORMAL_DATA_1_TEMP=`mktemp -d /nfs/course/inputs/data/rna/alignments/2895625992.XXXXXXXXXXXX`
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>hisat2 -p 7 --dta -x /nfs/course/inputs/references/transcriptome/ref_genome --rg-id 2895625992 --rg PL:ILLUMINA --rg PU:H3MYFBBXX-CTTGTA.4 --rg LB:rna_norm_lib1 --rg SM:HCC1395BL_RNA --rna-strandness RF -1 /nfs/course/inputs/data/rna/RNAseq_Norm/RNAseq_Norm_Lane1_R1.fastq.gz -2 /nfs/course/inputs/data/rna/RNAseq_Norm/RNAseq_Norm_Lane1_R2.fastq.gz | sambamba view -S -f bam -l 0 /dev/stdin | sambamba sort -t 8 -m 24G --tmpdir $NORMAL_DATA_1_TEMP -o /nfs/course/inputs/data/rna/alignments/RNAseq_Norm_Lane1.bam /dev/stdin
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a># Then for Lane 2
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>NORMAL_DATA_2_TEMP=`mktemp -d /nfs/course/inputs/data/rna/alignments/2895626097.XXXXXXXXXXXX`
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>hisat2 -p 7 --dta -x /nfs/course/inputs/references/transcriptome/ref_genome --rg-id 2895626097 --rg PL:ILLUMINA --rg PU:H3MYFBBXX-CTTGTA.5 --rg LB:rna_norm_lib1 --rg SM:HCC1395BL_RNA --rna-strandness RF -1 /nfs/course/inputs/data/rna/RNAseq_Norm/RNAseq_Norm_Lane2_R1.fastq.gz -2 /nfs/course/inputs/data/rna/RNAseq_Norm/RNAseq_Norm_Lane2_R2.fastq.gz | sambamba view -S -f bam -l 0 /dev/stdin | sambamba sort -t 8 -m 24G --tmpdir $NORMAL_DATA_2_TEMP -o /nfs/course/inputs/data/rna/alignments/RNAseq_Norm_Lane2.bam /dev/stdin
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a># Since we have multiple BAMs of each sample that just represent additional data for the same sequence library, we combine them into a single BAM for convenience:
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>sambamba merge -t 8 /nfs/course/inputs/data/rna/alignments/RNAseq_Norm.bam /nfs/course/inputs/data/rna/alignments/RNAseq_Norm_Lane1.bam /nfs/course/inputs/data/rna/alignments/RNAseq_Norm_Lane2.bam
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>sambamba merge -t 8 /nfs/course/inputs/data/rna/alignments/RNAseq_Tumor.bam /nfs/course/inputs/data/rna/alignments/RNAseq_Tumor_Lane1.bam /nfs/course/inputs/data/rna/alignments/RNAseq_Tumor_Lane2.bam
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a># Index the BAM files
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>samtools index RNAseq_Norm.bam
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>samtools index RNAseq_Tumor.bam
+</span></code></pre></div></p>
+<h2 id="gtf-general-transfer-format-and-rna-seq-post-alignment-quality-control">GTF (General Transfer Format) and RNA-seq post-alignment quality control<a class="headerlink" href="#gtf-general-transfer-format-and-rna-seq-post-alignment-quality-control" title="Permanent link">&para;</a></h2>
+<p>We will encounter the GTF file format during the exercises below, described in detail <a href="https://www.ensembl.org/info/website/upload/gff.html#fields">here</a>. As you might recall from the lectures, the GTF format is used to describe genes and other features of DNA, RNA, and proteins.</p>
+<p>In the section below we will inspect the files needed for RNA-seq post-alignment quality control.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">#Go to this directory:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/inputs/references/transcriptome
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">#Have a peek into the transcriptome GTF file and try to make sense of it using the description behind the link above</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>less<span class="w"> </span>-SN<span class="w"> </span>ref_transcriptome.gtf
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1">#Check which chromosomes we have transcripts from</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>cut<span class="w"> </span>-f1<span class="w"> </span>ref_transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1">#We will also use a BED file with ribosomal RNA coordinates in our analyses</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="c1">#Check out the format of the ribosome BED file</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1">#Answer Question 2 below</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>less<span class="w"> </span>-SN<span class="w"> </span>ref_ribosome.bed
+</span></code></pre></div>
+<strong>Question 2:</strong> How could we have generated the ribosome file from our <code>ref_transcriptome.gtf</code> file? In other words, what information/fields/labels in the GTF file can be used to identify ribosomal RNAs?</p>
+<p>Next, we will perform post-alignment quality control. For this, we will be using <code>samtools flagstat</code>, <code>fastqc</code>, and <code>picard CollectRnaSeqMetrics</code>.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">#Start by making a folder for your RNA analyses</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>mkdir<span class="w"> </span>rna<span class="w"> </span>rna/qc
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">cd</span><span class="w"> </span>rna/qc
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">#Run samtools flagstat</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1">#Runtime: ~2min, start and send to background using nohup</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>nohup<span class="w"> </span>samtools<span class="w"> </span>flagstat<span class="w"> </span>/nfs/course/inputs/data/rna/alignments/RNAseq_Norm.bam<span class="w"> </span>&gt;<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/qc/RNAseq_Norm_flagstat.txt<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>flagstat_RNA_N_bam.out<span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>nohup<span class="w"> </span>samtools<span class="w"> </span>flagstat<span class="w"> </span>/nfs/course/inputs/data/rna/alignments/RNAseq_Tumor.bam<span class="w"> </span>&gt;<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/qc/RNAseq_Tumor_flagstat.txt<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>flagstat_RNA_T_bam.out<span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1">#Run FastQC</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1">#Runtime: ~12 min</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>nohup<span class="w"> </span>fastqc<span class="w"> </span>-t<span class="w"> </span><span class="m">4</span><span class="w"> </span>-o<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/qc<span class="w"> </span>/nfs/course/inputs/data/rna/alignments/RNAseq_Tumor.bam<span class="w"> </span>&gt;<span class="w"> </span>fastqc_RNA_T_bam.out<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>nohup<span class="w"> </span>fastqc<span class="w"> </span>-t<span class="w"> </span><span class="m">4</span><span class="w"> </span>-o<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/qc<span class="w"> </span>/nfs/course/inputs/data/rna/alignments/RNAseq_Norm.bam<span class="w"> </span>&gt;<span class="w"> </span>fastqc_RNA_N_bam.out<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c1">#You can follow the progress of the program by looking in the nohup output files</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>less<span class="w"> </span>-SN<span class="w"> </span>fastqc_RNA_T_bam.out
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>less<span class="w"> </span>-SN<span class="w"> </span>fastqc_RNA_N_bam.out
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="c1">#Run Picard CollectRnaSeqMetrics</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="c1">#Notice that we run this for versions of the BAM files that contain only properly paired reads, as required by the tool</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>nohup<span class="w"> </span>picard<span class="w"> </span>CollectRnaSeqMetrics<span class="w"> </span><span class="nv">I</span><span class="o">=</span>/nfs/course/inputs/data/rna/alignments/RNAseq_Norm_paired.bam<span class="w"> </span><span class="nv">O</span><span class="o">=</span>/nfs/course/students/YOUR_KI_ID/rna/qc/RNAseq_Norm.RNA_Metrics<span class="w"> </span><span class="nv">REF_FLAT</span><span class="o">=</span>/nfs/course/inputs/references/transcriptome/ref_flat.txt<span class="w"> </span><span class="nv">STRAND</span><span class="o">=</span>SECOND_READ_TRANSCRIPTION_STRAND<span class="w"> </span><span class="nv">RIBOSOMAL_INTERVALS</span><span class="o">=</span>/nfs/course/inputs/references/transcriptome/ref_ribosome.interval_list<span class="w"> </span>&gt;<span class="w"> </span>collectRnaSeqMetrics_N.out<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>nohup<span class="w"> </span>picard<span class="w"> </span>CollectRnaSeqMetrics<span class="w"> </span><span class="nv">I</span><span class="o">=</span>/nfs/course/inputs/data/rna/alignments/RNAseq_Tumor_paired.bam<span class="w"> </span><span class="nv">O</span><span class="o">=</span>/nfs/course/students/YOUR_KI_ID/rna/qc/RNAseq_Tumor.RNA_Metrics<span class="w"> </span><span class="nv">REF_FLAT</span><span class="o">=</span>/nfs/course/inputs/references/transcriptome/ref_flat.txt<span class="w"> </span><span class="nv">STRAND</span><span class="o">=</span>SECOND_READ_TRANSCRIPTION_STRAND<span class="w"> </span><span class="nv">RIBOSOMAL_INTERVALS</span><span class="o">=</span>/nfs/course/inputs/references/transcriptome/ref_ribosome.interval_list<span class="w"> </span>&gt;<span class="w"> </span>qcollectRnaSeqMetrics_T.out<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/qc/
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>mkdir<span class="w"> </span>post_align_qc
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="nb">cd</span><span class="w"> </span>post_align_qc
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>multiqc<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/qc/
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="c1">#Finally, download the MultiQC HTML report files to your local computer and view them in your favorite browser</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="c1">#Familiarize yourself with the RNA-seq MultiQC data</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>scp<span class="w"> </span>YOUR_KI_ID@c8cancergen02.ki.se:/nfs/course/students/YOUR_KI_ID/rna/qc/post_align_qc/multiqc_report.html<span class="w"> </span>.
+</span></code></pre></div>
+<strong>Question 3:</strong> In the MultiQC report, look at the metrics and plots from Picard and answer the following:
+* For good quality RNA-seq data and its mapping, we would expect a large portion (some say at least 60%) of the reads to map to coding or UTR regions of the genome. Look at the RnaSeqMetrics Assignment plot. Is this the case for our samples?
+* In the Gene Coverage plot, do you see evidence for 5'-3' bias?</p>
+<p>You will have noticed we used the <code>nohup</code> command above. <code>nohup</code> is very useful for sending processes to the background so that they will continue if connection breaks or if you need to log out of the server.</p>
+<p>For a review on how to send stdout and stderr to a file while running <code>nohup</code>, have a look <a href="https://askubuntu.com/questions/420981/how-do-i-save-terminal-output-to-a-file">here</a>.</p>
+<h2 id="run-a-simplified-reference-only-stringtie-expression-abundance-estimation-approach">Run a simplified "reference only" StringTie expression abundance estimation approach<a class="headerlink" href="#run-a-simplified-reference-only-stringtie-expression-abundance-estimation-approach" title="Permanent link">&para;</a></h2>
+<p><a href="https://ccb.jhu.edu/software/stringtie/"><code>StringTie</code></a> is a fast and highly efficient assembler of RNA-seq alignments into potential transcripts. </p>
+<p>The <code>StringTie</code> developers recommend to: 
+  - perform reference guided transcript compilation (aka transcript assembly) on each individual sample.
+  - merge transcript predictions from all samples into a single model of the transcriptome.
+  - annotate this predicted transcriptome with known transcriptome information.
+  - estimate abundance for each of the transcripts in this final transcriptome model in each sample.</p>
+<p>The final result csn have abundances for all transcripts across all samples. This includes a combination of predicted and known transcripts. </p>
+<p>It is sometimes convenient to have a more simplified workflow where we only have values for known transcripts. This is particularly true in species where we already have comprehensive high quality transcriptome annotations and there is less of a focus on de novo transcript discovery.</p>
+<p>The following workflow produces such a "reference-only" transcriptome result in which we will perform abundance calculations on each lane of data individually.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>mkdir<span class="w"> </span>ref-only-expression
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">cd</span><span class="w"> </span>ref-only-expression
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>nohup<span class="w"> </span>stringtie<span class="w"> </span>-p<span class="w"> </span><span class="m">4</span><span class="w"> </span>-e<span class="w"> </span>-G<span class="w"> </span>/nfs/course/inputs/references/transcriptome/ref_transcriptome.gtf<span class="w"> </span>-o<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/ref-only-expression/RNAseq_Tumor_Lane1/transcripts.gtf<span class="w"> </span>-A<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/ref-only-expression/RNAseq_Tumor_Lane1/gene_abundances.tsv<span class="w"> </span>/nfs/course/inputs/data/rna/alignments/RNAseq_Tumor_Lane1.bam<span class="w"> </span>&gt;<span class="w"> </span>knowntranscripts_T1_L1.out<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>nohup<span class="w"> </span>stringtie<span class="w"> </span>-p<span class="w"> </span><span class="m">4</span><span class="w"> </span>-e<span class="w"> </span>-G<span class="w"> </span>/nfs/course/inputs/references/transcriptome/ref_transcriptome.gtf<span class="w"> </span>-o<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/ref-only-expression/RNAseq_Tumor_Lane2/transcripts.gtf<span class="w"> </span>-A<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/ref-only-expression/RNAseq_Tumor_Lane2/gene_abundances.tsv<span class="w"> </span>/nfs/course/inputs/data/rna/alignments/RNAseq_Tumor_Lane2.bam<span class="w"> </span>&gt;<span class="w"> </span>knowntranscripts_T1_L2.out<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>nohup<span class="w"> </span>stringtie<span class="w"> </span>-p<span class="w"> </span><span class="m">4</span><span class="w"> </span>-e<span class="w"> </span>-G<span class="w"> </span>/nfs/course/inputs/references/transcriptome/ref_transcriptome.gtf<span class="w"> </span>-o<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/ref-only-expression/RNAseq_Norm_Lane1/transcripts.gtf<span class="w"> </span>-A<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/ref-only-expression/RNAseq_Norm_Lane1/gene_abundances.tsv<span class="w"> </span>/nfs/course/inputs/data/rna/alignments/RNAseq_Norm_Lane1.bam<span class="w"> </span>&gt;<span class="w"> </span>knowntranscripts_N1_L1.out<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>nohup<span class="w"> </span>stringtie<span class="w"> </span>-p<span class="w"> </span><span class="m">4</span><span class="w"> </span>-e<span class="w"> </span>-G<span class="w"> </span>/nfs/course/inputs/references/transcriptome/ref_transcriptome.gtf<span class="w"> </span>-o<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/ref-only-expression/RNAseq_Norm_Lane2/transcripts.gtf<span class="w"> </span>-A<span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/ref-only-expression/RNAseq_Norm_Lane2/gene_abundances.tsv<span class="w"> </span>/nfs/course/inputs/data/rna/alignments/RNAseq_Norm_Lane2.bam<span class="w"> </span>&gt;<span class="w"> </span>knowntranscripts_T2_L2.out<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1">#Wait until the scripts above have finished before proceeding.</span>
+</span></code></pre></div>
+<p>Next we will create tidy expression matrix files from the <code>StringTie</code> results. This will be done at both the gene- and transcript-level and also will take into account the various expression measures produced: coverage, fragments per kilobase of transcript per million mapped reads (FPKM), and transcripts per million (TPM).</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/ref-only-expression
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">#Download script for generating tidy matrix</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>wget<span class="w"> </span>https://raw.githubusercontent.com/griffithlab/rnaseq_tutorial/master/scripts/stringtie_expression_matrix.pl
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>chmod<span class="w"> </span>+x<span class="w"> </span>stringtie_expression_matrix.pl
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1">#Then generate the expression matrices</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1">#TPM</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>./stringtie_expression_matrix.pl<span class="w"> </span>--expression_metric<span class="o">=</span>TPM<span class="w"> </span>--result_dirs<span class="o">=</span><span class="s1">&#39;RNAseq_Norm_Lane1,RNAseq_Norm_Lane2,RNAseq_Tumor_Lane1,RNAseq_Tumor_Lane2&#39;</span><span class="w"> </span>--transcript_matrix_file<span class="o">=</span>transcript_tpm_all_samples.tsv<span class="w"> </span>--gene_matrix_file<span class="o">=</span>gene_tpm_all_samples.tsv
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1">#FPKM</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>./stringtie_expression_matrix.pl<span class="w"> </span>--expression_metric<span class="o">=</span>FPKM<span class="w"> </span>--result_dirs<span class="o">=</span><span class="s1">&#39;RNAseq_Norm_Lane1,RNAseq_Norm_Lane2,RNAseq_Tumor_Lane1,RNAseq_Tumor_Lane2&#39;</span><span class="w"> </span>--transcript_matrix_file<span class="o">=</span>transcript_fpkm_all_samples.tsv<span class="w"> </span>--gene_matrix_file<span class="o">=</span>gene_fpkm_all_samples.tsv
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="c1">#Coverage</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>./stringtie_expression_matrix.pl<span class="w"> </span>--expression_metric<span class="o">=</span>Coverage<span class="w"> </span>--result_dirs<span class="o">=</span><span class="s1">&#39;RNAseq_Norm_Lane1,RNAseq_Norm_Lane2,RNAseq_Tumor_Lane1,RNAseq_Tumor_Lane2&#39;</span><span class="w"> </span>--transcript_matrix_file<span class="o">=</span>transcript_coverage_all_samples.tsv<span class="w"> </span>--gene_matrix_file<span class="o">=</span>gene_coverage_all_samples.tsv
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="c1">#Have a look at the output files</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>head<span class="w"> </span>gene_coverage_all_samples.tsv<span class="w"> </span>transcript_coverage_all_samples.tsv<span class="w"> </span>gene_fpkm_all_samples.tsv<span class="w"> </span>transcript_fpkm_all_samples.tsv<span class="w"> </span>gene_tpm_all_samples.tsv<span class="w"> </span>transcript_tpm_all_samples.tsv
+</span></code></pre></div>
+<h2 id="reference-free-expression-analysis-with-kallisto">Reference-free expression analysis with Kallisto<a class="headerlink" href="#reference-free-expression-analysis-with-kallisto" title="Permanent link">&para;</a></h2>
+<p>Remember that in previous sections we have been using reference genome FASTA sequences for the reference for alignment and subsequent steps. However, <a href="https://pachterlab.github.io/kallisto/about"><code>Kallisto</code></a> is a tool that works directly on target cDNA/transcript sequences. </p>
+<p>For <code>StringTie</code>, we have used transcript annotations for genes on our subset of chromosomes (i.e. chr6 and chr17). The transcript models were downloaded from Ensembl in GTF format. This GTF contains a description of the coordinates of exons that make up each transcript but it does not contain the transcript sequences themselves, which is something <code>Kallisto</code> needs. There are many places we could obtain such transcript sequences. For example, we could have download them directly in FASTA format from the Ensembl FTP site (or from UCSC or NCBI). Here, we have downloaded them for you.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>mkdir<span class="w"> </span>kallisto
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">cd</span><span class="w"> </span>kallisto
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1">#First check that the GTF and FASTA files are present for Kallisto</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>head<span class="w"> </span>/nfs/course/inputs/references/transcriptome/ref_transcriptome.gtf
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>head<span class="w"> </span>/nfs/course/inputs/references/kallisto/ref_transcriptome_clean.fa
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1">#Now check for the kallisto index is there</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>ls<span class="w"> </span>-halt<span class="w"> </span>/nfs/course/inputs/references/kallisto/ref_transcriptome_kallisto_index
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1">#Create a list of all transcript IDs for later use:</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>cat<span class="w"> </span>/nfs/course/inputs/references/kallisto/ref_transcriptome_clean.fa<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>perl<span class="w"> </span>-ne<span class="w"> </span><span class="s1">&#39;$_ =~ s/\&gt;//; print $_&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>&gt;<span class="w"> </span>transcript_id_list.txt
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>head<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w"> </span>transcript_id_list.txt
+</span></code></pre></div>
+<h2 id="generate-abundance-estimates-for-all-samples-using-kallisto">Generate abundance estimates for all samples using Kallisto<a class="headerlink" href="#generate-abundance-estimates-for-all-samples-using-kallisto" title="Permanent link">&para;</a></h2>
+<p>As we did with <code>StringTie</code>, we will generate transcript abundances for each of our demonstration samples using <code>Kallisto</code>. Here we are treating the two lanes for each sample as if they were independent samples.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna/kallisto/
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>mkdir<span class="w"> </span>quants
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">cd</span><span class="w"> </span>quants
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>nohup<span class="w"> </span>/nfs/course/bin/kallisto/kallisto<span class="w"> </span>quant<span class="w"> </span>--index<span class="o">=</span>/nfs/course/inputs/references/kallisto/ref_transcriptome_kallisto_index<span class="w"> </span>--output-dir<span class="o">=</span>RNAseq_Norm_Lane1<span class="w"> </span>--threads<span class="o">=</span><span class="m">2</span><span class="w"> </span>--plaintext<span class="w"> </span>/nfs/course/inputs/data/rna/RNAseq_Norm/RNAseq_Norm_Lane1_R1.fastq.gz<span class="w"> </span>/nfs/course/inputs/data/rna/RNAseq_Norm/RNAseq_Norm_Lane1_R2.fastq.gz<span class="w"> </span>&gt;<span class="w"> </span>kallisto_quant_N_L1.out<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>nohup<span class="w"> </span>/nfs/course/bin/kallisto/kallisto<span class="w"> </span>quant<span class="w"> </span>--index<span class="o">=</span>/nfs/course/inputs/references/kallisto/ref_transcriptome_kallisto_index<span class="w"> </span>--output-dir<span class="o">=</span>RNAseq_Norm_Lane2<span class="w"> </span>--threads<span class="o">=</span><span class="m">2</span><span class="w"> </span>--plaintext<span class="w"> </span>/nfs/course/inputs/data/rna/RNAseq_Norm/RNAseq_Norm_Lane2_R1.fastq.gz<span class="w"> </span>/nfs/course/inputs/data/rna/RNAseq_Norm/RNAseq_Norm_Lane2_R2.fastq.gz<span class="w"> </span>&gt;<span class="w"> </span>kallisto_quant_N_L2.out<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>nohup<span class="w"> </span>/nfs/course/bin/kallisto/kallisto<span class="w"> </span>quant<span class="w"> </span>--index<span class="o">=</span>/nfs/course/inputs/references/kallisto/ref_transcriptome_kallisto_index<span class="w"> </span>--output-dir<span class="o">=</span>RNAseq_Tumor_Lane1<span class="w"> </span>--threads<span class="o">=</span><span class="m">2</span><span class="w"> </span>--plaintext<span class="w"> </span>/nfs/course/inputs/data/rna/RNAseq_Tumor/RNAseq_Tumor_Lane1_R1.fastq.gz<span class="w"> </span>/nfs/course/inputs/data/rna/RNAseq_Tumor/RNAseq_Tumor_Lane1_R2.fastq.gz<span class="w"> </span>&gt;<span class="w"> </span>kallisto_quant_T_L1.out<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>nohup<span class="w"> </span>/nfs/course/bin/kallisto/kallisto<span class="w"> </span>quant<span class="w"> </span>--index<span class="o">=</span>/nfs/course/inputs/references/kallisto/ref_transcriptome_kallisto_index<span class="w"> </span>--output-dir<span class="o">=</span>RNAseq_Tumor_Lane2<span class="w"> </span>--threads<span class="o">=</span><span class="m">2</span><span class="w"> </span>--plaintext<span class="w"> </span>/nfs/course/inputs/data/rna/RNAseq_Tumor/RNAseq_Tumor_Lane2_R1.fastq.gz<span class="w"> </span>/nfs/course/inputs/data/rna/RNAseq_Tumor/RNAseq_Tumor_Lane2_R2.fastq.gz<span class="w"> </span>&gt;<span class="w"> </span>kallisto_quant_T_L2.out<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c1">#Check nohup output</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>less<span class="w"> </span>-SN<span class="w"> </span>kallisto_quant_T_L2.out
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c1">#Create a single TSV file that has the TPM abundance estimates for all samples.</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="c1">#First check the contets of an abudance output file from Kallisto</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>less<span class="w"> </span>-SN<span class="w"> </span>./RNAseq_Norm_Lane1/abundance.tsv
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="c1">#Merge all files</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>paste<span class="w"> </span>*/abundance.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f<span class="w"> </span><span class="m">1</span>,2,5,10,15,20<span class="w"> </span>&gt;<span class="w"> </span>transcript_tpms_all_samples.tsv
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>ls<span class="w"> </span>-1<span class="w"> </span>*/abundance.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>perl<span class="w"> </span>-ne<span class="w"> </span><span class="s1">&#39;chomp $_; if ($_ =~ /(\S+)\/abundance\.tsv/){print &quot;\t$1&quot;}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>perl<span class="w"> </span>-ne<span class="w"> </span><span class="s1">&#39;print &quot;target_id\tlength$_\n&quot;&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>header.tsv
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>cat<span class="w"> </span>header.tsv<span class="w"> </span>transcript_tpms_all_samples.tsv<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;tpm&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>transcript_tpms_all_samples.tsv2
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>mv<span class="w"> </span>transcript_tpms_all_samples.tsv2<span class="w"> </span>transcript_tpms_all_samples.tsv
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>rm<span class="w"> </span>-f<span class="w"> </span>header.tsv
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>head<span class="w"> </span>transcript_tpms_all_samples.tsv
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="c1">#To create a gene version of the Kallisto TPM matrix, we can sum the TPM values for transcripts of the same gene.</span>
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="c1">#Remember, one gene can have many transcripts. For example, the Ensembl gene ID for TP53 is ENSG00000141510. Check which Ensembl transcripts exist in the reference GTF for TP53 and how many there are.</span>
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="c1">#We will use this information later in one of our final visualizations</span>
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>grep<span class="w"> </span>ENST<span class="w"> </span>/nfs/course/inputs/references/transcriptome/ref_transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ENSG00000141510<span class="w"> </span><span class="p">|</span><span class="w"> </span>perl<span class="w"> </span>-nle<span class="w"> </span><span class="s1">&#39;@a = split /\t/; $_ =~ /transcript_id\s&quot;(\S*)&quot;;/g; print $1;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>
+</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="c1">#Download a script for generating the gene matrix</span>
+</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>wget<span class="w"> </span>https://raw.githubusercontent.com/griffithlab/rnaseq_tutorial/master/scripts/kallisto_gene_matrix.pl
+</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>chmod<span class="w"> </span>+x<span class="w"> </span>kallisto_gene_matrix.pl
+</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>
+</span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="c1">#Generate a gene-level matrix</span>
+</span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>./kallisto_gene_matrix.pl<span class="w"> </span>--gtf_file<span class="o">=</span>/nfs/course/inputs/references/transcriptome/ref_transcriptome.gtf<span class="w"> </span>--kallisto_transcript_matrix_in<span class="o">=</span>transcript_tpms_all_samples.tsv<span class="w"> </span>--kallisto_transcript_matrix_out<span class="o">=</span>gene_tpms_all_samples.tsv
+</span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>less<span class="w"> </span>-SN<span class="w"> </span>gene_tpms_all_samples.tsv
+</span></code></pre></div>
+<h1 id="compare-expression-values-between-kallisto-and-stringtie">Compare expression values between Kallisto and StringTie<a class="headerlink" href="#compare-expression-values-between-kallisto-and-stringtie" title="Permanent link">&para;</a></h1>
+<p>To compare the <code>StringTie</code> and <code>Kallisto</code> approaches, we can use the expression value for each Ensembl transcript.</p>
+<p>To do this comparison, we need to gather the expression estimates for each of our replicates from each approach. We will perform this comparison in R/RStudio on our local machines.</p>
+<p>First download the needed files to your local machine:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">#Run these commands on your local machine</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1">#Download the Kallisto expression estimates</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>scp<span class="w"> </span>-r<span class="w"> </span>YOUR_KI_ID@c8cancergen02.ki.se:/nfs/course/students/YOUR_KI_ID/rna/kallisto/quants/transcript_tpms_all_samples.tsv<span class="w"> </span>.
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>mv<span class="w"> </span>transcript_tpms_all_samples.tsv<span class="w"> </span>kallisto_transcript_tpms_all_samples.tsv
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1">#Download the StringTie expression estimates</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>scp<span class="w"> </span>-r<span class="w"> </span>YOUR_KI_ID@c8cancergen02.ki.se:/nfs/course/students/YOUR_KI_ID/rna/ref-only-expression/transcript_tpm_all_samples.tsv<span class="w"> </span>.
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>mv<span class="w"> </span>transcript_tpm_all_samples.tsv<span class="w"> </span>stringtie_transcript_tpms_all_samples.tsv
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1">#Start R or RStudio on your local machine</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="c1">#Set the working directory to where the Kallisto and StringTie files were downloaded above</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>setwd<span class="o">(</span><span class="s2">&quot;DIR GOES HERE&quot;</span><span class="o">)</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="c1"># load libraries</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>library<span class="o">(</span>ggplot2<span class="o">)</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>library<span class="o">(</span>reshape2<span class="o">)</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="c1"># read in data</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>kallisto_transcript_tpm<span class="w"> </span>&lt;-<span class="w"> </span>read.delim<span class="o">(</span><span class="s2">&quot;kallisto_transcript_tpms_all_samples.tsv&quot;</span><span class="o">)</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>head<span class="o">(</span>kallisto_transcript_tpm<span class="o">)</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>stringtie_transcript_tpm<span class="w"> </span>&lt;-<span class="w"> </span>read.delim<span class="o">(</span><span class="s2">&quot;stringtie_transcript_tpms_all_samples.tsv&quot;</span><span class="o">)</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>head<span class="o">(</span>stringtie_transcript_tpm<span class="o">)</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="c1"># minor reformatting</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>kallisto_transcript_tpm<span class="w"> </span>&lt;-<span class="w"> </span>kallisto_transcript_tpm<span class="o">[</span>,-2<span class="o">]</span>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>kallisto_transcript_tpm<span class="w"> </span>&lt;-<span class="w"> </span>melt<span class="o">(</span>kallisto_transcript_tpm,<span class="w"> </span>id.vars<span class="o">=</span>c<span class="o">(</span><span class="s2">&quot;target_id&quot;</span><span class="o">))</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>head<span class="o">(</span>kallisto_transcript_tpm<span class="o">)</span>
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>stringtie_transcript_tpm<span class="w"> </span>&lt;-<span class="w"> </span>melt<span class="o">(</span>stringtie_transcript_tpm,<span class="w"> </span>id.vars<span class="o">=</span>c<span class="o">(</span><span class="s2">&quot;Transcript_ID&quot;</span><span class="o">))</span>
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>head<span class="o">(</span>stringtie_transcript_tpm<span class="o">)</span>
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a>
+</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="c1"># merge the data</span>
+</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a>kallisto_stringtie_tpm<span class="w"> </span>&lt;-<span class="w"> </span>merge<span class="o">(</span>kallisto_transcript_tpm,<span class="w"> </span>stringtie_transcript_tpm,<span class="w"> </span>by.x<span class="o">=</span>c<span class="o">(</span><span class="s2">&quot;target_id&quot;</span>,<span class="w"> </span><span class="s2">&quot;variable&quot;</span><span class="o">)</span>,<span class="w"> </span>by.y<span class="o">=</span>c<span class="o">(</span><span class="s2">&quot;Transcript_ID&quot;</span>,<span class="w"> </span><span class="s2">&quot;variable&quot;</span><span class="o">)</span>,<span class="w"> </span><span class="nv">suffixes</span><span class="o">=</span>c<span class="o">(</span><span class="s2">&quot;.kallisto&quot;</span>,<span class="w"> </span><span class="s2">&quot;.stringtie&quot;</span><span class="o">))</span>
+</span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a>
+</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="c1">#The numeric vector is read as a character vector, correcting ..</span>
+</span><span id="__span-7-39"><a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a>kallisto_stringtie_tpm<span class="nv">$value</span>.stringtie<span class="w"> </span><span class="o">=</span><span class="w"> </span>as.numeric<span class="o">(</span>kallisto_stringtie_tpm<span class="nv">$value</span>.stringtie<span class="o">)</span>
+</span><span id="__span-7-40"><a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a>str<span class="o">(</span>kallisto_stringtie_tpm<span class="o">)</span><span class="w"> </span><span class="c1">#Now should be numeric</span>
+</span><span id="__span-7-41"><a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a>
+</span><span id="__span-7-42"><a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a><span class="c1">#TP53 transcript ID vector from the transcript GTF (we determined these earlier)</span>
+</span><span id="__span-7-43"><a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a><span class="nv">TP53</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>c<span class="o">(</span><span class="s2">&quot;ENST00000269305&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000359597&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000413465&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000420246&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000445888&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000455263&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000503591&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000504290&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000504937&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000505014&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000508793&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000509690&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000510385&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000514944&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000574684&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000576024&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000604348&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000610292&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000610538&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000610623&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000615910&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000617185&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000618944&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000619186&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000619485&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000620739&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000622645&quot;</span>,<span class="w"> </span><span class="s2">&quot;ENST00000635293&quot;</span><span class="o">)</span>
+</span><span id="__span-7-44"><a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a>
+</span><span id="__span-7-45"><a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a><span class="nv">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>match<span class="o">(</span>kallisto_stringtie_tpm<span class="nv">$target_id</span>,<span class="w"> </span>TP53<span class="o">)</span>
+</span><span id="__span-7-46"><a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a>idx.1<span class="w"> </span><span class="o">=</span><span class="w"> </span>which<span class="o">(</span>is.na<span class="o">(</span>idx<span class="o">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>FALSE<span class="o">)</span>
+</span><span id="__span-7-47"><a id="__codelineno-7-47" name="__codelineno-7-47" href="#__codelineno-7-47"></a>idx.2<span class="w"> </span><span class="o">=</span><span class="w"> </span>idx<span class="o">[</span>idx.1<span class="o">]</span>
+</span><span id="__span-7-48"><a id="__codelineno-7-48" name="__codelineno-7-48" href="#__codelineno-7-48"></a>TP53<span class="o">[</span>idx.2<span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span>kallisto_stringtie_tpm<span class="nv">$target_id</span><span class="o">[</span>idx.1<span class="o">]</span>
+</span><span id="__span-7-49"><a id="__codelineno-7-49" name="__codelineno-7-49" href="#__codelineno-7-49"></a><span class="c1">#Check TP53 expression values</span>
+</span><span id="__span-7-50"><a id="__codelineno-7-50" name="__codelineno-7-50" href="#__codelineno-7-50"></a>kallisto_stringtie_tpm<span class="o">[</span>idx.2,<span class="o">]</span>
+</span><span id="__span-7-51"><a id="__codelineno-7-51" name="__codelineno-7-51" href="#__codelineno-7-51"></a><span class="c1">#To plot TP53, make a new column</span>
+</span><span id="__span-7-52"><a id="__codelineno-7-52" name="__codelineno-7-52" href="#__codelineno-7-52"></a>kallisto_stringtie_tpm<span class="nv">$TP53</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Other transcript&quot;</span>
+</span><span id="__span-7-53"><a id="__codelineno-7-53" name="__codelineno-7-53" href="#__codelineno-7-53"></a>kallisto_stringtie_tpm<span class="nv">$TP53</span><span class="o">[</span>idx.2<span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;TP53&quot;</span>
+</span><span id="__span-7-54"><a id="__codelineno-7-54" name="__codelineno-7-54" href="#__codelineno-7-54"></a>
+</span><span id="__span-7-55"><a id="__codelineno-7-55" name="__codelineno-7-55" href="#__codelineno-7-55"></a>kallisto_stringtie_tpm<span class="nv">$TP53</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>factor<span class="o">(</span>kallisto_stringtie_tpm<span class="nv">$TP53</span>,<span class="w"> </span><span class="nv">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>c<span class="o">(</span><span class="s2">&quot;Other transcript&quot;</span>,<span class="w"> </span><span class="s2">&quot;TP53&quot;</span><span class="o">))</span>
+</span><span id="__span-7-56"><a id="__codelineno-7-56" name="__codelineno-7-56" href="#__codelineno-7-56"></a>str<span class="o">(</span>kallisto_stringtie_tpm<span class="o">)</span>
+</span><span id="__span-7-57"><a id="__codelineno-7-57" name="__codelineno-7-57" href="#__codelineno-7-57"></a>
+</span><span id="__span-7-58"><a id="__codelineno-7-58" name="__codelineno-7-58" href="#__codelineno-7-58"></a><span class="c1">#Remove 0/NA values from the expression estimates</span>
+</span><span id="__span-7-59"><a id="__codelineno-7-59" name="__codelineno-7-59" href="#__codelineno-7-59"></a><span class="c1">#This is needed for visualization on the log2 scale below</span>
+</span><span id="__span-7-60"><a id="__codelineno-7-60" name="__codelineno-7-60" href="#__codelineno-7-60"></a>kallisto_stringtie_tpm<span class="nv">$value</span>.stringtie<span class="o">[</span>which<span class="o">(</span>is.na<span class="o">(</span>kallisto_stringtie_tpm<span class="nv">$value</span>.stringtie<span class="o">)==</span>TRUE<span class="o">)]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.001
+</span><span id="__span-7-61"><a id="__codelineno-7-61" name="__codelineno-7-61" href="#__codelineno-7-61"></a>kallisto_stringtie_tpm<span class="nv">$value</span>.stringtie<span class="w"> </span><span class="o">=</span><span class="w"> </span>kallisto_stringtie_tpm<span class="nv">$value</span>.stringtie<span class="w"> </span>+<span class="w"> </span><span class="m">0</span>.1
+</span><span id="__span-7-62"><a id="__codelineno-7-62" name="__codelineno-7-62" href="#__codelineno-7-62"></a>kallisto_stringtie_tpm<span class="nv">$value</span>.kallisto<span class="w"> </span><span class="o">=</span><span class="w"> </span>kallisto_stringtie_tpm<span class="nv">$value</span>.kallisto<span class="w"> </span>+<span class="w"> </span><span class="m">0</span>.1
+</span><span id="__span-7-63"><a id="__codelineno-7-63" name="__codelineno-7-63" href="#__codelineno-7-63"></a>
+</span><span id="__span-7-64"><a id="__codelineno-7-64" name="__codelineno-7-64" href="#__codelineno-7-64"></a><span class="c1">########### Plot the results ######################</span>
+</span><span id="__span-7-65"><a id="__codelineno-7-65" name="__codelineno-7-65" href="#__codelineno-7-65"></a>
+</span><span id="__span-7-66"><a id="__codelineno-7-66" name="__codelineno-7-66" href="#__codelineno-7-66"></a><span class="c1">#Plot a dot plot of expression estimates using the two methods</span>
+</span><span id="__span-7-67"><a id="__codelineno-7-67" name="__codelineno-7-67" href="#__codelineno-7-67"></a><span class="c1">#Expression values are plotted on the log2 scale</span>
+</span><span id="__span-7-68"><a id="__codelineno-7-68" name="__codelineno-7-68" href="#__codelineno-7-68"></a>ggplot<span class="o">(</span><span class="nv">data</span><span class="o">=</span>kallisto_stringtie_tpm,<span class="w"> </span>aes<span class="o">(</span><span class="nv">x</span><span class="o">=</span>log2<span class="o">(</span>value.kallisto<span class="o">)</span>,<span class="w"> </span><span class="nv">y</span><span class="o">=</span>log2<span class="o">(</span>value.stringtie<span class="o">)</span>,<span class="w"> </span><span class="nv">colour</span><span class="o">=</span>TP53<span class="o">))</span><span class="w"> </span>+
+</span><span id="__span-7-69"><a id="__codelineno-7-69" name="__codelineno-7-69" href="#__codelineno-7-69"></a>geom_point<span class="o">(</span><span class="nv">alpha</span><span class="o">=</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>+
+</span><span id="__span-7-70"><a id="__codelineno-7-70" name="__codelineno-7-70" href="#__codelineno-7-70"></a>scale_colour_manual<span class="o">(</span><span class="nv">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>c<span class="o">(</span><span class="s2">&quot;forestgreen&quot;</span>,<span class="w"> </span><span class="s2">&quot;firebrick&quot;</span>,<span class="w"> </span><span class="s2">&quot;dodgerblue&quot;</span><span class="o">)</span>,<span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Transcripts&quot;</span>,<span class="w"> </span><span class="nv">drop</span><span class="o">=</span>TRUE<span class="o">)</span><span class="w"> </span>+
+</span><span id="__span-7-71"><a id="__codelineno-7-71" name="__codelineno-7-71" href="#__codelineno-7-71"></a>geom_point<span class="o">(</span><span class="nv">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>subset<span class="o">(</span>kallisto_stringtie_tpm,<span class="w"> </span><span class="nv">TP53</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;TP53&quot;</span><span class="o">)</span>,<span class="w"> </span>aes<span class="o">(</span><span class="nv">x</span><span class="o">=</span>log2<span class="o">(</span>value.kallisto<span class="o">)</span>,<span class="w"> </span><span class="nv">y</span><span class="o">=</span>log2<span class="o">(</span>value.stringtie<span class="o">)</span>,<span class="w"> </span><span class="nv">colour</span><span class="o">=</span>TP53<span class="o">)</span>,<span class="w"> </span>inherit.aes<span class="o">=</span>FALSE<span class="o">)</span>+
+</span><span id="__span-7-72"><a id="__codelineno-7-72" name="__codelineno-7-72" href="#__codelineno-7-72"></a>facet_wrap<span class="o">(</span>~variable<span class="o">)</span>+
+</span><span id="__span-7-73"><a id="__codelineno-7-73" name="__codelineno-7-73" href="#__codelineno-7-73"></a>theme_bw<span class="o">()</span>
+</span><span id="__span-7-74"><a id="__codelineno-7-74" name="__codelineno-7-74" href="#__codelineno-7-74"></a>
+</span><span id="__span-7-75"><a id="__codelineno-7-75" name="__codelineno-7-75" href="#__codelineno-7-75"></a><span class="c1">#Plot density disbributions of the expression estimates</span>
+</span><span id="__span-7-76"><a id="__codelineno-7-76" name="__codelineno-7-76" href="#__codelineno-7-76"></a><span class="nv">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>rbind<span class="o">(</span>data.frame<span class="o">(</span><span class="nv">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>kallisto_stringtie_tpm<span class="nv">$variable</span>,<span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>kallisto_stringtie_tpm<span class="nv">$value</span>.kallisto,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;kallisto&quot;</span><span class="o">)</span>,<span class="w"> </span>data.frame<span class="o">(</span><span class="nv">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>kallisto_stringtie_tpm<span class="nv">$variable</span>,<span class="w"> </span><span class="nv">value</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>kallisto_stringtie_tpm<span class="nv">$value</span>.stringtie,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;stringtie&quot;</span><span class="o">))</span>
+</span><span id="__span-7-77"><a id="__codelineno-7-77" name="__codelineno-7-77" href="#__codelineno-7-77"></a>df<span class="nv">$type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>factor<span class="o">(</span>df<span class="nv">$type</span>,<span class="w"> </span><span class="nv">levels</span><span class="w"> </span><span class="o">=</span>c<span class="o">(</span><span class="s2">&quot;kallisto&quot;</span>,<span class="s2">&quot;stringtie&quot;</span><span class="o">))</span>
+</span><span id="__span-7-78"><a id="__codelineno-7-78" name="__codelineno-7-78" href="#__codelineno-7-78"></a>head<span class="o">(</span>df<span class="o">)</span>
+</span><span id="__span-7-79"><a id="__codelineno-7-79" name="__codelineno-7-79" href="#__codelineno-7-79"></a>
+</span><span id="__span-7-80"><a id="__codelineno-7-80" name="__codelineno-7-80" href="#__codelineno-7-80"></a>ggplot<span class="o">(</span><span class="nv">data</span><span class="o">=</span>df,<span class="w"> </span>aes<span class="o">(</span><span class="nv">x</span><span class="o">=</span>log2<span class="o">(</span>value<span class="o">)))</span><span class="w"> </span>+
+</span><span id="__span-7-81"><a id="__codelineno-7-81" name="__codelineno-7-81" href="#__codelineno-7-81"></a>geom_density<span class="o">()</span><span class="w"> </span>+
+</span><span id="__span-7-82"><a id="__codelineno-7-82" name="__codelineno-7-82" href="#__codelineno-7-82"></a>facet_wrap<span class="o">(</span>type~variable,<span class="w"> </span><span class="nv">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="o">)</span>+
+</span><span id="__span-7-83"><a id="__codelineno-7-83" name="__codelineno-7-83" href="#__codelineno-7-83"></a>ggtitle<span class="o">(</span><span class="s2">&quot;Density distributions&quot;</span><span class="o">)</span>+
+</span><span id="__span-7-84"><a id="__codelineno-7-84" name="__codelineno-7-84" href="#__codelineno-7-84"></a>xlab<span class="o">(</span><span class="s2">&quot;Log2 expression value&quot;</span><span class="o">)</span>+
+</span><span id="__span-7-85"><a id="__codelineno-7-85" name="__codelineno-7-85" href="#__codelineno-7-85"></a>theme<span class="o">(</span>legend.position<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="o">)</span>
+</span><span id="__span-7-86"><a id="__codelineno-7-86" name="__codelineno-7-86" href="#__codelineno-7-86"></a><span class="c1">#dev.off()</span>
+</span></code></pre></div>
+<strong>Question 4:</strong> In the plots of expression values from Kallisto vs StringTie, would you say that the expression values are similar between the two tools? If you observe differences, why do you think there are differences? 
+<strong>Question 5:</strong> If you were interested in quantifying the expression levels of <strong>known transcripts</strong>, would you choose StringTie or Kallisto? Why?</p>
+<h1 id="gene-fusion-detection">Gene fusion detection<a class="headerlink" href="#gene-fusion-detection" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In addition to providing information about gene expression, RNA-seq data can be used to discover transcripts which result from chromosomal translocations. Translocations and their resultant chimeric (AKA fusion) transcripts are important driver mutations in many cancers. A <a href="https://www.ncbi.nlm.nih.gov/pubmed/27485475">variety of specialized alignment and filtering strategies</a> have been developed to identify fusion transcripts from RNA, but these programs can suffer from low specificity (i.e. many false-positives) and poor correlation across methods.</p>
+<p>This exercise uses the <a href="https://pachterlab.github.io/kallisto/about">kallisto</a> and <a href="https://github.com/pmelsted/pizzly">pizzly</a> tools for fusion detection from RNA-seq data. Kallisto quantifies transcript abundance through <a href="http://tinyheero.github.io/2015/09/02/pseudoalignments-kallisto.html">pseudoalignment</a>. Pizzly aligns reads which kallisto has flagged as potentially spanning fusion junctions.</p>
+<p>Some of the other tools used to detection gene fusions from RNA-seq are Arriba, EricScript, FusionCatcher, Fusion-Inspector, fusion-report, Squid, and Star-Fusion. All these tools have their own merits and demerits. They are often used in combinations or all together. Hence, in a real analysis, we need to assess which one is suitable for our particular data.</p>
+<h2 id="setup-information">Setup information<a class="headerlink" href="#setup-information" title="Permanent link">&para;</a></h2>
+<p>Pizzly does not work with the most recent Ensembl human GTF annotation file. We have therefore downloaded the version 87 GTF and subset the reference transcriptome FASTA file accordingly. These new reference data are located under <code>/nfs/course/inputs/references/rna_fusion</code>.</p>
+<p>We have also merged the FASTQ files from separate sequencing lanes into single files to generate one R1 and one R2 file for the Tumor and Normal samples. We the further subsampled these (using <code>seqtk sample</code>) to only contain 30% of the reads for each sample, to allow for fusion alignment to complete in a reasonable time. The files are under <code>/nfs/course/inputs/data/rna/fusion</code>.</p>
+<h2 id="calling-fusions-with-kallisto-and-pizzly">Calling fusions with Kallisto and pizzly<a class="headerlink" href="#calling-fusions-with-kallisto-and-pizzly" title="Permanent link">&para;</a></h2>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">#Create a folder for fusion results</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">cd</span><span class="w"> </span>/nfs/course/students/YOUR_KI_ID/rna
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>mkdir<span class="w"> </span>fusion
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nb">cd</span><span class="w"> </span>fusion
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1">#Quantify potential fusions using Kallisto:</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>nohup<span class="w"> </span>/nfs/course/bin/kallisto/kallisto<span class="w"> </span>quant<span class="w"> </span>-i<span class="w"> </span>/nfs/course/inputs/references/rna_fusion/index.617.idx<span class="w"> </span>--fusion<span class="w"> </span>-o<span class="w"> </span>kquant-norm617<span class="w"> </span>/nfs/course/inputs/data/rna/fusion/subRNAseq_Norm_R1.fastq.gz<span class="w"> </span>/nfs/course/inputs/data/rna/fusion/subRNAseq_Norm_R2.fastq.gz<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>kallisto_quant_N_bam.out<span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>nohup<span class="w"> </span>/nfs/course/bin/kallisto/kallisto<span class="w"> </span>quant<span class="w"> </span>-i<span class="w"> </span>/nfs/course/inputs/references/rna_fusion/index.617.idx<span class="w"> </span>--fusion<span class="w"> </span>-o<span class="w"> </span>kquant-tumor617<span class="w"> </span>/nfs/course/inputs/data/rna/fusion/subRNAseq_Tumor_R1.fastq.gz<span class="w"> </span>/nfs/course/inputs/data/rna/fusion/subRNAseq_Tumor_R2.fastq.gz<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>kallisto_quant_T_bam.out<span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1">#Call fusions with pizzly</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="c1">#Note that this step can take </span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>nohup<span class="w"> </span>pizzly<span class="w"> </span>-k<span class="w"> </span><span class="m">31</span><span class="w"> </span>--gtf<span class="w"> </span>/nfs/course/inputs/references/rna_fusion/chr617.gtf<span class="w"> </span>--cache<span class="w"> </span>index-norm617.cache.txt<span class="w"> </span>--align-score<span class="w"> </span><span class="m">2</span><span class="w"> </span>--insert-size<span class="w"> </span><span class="m">400</span><span class="w"> </span>--fasta<span class="w"> </span>/nfs/course/inputs/references/rna_fusion/chr617.fa<span class="w"> </span>--output<span class="w"> </span>norm-fuse617<span class="w"> </span>kquant-norm617/fusion.txt<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>pizzly_N_bam.out<span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>nohup<span class="w"> </span>pizzly<span class="w"> </span>-k<span class="w"> </span><span class="m">31</span><span class="w"> </span>--gtf<span class="w"> </span>/nfs/course/inputs/references/rna_fusion/chr617.gtf<span class="w"> </span>--cache<span class="w"> </span>index-tumor617.cache.txt<span class="w"> </span>--align-score<span class="w"> </span><span class="m">2</span><span class="w"> </span>--insert-size<span class="w"> </span><span class="m">400</span><span class="w"> </span>--fasta<span class="w"> </span>/nfs/course/inputs/references/rna_fusion/chr617.fa<span class="w"> </span>--output<span class="w"> </span>tumor-fuse617<span class="w"> </span>kquant-tumor617/fusion.txt<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>pizzly_T_bam.out<span class="w"> </span><span class="p">&amp;</span>
+</span></code></pre></div>
+<strong>Question 6:</strong> Based on the <code>pizzly_N_bam.out</code> and <code>pizzly_T_bam.out</code> files, how many records (transcripts) were kept by pizzly for each sample from those that were suggested by kallisto? </p>
+<h2 id="investigating-the-output-of-pizzly-fusion-calling">Investigating the output of pizzly fusion calling<a class="headerlink" href="#investigating-the-output-of-pizzly-fusion-calling" title="Permanent link">&para;</a></h2>
+<p>Investigation of the pizzly output will be done on your local computer using R/RStudio. See below to first download the required files to your local machine, followed by code in R to visualize the fusion calling output.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">#To go a directory on your local machine where you would like to download the fusion calling files</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>scp<span class="w"> </span>YOUR_KI_ID@c8cancergen02.ki.se:/nfs/course/students/YOUR_KI_ID/rna/fusion/*fuse617*<span class="w"> </span>.
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Also download R scripts for later use</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>scp<span class="w"> </span>YOUR_KI_ID@c8cancergen02.ki.se:/nfs/course/inputs/data/rna/scripts/*<span class="w"> </span>.
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Open R or RStudio on your computer and run the following code</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1">#Change working directory to location of fusion files</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>setwd<span class="o">(</span><span class="s2">&quot;path_to_fusion_files_local_machine&quot;</span><span class="o">)</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1">#Check the path</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>getwd<span class="o">()</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="c1"># Load required packages</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>library<span class="o">(</span>EnsDb.Hsapiens.v86<span class="o">)</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>library<span class="o">(</span>chimeraviz<span class="o">)</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>library<span class="o">(</span>cowplot<span class="o">)</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>library<span class="o">(</span>jsonlite<span class="o">)</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>library<span class="o">(</span>dplyr<span class="o">)</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>library<span class="o">(</span>ggplot2<span class="o">)</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="c1"># Load data</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="nv">suffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;617.json&quot;</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="nv">JSON_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>list.files<span class="o">(</span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;.&quot;</span>,<span class="w"> </span><span class="nv">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>paste0<span class="o">(</span><span class="s2">&quot;*&quot;</span>,suffix<span class="o">))</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>print<span class="o">(</span>JSON_files<span class="o">)</span>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="nv">Ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>gsub<span class="o">(</span>suffix,<span class="w"> </span><span class="s2">&quot;&quot;</span>,<span class="w"> </span>JSON_files<span class="o">)</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>print<span class="o">(</span>Ids<span class="o">)</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="c1"># Loading gene models from the annotation package</span>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>edb<span class="w"> </span>&lt;-<span class="w"> </span>EnsDb.Hsapiens.v86
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>listColumns<span class="o">(</span>edb<span class="o">)</span>
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>supportedFilters<span class="o">(</span>edb<span class="o">)</span>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="c1"># Load one of the downloaded R scripts for parsing of the pizzly output</span>
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="c1"># This contains the function GetFusionz_and_namez() that we use below</span>
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>source<span class="o">(</span><span class="s2">&quot;mod.grolar.R&quot;</span><span class="o">)</span>
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a>
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="c1"># This function will flatten out the JSON giving you a list of gene A and gene B sorted by splitcount then paircount</span>
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="c1"># Each fusion now has a unique identifier, sequence positions, and distance values for genes from the same chromosome</span>
+</span><span id="__span-9-39"><a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>lapply<span class="o">(</span>Ids,<span class="w"> </span><span class="k">function</span><span class="o">(</span>x<span class="o">)</span><span class="w"> </span>GetFusionz_and_namez<span class="o">(</span>x,<span class="w"> </span><span class="nv">suffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;617.json&quot;</span><span class="o">)</span><span class="w"> </span><span class="o">)</span>
+</span><span id="__span-9-40"><a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a>
+</span><span id="__span-9-41"><a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="c1"># Read the flattened files produced by the function</span>
+</span><span id="__span-9-42"><a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a><span class="nv">normal</span><span class="o">=</span>read.table<span class="o">(</span><span class="s2">&quot;norm-fuse_fusions_filt_sorted.txt&quot;</span>,<span class="w"> </span><span class="nv">header</span><span class="o">=</span>T<span class="o">)</span>
+</span><span id="__span-9-43"><a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a><span class="nv">tumor</span><span class="o">=</span>read.table<span class="o">(</span><span class="s2">&quot;tumor-fuse_fusions_filt_sorted.txt&quot;</span>,<span class="w"> </span><span class="nv">header</span><span class="o">=</span>T<span class="o">)</span>
+</span><span id="__span-9-44"><a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a>
+</span><span id="__span-9-45"><a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a><span class="c1">#Investigate the first five rows</span>
+</span><span id="__span-9-46"><a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a>head<span class="o">(</span>normal,<span class="w"> </span><span class="m">5</span><span class="o">)</span>
+</span><span id="__span-9-47"><a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a>head<span class="o">(</span>tumor,<span class="w"> </span><span class="m">5</span><span class="o">)</span>
+</span><span id="__span-9-48"><a id="__codelineno-9-48" name="__codelineno-9-48" href="#__codelineno-9-48"></a>
+</span><span id="__span-9-49"><a id="__codelineno-9-49" name="__codelineno-9-49" href="#__codelineno-9-49"></a><span class="c1"># Common filtering tasks for fusion output include removing fusions from the tumor sample which are present in the normal, and removing fusions for which the is little support by pair and split read counts:</span>
+</span><span id="__span-9-50"><a id="__codelineno-9-50" name="__codelineno-9-50" href="#__codelineno-9-50"></a>normal<span class="nv">$genepairs</span><span class="o">=</span>paste0<span class="o">(</span>normal<span class="nv">$geneA</span>.name,<span class="s2">&quot;.&quot;</span>,normal<span class="nv">$geneB</span>.name<span class="o">)</span>
+</span><span id="__span-9-51"><a id="__codelineno-9-51" name="__codelineno-9-51" href="#__codelineno-9-51"></a>tumor<span class="nv">$genepairs</span><span class="o">=</span>paste0<span class="o">(</span>tumor<span class="nv">$geneA</span>.name,<span class="s2">&quot;.&quot;</span>,tumor<span class="nv">$geneB</span>.name<span class="o">)</span>
+</span><span id="__span-9-52"><a id="__codelineno-9-52" name="__codelineno-9-52" href="#__codelineno-9-52"></a><span class="nv">uniqueTumor</span><span class="o">=</span>subset<span class="o">(</span>tumor,<span class="w"> </span>!<span class="o">(</span>tumor<span class="nv">$genepairs</span><span class="w"> </span>%in%<span class="w"> </span>normal<span class="nv">$genepairs</span><span class="o">))</span>
+</span><span id="__span-9-53"><a id="__codelineno-9-53" name="__codelineno-9-53" href="#__codelineno-9-53"></a>nrow<span class="o">(</span>uniqueTumor<span class="o">)</span>!<span class="o">=</span>nrow<span class="o">(</span>tumor<span class="o">)</span><span class="w"> </span><span class="c1"># Did we filter out any fusions from the tumor file?</span>
+</span><span id="__span-9-54"><a id="__codelineno-9-54" name="__codelineno-9-54" href="#__codelineno-9-54"></a>nrow<span class="o">(</span>tumor<span class="o">)</span>-nrow<span class="o">(</span>uniqueTumor<span class="o">)</span><span class="w"> </span><span class="c1"># How many fusions did we filter out?</span>
+</span><span id="__span-9-55"><a id="__codelineno-9-55" name="__codelineno-9-55" href="#__codelineno-9-55"></a>
+</span><span id="__span-9-56"><a id="__codelineno-9-56" name="__codelineno-9-56" href="#__codelineno-9-56"></a><span class="c1"># There are two fusions (or at least fusion gene pairs) from the normal sample which are also present in the tumor. </span>
+</span><span id="__span-9-57"><a id="__codelineno-9-57" name="__codelineno-9-57" href="#__codelineno-9-57"></a><span class="c1"># Examine these shared fusion gene pairs:</span>
+</span><span id="__span-9-58"><a id="__codelineno-9-58" name="__codelineno-9-58" href="#__codelineno-9-58"></a><span class="nv">shared_src_tumor</span><span class="o">=</span>subset<span class="o">(</span>tumor,<span class="w"> </span><span class="o">(</span>tumor<span class="nv">$genepairs</span><span class="w"> </span>%in%<span class="w"> </span>normal<span class="nv">$genepairs</span><span class="o">))</span>
+</span><span id="__span-9-59"><a id="__codelineno-9-59" name="__codelineno-9-59" href="#__codelineno-9-59"></a><span class="nv">shared_src_normal</span><span class="o">=</span>subset<span class="o">(</span>normal,<span class="w"> </span><span class="o">(</span>normal<span class="nv">$genepairs</span><span class="w"> </span>%in%<span class="w"> </span>tumor<span class="nv">$genepairs</span><span class="o">))</span>
+</span><span id="__span-9-60"><a id="__codelineno-9-60" name="__codelineno-9-60" href="#__codelineno-9-60"></a>shared_src_tumor
+</span><span id="__span-9-61"><a id="__codelineno-9-61" name="__codelineno-9-61" href="#__codelineno-9-61"></a>shared_src_normal
+</span><span id="__span-9-62"><a id="__codelineno-9-62" name="__codelineno-9-62" href="#__codelineno-9-62"></a>
+</span><span id="__span-9-63"><a id="__codelineno-9-63" name="__codelineno-9-63" href="#__codelineno-9-63"></a><span class="c1"># Merge normal and tumor data</span>
+</span><span id="__span-9-64"><a id="__codelineno-9-64" name="__codelineno-9-64" href="#__codelineno-9-64"></a>normal<span class="nv">$sample</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span>
+</span><span id="__span-9-65"><a id="__codelineno-9-65" name="__codelineno-9-65" href="#__codelineno-9-65"></a>tumor<span class="nv">$sample</span><span class="o">=</span><span class="s2">&quot;tumor&quot;</span>
+</span><span id="__span-9-66"><a id="__codelineno-9-66" name="__codelineno-9-66" href="#__codelineno-9-66"></a><span class="nv">allfusions</span><span class="o">=</span>rbind<span class="o">(</span>normal,tumor<span class="o">)</span>
+</span><span id="__span-9-67"><a id="__codelineno-9-67" name="__codelineno-9-67" href="#__codelineno-9-67"></a>
+</span><span id="__span-9-68"><a id="__codelineno-9-68" name="__codelineno-9-68" href="#__codelineno-9-68"></a><span class="c1"># Compare counts of paired and split reads</span>
+</span><span id="__span-9-69"><a id="__codelineno-9-69" name="__codelineno-9-69" href="#__codelineno-9-69"></a>tapply<span class="o">(</span>allfusions<span class="nv">$paircount</span>,<span class="w"> </span>allfusions<span class="nv">$sample</span>,<span class="w"> </span>summary<span class="o">)</span>
+</span><span id="__span-9-70"><a id="__codelineno-9-70" name="__codelineno-9-70" href="#__codelineno-9-70"></a>tapply<span class="o">(</span>allfusions<span class="nv">$splitcount</span>,<span class="w"> </span>allfusions<span class="nv">$sample</span>,<span class="w"> </span>summary<span class="o">)</span>
+</span><span id="__span-9-71"><a id="__codelineno-9-71" name="__codelineno-9-71" href="#__codelineno-9-71"></a>
+</span><span id="__span-9-72"><a id="__codelineno-9-72" name="__codelineno-9-72" href="#__codelineno-9-72"></a><span class="c1"># As a density plot</span>
+</span><span id="__span-9-73"><a id="__codelineno-9-73" name="__codelineno-9-73" href="#__codelineno-9-73"></a><span class="nv">p1</span><span class="o">=</span>ggplot<span class="o">(</span>allfusions,<span class="w"> </span>aes<span class="o">(</span>paircount,<span class="w"> </span><span class="nv">fill</span><span class="o">=</span>sample<span class="o">))</span>+
+</span><span id="__span-9-74"><a id="__codelineno-9-74" name="__codelineno-9-74" href="#__codelineno-9-74"></a><span class="w">  </span>geom_density<span class="o">(</span><span class="nv">alpha</span><span class="o">=</span>.4<span class="o">)</span>+
+</span><span id="__span-9-75"><a id="__codelineno-9-75" name="__codelineno-9-75" href="#__codelineno-9-75"></a><span class="w">  </span>geom_vline<span class="o">(</span><span class="nv">xintercept</span><span class="o">=</span><span class="m">2</span><span class="o">)</span>+
+</span><span id="__span-9-76"><a id="__codelineno-9-76" name="__codelineno-9-76" href="#__codelineno-9-76"></a><span class="w">  </span>coord_fixed<span class="o">(</span><span class="nv">ratio</span><span class="o">=</span><span class="m">15</span><span class="o">)</span>
+</span><span id="__span-9-77"><a id="__codelineno-9-77" name="__codelineno-9-77" href="#__codelineno-9-77"></a>
+</span><span id="__span-9-78"><a id="__codelineno-9-78" name="__codelineno-9-78" href="#__codelineno-9-78"></a><span class="nv">p2</span><span class="o">=</span>ggplot<span class="o">(</span>allfusions,<span class="w"> </span>aes<span class="o">(</span>splitcount,<span class="w"> </span><span class="nv">fill</span><span class="o">=</span>sample<span class="o">))</span>+
+</span><span id="__span-9-79"><a id="__codelineno-9-79" name="__codelineno-9-79" href="#__codelineno-9-79"></a><span class="w">  </span>geom_density<span class="o">(</span><span class="nv">alpha</span><span class="o">=</span>.4<span class="o">)</span>+coord_cartesian<span class="o">(</span><span class="nv">ylim</span><span class="o">=</span><span class="w"> </span>c<span class="o">(</span><span class="m">0</span>,.2<span class="o">))</span>+
+</span><span id="__span-9-80"><a id="__codelineno-9-80" name="__codelineno-9-80" href="#__codelineno-9-80"></a><span class="w">  </span>geom_vline<span class="o">(</span><span class="nv">xintercept</span><span class="o">=</span><span class="m">5</span><span class="o">)</span>+
+</span><span id="__span-9-81"><a id="__codelineno-9-81" name="__codelineno-9-81" href="#__codelineno-9-81"></a><span class="w">  </span>coord_fixed<span class="o">(</span><span class="nv">ratio</span><span class="o">=</span><span class="m">200</span><span class="o">)</span>
+</span><span id="__span-9-82"><a id="__codelineno-9-82" name="__codelineno-9-82" href="#__codelineno-9-82"></a>
+</span><span id="__span-9-83"><a id="__codelineno-9-83" name="__codelineno-9-83" href="#__codelineno-9-83"></a>plot_grid<span class="o">(</span>p1,p2,<span class="w"> </span><span class="nv">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>,<span class="w"> </span><span class="nv">rel_heights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>c<span class="o">(</span><span class="m">1</span>,1<span class="o">))</span>
+</span><span id="__span-9-84"><a id="__codelineno-9-84" name="__codelineno-9-84" href="#__codelineno-9-84"></a>
+</span><span id="__span-9-85"><a id="__codelineno-9-85" name="__codelineno-9-85" href="#__codelineno-9-85"></a><span class="c1"># Filter by requiring each fusion to be supported by two or more paired fusion reads and five or more split fusion reads</span>
+</span><span id="__span-9-86"><a id="__codelineno-9-86" name="__codelineno-9-86" href="#__codelineno-9-86"></a><span class="nv">allfusions_filtered</span><span class="o">=</span>allfusions<span class="o">[</span>which<span class="o">(</span>allfusions<span class="nv">$paircount</span><span class="w"> </span>&gt;<span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>allfusions<span class="nv">$splitcount</span><span class="w"> </span>&gt;<span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="o">)</span>,<span class="o">]</span>
+</span><span id="__span-9-87"><a id="__codelineno-9-87" name="__codelineno-9-87" href="#__codelineno-9-87"></a>nrow<span class="o">(</span>allfusions<span class="o">)</span>
+</span><span id="__span-9-88"><a id="__codelineno-9-88" name="__codelineno-9-88" href="#__codelineno-9-88"></a>nrow<span class="o">(</span>allfusions_filtered<span class="o">)</span><span class="w"> </span><span class="c1">#How many fusions are left after filtering?</span>
+</span><span id="__span-9-89"><a id="__codelineno-9-89" name="__codelineno-9-89" href="#__codelineno-9-89"></a>
+</span><span id="__span-9-90"><a id="__codelineno-9-90" name="__codelineno-9-90" href="#__codelineno-9-90"></a><span class="c1"># Write out a table of the filtered fusions</span>
+</span><span id="__span-9-91"><a id="__codelineno-9-91" name="__codelineno-9-91" href="#__codelineno-9-91"></a>write.table<span class="o">(</span>allfusions_filtered,<span class="w"> </span><span class="nv">file</span><span class="o">=</span><span class="s2">&quot;allfusions.txt&quot;</span>,row.names<span class="o">=</span>F,<span class="w"> </span>col.names<span class="o">=</span>T,<span class="w"> </span><span class="nv">quote</span><span class="o">=</span>F,<span class="w"> </span><span class="nv">sep</span><span class="o">=</span><span class="s2">&quot;\t&quot;</span><span class="o">)</span>
+</span><span id="__span-9-92"><a id="__codelineno-9-92" name="__codelineno-9-92" href="#__codelineno-9-92"></a>
+</span><span id="__span-9-93"><a id="__codelineno-9-93" name="__codelineno-9-93" href="#__codelineno-9-93"></a><span class="c1">#Next, we will do a visualization using chimeraviz</span>
+</span><span id="__span-9-94"><a id="__codelineno-9-94" name="__codelineno-9-94" href="#__codelineno-9-94"></a><span class="c1">#Chimeraviz is an R package for visualizing fusions from RNA-seq data. The chimeraviz package has import functions built in for a variety of fusion-finder programs, but not for pizzly. We will have to load our own import function that you downloaded above:</span>
+</span><span id="__span-9-95"><a id="__codelineno-9-95" name="__codelineno-9-95" href="#__codelineno-9-95"></a>source<span class="o">(</span><span class="s2">&quot;import_Pizzly.R&quot;</span><span class="o">)</span>
+</span><span id="__span-9-96"><a id="__codelineno-9-96" name="__codelineno-9-96" href="#__codelineno-9-96"></a>
+</span><span id="__span-9-97"><a id="__codelineno-9-97" name="__codelineno-9-97" href="#__codelineno-9-97"></a><span class="c1">#The code above loads the importPizzly() function</span>
+</span><span id="__span-9-98"><a id="__codelineno-9-98" name="__codelineno-9-98" href="#__codelineno-9-98"></a><span class="c1">#We use it below to generate a circos plot</span>
+</span><span id="__span-9-99"><a id="__codelineno-9-99" name="__codelineno-9-99" href="#__codelineno-9-99"></a>
+</span><span id="__span-9-100"><a id="__codelineno-9-100" name="__codelineno-9-100" href="#__codelineno-9-100"></a><span class="nv">fusions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>importPizzly<span class="o">(</span><span class="s2">&quot;allfusions.txt&quot;</span>,<span class="s2">&quot;hg38&quot;</span><span class="o">)</span>
+</span><span id="__span-9-101"><a id="__codelineno-9-101" name="__codelineno-9-101" href="#__codelineno-9-101"></a>plot_circle<span class="o">(</span>fusions<span class="o">)</span>
+</span></code></pre></div>
+<strong>Question 7:</strong> Above we performed fusion filtering by requiring each fusion to be supported by two or more paired fusion reads and five or more split fusion reads. How many fusions were left after this filtering? How many fusions were present prior to filtering?</p>
+<p><strong>Question 8:</strong> In the filtered fusion table<code>allfusions.txt</code>, what are the two genes involved in the fusion with the highest paired and split fusion read support?</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021, Johan Lindberg et. al., MEB, Karolinska Institutet, All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

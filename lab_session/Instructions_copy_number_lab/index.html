@@ -1,0 +1,1954 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../calling_structural_variation/">
+      
+      
+        <link rel="next" href="../Bioinformatic_processing_of_RNA_data/">
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Copy number analysis - Clinical Cancer Genomics Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M64%2032C28.7%2032%200%2060.7%200%2096v320c0%2035.3%2028.7%2064%2064%2064h224V368c0-26.5%2021.5-48%2048-48h112V96c0-35.3-28.7-64-64-64zm384%20320H336c-8.8%200-16%207.2-16%2016v112l32-32%2064-64z%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M96%200C43%200%200%2043%200%2096v320c0%2053%2043%2096%2096%2096h320c17.7%200%2032-14.3%2032-32s-14.3-32-32-32v-64c17.7%200%2032-14.3%2032-32V32c0-17.7-14.3-32-32-32H96m0%20384h256v64H96c-17.7%200-32-14.3-32-32s14.3-32%2032-32m32-240c0-8.8%207.2-16%2016-16h192c8.8%200%2016%207.2%2016%2016s-7.2%2016-16%2016H144c-8.8%200-16-7.2-16-16m16%2048h192c8.8%200%2016%207.2%2016%2016s-7.2%2016-16%2016H144c-8.8%200-16-7.2-16-16s7.2-16%2016-16%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-40-176h24v-64h-24c-13.3%200-24-10.7-24-24s10.7-24%2024-24h48c13.3%200%2024%2010.7%2024%2024v88h8c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-80c-13.3%200-24-10.7-24-24s10.7-24%2024-24m40-208a32%2032%200%201%201%200%2064%2032%2032%200%201%201%200-64%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M480%2032c0-12.9-7.8-24.6-19.8-29.6S434.5.2%20425.3%209.3L381.7%2053c-48%2048-113.1%2075-181%2075H64c-35.3%200-64%2028.7-64%2064v96c0%2035.3%2028.7%2064%2064%2064v128c0%2017.7%2014.3%2032%2032%2032h64c17.7%200%2032-14.3%2032-32V352h8.7c67.9%200%20133%2027%20181%2075l43.6%2043.6c9.2%209.2%2022.9%2011.9%2034.9%206.9s19.8-16.6%2019.8-29.6V300.3c18.6-8.8%2032-32.5%2032-60.4s-13.4-51.6-32-60.4zm-64%2076.7v262.6C357.2%20317.8%20280.5%20288%20200.7%20288H192v-96h8.7c79.8%200%20156.5-29.8%20215.3-83.3%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M438.6%20105.4c12.5%2012.5%2012.5%2032.8%200%2045.3l-256%20256c-12.5%2012.5-32.8%2012.5-45.3%200l-128-128c-12.5-12.5-12.5-32.8%200-45.3s32.8-12.5%2045.3%200L160%20338.7l233.4-233.3c12.5-12.5%2032.8-12.5%2045.3%200z%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-86.2-346.7c7.9-22.3%2029.1-37.3%2052.8-37.3h58.3c34.9%200%2063.1%2028.3%2063.1%2063.1%200%2022.6-12.1%2043.5-31.7%2054.8L280%20264.4c-.2%2013-10.9%2023.6-24%2023.6-13.3%200-24-10.7-24-24v-13.5c0-8.6%204.6-16.5%2012.1-20.8l44.3-25.4c4.7-2.7%207.6-7.7%207.6-13.1%200-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4%200-6.4%202.1-7.5%205.3l-.4%201.2c-4.4%2012.5-18.2%2019-30.6%2014.6s-19-18.2-14.6-30.6l.4-1.2zM224%20352a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M256%2032c14.2%200%2027.3%207.5%2034.5%2019.8l216%20368c7.3%2012.4%207.3%2027.7.2%2040.1S486.3%20480%20472%20480H40c-14.3%200-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7%2039.5%20241.8%2032%20256%2032m0%20128c-13.3%200-24%2010.7-24%2024v112c0%2013.3%2010.7%2024%2024%2024s24-10.7%2024-24V184c0-13.3-10.7-24-24-24m32%20224a32%2032%200%201%200-64%200%2032%2032%200%201%200%2064%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M459.1%2052.4%20442.6%206.5c-1.9-3.9-6.1-6.5-10.5-6.5s-8.5%202.6-10.4%206.5l-16.5%2045.9-46%2016.8c-4.3%201.6-7.3%205.9-7.2%2010.4%200%204.5%203%208.7%207.2%2010.2l45.7%2016.8%2016.8%2045.8c1.5%204.4%205.8%207.5%2010.4%207.5s8.9-3.1%2010.4-7.5l16.5-45.8%2045.7-16.8c4.2-1.5%207.2-5.7%207.2-10.2%200-4.6-3-8.9-7.2-10.4zm-132.4%2053c-12.5-12.5-32.8-12.5-45.3%200l-2.9%202.9c-22-8-45.8-12.3-70.5-12.3C93.1%2096%200%20189.1%200%20304s93.1%20208%20208%20208%20208-93.1%20208-208c0-24.7-4.3-48.5-12.2-70.5l2.9-2.9c12.5-12.5%2012.5-32.8%200-45.3l-80-80zM200%20192c-57.4%200-104%2046.6-104%20104v8c0%208.8-7.2%2016-16%2016s-16-7.2-16-16v-8c0-75.1%2060.9-136%20136-136h8c8.8%200%2016%207.2%2016%2016s-7.2%2016-16%2016z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M416%20398.9c58.5-41.1%2096-104.1%2096-174.9C512%20100.3%20397.4%200%20256%200S0%20100.3%200%20224c0%2070.7%2037.5%20133.8%2096%20174.9V464c0%2026.5%2021.5%2048%2048%2048h48v-48c0-8.8%207.2-16%2016-16s16%207.2%2016%2016v48h64v-48c0-8.8%207.2-16%2016-16s16%207.2%2016%2016v48h48c26.5%200%2048-21.5%2048-48v-65.1M96%20256a64%2064%200%201%201%20128%200%2064%2064%200%201%201-128%200m256-64a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M320%200c17.7%200%2032%2014.3%2032%2032v64h120c39.8%200%2072%2032.2%2072%2072v272c0%2039.8-32.2%2072-72%2072H168c-39.8%200-72-32.2-72-72V168c0-39.8%2032.2-72%2072-72h120V32c0-17.7%2014.3-32%2032-32M208%20384c-8.8%200-16%207.2-16%2016s7.2%2016%2016%2016h32c8.8%200%2016-7.2%2016-16s-7.2-16-16-16zm96%200c-8.8%200-16%207.2-16%2016s7.2%2016%2016%2016h32c8.8%200%2016-7.2%2016-16s-7.2-16-16-16zm96%200c-8.8%200-16%207.2-16%2016s7.2%2016%2016%2016h32c8.8%200%2016-7.2%2016-16s-7.2-16-16-16zM264%20256a40%2040%200%201%200-80%200%2040%2040%200%201%200%2080%200m152%2040a40%2040%200%201%200%200-80%2040%2040%200%201%200%200%2080M48%20224h16v192H48c-26.5%200-48-21.5-48-48v-96c0-26.5%2021.5-48%2048-48m544%200c26.5%200%2048%2021.5%2048%2048v96c0%2026.5-21.5%2048-48%2048h-16V224z%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M288%200H128c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032v132.8c0%2011.8-3.3%2023.5-9.5%2033.5L10.3%20406.2C3.6%20417.2%200%20429.7%200%20442.6%200%20480.9%2031.1%20512%2069.4%20512h309.2c38.3%200%2069.4-31.1%2069.4-69.4%200-12.8-3.6-25.4-10.3-36.4L329.5%20230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7%200%2032-14.3%2032-32S337.7%200%20320%200zm-96%20196.8V64h64v132.8c0%2023.7%206.6%2046.9%2019%2067.1l34.5%2056.1h-171l34.5-56.1c12.4-20.2%2019-43.4%2019-67.1%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M0%20216C0%20149.7%2053.7%2096%20120%2096h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64V216m256%200c0-66.3%2053.7-120%20120-120h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064h-64c-35.3%200-64-28.7-64-64V216%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Clinical Cancer Genomics Course" class="md-header__button md-logo" aria-label="Clinical Cancer Genomics Course" data-md-component="logo">
+      
+  <img src="../../assets/img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Clinical Cancer Genomics Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Copy number analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Clinical Cancer Genomics Course" class="md-nav__button md-logo" aria-label="Clinical Cancer Genomics Course" data-md-component="logo">
+      
+  <img src="../../assets/img/logo.svg" alt="logo">
+
+    </a>
+    Clinical Cancer Genomics Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Course Details
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schedule
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/lectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lectures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lab Session
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lab Session
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workspace_KI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Workspace - KI-HPC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise_1_reference-genome_annotation-files_rawdata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reference Genome, Annotations and Raw Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction_to_IGV/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to IGV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real_life_examples_cmdline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Line Usage in Real Life
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bioinformatic_processing_of_DNA_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Processing of DNA sequencing data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variant_calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variant Calling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calling_structural_variation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Structural Variants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Copy Number Variations
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Copy Number Variations
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-data-and-prepare-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download data and prepare R
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Download data and prepare R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-cran" class="md-nav__link">
+    <span class="md-ellipsis">
+      From CRAN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-bioconductor" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Bioconductor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parse-sequence-target-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parse sequence target definition
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#annotate-with-gene-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      Annotate with gene symbols
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Annotate with gene symbols">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-gene-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download gene coordinates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overlap-targets-and-genes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overlap targets and genes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parse-sequence-read-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parse sequence read counts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plot-sequence-read-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plot sequence read count
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-and-correct-for-gc-content-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model and correct for GC content bias
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segment-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Segment the data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parse-snp-allele-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parse SNP allele ratio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estimating-genome-wide-copy-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estimating genome-wide copy number
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final questions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bioinformatic_processing_of_RNA_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RNAseq
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variant Interpretation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 6
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 6
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Instructions_project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-data-and-prepare-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download data and prepare R
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Download data and prepare R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-cran" class="md-nav__link">
+    <span class="md-ellipsis">
+      From CRAN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-bioconductor" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Bioconductor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parse-sequence-target-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parse sequence target definition
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#annotate-with-gene-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      Annotate with gene symbols
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Annotate with gene symbols">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-gene-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download gene coordinates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overlap-targets-and-genes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overlap targets and genes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parse-sequence-read-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parse sequence read counts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plot-sequence-read-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plot sequence read count
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-and-correct-for-gc-content-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model and correct for GC content bias
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segment-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Segment the data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parse-snp-allele-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parse SNP allele ratio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estimating-genome-wide-copy-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estimating genome-wide copy number
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Final questions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Copy Number Variations</h1>
+
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>There are plenty of methods and code packages available for copy number
+analysis, and you will likely be able to find one for free that suits
+your particular application. Although tailored for different types of
+sequence data (or microarrays), general processing steps of all copy
+number analysis tools include:</p>
+<ol>
+<li>Quantification of sequence read depth (or array intensity)
+    throughout the reference genome as a measure of DNA abundance in the
+    sample</li>
+<li>Removal of systematic noise using features such as GC content and
+    mappability</li>
+<li>Removal of systematic noise using normal (for example non-cancerous)
+    reference samples</li>
+<li>Segmentation - partitioning of the reference genome so that each
+    segment can be assigned one copy number</li>
+<li>Copy number calling - assigning each segment some estimate of the
+    number of copies per cell</li>
+<li>Combine the measure of DNA abundance with single nucleotide polymorphism       <br />
+    (SNP) allele ratios to support copy number estimates</li>
+</ol>
+<p>In this exercise you will perform the above steps using R, with a BAM
+file of aligned reads and a VCF file of SNPs as input.</p>
+<h2 id="download-data-and-prepare-r">Download data and prepare R<a class="headerlink" href="#download-data-and-prepare-r" title="Permanent link">&para;</a></h2>
+<p>The data used in this exercise are available for download
+<a href="https://course-cg-5534.s3.amazonaws.com/cnvs/copy_number_files.tar.bz2">here</a>.
+Extract the content on your computer. Before starting, make sure you
+have a recent version of R, RStudio, and the following packages
+installed:</p>
+<h3 id="from-cran">From CRAN<a class="headerlink" href="#from-cran" title="Permanent link">&para;</a></h3>
+<ul>
+<li>data.table</li>
+<li>ggplot2</li>
+<li>patchwork</li>
+<li>PSCBS</li>
+<li>stringr</li>
+</ul>
+<p>To install these packages, open RStudio and type in the R console for each one:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;package_name&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="from-bioconductor">From Bioconductor<a class="headerlink" href="#from-bioconductor" title="Permanent link">&para;</a></h3>
+<ul>
+<li>aroma.light </li>
+<li>bamsignals</li>
+<li>biomaRt</li>
+<li>Biostrings</li>
+<li>BSgenome</li>
+<li>BSgenome.Hsapiens.UCSC.hg19</li>
+<li>DNAcopy</li>
+<li>GenomicRanges</li>
+<li>Rsamtools</li>
+<li>VariantAnnotation</li>
+</ul>
+<p>To install these packages, type this once in the R console:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">quietly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Then, for each package (note that the installation of some of the packages may
+take a few minutes):</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;package_name&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<blockquote>
+<p>Several packages from the
+<a href="https://www.bioconductor.org/">Bioconductor</a> repository are used in
+this exercise, for example
+<a href="http://bioconductor.org/packages/devel/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesHOWTOs.pdf">GenomicRanges</a>
+which facilitates working with anything located on a genome.</p>
+</blockquote>
+<h2 id="parse-sequence-target-definition">Parse sequence target definition<a class="headerlink" href="#parse-sequence-target-definition" title="Permanent link">&para;</a></h2>
+<p>We use targeted sequencing of a prostate cancer sample in this exercise,
+as the resulting data files are of a more convenient size than whole
+genome or exome. This hybrid-capture panel covers a few hundred cancer
+genes and a few thousands of additional targets intended to improve copy
+number and structural variant detection.</p>
+<p>In RStudio, navigate to the folder containing the exercise files:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nf">setwd</span><span class="p">(</span><span class="s">&#39;your/path/to/exercise_folder&#39;</span><span class="p">)</span>
+</span></code></pre></div>
+<blockquote>
+<p>Create a new Quarto Document in the exercise folder. Keep your code as
+shown in the template, and write your comments and answers to
+questions between code chunks. Make sure you run the code, investigate
+the results and answer the questions. You can click <strong>Render</strong> to run
+all code and generate a html report. This way, when you are through
+this exercise, your report is done too.</p>
+</blockquote>
+<p>The <a href="https://en.wikipedia.org/wiki/BED_(file_format)">BED</a> (Browser
+Extensible Data) format is a text file format commonly used to store
+genomic regions as coordinates and associated annotations. The data are
+presented in the form of columns separated by spaces or tabs. This
+format was developed during the Human Genome Project and then adopted by
+other sequencing projects.</p>
+<p>We begin by parsing and investigating the target definition BED file.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Input file</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">bed_file</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;targets.bed&#39;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># Check that it exists</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nf">file.exists</span><span class="p">(</span><span class="n">bed_file</span><span class="p">)</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># Read it </span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">targets</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">fread</span><span class="p">(</span><span class="n">bed_file</span><span class="p">)</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="c1"># Check content</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="n">targets</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="c1"># Let the first column be the target number</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="n">targets</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cbind</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">targets</span><span class="p">),</span><span class="n">targets</span><span class="p">)</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="c1"># Set useful column names</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="nf">colnames</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;target&#39;</span><span class="p">,</span><span class="s">&#39;chromosome&#39;</span><span class="p">,</span><span class="s">&#39;start&#39;</span><span class="p">,</span><span class="s">&#39;end&#39;</span><span class="p">)</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="c1"># Calculate target length</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="n">targets</span><span class="p">[,</span><span class="n">length</span><span class="o">:=</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">]</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="nf">summary</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="c1"># Check target distribution over chromosomes</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="n">targets</span><span class="p">[,</span><span class="nf">table</span><span class="p">(</span><span class="n">chromosome</span><span class="p">)]</span>
+</span></code></pre></div>
+<p>The R code in this exercise features <code>data.table</code> syntax, for example
+using <code>:=</code> to modify the content of a table. If you are more familiar
+with base R or tidyverse syntax, a comparison between them can be found
+<a href="https://mgimond.github.io/rug_2019_12/Index.html">here</a>.</p>
+<blockquote>
+<p>Feel free to complete the exercise using the coding style you prefer.</p>
+</blockquote>
+<h2 id="annotate-with-gene-symbols">Annotate with gene symbols<a class="headerlink" href="#annotate-with-gene-symbols" title="Permanent link">&para;</a></h2>
+<p>Before parsing the sequence data, let's assign gene symbols to targets
+that overlap a gene. We'll take advantage of databases accessible
+through Bioconductor packages. First, we need to create a GenomicRanges
+object representing our targets:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">GenomicRanges</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># Make a GRanges object</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">target_ranges</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">makeGRangesFromDataFrame</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">target_ranges</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Check the sequence naming style</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nf">seqlevelsStyle</span><span class="p">(</span><span class="n">target_ranges</span><span class="p">)</span>
+</span></code></pre></div>
+<p>As you may recognize, our targets have the NCBI/EMBL sequence naming
+style (<em>1</em> and not <em>chr1</em>, etc). This matches the reference genome used
+with our sequence data.</p>
+<h3 id="download-gene-coordinates">Download gene coordinates<a class="headerlink" href="#download-gene-coordinates" title="Permanent link">&para;</a></h3>
+<p>Let's use the <code>biomaRt</code> package to download Ensembl gene coordinates for
+reference genome b37/Hg19.</p>
+<blockquote>
+<p>To learn more about a function, just type ?function_name to open its
+documentation in RStudio's bottom right window.</p>
+</blockquote>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">biomaRt</span><span class="p">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="o">?</span><span class="n">useEnsembl</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># Open a connection</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">biomart_connection</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">useEnsembl</span><span class="p">(</span><span class="n">biomart</span><span class="o">=</span><span class="s">&quot;ensembl&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dataset</span><span class="o">=</span><span class="s">&quot;hsapiens_gene_ensembl&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">GRCh</span><span class="o">=</span><span class="m">37</span><span class="p">)</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="o">?</span><span class="n">getBM</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c1"># Get gene coordinates</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="n">genes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">getBM</span><span class="p">(</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="n">attributes</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;ensembl_gene_id&#39;</span><span class="p">,</span><span class="s">&#39;hgnc_symbol&#39;</span><span class="p">,</span><span class="s">&#39;chromosome_name&#39;</span><span class="p">,</span><span class="s">&#39;start_position&#39;</span><span class="p">,</span><span class="s">&#39;end_position&#39;</span><span class="p">),</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="n">mart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">biomart_connection</span><span class="p">)</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="c1"># Convert to data.table</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="n">genes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.table</span><span class="p">(</span><span class="n">genes</span><span class="p">)</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="n">genes</span>
+</span></code></pre></div>
+<p>We can now make a GenomicRanges object for the genes:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nf">colnames</span><span class="p">(</span><span class="n">genes</span><span class="p">)[</span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;chromosome&#39;</span><span class="p">,</span><span class="s">&#39;start&#39;</span><span class="p">,</span><span class="s">&#39;end&#39;</span><span class="p">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">gene_ranges</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">makeGRangesFromDataFrame</span><span class="p">(</span><span class="n">genes</span><span class="p">)</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nf">seqlevelsStyle</span><span class="p">(</span><span class="n">gene_ranges</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="overlap-targets-and-genes">Overlap targets and genes<a class="headerlink" href="#overlap-targets-and-genes" title="Permanent link">&para;</a></h3>
+<p>The chromosome naming style of the genes is also NCBI/EMBL. We can now
+go ahead and match them up to targets using the findOverlaps function:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Overlap the two GRanges sets</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">overlap</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">findOverlaps</span><span class="p">(</span><span class="n">target_ranges</span><span class="p">,</span><span class="n">gene_ranges</span><span class="p">)</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">overlap</span>
+</span></code></pre></div>
+<p>Overlaps are presented as pairs of query (first argument) and subject
+(second argument) rows for which there is any overlap. We can simply
+assign targets their corresponding gene name for each overlap and check
+the result:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">targets</span><span class="o">$</span><span class="n">gene</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="w"> </span><span class="c1"># default if no overlap</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># Put a gene symbol on each target</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">targets</span><span class="p">[</span><span class="nf">queryHits</span><span class="p">(</span><span class="n">overlap</span><span class="p">),</span><span class="n">gene</span><span class="o">:=</span><span class="n">genes</span><span class="p">[</span><span class="nf">subjectHits</span><span class="p">(</span><span class="n">overlap</span><span class="p">)]</span><span class="o">$</span><span class="n">hgnc_symbol</span><span class="p">]</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># Count targets per gene</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nf">as.data.table</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">targets</span><span class="o">$</span><span class="n">gene</span><span class="p">))</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="nf">as.data.table</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">targets</span><span class="o">$</span><span class="n">gene</span><span class="p">),</span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">T</span><span class="p">))[</span><span class="n">N</span><span class="o">&gt;</span><span class="m">25</span><span class="p">]</span>
+</span></code></pre></div>
+<blockquote>
+<p>There are many ways to achieve the same thing. You should focus mostly
+on <em>what</em> we do, and not worry too much about exactly how. Google,
+ChatGTP, etc, are there for you as long as you know what you want to
+achieve.</p>
+</blockquote>
+<h2 id="parse-sequence-read-counts">Parse sequence read counts<a class="headerlink" href="#parse-sequence-read-counts" title="Permanent link">&para;</a></h2>
+<p>We are now ready to access the BAM file and count the number of reads
+(actually read pairs, corresponding to DNA fragments) that map to each
+target. For this we use the <code>bamsignals</code> package and the <code>GenomicRanges</code>
+object representing the targets. To count a read pair, we require its
+midpoint to fall within a target, and that it is not flagged as a
+<a href="http://samtools.github.io/hts-specs/SAMv1.pdf">duplicate</a>.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">bamsignals</span><span class="p">)</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nf">library</span><span class="p">(</span><span class="n">Rsamtools</span><span class="p">)</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Imput bam file</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">bamfile</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;sample1.bam&#39;</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nf">file.exists</span><span class="p">(</span><span class="n">bamfile</span><span class="p">)</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nf">file.exists</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">bamfile</span><span class="p">,</span><span class="s">&#39;.bai&#39;</span><span class="p">))</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="c1"># Count reads in targets</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="n">targets</span><span class="o">$</span><span class="n">count</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bamCount</span><span class="p">(</span><span class="n">bamfile</span><span class="p">,</span><span class="w"> </span><span class="n">target_ranges</span><span class="p">,</span><span class="w"> </span><span class="n">paired.end</span><span class="o">=</span><span class="s">&quot;midpoint&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">filteredFlag</span><span class="o">=</span><span class="m">1024</span><span class="p">)</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="n">targets</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="nf">summary</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="plot-sequence-read-count">Plot sequence read count<a class="headerlink" href="#plot-sequence-read-count" title="Permanent link">&para;</a></h2>
+<p>Let's investigate the raw sequence read count across targets. You are
+probably already familiar with
+<a href="https://ggplot2.tidyverse.org/">ggplot2</a>.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nf">theme_set</span><span class="p">(</span><span class="nf">theme_bw</span><span class="p">())</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Simple ggplot</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">))</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Some adjustments</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">3500</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="n">.</span><span class="m">5</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Targets are just shown in order. To plot genomic positions without
+mixing up chromosomes, we can separate the plot by chromosome:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Plot start pos by chromosome</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">3500</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="n">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="n">facets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">vars</span><span class="p">(</span><span class="n">chromosome</span><span class="p">),</span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The figure may now not look a bit squished in RStudio's bottom-right
+plots tab. Click the <strong>Zoom</strong> button and enlarge the new window.</p>
+<p>Let's choose a few genes to highlight in the plot.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Genes of interest</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">my_genes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;AR&#39;</span><span class="p">,</span><span class="s">&#39;ATM&#39;</span><span class="p">,</span><span class="s">&#39;BRCA1&#39;</span><span class="p">,</span><span class="s">&#39;BRCA2&#39;</span><span class="p">,</span><span class="s">&#39;PTEN&#39;</span><span class="p">,</span><span class="s">&#39;TMPRSS2&#39;</span><span class="p">,</span><span class="s">&#39;ERG&#39;</span><span class="p">)</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">targets</span><span class="p">[</span><span class="n">gene</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">my_genes</span><span class="p">,</span><span class="n">label</span><span class="o">:=</span><span class="n">gene</span><span class="p">]</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">3500</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="n">.</span><span class="m">5</span><span class="p">)</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">3500</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="n">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="n">facets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">vars</span><span class="p">(</span><span class="n">chromosome</span><span class="p">),</span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="model-and-correct-for-gc-content-bias">Model and correct for GC content bias<a class="headerlink" href="#model-and-correct-for-gc-content-bias" title="Permanent link">&para;</a></h2>
+<p>Sequence GC content is known to affect PCR amplification and sequence
+coverage. Let's retrieve the GC content for the targets and investigate
+if there is a bias in our data set. <code>BSgenome</code> is a Bioconductor package
+that provides a framework for working with genomic sequences in R. The
+package provides a set of objects, functions, and methods for working
+with different reference genomes and their annotations, such as gene
+locations, exons, and transcription start sites.</p>
+<p>First we check whether a matching reference genome is available:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">BSgenome</span><span class="p">)</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1"># Check which genomes are available</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nf">available.genomes</span><span class="p">()</span>
+</span></code></pre></div>
+<p>The best match is <code>BSgenome.Hsapiens.UCSC.hg19</code>. But that means our
+target <code>GenomicRanges</code> object needs to have UCSC-style sequence naming:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">ucsc_ranges</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">target_ranges</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1"># Swap sequence naming style</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="nf">seqlevelsStyle</span><span class="p">(</span><span class="n">ucsc_ranges</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;UCSC&quot;</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">ucsc_ranges</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="nf">seqlevelsStyle</span><span class="p">(</span><span class="n">ucsc_ranges</span><span class="p">)</span>
+</span></code></pre></div>
+<p>We can now assign GC content to targets:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">BSgenome.Hsapiens.UCSC.hg19</span><span class="p">)</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nf">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># Get the target sequences</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">dna</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">getSeq</span><span class="p">(</span><span class="n">Hsapiens</span><span class="p">,</span><span class="w"> </span><span class="n">ucsc_ranges</span><span class="p">)</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1"># Calculate GC content for the target sequences</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">targets</span><span class="o">$</span><span class="n">gc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">str_count</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">dna</span><span class="p">),</span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;[GC]&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">width</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="c1"># Plot the GC content and read count</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">3500</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gc</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">),</span><span class="n">alpha</span><span class="o">=</span><span class="n">.</span><span class="m">1</span><span class="p">)</span>
+</span></code></pre></div>
+<p>There appears to be a modest effect of target GC content on read count.
+Let's build a <a href="https://en.wikipedia.org/wiki/Local_regression">loess</a>
+model of the effect.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Make a loess model</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">loess_model</span><span class="o">=</span><span class="nf">loess</span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">gc</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">)</span>
+</span></code></pre></div>
+<p>To plot the model, we predict the read count from GC:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Add predicted count (model y value) to targets</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">targets</span><span class="p">[,</span><span class="n">gc_predicted_count</span><span class="o">:=</span><span class="nf">predict</span><span class="p">(</span><span class="n">loess_model</span><span class="p">,</span><span class="n">gc</span><span class="p">)]</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># Plot with the model prediction</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">targets</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">3500</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gc</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">),</span><span class="n">alpha</span><span class="o">=</span><span class="n">.</span><span class="m">1</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">    </span><span class="nf">geom_line</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gc</span><span class="p">,</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gc_predicted_count</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>To remove the GC content bias, we divide the observed count with the
+predicted. This new count <em>ratio</em> should be a slightly better measure of
+DNA abundance in our sample.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Correct for the effect of GC content</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">targets</span><span class="p">[,</span><span class="n">count_ratio</span><span class="o">:=</span><span class="n">count</span><span class="o">/</span><span class="n">gc_predicted_count</span><span class="p">]</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="n">targets</span>
+</span></code></pre></div>
+<p>To compare the new metric with the previous, we can plot them
+side-by-side. With <a href="https://patchwork.data-imaginist.com/">patchwork</a>, we
+can use arithmetic operators to combine and align multiple plots.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">patchwork</span><span class="p">)</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="c1"># Plot and align</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gc</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="p">),</span><span class="n">alpha</span><span class="o">=</span><span class="n">.</span><span class="m">1</span><span class="p">)</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gc</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_ratio</span><span class="p">),</span><span class="n">alpha</span><span class="o">=</span><span class="n">.</span><span class="m">1</span><span class="p">)</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="n">p1</span><span class="o">+</span><span class="n">p2</span>
+</span></code></pre></div>
+<p>The GC content correction seems to have had a small but positive effect.
+It is common to also use either a matched normal or a pool of normal
+reference samples (sequenced similarly) to remove a little bit more
+systematic noise. We have omitted that step here.</p>
+<blockquote>
+<p><strong>Question 1:</strong> An important reason to perform copy number analysis of
+cancer samples is to find homozygous deletions of tumor suppressor
+genes. Let's assume a patient has a small hemizygous germline deletion
+(loss of one copy) affecting one tumor suppressor gene only. In the
+tumor cell population there is also a somatic deletion of the other,
+homologous, chromosome, including the remaining copy of the gene.
+Would the resulting homozygous deletion still be visible if the read
+count ratio of the tumor sample were to be divided by that of the
+normal sample?</p>
+<p>Write answers to all questions as text in your Quarto document, so
+that they are stored in the report with your data analysis. When done,
+render the report (including all analysis steps you have included) by
+clicking the <strong>Render</strong> button. Submit your rendered report in Canvas
+under the Copy number analysis module.</p>
+</blockquote>
+<h2 id="segment-the-data">Segment the data<a class="headerlink" href="#segment-the-data" title="Permanent link">&para;</a></h2>
+<p>Although we can already spot some apparent gains and losses, statistical
+tools can help us better define copy number segments, for which we can
+then calculate the most likely copy number given the observation.
+<a href="https://pubmed.ncbi.nlm.nih.gov/15475419/">Circular binary
+segmentation</a> (<strong>CBS</strong>) is
+probably the most commonly used segmentation method. Here we use the
+<code>PSCBS</code> ("Parent specific" CBS, as it can also use SNP allele data) R
+package as a wrapper to perform basic CBS on the GC content-adjusted
+count ratio.</p>
+<p>CBS requires a DNA abundance measure to be log-transformed, making its
+distribution more normal-like. If you have worked with copy number
+analysis before, you may recognize the term <strong>log ratio</strong>.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">PSCBS</span><span class="p">)</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="c1"># Log transform the read count</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="n">targets</span><span class="p">[,</span><span class="n">log_ratio</span><span class="o">:=</span><span class="nf">log2</span><span class="p">(</span><span class="n">count_ratio</span><span class="p">)]</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="nf">summary</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="c1"># Segmentation requires values to be finite</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="n">targets</span><span class="p">[</span><span class="nf">is.infinite</span><span class="p">(</span><span class="n">log_ratio</span><span class="p">),</span><span class="n">log_ratio</span><span class="o">:=</span><span class="kc">NA</span><span class="p">]</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="nf">summary</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="c1"># Segment the log ratio</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="n">segments</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">segmentByCBS</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">targets</span><span class="o">$</span><span class="n">log_ratio</span><span class="p">)</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="n">segments</span>
+</span></code></pre></div>
+<p>After segmentation we can transform the segment mean values back and
+plot the segments with the targets.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Linear space segment means</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">segments</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.table</span><span class="p">(</span><span class="n">segments</span><span class="p">)[,</span><span class="n">count_ratio</span><span class="o">:=</span><span class="m">2</span><span class="o">^</span><span class="n">mean</span><span class="p">]</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="n">segments</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2.5</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_ratio</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">chromosome</span><span class="p">),</span><span class="n">shape</span><span class="o">=</span><span class="m">21</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">    </span><span class="nf">geom_segment</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">segments</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;green&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">                 </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">start</span><span class="p">,</span><span class="n">xend</span><span class="o">=</span><span class="n">end</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">count_ratio</span><span class="p">,</span><span class="n">yend</span><span class="o">=</span><span class="n">count_ratio</span><span class="p">))</span>
+</span></code></pre></div>
+<p>Note that the segmentation is based only on the target log ratio and
+order, and that segment start and end refer to target number. To avoid
+segments spanning across chromosomes, and breakpoints just missing the
+chromosome boundary, we can add chromosomes to the segmentation call.
+The chromosome vector is required to be numeric.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Segment with chromosomes specified</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">segments</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">segmentByCBS</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">targets</span><span class="o">$</span><span class="n">log_ratio</span><span class="p">,</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">                         </span><span class="n">chromosome</span><span class="o">=</span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">str_replace</span><span class="p">(</span><span class="n">targets</span><span class="o">$</span><span class="n">chromosome</span><span class="p">,</span><span class="s">&#39;X&#39;</span><span class="p">,</span><span class="s">&#39;23&#39;</span><span class="p">)))</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="n">segments</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="c1"># Tidy up</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="n">segments</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.table</span><span class="p">(</span><span class="n">segments</span><span class="p">)[,</span><span class="n">count_ratio</span><span class="o">:=</span><span class="m">2</span><span class="o">^</span><span class="n">mean</span><span class="p">][</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">chromosome</span><span class="p">),</span><span class="m">-1</span><span class="p">]</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="n">segments</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2.5</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_ratio</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">chromosome</span><span class="p">),</span><span class="n">shape</span><span class="o">=</span><span class="m">21</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="w">    </span><span class="nf">geom_segment</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">segments</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;green&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="w">                 </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">start</span><span class="p">,</span><span class="n">xend</span><span class="o">=</span><span class="n">end</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">count_ratio</span><span class="p">,</span><span class="n">yend</span><span class="o">=</span><span class="n">count_ratio</span><span class="p">))</span>
+</span></code></pre></div>
+<p>CBS can also take a vector of chromosomal positions as input, in which
+case the resulting segment start and end positions are based on them. We
+use the target midpoints:</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Segment with position and chromosome positions</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">segments_pos</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">segmentByCBS</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">targets</span><span class="o">$</span><span class="n">log_ratio</span><span class="p">,</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">                             </span><span class="n">chromosome</span><span class="o">=</span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">str_replace</span><span class="p">(</span><span class="n">targets</span><span class="o">$</span><span class="n">chromosome</span><span class="p">,</span><span class="s">&#39;X&#39;</span><span class="p">,</span><span class="s">&#39;23&#39;</span><span class="p">)),</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">                             </span><span class="n">x</span><span class="o">=</span><span class="n">targets</span><span class="o">$</span><span class="n">start</span><span class="m">+60</span><span class="p">)</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="n">segments_pos</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.table</span><span class="p">(</span><span class="n">segments_pos</span><span class="p">)[,</span><span class="n">count_ratio</span><span class="o">:=</span><span class="m">2</span><span class="o">^</span><span class="n">mean</span><span class="p">][</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">chromosome</span><span class="p">),</span><span class="m">-1</span><span class="p">]</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="n">segments_pos</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="c1"># convert chromosomes back to NCBI</span>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="n">segments_pos</span><span class="p">[,</span><span class="n">chromosome</span><span class="o">:=</span><span class="nf">str_replace</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">chromosome</span><span class="p">),</span><span class="s">&#39;23&#39;</span><span class="p">,</span><span class="s">&#39;X&#39;</span><span class="p">)]</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2.5</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_ratio</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="o">=</span><span class="n">label</span><span class="p">),</span><span class="n">shape</span><span class="o">=</span><span class="m">21</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="w">    </span><span class="nf">geom_segment</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">segments_pos</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;green&#39;</span><span class="p">,</span>
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="w">                 </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">start</span><span class="p">,</span><span class="n">xend</span><span class="o">=</span><span class="n">end</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">count_ratio</span><span class="p">,</span><span class="n">yend</span><span class="o">=</span><span class="n">count_ratio</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a><span class="w">    </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="n">facets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">vars</span><span class="p">(</span><span class="n">chromosome</span><span class="p">),</span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="w">    </span><span class="nf">theme</span><span class="p">(</span><span class="n">panel.spacing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unit</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lines&quot;</span><span class="p">),</span><span class="n">strip.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">))</span>
+</span></code></pre></div>
+<p>Let's now take another look at segmented targets plotted in order, as
+they are very unevenly distributed over the genome. We can spot some
+apparent copy number losses and gains of genes in our selection. Take a
+closer look at BRCA2 and part of PTEN.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2.5</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_ratio</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">chromosome</span><span class="p">),</span><span class="n">shape</span><span class="o">=</span><span class="m">21</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="nf">geom_segment</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">segments</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;green&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">                 </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">start</span><span class="p">,</span><span class="n">xend</span><span class="o">=</span><span class="n">end</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">count_ratio</span><span class="p">,</span><span class="n">yend</span><span class="o">=</span><span class="n">count_ratio</span><span class="p">))</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2.5</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_ratio</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">label</span><span class="p">),</span><span class="n">shape</span><span class="o">=</span><span class="m">21</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">    </span><span class="nf">geom_segment</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">segments</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;green&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">                 </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">start</span><span class="p">,</span><span class="n">xend</span><span class="o">=</span><span class="n">end</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">count_ratio</span><span class="p">,</span><span class="n">yend</span><span class="o">=</span><span class="n">count_ratio</span><span class="p">))</span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="n">p1</span><span class="o">/</span><span class="n">p2</span>
+</span></code></pre></div>
+<blockquote>
+<p><strong>Question 2:</strong> Target density is only about one per megabase, with
+much higher density in some cancer genes. How many targets do you
+think a deletion would have to cover for us to be able to find it?
+What else might influence sensitivity?</p>
+</blockquote>
+<p>For BRCA2 and (part of) PTEN, count ratio (remember, it is the observed
+read count (DNA abundance) relative to the expected, given target GC
+content), is near 0.5, or 50%. For a largely diploid genome this is
+exactly what to expect if these genomic segments were hemizygously
+deleted, i.e., one out of the two homologous copies would have been
+lost. This would also fit reasonably well with gain of 1 copy of 8q
+(resulting in a count ratio of 1.5) and 3 extra copies of AR (being on
+the X chromosome, tumor cells would have quadrupled its single original
+AR copy, resulting in the count ratio going from about 0.5 to near 2.).</p>
+<p>But this solution would require the tumor cell content ("<strong>purity</strong>") in
+the sample to be near 100%, which is rare unless the sample comes from a
+cell line. Note also that several other segments have a mean count ratio
+that would not fit this solution well. There are actually multiple other
+combinations of copy number and purity that would fit the observation
+reasonably well.</p>
+<p>Our measure of relative DNA abundance - count ratio - is automatically
+centered around 1, regardless of the average copy number ("<strong>ploidy</strong>")
+of the sequenced genome.</p>
+<blockquote>
+<p>Let's assume the cancer cells sampled had an average of 4 instead of 2
+copies. This would neither make us sequence to twice the amount, nor
+observe twice the sequence count relative to our GC content model for
+most of the genome.</p>
+<p>The average DNA abundance measured throughout the genome, whether it
+is raw sequence count, count ratio, or a logarithm of count ratio,
+does not increase in samples with a higher average copy number (more
+DNA per cell). Instead the average measured DNA abundance will be
+observed for the average copy number, whatever that is.</p>
+</blockquote>
+<p>We are also likely to have some normal DNA content in the sample. If
+both the tumor genome and normal genome are near diploid on average, and
+the tumor cell content is near 50%, homozygous deletion (loss of both
+homologous copies) would be observed at a coverge ratio near 0.5, as for
+every tumor cell that would contribute zero copies to the DNA
+extraction, one normal cell would contribute its normal two. As loss of
+one copy in the tumor cell fraction would then appear at about 0.75 and
+gains would appear near 1.25, 1.5, ..., this solution also appears to
+fit our data reasonably well.</p>
+<blockquote>
+<p><strong>Question 3:</strong> If a cancer genome has an average of 4 copies, and the
+tumor cell content is near 100%, at what count ratio should we ovserve
+a copy number of 3?</p>
+</blockquote>
+<p>Fortunately there is another tool we can use to inform the copy number
+estimates. We can use SNPs from a small variant caller and investigate
+their variant allele ratios.</p>
+<h2 id="parse-snp-allele-ratio">Parse SNP allele ratio<a class="headerlink" href="#parse-snp-allele-ratio" title="Permanent link">&para;</a></h2>
+<p>Let's use the <code>VariantAnnotation</code> package to parse a VCF file containing
+SNPs.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nf">library</span><span class="p">(</span><span class="n">VariantAnnotation</span><span class="p">)</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="c1"># Parse the vcf file</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="n">vcf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readVcf</span><span class="p">(</span><span class="s">&#39;sample1.vcf&#39;</span><span class="p">)</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="n">vcf</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="c1"># Genotype column</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">geno</span><span class="p">(</span><span class="n">vcf</span><span class="p">)</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="n">g</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="c1"># Allelic and total read depth </span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="nf">as.data.table</span><span class="p">(</span><span class="n">g</span><span class="o">$</span><span class="n">AD</span><span class="p">)</span>
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="nf">as.data.table</span><span class="p">(</span><span class="n">g</span><span class="o">$</span><span class="n">DP</span><span class="p">)</span>
+</span></code></pre></div>
+<p>The AD column of the VCF file contains the number of reads supporting
+the reference and alternative allele. The DP column contains the total
+read depth. Let's make a table of SNPs containing the alt-allele ratio.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># A table of SNPs</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">snp_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.table</span><span class="p">(</span><span class="n">id</span><span class="o">=</span><span class="nf">names</span><span class="p">(</span><span class="n">vcf</span><span class="p">),</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">                        </span><span class="n">AD</span><span class="o">=</span><span class="nf">sapply</span><span class="p">(</span><span class="n">g</span><span class="o">$</span><span class="n">AD</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;[[&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">                        </span><span class="n">DP</span><span class="o">=</span><span class="nf">unlist</span><span class="p">(</span><span class="n">g</span><span class="o">$</span><span class="n">DP</span><span class="p">[,</span><span class="m">1</span><span class="p">]))</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="n">snp_table</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="c1"># Compute allele ratio</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="n">snp_table</span><span class="p">[,</span><span class="n">allele_ratio</span><span class="o">:=</span><span class="nf">round</span><span class="p">(</span><span class="n">AD</span><span class="o">/</span><span class="n">DP</span><span class="p">,</span><span class="m">3</span><span class="p">)]</span>
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="n">snp_table</span>
+</span></code></pre></div>
+<p>A GenomicRanges object defining the SNPs' positions on the reference
+genome can be accessed with the <code>rowRanges</code> function. We can now overlap
+that with the GenomicRanges representing our targets and use the
+resulting <code>Hits</code> object to assign allele ratio to targets.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># Match targets to SNPs</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="n">overlaps</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">findOverlaps</span><span class="p">(</span><span class="n">target_ranges</span><span class="p">,</span><span class="nf">rowRanges</span><span class="p">(</span><span class="n">vcf</span><span class="p">))</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="n">overlaps</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="c1"># Set SNP allele ratio for targets</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="n">targets</span><span class="p">[</span><span class="nf">queryHits</span><span class="p">(</span><span class="n">overlaps</span><span class="p">),</span><span class="n">allele_ratio</span><span class="o">:=</span><span class="n">snp_table</span><span class="o">$</span><span class="n">allele_ratio</span><span class="p">[</span><span class="nf">subjectHits</span><span class="p">(</span><span class="n">overlaps</span><span class="p">)]]</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="n">targets</span>
+</span></code></pre></div>
+<p>Let's plot the SNP allele ratio with the count ratio and see if the copy
+number status becomes more clear. Note that many targets contain no SNP,
+and that many SNPs are homozygous. The allele ratio of a homozygous SNP
+is either 0 or 1, depending on whether the alleles match the reference
+genome or not. Only heterozygous SNP allele ratio is affected by copy
+number alteration.</p>
+<div class="language-r cell-code highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2.5</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_ratio</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">label</span><span class="p">),</span><span class="n">shape</span><span class="o">=</span><span class="m">21</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="nf">geom_segment</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">segments</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;green&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">                 </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">start</span><span class="p">,</span><span class="n">xend</span><span class="o">=</span><span class="n">end</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">count_ratio</span><span class="p">,</span><span class="n">yend</span><span class="o">=</span><span class="n">count_ratio</span><span class="p">))</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">    </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targets</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">allele_ratio</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">label</span><span class="p">),</span><span class="n">shape</span><span class="o">=</span><span class="m">21</span><span class="p">)</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="n">p1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">plot_layout</span><span class="p">(</span><span class="n">guides</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;collect&#39;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>We can see that for most segments, particularly segments with a count
+ratio near 1, heterozygous SNPs have allele ratios near 0.5. This
+indicates that the average copy number may be 2.</p>
+<blockquote>
+<p><strong>Question 4:</strong> What do you think is the tumor cell fraction, and what
+has most likely happened to PTEN and BRCA2?</p>
+</blockquote>
+<h2 id="estimating-genome-wide-copy-number">Estimating genome-wide copy number<a class="headerlink" href="#estimating-genome-wide-copy-number" title="Permanent link">&para;</a></h2>
+<p>Although the ploidy and purity of this example are relatively clear,
+that is not always the case. There are several
+<a href="https://academic.oup.com/nar/article/44/16/e131/2460163">methods</a>
+available that fits your data to potential solutions of ploidy and
+purity, and computes the copy numbers corresponding to the best fit.
+Beware, this is somewhat prone to error, especially when the purity is
+below 50%, if there are few copy number alterations, and if there is
+some tumor cell heterogeneity. Also, reporting the total copy number of
+every segment does not make sense in most settings. You should always
+review the result and curate if necessary.</p>
+<h2 id="final-questions">Final questions<a class="headerlink" href="#final-questions" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Some questions require a bit of exploration and perhaps more code and
+visualisation. Motivate your answers to the extent you think is
+reasonable, and feel free to collaborate with the other students.</p>
+<p><strong>Question 5:</strong> Homozygous deletions are rarely larger than one,
+occationally a few, megabases. What appears to be the sizes of the
+deletions affecting PTEN and BRCA2?</p>
+<p><strong>Question 6:</strong> Let's assume you suspect that this patient may have a
+TMPRSS2-ERG fusion. Is that supported at all by copy number data?</p>
+<p><strong>Question 7:</strong> Is there a MYC amplification?</p>
+<p><strong>Question 8:</strong> How many copies of AR would you say there are in each
+tumor cell?</p>
+<p><strong>Question 9:</strong> Let's assume there is a genomic segment with somatic
+copy-neutral loss of heterozogosity, i.e. one of the two homologous
+copies was lost and the other duplicated. What count ratio would we
+observe in this sample, and at what allele ratio(s) would the
+(germline-heterozygous) SNPs likely appear?</p>
+</blockquote>
+<p>Once you have completed the exercise, make sure the resulting report
+(generated by clicking <strong>Render</strong>) is a self-contained HTML file by
+specifying <a href="https://quarto.org/docs/reference/formats/html.html">HTML format
+options</a> at the top
+of your Quarto document:</p>
+<div class="language-text highlight"><pre><span></span><code>author: &quot;Your Name&quot;
+format:
+  html:
+    self-contained: true
+</code></pre></div>
+<p>You can add more options to make the result look better. Also check that
+the report is readable, for example that it does not include full
+print-outs of large data structures. When done, submit your rendered report
+in Canvas under the Copy Number Analysis module.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021, Johan Lindberg et. al., MEB, Karolinska Institutet, All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1474 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>AWK crash course for Bioinformatics - Clinical Cancer Genomics Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M64%2032C28.7%2032%200%2060.7%200%2096v320c0%2035.3%2028.7%2064%2064%2064h224V368c0-26.5%2021.5-48%2048-48h112V96c0-35.3-28.7-64-64-64zm384%20320H336c-8.8%200-16%207.2-16%2016v112l32-32%2064-64z%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M96%200C43%200%200%2043%200%2096v320c0%2053%2043%2096%2096%2096h320c17.7%200%2032-14.3%2032-32s-14.3-32-32-32v-64c17.7%200%2032-14.3%2032-32V32c0-17.7-14.3-32-32-32H96m0%20384h256v64H96c-17.7%200-32-14.3-32-32s14.3-32%2032-32m32-240c0-8.8%207.2-16%2016-16h192c8.8%200%2016%207.2%2016%2016s-7.2%2016-16%2016H144c-8.8%200-16-7.2-16-16m16%2048h192c8.8%200%2016%207.2%2016%2016s-7.2%2016-16%2016H144c-8.8%200-16-7.2-16-16s7.2-16%2016-16%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-40-176h24v-64h-24c-13.3%200-24-10.7-24-24s10.7-24%2024-24h48c13.3%200%2024%2010.7%2024%2024v88h8c13.3%200%2024%2010.7%2024%2024s-10.7%2024-24%2024h-80c-13.3%200-24-10.7-24-24s10.7-24%2024-24m40-208a32%2032%200%201%201%200%2064%2032%2032%200%201%201%200-64%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M480%2032c0-12.9-7.8-24.6-19.8-29.6S434.5.2%20425.3%209.3L381.7%2053c-48%2048-113.1%2075-181%2075H64c-35.3%200-64%2028.7-64%2064v96c0%2035.3%2028.7%2064%2064%2064v128c0%2017.7%2014.3%2032%2032%2032h64c17.7%200%2032-14.3%2032-32V352h8.7c67.9%200%20133%2027%20181%2075l43.6%2043.6c9.2%209.2%2022.9%2011.9%2034.9%206.9s19.8-16.6%2019.8-29.6V300.3c18.6-8.8%2032-32.5%2032-60.4s-13.4-51.6-32-60.4zm-64%2076.7v262.6C357.2%20317.8%20280.5%20288%20200.7%20288H192v-96h8.7c79.8%200%20156.5-29.8%20215.3-83.3%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M438.6%20105.4c12.5%2012.5%2012.5%2032.8%200%2045.3l-256%20256c-12.5%2012.5-32.8%2012.5-45.3%200l-128-128c-12.5-12.5-12.5-32.8%200-45.3s32.8-12.5%2045.3%200L160%20338.7l233.4-233.3c12.5-12.5%2032.8-12.5%2045.3%200z%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M256%20512a256%20256%200%201%200%200-512%20256%20256%200%201%200%200%20512m-86.2-346.7c7.9-22.3%2029.1-37.3%2052.8-37.3h58.3c34.9%200%2063.1%2028.3%2063.1%2063.1%200%2022.6-12.1%2043.5-31.7%2054.8L280%20264.4c-.2%2013-10.9%2023.6-24%2023.6-13.3%200-24-10.7-24-24v-13.5c0-8.6%204.6-16.5%2012.1-20.8l44.3-25.4c4.7-2.7%207.6-7.7%207.6-13.1%200-8.4-6.8-15.1-15.1-15.1h-58.3c-3.4%200-6.4%202.1-7.5%205.3l-.4%201.2c-4.4%2012.5-18.2%2019-30.6%2014.6s-19-18.2-14.6-30.6l.4-1.2zM224%20352a32%2032%200%201%201%2064%200%2032%2032%200%201%201-64%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M256%2032c14.2%200%2027.3%207.5%2034.5%2019.8l216%20368c7.3%2012.4%207.3%2027.7.2%2040.1S486.3%20480%20472%20480H40c-14.3%200-27.6-7.7-34.7-20.1s-7-27.8.2-40.1l216-368C228.7%2039.5%20241.8%2032%20256%2032m0%20128c-13.3%200-24%2010.7-24%2024v112c0%2013.3%2010.7%2024%2024%2024s24-10.7%2024-24V184c0-13.3-10.7-24-24-24m32%20224a32%2032%200%201%200-64%200%2032%2032%200%201%200%2064%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M459.1%2052.4%20442.6%206.5c-1.9-3.9-6.1-6.5-10.5-6.5s-8.5%202.6-10.4%206.5l-16.5%2045.9-46%2016.8c-4.3%201.6-7.3%205.9-7.2%2010.4%200%204.5%203%208.7%207.2%2010.2l45.7%2016.8%2016.8%2045.8c1.5%204.4%205.8%207.5%2010.4%207.5s8.9-3.1%2010.4-7.5l16.5-45.8%2045.7-16.8c4.2-1.5%207.2-5.7%207.2-10.2%200-4.6-3-8.9-7.2-10.4zm-132.4%2053c-12.5-12.5-32.8-12.5-45.3%200l-2.9%202.9c-22-8-45.8-12.3-70.5-12.3C93.1%2096%200%20189.1%200%20304s93.1%20208%20208%20208%20208-93.1%20208-208c0-24.7-4.3-48.5-12.2-70.5l2.9-2.9c12.5-12.5%2012.5-32.8%200-45.3l-80-80zM200%20192c-57.4%200-104%2046.6-104%20104v8c0%208.8-7.2%2016-16%2016s-16-7.2-16-16v-8c0-75.1%2060.9-136%20136-136h8c8.8%200%2016%207.2%2016%2016s-7.2%2016-16%2016z%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20512%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M416%20398.9c58.5-41.1%2096-104.1%2096-174.9C512%20100.3%20397.4%200%20256%200S0%20100.3%200%20224c0%2070.7%2037.5%20133.8%2096%20174.9V464c0%2026.5%2021.5%2048%2048%2048h48v-48c0-8.8%207.2-16%2016-16s16%207.2%2016%2016v48h64v-48c0-8.8%207.2-16%2016-16s16%207.2%2016%2016v48h48c26.5%200%2048-21.5%2048-48v-65.1M96%20256a64%2064%200%201%201%20128%200%2064%2064%200%201%201-128%200m256-64a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20640%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M320%200c17.7%200%2032%2014.3%2032%2032v64h120c39.8%200%2072%2032.2%2072%2072v272c0%2039.8-32.2%2072-72%2072H168c-39.8%200-72-32.2-72-72V168c0-39.8%2032.2-72%2072-72h120V32c0-17.7%2014.3-32%2032-32M208%20384c-8.8%200-16%207.2-16%2016s7.2%2016%2016%2016h32c8.8%200%2016-7.2%2016-16s-7.2-16-16-16zm96%200c-8.8%200-16%207.2-16%2016s7.2%2016%2016%2016h32c8.8%200%2016-7.2%2016-16s-7.2-16-16-16zm96%200c-8.8%200-16%207.2-16%2016s7.2%2016%2016%2016h32c8.8%200%2016-7.2%2016-16s-7.2-16-16-16zM264%20256a40%2040%200%201%200-80%200%2040%2040%200%201%200%2080%200m152%2040a40%2040%200%201%200%200-80%2040%2040%200%201%200%200%2080M48%20224h16v192H48c-26.5%200-48-21.5-48-48v-96c0-26.5%2021.5-48%2048-48m544%200c26.5%200%2048%2021.5%2048%2048v96c0%2026.5-21.5%2048-48%2048h-16V224z%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M288%200H128c-17.7%200-32%2014.3-32%2032s14.3%2032%2032%2032v132.8c0%2011.8-3.3%2023.5-9.5%2033.5L10.3%20406.2C3.6%20417.2%200%20429.7%200%20442.6%200%20480.9%2031.1%20512%2069.4%20512h309.2c38.3%200%2069.4-31.1%2069.4-69.4%200-12.8-3.6-25.4-10.3-36.4L329.5%20230.4c-6.2-10.1-9.5-21.7-9.5-33.5V64c17.7%200%2032-14.3%2032-32S337.7%200%20320%200zm-96%20196.8V64h64v132.8c0%2023.7%206.6%2046.9%2019%2067.1l34.5%2056.1h-171l34.5-56.1c12.4-20.2%2019-43.4%2019-67.1%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20448%20512%22%3E%3C%21--%21%20Font%20Awesome%20Free%206.7.2%20by%20%40fontawesome%20-%20https%3A//fontawesome.com%20License%20-%20https%3A//fontawesome.com/license/free%20%28Icons%3A%20CC%20BY%204.0%2C%20Fonts%3A%20SIL%20OFL%201.1%2C%20Code%3A%20MIT%20License%29%20Copyright%202024%20Fonticons%2C%20Inc.--%3E%3Cpath%20d%3D%22M0%20216C0%20149.7%2053.7%2096%20120%2096h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64V216m256%200c0-66.3%2053.7-120%20120-120h8c17.7%200%2032%2014.3%2032%2032s-14.3%2032-32%2032h-8c-30.9%200-56%2025.1-56%2056v8h64c35.3%200%2064%2028.7%2064%2064v64c0%2035.3-28.7%2064-64%2064h-64c-35.3%200-64-28.7-64-64V216%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#awk-crash-course-for-bioinformatics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Clinical Cancer Genomics Course" class="md-header__button md-logo" aria-label="Clinical Cancer Genomics Course" data-md-component="logo">
+      
+  <img src="../../assets/img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Clinical Cancer Genomics Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWK crash course for Bioinformatics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Clinical Cancer Genomics Course" class="md-nav__button md-logo" aria-label="Clinical Cancer Genomics Course" data-md-component="logo">
+      
+  <img src="../../assets/img/logo.svg" alt="logo">
+
+    </a>
+    Clinical Cancer Genomics Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Course Details
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schedule
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/lectures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lectures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lab Session
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lab Session
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workspace_KI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Workspace - KI-HPC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise_1_reference-genome_annotation-files_rawdata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reference Genome, Annotations and Raw Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduction_to_IGV/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to IGV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real_life_examples_cmdline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command Line Usage in Real Life
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bioinformatic_processing_of_DNA_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Processing of DNA sequencing data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variant_calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variant Calling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 3
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calling_structural_variation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Structural Variants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Instructions_copy_number_lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Copy Number Variations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bioinformatic_processing_of_RNA_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RNAseq
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 5
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 5
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variant Interpretation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercise 6
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Exercise 6
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Instructions_project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Project
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#an-introduction-on-how-to-analyze-table-data-without-ms-excel" class="md-nav__link">
+    <span class="md-ellipsis">
+      An introduction on how to analyze table data without MS Excel
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-awk" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is AWK?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-awk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why awk?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why awk?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-awk-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple AWK commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print-all-the-lines-from-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Print all the lines from a file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#print-only-specific-field-like-2nd-3rd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Print only specific field like 2nd &amp; 3rd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awk-one-liners" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWK one-liners
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#awk-working-with-pipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWK working with pipes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWK working with pipes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awk-for-bioinformatics-looking-at-transcriptome-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWK for Bioinformatics - looking at transcriptome data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chaining-awk-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Chaining AWK calls
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleaning-up-the-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleaning up the output
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#counting-genes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Counting genes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="awk-crash-course-for-bioinformatics">AWK crash course for Bioinformatics<a class="headerlink" href="#awk-crash-course-for-bioinformatics" title="Permanent link">&para;</a></h1>
+<h2 id="an-introduction-on-how-to-analyze-table-data-without-ms-excel">An introduction on how to analyze table data without MS Excel<a class="headerlink" href="#an-introduction-on-how-to-analyze-table-data-without-ms-excel" title="Permanent link">&para;</a></h2>
+<h2 id="what-is-awk">What is AWK?<a class="headerlink" href="#what-is-awk" title="Permanent link">&para;</a></h2>
+<p>AWK is an interpreted programming language designed for text processing and typically used as a data extraction and reporting tool.</p>
+<p>The AWK language is a data-driven scripting language consisting of a set of actions to be taken against streams of textual data - either run directly on files or used as part of a pipeline - for purposes of extracting or transforming text, such as producing formatted reports. The language extensively uses the string datatype, associative arrays (that is, arrays indexed by key strings), and regular expressions.</p>
+<p>AWK has a limited intended application domain, and was especially designed to support one-liner programs.</p>
+<p>It is a standard feature of most Unix-like operating systems.</p>
+<p>source: <a href="https://en.wikipedia.org/wiki/AWK">Wikipedia</a></p>
+<h2 id="why-awk">Why awk?<a class="headerlink" href="#why-awk" title="Permanent link">&para;</a></h2>
+<p>You can replace a pipeline of 'stuff | grep | sed | cut...' with a single call to awk. For a simple script, most of the timelag is in loading these apps into memory, and it's much faster to do it all with one. This is ideal for something like an openbox pipe menu where you want to generate something on the fly. You can use awk to make a neat one-liner for some quick job in the terminal, or build an awk section into a shell script. </p>
+<h3 id="simple-awk-commands">Simple AWK commands<a class="headerlink" href="#simple-awk-commands" title="Permanent link">&para;</a></h3>
+<p>An AWK program consists of a sequence of pattern-action statements and optional function definitions. It processes text files. AWK is a line oriented language. It divides a file into lines called records. Each line is broken up into a sequence of fields. The fields are accessed by special variables: $1 reads the first field, $2 the second and so on. The $0 variable refers to the whole record.</p>
+<p>The structure of an AWK program has the following form:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pattern<span class="w"> </span><span class="o">{</span><span class="w"> </span>action<span class="w"> </span><span class="o">}</span>
+</span></code></pre></div>
+The pattern is a test that is performed on each of the records. If the condition is met then the action is performed. Either pattern or action can be omitted, but not both. The default pattern matches each line and the default action is to print the record.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>awk<span class="w"> </span>-f<span class="w"> </span>program-file<span class="w"> </span><span class="o">[</span>file-list<span class="o">]</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>awk<span class="w"> </span>program<span class="w"> </span><span class="o">[</span>file-list<span class="o">]</span>
+</span></code></pre></div>
+<p>An AWK program can be run in two basic ways: a) the program is read from a separate file; the name of the program follows the -f option, b) the program is specified on the command line enclosed by quote characters.</p>
+<h3 id="print-all-the-lines-from-a-file">Print all the lines from a file<a class="headerlink" href="#print-all-the-lines-from-a-file" title="Permanent link">&para;</a></h3>
+<p>By default, awk prints all lines of a file , so to print every line of above created file use below command </p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>awk<span class="w"> </span><span class="s1">&#39;{print}&#39;</span><span class="w"> </span>file
+</span></code></pre></div>
+Note: In awk command ‘{print}’ is used print all fields along with their values.</p>
+<h3 id="print-only-specific-field-like-2nd-3rd">Print only specific field like 2<sup>nd</sup> &amp; 3<sup>rd</sup><a class="headerlink" href="#print-only-specific-field-like-2nd-3rd" title="Permanent link">&para;</a></h3>
+<p>In awk command, we use $ (dollar) symbol followed by field number to prints field values. </p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;,&quot;</span><span class="w"> </span><span class="s1">&#39;{print $2, $3}&#39;</span><span class="w"> </span>file
+</span></code></pre></div>
+In the above command we have used the option  -F “,”  which specifies that comma (,) is the field separator in the file. This is usually good practice when dealing with tables where the separators between each column could be single or multiple white-space (" ") or tab ("\t") or a colon (":") or a semicolon (";").</p>
+<h3 id="awk-one-liners">AWK one-liners<a class="headerlink" href="#awk-one-liners" title="Permanent link">&para;</a></h3>
+<p>AWK one-liners are simple one-shot programs run from the command line. Let us have the following text file: words.txt</p>
+<p>We want to print all words included in the words.txt file that are longer than five characters.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>wget<span class="w"> </span>https://course-cg-5534.s3.amazonaws.com/awk_exercise/words.txt<span class="w"> </span>-O<span class="w"> </span>words.txt
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>awk<span class="w"> </span><span class="s1">&#39;length($1) &gt; 5 {print $0}&#39;</span><span class="w"> </span>words.txt
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>storeroom
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>existence
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>ministerial
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>falcon
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>bookworm
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>bookcase
+</span></code></pre></div>
+The AWK program is placed between two single quote characters. The first is the pattern; we specify that the length of the record is greater that five. The length function returns the length of the string. The $1 variable refers to the first field of the record; in our case there is only one field per record. The action is placed between curly brackets.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>awk<span class="w"> </span><span class="s1">&#39;length($1) &gt; 5&#39;</span><span class="w"> </span>words.txt
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>storeroom
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>existence
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>ministerial
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>falcon
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>bookworm
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>bookcase
+</span></code></pre></div>
+As we have specified earlier, the action can be omitted. In such a case a default action is performed — printing of the whole record.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>awk<span class="w"> </span><span class="s1">&#39;length($1) == 3&#39;</span><span class="w"> </span>words.txt
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>cup
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>sky
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>top
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>war
+</span></code></pre></div>
+We print all words that have three characters.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>awk<span class="w"> </span><span class="s1">&#39;!(length($1) == 3)&#39;</span><span class="w"> </span>words.txt
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>storeroom
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>tree
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>store
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>book
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>cloud
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>existence
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>ministerial
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>falcon
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>town
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>bookworm
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>bookcase
+</span></code></pre></div>
+With the ! operator, we can negate the condition; we print all lines that do not have three characters.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>awk<span class="w"> </span><span class="s1">&#39;(length($1) == 3) || (length($1) == 4)&#39;</span><span class="w"> </span>words.txt
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>tree
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>cup
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>book
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>town
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>sky
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>top
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>war
+</span></code></pre></div>
+Next we apply conditions on numbers.</p>
+<p>We have a file with scores of students - scores.txt.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>wget<span class="w"> </span>https://course-cg-5534.s3.amazonaws.com/awk_exercise/scores.txt<span class="w"> </span>-O<span class="w"> </span>scores.txt
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>awk<span class="w"> </span><span class="s1">&#39;$2 &gt;= 90 { print $0 }&#39;</span><span class="w"> </span>scores.txt
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Lucia<span class="w"> </span><span class="m">95</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Joe<span class="w"> </span><span class="m">92</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Sophia<span class="w"> </span><span class="m">90</span>
+</span></code></pre></div>
+We print all students with scores 90+.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>awk<span class="w"> </span><span class="s1">&#39;$2 &gt;= 90 { print }&#39;</span><span class="w"> </span>scores.txt
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Lucia<span class="w"> </span><span class="m">95</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Joe<span class="w"> </span><span class="m">92</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Sophia<span class="w"> </span><span class="m">90</span>
+</span></code></pre></div>
+If we omit an argument for the print function, the $0 is assumed.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>awk<span class="w"> </span><span class="s1">&#39;$2 &gt;= 90&#39;</span><span class="w"> </span>scores.txt
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Lucia<span class="w"> </span><span class="m">95</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Joe<span class="w"> </span><span class="m">92</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Sophia<span class="w"> </span><span class="m">90</span>
+</span></code></pre></div>
+A missing { action } means print the matching line.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>awk<span class="w"> </span><span class="s1">&#39;{ if ($2 &gt;= 90) print }&#39;</span><span class="w"> </span>scores.txt
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Lucia<span class="w"> </span><span class="m">95</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Joe<span class="w"> </span><span class="m">92</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>Sophia<span class="w"> </span><span class="m">90</span>
+</span></code></pre></div>
+Instead of a pattern, we can also use an if condition in the action.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>awk<span class="w"> </span><span class="s1">&#39;{sum += $2} END { printf(&quot;The average score is %.2f\n&quot;, sum/NR) }&#39;</span><span class="w"> </span>scores.txt
+</span></code></pre></div>
+The average score is 77.56</p>
+<p>This command calculates the average score. In the action block, we calculate the sum of scores. In the END block, we print the average score. We format the output with the built-in printf function. The %.2f is a format specifier; each specifier begins with the % character. The .2 is the precision -- the number of digits after the decimal point. The f expects a floating point value. The \n is not a part of the specifier; it is a newline character. It prints a newline after the string is shown on the terminal.</p>
+<h2 id="awk-working-with-pipes">AWK working with pipes<a class="headerlink" href="#awk-working-with-pipes" title="Permanent link">&para;</a></h2>
+<p>AWK can receive input and send output to other commands via the pipe.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;1 2 3 5\n2 2 3 8&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $(NF)}&#39;</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="m">5</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="m">8</span>
+</span></code></pre></div>
+<p>In this case, AWK receives output from the echo command. It prints the values of last column.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>awk<span class="w"> </span>-F:<span class="w"> </span><span class="s1">&#39;$7 ~ /bash/ {print $1}&#39;</span><span class="w"> </span>/etc/passwd<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="m">3</span>
+</span></code></pre></div>
+<p>Here, the AWK program sends data to the wc command via the pipe. In the AWK program, we find out those users who use bash. Their names are passed to the wc command which counts them. In our case, there are three users using bash.</p>
+<h3 id="awk-for-bioinformatics-looking-at-transcriptome-data">AWK for Bioinformatics - looking at transcriptome data<a class="headerlink" href="#awk-for-bioinformatics-looking-at-transcriptome-data" title="Permanent link">&para;</a></h3>
+<p>You can find a lot of online tutorials, but here we will try out a few steps which show how a bioinformatician analyses a <strong>GTF file</strong> using awk.</p>
+<p>GTF is a special file format that contains information about different regions of the genome and their associated annotations. More on that here - <a href="https://www.ensembl.org/info/website/upload/gff.html">Ensembl File Formats-GTF</a>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>wget<span class="w"> </span>https://course-cg-5534.s3.amazonaws.com/awk_exercise/transcriptome.gtf<span class="w"> </span>-O<span class="w"> </span>transcriptome.gtf
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>head<span class="w"> </span>transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-S
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1">##description: evidence-based annotation of the human genome (GRCh37), version 18 (Ensembl 73)</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="c1">##provider: GENCODE</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1">##contact: gencode@sanger.ac.uk</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="c1">##format: gtf</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="c1">##date: 2013-09-02</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>exon<span class="w">    </span><span class="m">173753</span><span class="w">  </span><span class="m">173862</span><span class="w">  </span>.<span class="w">   </span>-<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000241860.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000466557.2&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;processed_transcript&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;RP11-34P13.13&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;RP11-34P13.13-001&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00001947154.2&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;not_best_in_genome_evidence&quot;</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000002480.3&quot;</span><span class="p">;</span><span class="w"> </span>havana_transcript<span class="w"> </span><span class="s2">&quot;OTTHUMT00000007037.2&quot;</span><span class="p">;</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>transcript<span class="w">  </span><span class="m">1246986</span><span class="w"> </span><span class="m">1250550</span><span class="w"> </span>.<span class="w">   </span>-<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000127054.14&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000478641.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;CPSF3L&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;retained_intron&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;CPSF3L-006&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000003330.11&quot;</span><span class="p">;</span><span class="w"> </span>havana_transcript<span class="w"> </span><span class="s2">&quot;OTTHUMT00000009365.1&quot;</span><span class="p">;</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>CDS<span class="w"> </span><span class="m">1461841</span><span class="w"> </span><span class="m">1461911</span><span class="w"> </span>.<span class="w">   </span>+<span class="w">   </span><span class="m">0</span><span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000197785.9&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000378755.5&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;ATAD3A&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;ATAD3A-003&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">13</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00001664426.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;CCDS&quot;</span><span class="p">;</span><span class="w"> </span>ccdsid<span class="w"> </span><span class="s2">&quot;CCDS31.1&quot;</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000000575.6&quot;</span><span class="p">;</span><span class="w"> </span>havana_transcript<span class="w"> </span><span class="s2">&quot;OTTHUMT00000001365.1&quot;</span><span class="p">;</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>exon<span class="w">    </span><span class="m">1693391</span><span class="w"> </span><span class="m">1693474</span><span class="w"> </span>.<span class="w">   </span>-<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000008130.11&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000341991.3&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;NADK&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;NADK-002&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00003487616.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;CCDS&quot;</span><span class="p">;</span><span class="w"> </span>ccdsid<span class="w"> </span><span class="s2">&quot;CCDS30565.1&quot;</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000000942.5&quot;</span><span class="p">;</span><span class="w"> </span>havana_transcript<span class="w"> </span><span class="s2">&quot;OTTHUMT00000002768.1&quot;</span><span class="p">;</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>CDS<span class="w"> </span><span class="m">1688280</span><span class="w"> </span><span class="m">1688321</span><span class="w"> </span>.<span class="w">   </span>-<span class="w">   </span><span class="m">0</span><span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000008130.11&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000497186.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;NADK&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;nonsense_mediated_decay&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;NADK-008&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00001856899.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;mRNA_start_NF&quot;</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;cds_start_NF&quot;</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000000942.5&quot;</span><span class="p">;</span><span class="w"> </span>havana_transcript<span class="w"> </span><span class="s2">&quot;OTTHUMT00000002774.3&quot;</span><span class="p">;</span>
+</span></code></pre></div>
+<blockquote>
+<p>The transcriptome has 9 columns. The first 8 are separated by tabs and look reasonable (chromosome, annotation source, feature type, start, end, score, strand, and phase), the last one is kind of hairy: it is made up of key-value pairs separated by semicolons, some fields are mandatory and others are optional, and the values are surrounded in double quotes. That’s no way to live a decent life. (<em>text copied from the source</em>)</p>
+</blockquote>
+<p>let's get only the lines that have <code>gene</code> in the 3<sup>th</sup> column.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$<span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;\t&quot;</span><span class="w"> </span><span class="s1">&#39;$3 == &quot;gene&quot;&#39;</span><span class="w"> </span>transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-S
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>gene<span class="w">    </span><span class="m">11869</span><span class="w">   </span><span class="m">14412</span><span class="w">   </span>.<span class="w">   </span>+<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000000961.2&quot;</span><span class="p">;</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>gene<span class="w">    </span><span class="m">14363</span><span class="w">   </span><span class="m">29806</span><span class="w">   </span>.<span class="w">   </span>-<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000227232.4&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000227232.4&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;WASH7P&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;WASH7P&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000000958.1&quot;</span><span class="p">;</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>gene<span class="w">    </span><span class="m">29554</span><span class="w">   </span><span class="m">31109</span><span class="w">   </span>.<span class="w">   </span>+<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000243485.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000243485.2&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;MIR1302-11&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;MIR1302-11&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000000959.2&quot;</span><span class="p">;</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>gene<span class="w">    </span><span class="m">34554</span><span class="w">   </span><span class="m">36081</span><span class="w">   </span>.<span class="w">   </span>-<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000237613.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000237613.2&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;FAM138A&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;FAM138A&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000000960.1&quot;</span><span class="p">;</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>gene<span class="w">    </span><span class="m">52473</span><span class="w">   </span><span class="m">54936</span><span class="w">   </span>.<span class="w">   </span>+<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000268020.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000268020.2&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;OR4G4P&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;OR4G4P&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000185779.1&quot;</span><span class="p">;</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>gene<span class="w">    </span><span class="m">62948</span><span class="w">   </span><span class="m">63887</span><span class="w">   </span>.<span class="w">   </span>+<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000240361.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000240361.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;OR4G11P&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;OR4G11P&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000001095.2&quot;</span><span class="p">;</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>gene<span class="w">    </span><span class="m">69091</span><span class="w">   </span><span class="m">70008</span><span class="w">   </span>.<span class="w">   </span>+<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000001094.1&quot;</span><span class="p">;</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>gene<span class="w">    </span><span class="m">89295</span><span class="w">   </span><span class="m">133566</span><span class="w">  </span>.<span class="w">   </span>-<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000238009.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000238009.2&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;RP11-34P13.7&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;RP11-34P13.7&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000001096.2&quot;</span><span class="p">;</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>gene<span class="w">    </span><span class="m">89551</span><span class="w">   </span><span class="m">91105</span><span class="w">   </span>.<span class="w">   </span>-<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000239945.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000239945.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;RP11-34P13.8&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;RP11-34P13.8&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000001097.2&quot;</span><span class="p">;</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>chr1<span class="w">    </span>HAVANA<span class="w">  </span>gene<span class="w">    </span><span class="m">131025</span><span class="w">  </span><span class="m">134836</span><span class="w">  </span>.<span class="w">   </span>+<span class="w">   </span>.<span class="w">   </span>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000233750.3&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000233750.3&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;CICP27&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;CICP27&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;pseudo_consens&quot;</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000001257.3&quot;</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Perhaps filter a bit more and print the content of the 9<sup>th</sup> column in the file.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$<span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;\t&quot;</span><span class="w"> </span><span class="s1">&#39;$3 == &quot;gene&quot; { print $9 }&#39;</span><span class="w"> </span>transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-S
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000000961.2&quot;</span><span class="p">;</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000227232.4&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000227232.4&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;WASH7P&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;WASH7P&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000000958.1&quot;</span><span class="p">;</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000243485.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000243485.2&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;MIR1302-11&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;MIR1302-11&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000000959.2&quot;</span><span class="p">;</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000237613.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000237613.2&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;FAM138A&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;FAM138A&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000000960.1&quot;</span><span class="p">;</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000268020.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000268020.2&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;OR4G4P&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;OR4G4P&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000185779.1&quot;</span><span class="p">;</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000240361.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000240361.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;OR4G11P&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;OR4G11P&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000001095.2&quot;</span><span class="p">;</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000001094.1&quot;</span><span class="p">;</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000238009.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000238009.2&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;RP11-34P13.7&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;RP11-34P13.7&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000001096.2&quot;</span><span class="p">;</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000239945.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000239945.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;RP11-34P13.8&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;RP11-34P13.8&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000001097.2&quot;</span><span class="p">;</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000233750.3&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000233750.3&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;CICP27&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;CICP27&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;pseudo_consens&quot;</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000001257.3&quot;</span><span class="p">;</span>
+</span></code></pre></div>
+<p>What about if we want just a specific piece from this information?
+We can <code>|</code> the output from the first awk script in to a second one. Note that we will use different field separator <code>"; "</code>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$<span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;\t&quot;</span><span class="w"> </span><span class="s1">&#39;$3 == &quot;gene&quot; { print $9 }&#39;</span><span class="w"> </span>transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;; &quot;</span><span class="w"> </span><span class="s1">&#39;{ print $3 }&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span>
+</span></code></pre></div>
+<h2 id="chaining-awk-calls">Chaining AWK calls<a class="headerlink" href="#chaining-awk-calls" title="Permanent link">&para;</a></h2>
+<p>We will start with the AWK call that we were using before, and we will append a pipe | so it can be used as input for the next AWK call, this time using a space and a semicolon as the delimiter to define what a column is:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;\t&quot;</span><span class="w"> </span><span class="s1">&#39;$3 == &quot;gene&quot; { print $9 }&#39;</span><span class="w"> </span>transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;; &quot;</span><span class="w"> </span><span class="s1">&#39;{ print $3 }&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-S
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>gene_type<span class="w"> </span><span class="s2">&quot;lincRNA&quot;</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>gene_type<span class="w"> </span><span class="s2">&quot;pseudogene&quot;</span>
+</span></code></pre></div>
+Now that we see what the third column looks like, we can filter for protein-coding genes</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;\t&quot;</span><span class="w"> </span><span class="s1">&#39;$3 == &quot;gene&quot; { print $9 }&#39;</span><span class="w"> </span>transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;; &quot;</span><span class="w"> </span><span class="s1">&#39;$3 == &quot;gene_type \&quot;protein_coding\&quot;&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>head<span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-S
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000001094.1&quot;</span><span class="p">;</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000237683.5&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000237683.5&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;AL627309.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;AL627309.1&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">3</span><span class="p">;</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000235249.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000235249.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;OR4F29&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;OR4F29&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000002860.1&quot;</span><span class="p">;</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000185097.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000185097.2&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;OR4F16&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;OR4F16&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000002581.1&quot;</span><span class="p">;</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000269831.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000269831.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;AL669831.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;AL669831.1&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">3</span><span class="p">;</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000269308.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000269308.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;AL645608.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;AL645608.2&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">3</span><span class="p">;</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000187634.6&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000187634.6&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;SAMD11&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;SAMD11&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000040719.8&quot;</span><span class="p">;</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000268179.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000268179.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;AL645608.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;AL645608.1&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">3</span><span class="p">;</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000188976.6&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000188976.6&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;NOC2L&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;NOC2L&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000040720.1&quot;</span><span class="p">;</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000187961.9&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENSG00000187961.9&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;KLHL17&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;KLHL17&quot;</span><span class="p">;</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000040721.6&quot;</span><span class="p">;</span>
+</span></code></pre></div>
+I added a space and a backslash  (not to be confused with the regular slash /) after the first and second pipes to split the code into two lines; this makes it easier to read and it highlights that we are taking two separate steps.</p>
+<p>The double quotes around protein_coding are escaped (also with a backslash \") because they are already contained inside double quotes. To avoid the backslashing drama we can use the partial matching operator ~ instead of the total equality operator ==.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;\t&quot;</span><span class="w"> </span><span class="s1">&#39;$3 == &quot;gene&quot; { print $9 }&#39;</span><span class="w"> </span>transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;; &quot;</span><span class="w"> </span><span class="s1">&#39;$3 ~ &quot;protein_coding&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>head<span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-S
+</span></code></pre></div>
+The output is the same as before: those lines that contain a protein_coding somewhere in their third column make the partial matching rule true, and they get printed (which is the default behavior when there are no curly braces).</p>
+<p>Now we have all the protein-coding genes, but how do we get to the genes that only have one exon? Well, we have to revisit our initial AWK call: we selected lines that corresponded to genes, but we actually want lines that correspond to exons. That’s an easy fix, we just change the word “gene” for the word “exon”. Everything else stays the same.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;\t&quot;</span><span class="w"> </span><span class="s1">&#39;$3 == &quot;exon&quot; { print $9 }&#39;</span><span class="w"> </span>transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;; &quot;</span><span class="w"> </span><span class="s1">&#39;$3 ~ &quot;protein_coding&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>head<span class="w"> </span><span class="p">|</span><span class="w"> </span>less<span class="w"> </span>-S
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000335137.3&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;OR4F5-001&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00002319515.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;CCDS&quot;</span><span class="p">;</span><span class="w"> </span>ccdsid<span class="w"> </span><span class="s2">&quot;CCDS30547.1&quot;</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000001094.1&quot;</span><span class="p">;</span><span class="w"> </span>havana_transcript<span class="w"> </span><span class="s2">&quot;OTTHUMT00000003223.1&quot;</span><span class="p">;</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000237683.5&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000423372.3&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;AL627309.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;AL627309.1-201&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00002221580.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000237683.5&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000423372.3&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;AL627309.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;AL627309.1-201&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00002314092.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000235249.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000426406.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;OR4F29&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;OR4F29-001&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00002316283.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;CCDS&quot;</span><span class="p">;</span><span class="w"> </span>ccdsid<span class="w"> </span><span class="s2">&quot;CCDS41220.1&quot;</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000002860.1&quot;</span><span class="p">;</span><span class="w"> </span>havana_transcript<span class="w"> </span><span class="s2">&quot;OTTHUMT00000007999.1&quot;</span><span class="p">;</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000185097.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000332831.2&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;OR4F16&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;OR4F16-001&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00002324228.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;CCDS&quot;</span><span class="p">;</span><span class="w"> </span>ccdsid<span class="w"> </span><span class="s2">&quot;CCDS41221.1&quot;</span><span class="p">;</span><span class="w"> </span>havana_gene<span class="w"> </span><span class="s2">&quot;OTTHUMG00000002581.1&quot;</span><span class="p">;</span><span class="w"> </span>havana_transcript<span class="w"> </span><span class="s2">&quot;OTTHUMT00000007334.1&quot;</span><span class="p">;</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000269831.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000599533.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;AL669831.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;AL669831.1-201&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00003063549.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000269831.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000599533.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;AL669831.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;AL669831.1-201&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00003084653.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000269831.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000599533.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;AL669831.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;AL669831.1-201&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00003138540.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000269308.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000594233.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;AL645608.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;AL645608.2-201&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00003079649.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>gene_id<span class="w"> </span><span class="s2">&quot;ENSG00000269308.1&quot;</span><span class="p">;</span><span class="w"> </span>transcript_id<span class="w"> </span><span class="s2">&quot;ENST00000594233.1&quot;</span><span class="p">;</span><span class="w"> </span>gene_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>gene_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>gene_name<span class="w"> </span><span class="s2">&quot;AL645608.2&quot;</span><span class="p">;</span><span class="w"> </span>transcript_type<span class="w"> </span><span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span><span class="w"> </span>transcript_status<span class="w"> </span><span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span><span class="w"> </span>transcript_name<span class="w"> </span><span class="s2">&quot;AL645608.2-201&quot;</span><span class="p">;</span><span class="w"> </span>exon_number<span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w">  </span>exon_id<span class="w"> </span><span class="s2">&quot;ENSE00003048391.1&quot;</span><span class="p">;</span><span class="w">  </span>level<span class="w"> </span><span class="m">3</span><span class="p">;</span><span class="w"> </span>tag<span class="w"> </span><span class="s2">&quot;basic&quot;</span><span class="p">;</span>
+</span></code></pre></div>
+<h2 id="cleaning-up-the-output">Cleaning up the output<a class="headerlink" href="#cleaning-up-the-output" title="Permanent link">&para;</a></h2>
+<p>Before we try to count how many exons belong to the same protein-coding gene, let’s simplify the output so we only get the gene names (which are in column 5).</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;\t&quot;</span><span class="w"> </span><span class="s1">&#39;$3 == &quot;exon&quot; { print $9 }&#39;</span><span class="w"> </span>transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;; &quot;</span><span class="w"> </span><span class="s1">&#39;$3 ~ &quot;protein_coding&quot; {print $5}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>head
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>gene_name<span class="w"> </span><span class="s2">&quot;OR4F5&quot;</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>gene_name<span class="w"> </span><span class="s2">&quot;AL627309.1&quot;</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>gene_name<span class="w"> </span><span class="s2">&quot;AL627309.1&quot;</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>gene_name<span class="w"> </span><span class="s2">&quot;OR4F29&quot;</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>gene_name<span class="w"> </span><span class="s2">&quot;OR4F16&quot;</span>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>gene_name<span class="w"> </span><span class="s2">&quot;AL669831.1&quot;</span>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>gene_name<span class="w"> </span><span class="s2">&quot;AL669831.1&quot;</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>gene_name<span class="w"> </span><span class="s2">&quot;AL669831.1&quot;</span>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>gene_name<span class="w"> </span><span class="s2">&quot;AL645608.2&quot;</span>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>gene_name<span class="w"> </span><span class="s2">&quot;AL645608.2&quot;</span>
+</span></code></pre></div>
+This is sort of what we want. We could chain another AWK call using -F " ", and pick the second column (which would get rid of the gene_name). Feel free to try that approach if you are curious.</p>
+<p>We can also take a shortcut by using the tr -d command, which deletes whatever characters appear in double quotes. For example, to remove every vowel from a sentence:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;This unix thing is cool&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;aeiou&quot;</span><span class="w"> </span><span class="c1"># Ths nx thng s cl</span>
+</span></code></pre></div>
+Let’s try deleting all the semicolons and quotes before the second AWK call:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;\t&quot;</span><span class="w"> </span><span class="s1">&#39;$3 == &quot;exon&quot; { print $9 }&#39;</span><span class="w"> </span>transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>tr<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;;\&quot;&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="s1">&#39;$6 == &quot;protein_coding&quot; {print $10}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>head
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>OR4F5
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>AL627309.1
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>AL627309.1
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>OR4F29
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>OR4F16
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>AL669831.1
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>AL669831.1
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a>AL669831.1
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>AL645608.2
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>AL645608.2
+</span></code></pre></div>
+Run <code>bash awk -F "\t" '$3 == "exon" { print $9 }' transcriptome.gtf | tr -d ";\"" | head</code> to understand what the input to the second AWK call looks like. It’s just words separated by spaces; the sixth word corresponds to the gene type, and the tenth word to the gene name.</p>
+<h2 id="counting-genes">Counting genes<a class="headerlink" href="#counting-genes" title="Permanent link">&para;</a></h2>
+<p>There is one more concept we need to introduce before we start counting. AWK uses a special rule called END, which is only true once the input is over. See an example:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;a\na\nb\nb\nb\nc&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>awk<span class="w"> </span><span class="s1">&#39;</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="s1">    { print $1 }</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="s1">END { print &quot;Done with letters!&quot; }</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="s1">&#39;</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>a
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>a
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>b
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>b
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>b
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a>c
+</span></code></pre></div>
+Done with letters!
+The -e option tells echo to convert each \n into a new line, which is a convenient way of printing multiple lines from a single character string.</p>
+<p>In AWK, any amount of whitespace is allowed between the initial and the final quote '. I separated the first rule from the END rule to make them easier to read.</p>
+<p>Now we are ready for counting.</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;a\na\nb\nb\nb\nc&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>awk<span class="w"> </span><span class="s1">&#39;</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="s1">    { counter[$1] += 1 }</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="s1">END {</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="s1">    for (letter in counter){</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="s1">        print letter, counter[letter]</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="s1">    }</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="s1">}</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="s1">&#39;</span>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>a<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>b<span class="w"> </span><span class="m">3</span>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>c<span class="w"> </span><span class="m">1</span>
+</span></code></pre></div>
+Wow, what is all that madness?</p>
+<p>Instead of printing each letter, we manipulate a variable that we called counter. This variable is special because it is followed by brackets [ ], which makes it an associative array, a fancy way of calling a variable that stores key-value pairs.</p>
+<p>In this case we chose the values of the first column <span class="arithmatex">\(1 to be the keys of the counter variable, which means there are 3 keys (“a”, “b” and “c”). The values are initialized to 0. For every line in the input, we add a 1 to the value in the array whose key is equal to <span class="arithmatex">\(1. We use the addition operator +=, a shortcut for counter[\)</span>1] = counter[\)</span>1] + 1.</p>
+<p>When all the lines are read, the END rule becomes true, and the code between the curly braces { } is executed. The structure for (key in associate_array) { some_code } is called a for loop, and it executes some_code as many times as there are keys in the array. letter is the name that we chose for the variable that cycles through all the keys in counter, and counter[letter] gives the value stored in counter for each letter (which we we calculated in the previous curly brace chunk).</p>
+<p>Now we can apply this to the real example:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;\t&quot;</span><span class="w"> </span><span class="s1">&#39;$3 == &quot;exon&quot; { print $9 }&#39;</span><span class="w"> </span>transcriptome.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>tr<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;;\&quot;&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="s1">&#39;</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="s1">$6 == &quot;protein_coding&quot; {</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="s1">    gene_counter[$10] += 1</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="s1">}</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="s1">END {</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="s1">    for (gene_name in gene_counter){</span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="s1">        print gene_name, gene_counter[gene_name]</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="s1">    }</span>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="s1">}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>number_of_exons_by_gene.txt
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a>
+</span><span id="__span-29-14"><a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a>head<span class="w"> </span>number_of_exons_by_gene.txt
+</span><span id="__span-29-15"><a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a>CAPN6<span class="w"> </span><span class="m">24</span>
+</span><span id="__span-29-16"><a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a>ARL14EPL<span class="w"> </span><span class="m">3</span>
+</span><span id="__span-29-17"><a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a>DACH1<span class="w"> </span><span class="m">38</span>
+</span><span id="__span-29-18"><a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a>IFNA13<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-29-19"><a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a>HSP90AB1<span class="w"> </span><span class="m">36</span>
+</span><span id="__span-29-20"><a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a>CAPN7<span class="w"> </span><span class="m">52</span>
+</span><span id="__span-29-21"><a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a>DACH2<span class="w"> </span><span class="m">84</span>
+</span><span id="__span-29-22"><a id="__codelineno-29-22" name="__codelineno-29-22" href="#__codelineno-29-22"></a>IFNA14<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-29-23"><a id="__codelineno-29-23" name="__codelineno-29-23" href="#__codelineno-29-23"></a>LARS<span class="w"> </span><span class="m">188</span>
+</span><span id="__span-29-24"><a id="__codelineno-29-24" name="__codelineno-29-24" href="#__codelineno-29-24"></a>CAPN8<span class="w"> </span><span class="m">78</span>
+</span></code></pre></div>
+If you are using the real transcriptome, it takes less than a minute to count up one million exons. Pretty impressive.</p>
+<p>We saved the output to a file, so now we can use AWK to see how many genes are made up of a single exon.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>awk<span class="w"> </span><span class="s1">&#39;$2 == 1&#39;</span><span class="w"> </span>number_of_exons_by_gene.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="w"> </span><span class="c1"># 1362</span>
+</span></code></pre></div>
+<p>I will suggest to follow the original tutorial if you need to refer to these steps later on for your own data:<br />
+<a href="http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1/">AWK GTF! How to Analyze a Transcriptome Like a Pro</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021, Johan Lindberg et. al., MEB, Karolinska Institutet, All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
