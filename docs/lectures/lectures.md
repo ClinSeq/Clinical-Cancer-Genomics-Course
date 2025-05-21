@@ -10,6 +10,8 @@
     8. Calling structural variation. [PDF](pdf/Structural_variant_analysis_2025.pdf)
     9. Calling somatic- and germline copy-number alterations. [PDF](pdf/copynumbers_lecure_may2025.pdf)
     10. RNA sequencing etc.Lab intro. [PDF](pdf/RNAseq.pdf)
+    11. Curation of somatic and germline variants [PDF](pdf/Curation_of_somatic_and_germline_variants.pdf)
+    12. Clinical trials in prostate cancer - the data that populates the biomarker databases [PDF](pdf/Clinical_trials_in_prostate_cancer_the_data_that_populates_the_biomarker_databases.pdf)
 
 <!-- ??? example "Module 2 " -->
 
